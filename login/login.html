@@ -7,13 +7,45 @@
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="login.css" />
   <link rel="icon" type="image/jpg" href="../Logo.jpg">
+  <script src="../js/search.js" defer></script>
 
 </head>
 
 <body class="signup-page">
 
-<div id="dynamic-header"></div>
+ <!-- HEADER -->
+<header class="main-header">
+  <div class="left-section">
+    <a href="../index.html" class="logo">
+      <span class="purple">D</span>erradj Academy
+    </a>
 
+    <div class="explore-dropdown">
+      <a href="#" class="explore-link">Explore</a>
+      <ul class="dropdown-menu">
+        <li><a href="../courses/ondes_et_vibrations.html">Ondes et Vibrations</a></li>
+        <li><a href="../courses/electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
+        <li><a href="../courses/electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
+        <li><a href="../courses/electricite_industrielle.html">Électricité Industrielle</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="search-box">
+    <input type="text" placeholder="Search for anything" id="searchInput" />
+    <ul class="suggestions" id="suggestionsList"></ul>
+  </div>
+
+    <nav class="right-links">
+      <a href="../index.html#student-feedback" class="nav-link">What Our Students Say</a>
+
+      <a href="../index.html#why-us" class="nav-link">About Us</a>
+      <a href="../All playlist/all-playlists.html" class="cart-icon">🛒</a>
+      <a href="" class="btn login">Log in</a>
+      <a href="../sign-up/sign-up.html" class="btn signup">Sign up</a>
+      <a href="../index.html#support" class="support-icon" title="الدعم الفني">💬</a>
+    </nav>
+</header>
 
   <!-- ✅ LOGIN FORM -->
   <main class="signup-wrapper">
