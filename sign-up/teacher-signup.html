@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teacher Sign Up</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="signup.css" />
+  <script src="../js/search.js" defer></script>
+  <link rel="icon" type="image/jpg" href="../Logo.jpg">
+</head>
+
+<body class="signup-page">
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="left-section">
+      <a href="../index.html" class="logo">
+        <span class="purple">D</span>erradj Academy
+      </a>
+    </div>
+    <div class="search-box">
+      <input type="text" placeholder="Search for anything" id="searchInput" />
+      <ul class="suggestions" id="suggestionsList"></ul>
+    </div>
+    <nav class="right-links">
+      <a href="#why-us" class="nav-link">Why Choose Us?</a>
+      <a href="#why-us" class="nav-link">About Us</a>
+      <a href="../All playlist/all-playlists.html" class="cart-icon">🛒</a>
+      <a href="../login/login.html" class="btn login">Log in</a>
+      <a href="" class="btn signup">Sign up</a>
+      <a href="#support" class="support-icon" title="الدعم الفني">💬</a>
+    </nav>
+  </header>
+
+  <!-- SIGNUP FORM -->
+  <main class="signup-wrapper">
+    <form class="signup-form">
+      <h2>Create Your Teacher Account</h2>
+
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" required />
+      </div>
+
+   <div class="form-group">
+  <label for="contact">Email or Phone Number</label>
+  <input type="text" id="contact" placeholder="e.g. email@example.com or +213..." required />
+</div>
+
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+      </div>
+
+      <div class="form-group">
+        <label>Select the subjects you teach</label>
+        <div class="select-wrapper">
+          <button type="button" class="toggle-courses-btn">Select Subjects</button>
+          <div id="moduleError" class="error-text"></div>
+        </div>
+
+        <div class="checkbox-group" id="coursesList">
+          <label><input type="checkbox" name="courses[]" value="chimie"> Chimie</label>
+          <label><input type="checkbox" name="courses[]" value="mecanique"> Mécanique</label>
+          <label><input type="checkbox" name="courses[]" value="electrotechnique"> Electrotechnique</label>
+          <label><input type="checkbox" name="courses[]" value="electronique"> Electronique</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="paymentProof">Upload Your CV or Certificate</label>
+        <input type="file" id="paymentProof" accept=".jpg,.jpeg,.png,.pdf" required />
+      </div>
+
+      <button type="submit">Sign Up</button>
+
+      <p class="form-footer-text">
+        Already have an account? <a href="../login/login.html">Log in</a>
+      </p>
+    </form>
+  </main>
+
+  <footer class="main-footer" dir="rtl">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h3>عن المنصة</h3>
+        <p>منصة جزائرية تعليمية موجهة لطلبة الجامعات، تقدم دورات مبسطة، ملفات PDF، وفيديوهات مباشرة.</p>
+      </div>
+
+      <div class="footer-section links">
+        <h3>روابط سريعة</h3>
+        <ul>
+          <li><a href="../index.html">الرئيسية</a></li>
+          <li><a href="../index.html#why-us">لماذا نحن؟</a></li>
+          <li><a href="../index.html#pay-methods-section">طرق الدفع</a></li>
+          <li><a href="">إنشاء حساب</a></li>
+          <li><a href="../All playlist/all-playlists.html">الدورات</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section contact">
+        <h3>تواصل معنا</h3>
+        <p><strong>📞</strong> <a href="tel:+213555491316" dir="ltr">+213 555 49 13 16</a></p>
+        <p><strong>📧</strong> <a href="mailto:abdellahderradj918@gmail.com">abdellahderradj918@gmail.com</a></p>
+        <p><strong>📍</strong> الجزائر، الجزائر العاصمة</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>جميع الحقوق محفوظة &copy; 2025 - Derradj Academy</p>
+    </div>
+  </footer>
+
+<!-- Toggle courses -->
+<script>
+  (() => {
+    const toggleBtn = document.querySelector('.toggle-courses-btn');
+    const coursesList = document.getElementById('coursesList');
+
+    toggleBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      coursesList.classList.toggle('active');
+      toggleBtn.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.select-wrapper')) {
+        coursesList.classList.remove('active');
+        toggleBtn.classList.remove('active');
+      }
+    });
+  })();
+</script>
+
+<!-- Supabase Script -->
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+  const supabase = createClient(
+    'https://sgcypxmnlyiwljuqvcup.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
+  );
+
+  const form = document.querySelector('.signup-form');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const fullName = document.getElementById('fullName').value.trim();
+    const contact = document.getElementById('contact').value.trim();
+    const password = document.getElementById('password').value;
+    const subjects = Array.from(document.querySelectorAll('input[name="courses[]"]:checked')).map(cb => cb.value);
+    const fileInput = document.getElementById('paymentProof');
+    const file = fileInput.files[0];
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    if (subjects.length === 0) {
+      document.getElementById("moduleError").textContent = "❌ يرجى اختيار مادة واحدة على الأقل.";
+      return;
+    } else {
+      document.getElementById("moduleError").textContent = "";
+    }
+
+    if (!file) {
+      alert("❌ يرجى رفع السيرة الذاتية أو شهادة الخبرة.");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Please wait...";
+
+    try {
+      // تحقق من وجود مستخدم بنفس contact
+      const { data: existing, error: existingError } = await supabase
+        .from('teachers')
+        .select('*')
+        .eq('contact', contact)
+        .maybeSingle(); // ✅ safer to avoid 406 error
+
+      if (existing) {
+        alert("❌ هذا البريد أو الرقم مستعمل من قبل.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Sign Up";
+        return;
+      }
+
+      // رفع الملف
+      const fileName = `teacher_${Date.now()}_${file.name}`;
+      const { data: uploadData, error: uploadError } = await supabase
+        .storage
+        .from('teacher-docs')
+        .upload(fileName, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase
+        .storage
+        .from('teacher-docs')
+        .getPublicUrl(uploadData.path);
+
+      // إدخال البيانات
+      const { error: insertError } = await supabase
+        .from('teachers')
+        .insert([{
+          full_name: fullName,
+          contact,
+          password,
+          subjects,
+          cv_url: publicUrl,
+          is_approved: null
+        }]);
+
+      if (insertError) throw insertError;
+
+      localStorage.setItem("teacherName", fullName);
+      localStorage.setItem("teacherSubjects", JSON.stringify(subjects));
+
+      window.location.href = "teacher-dashboard.html";
+    } catch (err) {
+      console.error("Error:", err);
+      alert("❌ حدث خطأ أثناء التسجيل. يرجى المحاولة لاحقًا.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Sign Up";
+    }
+  });
+</script>
+
+</body>
+</html>

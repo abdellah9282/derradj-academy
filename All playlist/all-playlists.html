@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Playlists </title>
+  <link rel="stylesheet" href="style.css" />
+    <script src="../js/search.js" defer></script>
+<link rel="icon" type="image/jpg" href="../Logo.jpg">
+
+
+</head>
+<body>
+ <!-- HEADER -->
+<header class="main-header">
+  <div class="left-section">
+    <a href="../index.html" class="logo">
+      <span class="purple">D</span>erradj Academy
+    </a>
+
+    <div class="explore-dropdown">
+      <a href="#" class="explore-link">Explore</a>
+      <ul class="dropdown-menu">
+        <li><a href="../courses/ondes_et_vibrations.html">Ondes et Vibrations</a></li>
+        <li><a href="../courses/electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
+        <li><a href="../courses/electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
+        <li><a href="../courses/electricite_industrielle.html">Électricité Industrielle</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="search-box">
+    <input type="text" placeholder="Search for anything" id="searchInput" />
+    <ul class="suggestions" id="suggestionsList"></ul>
+  </div>
+
+    <nav class="right-links">
+      <a href="../index.html#why-us" class="nav-link">Why Choose Us?</a>
+      <a href="../index.html#why-us" class="nav-link">About Us</a>
+      <a href="" class="cart-icon">🛒</a>
+      <a href="../login/login.html" class="btn login">Log in</a>
+      <a href="../sign-up/sign-up.html" class="btn signup">Sign up</a>
+      <a href="#support" class="support-icon" title="الدعم الفني">💬</a>
+    </nav>
+</header>
+ 
+<!-- All Playlists Section -->
+<section class="categories-section">
+  <h2 class="section-title">All Available Playlists</h2>
+  <p class="section-subtitle">
+    Discover all our university courses with recorded videos, live sessions, and downloadable PDFs.
+  </p>
+
+  <div class="course-cards all-courses-grid">
+
+    <!-- 🟣 Ondes Et Vibrations -->
+    <div class="course-card" data-course-id="ondes_et_vibrations">
+      <a href="../courses/ondes_et_vibrations.html" class="course-link">
+        <img src="../ondes et vibrations/01.webp" alt="Course Image" class="course-img" />
+        <div class="course-content">
+          <h3 class="course-title">Ondes Et Vibrations</h3>
+          <p class="instructor">Pr. Abdellah Derradj</p>
+          <div class="rating">
+            <span class="rating-value">...</span>
+            <span class="stars">★ ★ ★ ★ ★</span>
+            <span class="reviews">(....)</span>
+          </div>
+          <div class="price">2500 DA</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- 🟣 Électronique Fondamentale 1 -->
+    <div class="course-card" data-course-id="electronique_fondamentale1">
+      <a href="../courses/electronique_fondamentale1.html" class="course-link">
+        <img src="../ondes et vibrations/01.webp" alt="Course Image" class="course-img" />
+        <div class="course-content">
+          <h3 class="course-title">Électronique Fondamentale 1</h3>
+          <p class="instructor">Pr. Abdellah Derradj</p>
+          <div class="rating">
+            <span class="rating-value">...</span>
+            <span class="stars">★ ★ ★ ★ ★</span>
+            <span class="reviews">(....)</span>
+          </div>
+          <div class="price">2500 DA</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- 🟣 Electrotechnique Fondamentale 1 -->
+    <div class="course-card" data-course-id="electrotechnique_fondamentale1">
+      <a href="../courses/electrotechnique_fondamentale1.html" class="course-link">
+        <img src="../ondes et vibrations/01.webp" alt="Course Image" class="course-img" />
+        <div class="course-content">
+          <h3 class="course-title">Electrotechnique Fondamentale 1</h3>
+          <p class="instructor">Pr. Abdellah Derradj</p>
+          <div class="rating">
+            <span class="rating-value">...</span>
+            <span class="stars">★ ★ ★ ★ ★</span>
+            <span class="reviews">(....)</span>
+          </div>
+          <div class="price">2500 DA</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- 🟣 Electricité Industrielle -->
+    <div class="course-card" data-course-id="electricite_industrielle">
+      <a href="../courses/electricite_industrielle.html" class="course-link">
+        <img src="../ondes et vibrations/01.webp" alt="Course Image" class="course-img" />
+        <div class="course-content">
+          <h3 class="course-title">Electricité Industrielle</h3>
+          <p class="instructor">Pr. Abdellah Derradj</p>
+          <div class="rating">
+            <span class="rating-value">...</span>
+            <span class="stars">★ ★ ★ ★ ★</span>
+            <span class="reviews">(....)</span>
+          </div>
+          <div class="price">2500 DA</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- استبدل قسم الدفع القديم بهذا -->
+<section id="pay-methods-section">
+  <h2>طرق الدفع</h2>
+
+  <p style="max-width: 640px; margin: 1rem auto 2rem auto; background: #ffffff; border: 1px solid #dee2e6; box-shadow: 0 1px 5px rgba(76, 29, 149, 0.05); border-radius: 10px; padding: 1rem 1.5rem; font-size: 1.05em; color: #1e293b; line-height: 1.7; text-align: right; direction: rtl;">
+    لدفع ثمن الدورة، يُرجى إرسال المبلغ عبر <b>بريدي موب</b> أو <b>بريد الجزائر</b>، ثم تصوير وصل الدفع (لقطة شاشة أو صورة)، وأخيرًا الانتقال إلى
+    <a href="../../sign-up/sign-up.html" style="color:#1e293b; font-weight:bold;">صفحة التسجيل</a>
+    لتعبئة بياناتك وإرفاق صورة الوصل.
+  </p>
+
+  <div class="pay-methods-list">
+    <!-- BaridiMob -->
+    <div class="pay-card">
+      <span class="badge">BaridiMob</span>
+      <h3 style="color: #1e40af; font-size: 1.3em; margin-bottom: 1rem; text-align: center; font-weight: 700;">(BaridiMob)  الدفع عبر بريدي موب</h3>
+      <p style="text-align:right; direction: rtl;">
+        يرجى تحويل مبلغ الدورة عبر تطبيق <b style="direction: ltr; display: inline-block; margin: 0 4px;">BaridiMob</b> إلى الحساب التالي:
+      </p>
+      <ul style="direction: rtl; text-align: right; padding: 0; margin: 0; list-style: none; max-width: 360px;">
+        <li style="display: flex; align-items: center; gap: 0.2em; background: #f8fafc; border: 1px solid #e0e7ef; border-radius: 10px; padding: 1rem 1.2rem;">
+          <span class="rip-value" style="font-size: 1.1em; color: #1e293b; font-family: 'Segoe UI', monospace; letter-spacing: 1px; font-weight: bold; order: 1;">
+            00799999002580233574
+          </span>
+          <span style="font-weight: bold; color: #1e40af; font-size: 1.13em; min-width: 48px; order: 2; margin-left: 0.3em; margin-right: 0; text-align: left;">
+            RIP :
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Algérie Poste Card -->
+    <div class="pay-card" style="background: #ffffff; border: 1px solid #d6d9e7; border-radius: 14px; padding: 1.8rem 1.5rem; max-width: 720px; min-width: 340px; width: 100%; box-shadow: 0 4px 12px rgba(76, 29, 149, 0.1); margin: 0 auto; font-size: 1.1em; position: relative;">
+      <span class="badge" style="background: #14b8a6; color: #fff; padding: 4px 10px; font-size: 0.9em; border-radius: 7px; font-weight: bold; position: absolute; top: -14px; right: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">Algérie Poste</span>
+      <h3 style="color: #1e40af; font-size: 1.3em; margin-bottom: 1rem; text-align: center; font-weight: 700;">(CCP) الدفع عبر بريد الجزائر</h3>
+      <p style="text-align:right; direction: rtl;">
+        يرجى تحويل مبلغ الدورة عبر <b style="direction: ltr; display: inline-block; margin: 0 4px;">مركز بريد الجزائر</b> من خلال ملء الاستمارة الورقية إلى الحساب التالي:
+      </p>
+      <div class="poste-data" style="display: grid; grid-template-columns: 130px 1fr; gap: 12px 18px; font-size: 1.15rem; line-height: 2; color: #1e293b; background-color: #f9fafb; padding: 1.4rem; border-radius: 10px; border: 1px solid #e2e8f0; max-width: 520px; width: 100%; margin: 1.2rem auto 0 auto;">
+        <span style="font-weight: bold; color: #1e40af;">Clé :</span>
+        <span style="font-weight: bold; color: #1e293b;">74</span>
+        <span style="font-weight: bold; color: #1e40af;">Compte :</span>
+        <span>
+          <span id="ccp-poste" style="font-weight: bold; color: #1e293b;">0025802335</span>
+        </span>
+        <span style="font-weight: bold; color: #1e40af;">Nom :</span>
+        <span style="font-weight: bold; color: #1e293b;">DERRADJ</span>
+        <span style="font-weight: bold; color: #1e40af;">Prénom :</span>
+        <span style="font-weight: bold; color: #1e293b;">ABDELLAH</span>
+        <span style="font-weight: bold; color: #1e40af;">Adresse :</span>
+        <span style="font-weight: bold; color: #1e293b;">BOUIRA</span>
+        <span style="font-weight: bold; color: #1e40af;">RIP :</span>
+        <span>
+          <span class="rip-value" id="rip-poste" style="font-weight: bold; color: #1e293b;">007 99999 0025802335 94</span>
+        </span>
+      </div>
+      <div class="poste-note" style="margin-top: 1rem; text-align: center; background: #ecfdf5; color: #065f46; font-weight: 500; padding: 0.6rem 0.5rem; border-radius: 6px; font-size: 0.95em;">
+        أرسل المبلغ إلى الحساب البريدي أعلاه ثم احتفظ بصورة الوصل لإرفاقها في التسجيل.
+      </div>
+    </div>
+    <div style="margin-top:1rem; font-size:0.97em; color:#1e293b; text-align:center; background:#f1f5f9; border-radius:6px; padding:0.5em 0;">
+      <b>ملاحظة:</b> لن يتم تفعيل حسابك إلا بعد التحقق من وصل الدفع.
+    </div>
+  </div>
+</section>
+<div class="about-benefits-container">
+
+  <!-- 🧾 About Us Section -->
+  <section class="about-block">
+    <h2 class="section-heading">About Derradj Academy</h2>
+    <p class="about-description">
+<p class="about-description">
+  <strong>Derradj Academy</strong> is a leading Algerian e-learning platform founded by
+  <strong>Abdellah Derradj</strong> in collaboration with experienced university professors. It is dedicated to
+  empowering Algerian university students in scientific and technical fields through accessible, high-quality education
+  tailored to their academic needs.
+</p>
+
+    <ul class="about-list">
+      <li>🎓 Courses tailored to Algerian university curricula</li>
+      <li>📚 Downloadable PDFs for lectures, TDs, and exams</li>
+      <li>🧑‍🏫 Weekly live sessions with expert instructors</li>
+      <li>💬 Direct communication via chat and video</li>
+      <li>💳 Easy payment via BaridiMob and CCP</li>
+      <li>🌍 Equal access for all Algerian students</li>
+    </ul>
+  </section>
+
+<!-- ✅ Benefits After Enrollment -->
+<section class="benefits-block" id="why-us" dir="rtl" style="text-align: right;">
+<h2 class="section-heading rtl">ماذا ستحصل عليه بعد التسجيل؟</h2>
+  <ul class="benefits-list-ar">
+    <li>📌 أساتذة ذوو خبرة وكفاءة عالية في التخصص</li>
+    <li>🎯 شروحات مبسطة لتسهيل الفهم والاستيعاب</li>
+    <li>🎥 فيديوهات تعليمية عالية الجودة</li>
+    <li>💬 إمكانية التواصل مع الأساتذة (رسائل ومكالمات فيديو)</li>
+    <li>🧑‍🏫 بث مباشر أسبوعي لتفسير النقاط الصعبة</li>
+    <li>📄 ملفات (PDF) للمحاضرات، TD، TP، والامتحانات</li>
+  </ul>
+</section>
+
+
+</div>
+
+
+
+<section class="contact-form" id="support">
+  <h2>هل لديك سؤال؟</h2>
+  <form id="questionForm">
+    <input type="text" name="name" id="name" placeholder="الاسم الكامل" required />
+    <input type="email" name="email" id="email" placeholder=" البريد الإلكتروني أو رقم الهاتف" required />
+    <textarea name="message" id="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+    <button type="submit">إرسال</button>
+    <p id="support-message" style="margin-top:1rem; color:green;"></p>
+  </form>
+</section>
+
+<footer class="main-footer" dir="rtl">
+  <div class="footer-content">
+    <!-- عن المنصة -->
+    <div class="footer-section about">
+      <h3>عن المنصة</h3>
+      <p>منصة جزائرية تعليمية موجهة لطلبة الجامعات، تقدم دورات مبسطة، ملفات PDF، وفيديوهات مباشرة مع أساتذة مؤهلين.</p>
+    </div>
+
+    <!-- روابط سريعة -->
+    <div class="footer-section links">
+      <h3>روابط سريعة</h3>
+      <ul>
+        <li><a href="/">الرئيسية</a></li>
+        <li><a href="#why-us">لماذا نحن؟</a></li>
+        <li><a href="#pay-methods-section">طرق الدفع</a></li>
+        <li><a href="sign-up/sign-up.html">إنشاء حساب</a></li>
+        <li><a href="/#courses">الدورات</a></li>
+      </ul>
+    </div>
+
+    <!-- تواصل معنا -->
+    <div class="footer-section contact">
+      <h3>تواصل معنا</h3>
+<p>
+  <strong>📞</strong>
+  <a href="tel:+213555491316" dir="ltr">+213 555 49 13 16</a>
+</p>
+      <p><strong>📧</strong> <a href="mailto:abdellahderradj918@gmail.com">abdellahderradj918@gmail.com
+</a></p>
+      <p><strong>📍</strong> الجزائر، الجزائر العاصمة</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>جميع الحقوق محفوظة &copy; 2025 - Derradj Academy</p>
+  </div>
+</footer>
+
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+  const supabase = createClient(
+    'https://sgcypxmnlyiwljuqvcup.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
+  );
+
+  // ✅ دالة عرض التقييمات
+  async function fetchAndDisplayRatings() {
+    const cards = document.querySelectorAll('.course-card');
+
+    for (const card of cards) {
+      const moduleId = card.dataset.courseId;
+      if (!moduleId) continue;
+
+      const { data, error } = await supabase
+        .from('course_ratings')
+        .select('rating')
+        .eq('module', moduleId);
+
+      if (error) {
+        console.error(`❌ خطأ في جلب تقييمات: ${moduleId}`, error.message);
+        continue;
+      }
+
+      const ratingEl = card.querySelector('.rating-value');
+      const reviewEl = card.querySelector('.reviews');
+
+      if (data.length === 0) {
+        ratingEl.textContent = '0.0';
+        reviewEl.textContent = '(0)';
+        continue;
+      }
+
+      const ratings = data.map(entry => entry.rating);
+      const average = (ratings.reduce((sum, r) => sum + r, 0) / ratings.length).toFixed(1);
+
+      ratingEl.textContent = average;
+      reviewEl.textContent = `(${data.length})`;
+    }
+  }
+
+  fetchAndDisplayRatings();
+
+  // ✅ إرسال نموذج الدعم
+  const form = document.getElementById('questionForm');
+  if (form) {
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const supportMsg = document.getElementById('support-message');
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "جاري الإرسال...";
+      supportMsg.textContent = "";
+      supportMsg.style.color = "green";
+
+      if (!name || !email || !message) {
+        supportMsg.textContent = "❌ الرجاء ملء جميع الحقول.";
+        supportMsg.style.color = "red";
+        submitBtn.disabled = false;
+        submitBtn.textContent = "إرسال";
+        return;
+      }
+
+      const { error } = await supabase
+        .from('messages')
+        .insert([{ name, email, message }]);
+
+      if (error) {
+        supportMsg.textContent = "❌ حدث خطأ أثناء إرسال الرسالة. الرجاء المحاولة لاحقًا.";
+        supportMsg.style.color = "red";
+      } else {
+        supportMsg.textContent = "✅ تم إرسال رسالتك بنجاح، سيتم الرد عليك عن قريب.";
+        form.reset();
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = "إرسال";
+    });
+  }
+</script>
+
+
+</body>
+</html>

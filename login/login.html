@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="icon" type="image/jpg" href="../Logo.jpg">
+
+</head>
+
+<body class="signup-page">
+
+<div id="dynamic-header"></div>
+
+
+  <!-- ✅ LOGIN FORM -->
+  <main class="signup-wrapper">
+    <form class="signup-form">
+      <h2>Welcome Back</h2>
+
+      <div class="form-group">
+        <label for="contact">Email or Phone</label>
+        <input type="text" id="contact" name="contact" placeholder="Enter your email or phone" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required />
+        <div class="forgot-container">
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+      </div>
+
+      <button type="submit">Log In</button>
+
+      <p class="form-footer-text">
+        Don't have an account?
+        <a href="/sign-up/sign-up.html">Sign up</a>
+      </p>
+    </form>
+  </main>
+
+  <!-- ✅ FOOTER -->
+<footer class="main-footer" dir="rtl">
+  <div class="footer-content">
+    <!-- عن المنصة -->
+    <div class="footer-section about">
+      <h3>عن المنصة</h3>
+      <p>منصة جزائرية تعليمية موجهة لطلبة الجامعات، تقدم دورات مبسطة، ملفات PDF، وفيديوهات مباشرة مع أساتذة مؤهلين.</p>
+    </div>
+
+    <!-- روابط سريعة -->
+    <div class="footer-section links">
+      <h3>روابط سريعة</h3>
+      <ul>
+        <li><a href="/">الرئيسية</a></li>
+        <li><a href="#why-us">لماذا نحن؟</a></li>
+        <li><a href="../index.html#pay-methods-section">طرق الدفع</a></li>
+        <li><a href="../sign-up/sign-up.html">إنشاء حساب</a></li>
+        <li><a href="../All playlist/all-playlists.html">الدورات</a></li>
+      </ul>
+    </div>
+
+    <!-- تواصل معنا -->
+    <div class="footer-section contact">
+      <h3>تواصل معنا</h3>
+<p>
+  <strong>📞</strong>
+  <a href="tel:+213555491316" dir="ltr">+213 555 49 13 16</a>
+</p>
+      <p><strong>📧</strong> <a href="mailto:abdellahderradj918@gmail.com">abdellahderradj918@gmail.com
+</a></p>
+      <p><strong>📍</strong> الجزائر، الجزائر العاصمة</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>جميع الحقوق محفوظة &copy; 2025 - Derradj Academy</p>
+  </div>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="login.js"></script>
+  <script>
+  // تحديد المسار الصحيح حسب موقع الصفحة
+  const headerPath = window.location.pathname.includes("sign-up") ||
+                     window.location.pathname.includes("login") ||
+                     window.location.pathname.includes("courses") ||
+                     window.location.pathname.includes("admin") ||
+                     window.location.pathname.split("/").length > 2
+    ? "../includes/header.html"
+    : "includes/header.html";
+
+  fetch(headerPath)
+    .then(response => {
+      if (!response.ok) throw new Error("❌ Failed to load header");
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("dynamic-header").innerHTML = data;
+    })
+    .catch(error => {
+      console.error("❌ Error loading header:", error);
+    });
+</script>
+
+</body>
+</html>

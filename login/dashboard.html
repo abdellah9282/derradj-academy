@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Courses</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="/js/search.js" defer></script>
+  <script type="module" src="dashboard.js"></script>
+  <link rel="icon" type="image/jpg" href="../Logo.jpg">
+
+<header class="main-header">
+  <div class="left-section">
+    <a href="javascript:void(0)" class="logo">
+      <span class="purple">D</span>erradj Academy
+    </a>
+  </div>
+
+  <!-- ✅ رسالة ترحيبية -->
+<div class="welcome-text">
+  <p>
+    Welcome <strong id="username">User</strong> 👋 This is a personal account and must not be shared.
+    If sharing is detected, access will be automatically revoked.
+  </p>
+</div>
+
+
+
+  <nav class="right-links">
+    <a href="#" class="btn signup" onclick="logout()">Sign Out</a>
+  </nav>
+</header>
+
+
+
+
+  <!-- ✅ العنوان -->
+
+  <!-- ✅ عرض الدورات -->
+  <section class="categories-section custom-categories">
+<div id="courses-container" class="all-courses-grid"></div>
+  </section>
+
+  <!-- ✅ Buy a New Course Form -->
+  <section class="buy-new-course">
+    <h2>📥 Buy a New Course</h2>
+
+    <form id="purchase-form">
+      <div>
+        <label for="courseSelect">Select a New Course</label>
+        <select id="courseSelect" name="course" required class="form-input">
+          <option value="">Loading available courses...</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="receipt">Upload Payment Receipt</label>
+        <input
+          type="file"
+          id="receipt"
+          name="receipt"
+          accept="image/*,application/pdf"
+          required
+          class="form-input"
+        />
+      </div>
+
+      <button type="submit" class="btn">Submit Request</button>
+      <p id="purchase-message" style="margin-top: 1rem; color: green;"></p>
+    </form>
+  </section>
+ <!-- ✅ FOOTER -->
+<footer class="main-footer" dir="rtl">
+  <div class="footer-content">
+    <!-- عن المنصة -->
+    <div class="footer-section about">
+      <h3>عن المنصة</h3>
+      <p>منصة جزائرية تعليمية موجهة لطلبة الجامعات، تقدم دورات مبسطة، ملفات PDF، وفيديوهات مباشرة مع أساتذة مؤهلين.</p>
+    </div>
+
+    <!-- روابط سريعة -->
+    <div class="footer-section links">
+      <h3>روابط سريعة</h3>
+      <ul>
+        <li><a href="">الرئيسية</a></li>
+
+      </ul>
+    </div>
+
+    <!-- تواصل معنا -->
+    <div class="footer-section contact">
+      <h3>تواصل معنا</h3>
+<p>
+  <strong>📞</strong>
+  <a href="tel:+213555491316" dir="ltr">+213 555 49 13 16</a>
+</p>
+      <p><strong>📧</strong> <a href="mailto:abdellahderradj918@gmail.com">abdellahderradj918@gmail.com
+</a></p>
+      <p><strong>📍</strong> الجزائر، الجزائر العاصمة</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>جميع الحقوق محفوظة &copy; 2025 - Derradj Academy</p>
+  </div>
+</footer>
+</body>
+</html>

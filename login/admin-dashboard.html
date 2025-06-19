@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="admin-dashboard.css" />
+  <script type="module" src="admin-dashboard.js"></script>
+  <link rel="icon" type="image/jpg" href="../Logo.jpg">
+
+</head>
+<body>
+
+  <h1>Admin Dashboard</h1>
+  <div style="text-align: right; margin-bottom: 10px;">
+    <button id="logoutBtn">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+
+  <h2>Pending Requests</h2>
+  <table id="registrations-table">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Contact</th>
+        <th>Modules</th>
+        <th>Receipt</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="pendingTable"></tbody>
+  </table>
+
+  <h2>New Purchase Requests</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Contact</th>
+        <th>Requested Module</th>
+        <th>Receipt</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="newRequestsTable"></tbody>
+  </table>
+
+  <h2>User Messages</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="messagesTable"></tbody>
+  </table>
+
+  <div id="loadingMessage">⏳ Processing, please wait...</div>
+  <div id="statusMessage"></div>
+
+</body>
+</html>

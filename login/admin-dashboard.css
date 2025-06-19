@@ -1,0 +1,207 @@
+/* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+  }
+
+  h1, h2 {
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  th {
+    background-color: #f3f4f6;
+    font-weight: 700;
+    color: #374151;
+    text-transform: uppercase;
+  }
+
+  tr:hover {
+    background-color: #f9fafb;
+    transition: background-color 0.3s ease;
+  }
+
+  .link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }
+
+  select.status-select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background-color: #f9fafb;
+    color: #374151;
+    font-size: 0.9rem;
+  }
+
+  #logoutBtn {
+    padding: 10px 20px;
+    background-color: #ef4444;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+
+  #logoutBtn:hover {
+    background-color: #dc2626;
+  }
+
+  /* تحسين مظهر الرسائل */
+  #loadingMessage {
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #4b5563;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  #statusMessage {
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+
+  #statusMessage.success {
+    background-color: #d1fae5;
+    color: #065f46;
+  }
+
+  #statusMessage.error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+  }
+
+  /* تحسين مظهر الأزرار */
+  button.approve-btn {
+    padding: 10px 15px;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  button.approve-btn:hover {
+    background-color: #059669;
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  /* تحسين مظهر زر الرفض */
+  button.reject-btn {
+    padding: 10px 15px;
+    background-color: #ef4444; /* خلفية حمراء */
+    color: white !important; /* لون النص أبيض دائمًا */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  button.reject-btn:hover {
+    background-color: #dc2626; /* لون أغمق عند التمرير */
+    transform: scale(1.05); /* تكبير الزر قليلاً */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* زيادة الظل */
+  }
+
+  button.reject-btn:active {
+    background-color: #b91c1c; /* لون أغمق عند الضغط */
+    transform: scale(0.95); /* تصغير الزر قليلاً */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* تقليل الظل */
+  }
+
+  /* تأثير fade-in */
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
+    }
+
+    table {
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 12px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    button.approve-btn, button.reject-btn {
+      font-size: 0.9rem;
+      padding: 8px 12px;
+    }
+  }

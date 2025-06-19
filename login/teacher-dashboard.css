@@ -1,0 +1,493 @@
+/* === Reset عام === */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9fafb;
+  color: #1f2937;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* === HEADER (شريط علوي) === */
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 12px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+  z-index: 10;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #651fff;
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: #4a00e0;
+}
+
+.explore-dropdown {
+  position: relative;
+}
+
+.explore-link {
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.dropdown-menu,
+.submenu {
+  display: none;
+  position: absolute;
+  background: #fff;
+  list-style: none;
+  padding: 6px 0;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  min-width: 220px;
+  z-index: 999;
+}
+
+.dropdown-menu {
+  top: 100%;
+  left: 0;
+}
+
+.submenu {
+  top: 0;
+  left: 100%;
+  margin-left: -1px;
+}
+
+.dropdown-menu li,
+.submenu li {
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #1f2937;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.dropdown-menu a:hover,
+.submenu a:hover {
+  background: #f5f5f5;
+}
+
+.has-submenu:hover > .submenu {
+  display: block;
+}
+
+.explore-dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+/* === Search Box === */
+.search-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 18px;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.search-box input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  outline: none;
+}
+
+/* === Links & Buttons === */
+.right-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.right-links a {
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.right-links a:hover {
+  color: #4f46e5;
+}
+
+.btn {
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.login {
+  background: #fff;
+  color: #651fff;
+  border: 1px solid #651fff;
+}
+
+.signup,
+#logoutBtn {
+  background: #651fff;
+  color: #fff;
+  border: none;
+}
+
+.signup:hover,
+#logoutBtn:hover {
+  background: #4a00e0;
+  transform: translateY(-2px);
+}
+
+/* === Dashboard Content === */
+main.dashboard {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  padding: 2rem;
+}
+
+/* === Statistics Cards === */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  flex: 1 1 30%;
+  background: #e0e7ff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: background 0.3s;
+  box-shadow: inset 0 0 10px rgba(106, 13, 173, 0.1);
+}
+
+.card:hover {
+  background: #c7d2fe;
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  color: #4c1d95;
+  margin-bottom: 0.5rem;
+}
+
+.value {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #6b21a8;
+}
+
+/* === Subjects Section === */
+.teacher-subjects {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.teacher-subjects h3 {
+  font-size: 1.3rem;
+  color: #5b21b6;
+  margin-bottom: 1rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid #6b21a8;
+}
+
+.teacher-subjects ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.teacher-subjects li {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  transition: background 0.3s;
+}
+
+.teacher-subjects li:hover {
+  background: #eef2ff;
+}
+
+.subject-name {
+  font-weight: 600;
+  color: #4f46e5;
+  font-size: 0.95rem;
+}
+
+.subject-stats {
+  font-size: 0.9rem;
+  color: #374151;
+  text-align: right;
+}
+
+.subject-stats span {
+  margin-left: 8px;
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+  }
+
+  .card {
+    flex: 1 1 100%;
+  }
+
+  .teacher-subjects {
+    max-width: 100%;
+  }
+
+  .search-box {
+    order: 3;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .right-links {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+/* الحاوية العامة للقائمة */
+.explore-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* كلمة Explore بدون أي تنسيق */
+.explore-link {
+  cursor: pointer;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  color: inherit;
+}
+
+/* القوائم المنسدلة */
+.dropdown-menu,
+.submenu {
+  position: absolute;
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  min-width: 180px;
+  z-index: 1000;
+}
+
+/* إظهار القائمة عند المرور */
+.explore-dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.has-submenu {
+  position: relative;
+}
+
+.has-submenu:hover > .submenu {
+  display: block;
+  top: 0;
+  left: 100%;
+  margin-left: -1px; /* لتلاصق دقيق مع القائمة الأصلية */
+}
+.submenu {
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+
+/* تنسيق الروابط داخل القوائم */
+.dropdown-menu a,
+.submenu a {
+  display: block;
+  padding: 8px 14px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+/* تأثير عند المرور على الروابط */
+.dropdown-menu a:hover,
+.submenu a:hover {
+  background-color: #f5f5f5;
+}
+
+
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 5px;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: var(--main-color);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .left-section {
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .search-box {
+    width: 100%;
+    margin: 10px 0;
+    justify-content: center;
+  }
+
+  .search-box input {
+    width: 100%;
+    max-width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .right-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .btn, .nav-link, .cart-icon {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .card {
+    flex: 1 1 100%;
+    padding: 1.2rem;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .value {
+    font-size: 2rem;
+  }
+
+  .teacher-subjects {
+    padding: 0 1rem;
+  }
+
+  .teacher-subjects h3 {
+    font-size: 1.1rem;
+  }
+
+  .teacher-subjects li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .subject-name {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .subject-stats {
+    font-size: 0.85rem;
+  }
+
+  .dropdown-menu,
+  .submenu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+  }
+
+  .explore-dropdown:hover > .dropdown-menu {
+    display: block;
+    width: 100%;
+  }
+}

@@ -1,0 +1,917 @@
+/* === PAGE LAYOUT === */
+.course-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.course-columns {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.column-left,
+.column-right {
+  flex: 1 1 48%;
+  min-width: 300px;
+}
+
+/* === COURSE HEADER === */
+.course-header-box {
+  background-color: #f9fafb;
+  padding: 1.5rem 2rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 2rem;
+}
+
+.course-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1f2937;
+  margin-bottom: 0.3rem;
+}
+
+.instructor-name {
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.instructor-bio {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+/* === LIVE ANNOUNCEMENT === */
+.live-announcement {
+  background-color: #eff6ff;
+  padding: 0.75rem 1.25rem;
+  border-left: 4px solid #3b82f6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #1e3a8a;
+}
+
+.live-icon {
+  font-size: 1.2rem;
+}
+
+.live-badge {
+  background-color: #dc2626;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 999px;
+  margin-left: auto;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* === PLAYLIST & PDF CARDS === */
+.playlist-item,
+.pdf-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.playlist-item:hover,
+.pdf-item:hover {
+  background-color: #f9fafb;
+}
+
+.playlist-thumbnail {
+  width: 140px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  filter: brightness(0.75);
+}
+
+.playlist-info,
+.pdf-info {
+  padding-left: 16px;
+}
+
+.playlist-title,
+.pdf-info h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.playlist-status,
+.pdf-info p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* === HOVER BAR === */
+.hover-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(31, 41, 55, 0.92);
+  color: #fff;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hover-bar a {
+  color: #3b82f6;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.playlist-item:hover .hover-bar,
+.pdf-item:hover .hover-bar {
+  opacity: 1;
+}
+
+/* === MAKE ENTIRE ITEM A LINK === */
+.playlist-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.playlist-link:hover {
+  text-decoration: none;
+}
+ .welcome-msg {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #4a00e0;
+  }
+
+
+   /* تصميم عصري بألوان محسّنة لقسم الدفع */
+  #pay-methods-section {
+    margin: 2rem 0;
+    padding: 0;
+    background: #fdfdff;
+    border-radius: 16px;
+    box-shadow: 0 2px 18px rgba(0, 0, 0, 0.04);
+    max-width: 100vw;
+    width: 100vw;
+    border: 1px solid #e0e4f0;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    /* فراغ من الأطراف */
+    box-sizing: border-box;
+  }
+  @media (min-width: 700px) {
+    #pay-methods-section {
+      max-width: 98vw;
+      width: 98vw;
+      margin-left: 1vw;
+      margin-right: 1vw;
+    }
+  }
+  @media (max-width: 700px) {
+    #pay-methods-section {
+      max-width: 100vw;
+      width: 100vw;
+      border-radius: 0;
+      margin: 0;
+    }
+  }
+  .pay-methods-list {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #pay-methods-section h2 {
+    color: #4c1d95;
+    text-align: center;
+    font-size: 1.7em;
+    font-weight: 800;
+    margin: 1.5rem 0 1rem 0;
+  }
+
+  #pay-methods-section ol {
+    counter-reset: step;
+    list-style: none;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  #pay-methods-section ol li {
+    position: relative;
+    padding-right: 2.2em;
+    margin-bottom: 0.7em;
+    font-weight: 500;
+  }
+  #pay-methods-section ol li::before {
+    counter-increment: step;
+    content: ": الخطوة " counter(step) " ";
+    position: absolute;
+    right: 0;
+    color: #2563eb;
+    font-weight: bold;
+    font-size: 1em;
+    min-width: 80px;
+    text-align: right;
+  }
+
+  #pay-methods-section ol {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    margin: 0 auto 2rem auto;
+    font-size: 1.05em;
+    font-weight: 500;
+    max-width: 640px;
+    color: #333;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 1px 5px rgba(76, 29, 149, 0.05);
+    line-height: 1.7;
+  }
+
+  #pay-methods-section ol li {
+    margin-bottom: 0.6em;
+  }
+
+  .pay-methods-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .pay-card {
+    background: #ffffff;
+    border: 1px solid #d6d9e7;
+    border-radius: 12px;
+    padding: 1.3rem 1rem;
+    flex: 1 1 280px;
+    max-width: 360px;
+    min-width: 240px;
+    box-shadow: 0 3px 8px rgba(76, 29, 149, 0.06);
+    position: relative;
+    font-size: 1em;
+  }
+
+  .pay-card h3 {
+    margin: 0 0 0.8rem;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #4c1d95;
+  }
+
+  .pay-card p {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #444;
+  }
+
+  #pay-methods-section .pay-card ul {
+    direction: rtl;
+    text-align: right;
+    padding-right: 0;
+    margin-right: 0;
+  }
+  #pay-methods-section .pay-card ul li {
+    margin-bottom: 0.3em;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: #1e293b;
+    font-size: 0.97em;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.3em;
+  }
+  #pay-methods-section .pay-card ul li b {
+    color: #2563eb;
+    margin-left: 3px;
+    font-weight: bold;
+    font-size: 1em;
+    min-width: 70px;
+    display: inline-block;
+  }
+  #pay-methods-section .pay-card ul li span,
+  #pay-methods-section .pay-card ul li .copy-btn,
+  #pay-methods-section .pay-card ul li .copied-msg {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0;
+    margin-left: 0;
+    font-family: inherit;
+    font-size: 1em;
+    direction: ltr;
+    color: #334155;
+    font-weight: 500;
+  }
+  #pay-methods-section .pay-card ul li .copy-btn {
+    margin-right: 8px;
+    margin-left: 0;
+  }
+  #pay-methods-section .pay-card ul li .copied-msg {
+    margin-right: 8px;
+    color: #059669;
+  }
+  /* Rip في سطر واحد */
+  #pay-methods-section .poste-data span.rip-value {
+    direction: ltr;
+    font-weight: bold;
+    color: #2563eb;
+    font-size: 1em;
+    display: inline-block;
+    margin-bottom: 0;
+    margin-top: 0;
+    letter-spacing: 1px;
+    word-break: break-all;
+  }
+  #pay-methods-section .poste-data .copy-btn,
+  #pay-methods-section .poste-data .copied-msg {
+    margin-right: 8px;
+    margin-left: 0;
+    vertical-align: middle;
+  }
+
+  .badge {
+    position: absolute;
+    top: -14px;
+    right: 16px;
+    background: #14b8a6;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 0.9em;
+    border-radius: 7px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  .poste-logo {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .poste-logo img {
+    width: 60px;
+    filter: grayscale(0.3) brightness(0.9);
+  }
+
+  .poste-data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 14px;
+    padding: 0.9rem;
+    background: #f3f4f6;
+    border-radius: 8px;
+    font-size: 0.98em;
+    border: 1px solid #e0e4f0;
+    direction: ltr;
+  }
+
+  .poste-data span:first-child {
+    color: #4c1d95;
+    font-weight: bold;
+  }
+
+  .poste-data span:last-child {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .poste-note {
+    margin-top: 1rem;
+    text-align: center;
+    background: #ecfdf5;
+    color: #065f46;
+    font-weight: 500;
+    padding: 0.6rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.95em;
+  }
+
+  .copy-btn {
+    background: #f1f5f9;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-left: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: #4c1d95;
+    font-weight: 500;
+  }
+
+  .copy-btn:hover {
+    background: #e0e7ff;
+  }
+
+  .copied-msg {
+    color: #16a34a;
+    font-size: 0.9em;
+    margin-left: 6px;
+    display: none;
+  }
+
+  .copied-msg.active {
+    display: inline;
+    animation: fadeOut 1.3s forwards;
+  }
+
+  @keyframes fadeOut {
+    0% { opacity: 1;}
+    80% { opacity: 1;}
+    100% { opacity: 0;}
+  }
+
+  @media (max-width: 700px) {
+    #pay-methods-section h2 {
+      font-size: 1.3em;
+    }
+    #pay-methods-section ol {
+      font-size: 0.97em;
+    }
+    .pay-methods-list {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .pay-card {
+      max-width: 100%;
+      padding: 1rem 0.9rem;
+    }
+  }
+
+  .steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 2rem auto;
+    background: #fff;
+    border-radius: 12px;
+    max-width: 650px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 1px 5px rgba(76, 29, 149, 0.05);
+    font-size: 1.08em;
+    font-weight: 500;
+    color: #22223b;
+    line-height: 1.8;
+    direction: rtl;
+    text-align: right;
+  }
+  .steps-list li {
+    position: relative;
+    padding: 1rem 7.5em 1rem 1.2em;
+    margin-bottom: 0;
+    border-bottom: 1px solid #f3f4f6;
+    min-height: 2.5em;
+  }
+  .steps-list li:last-child {
+    border-bottom: none;
+  }
+  .steps-list li::before {
+    content: "الخطوة " attr(data-step) " ";
+    position: absolute;
+    right: 1.2em;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none; /* إزالة الخلفية الزرقاء */
+    color: #2563eb;
+    font-weight: bold;
+    font-size: 1.05em;
+    border-radius: 0;
+    padding: 0;
+    min-width: 90px;
+    text-align: center;
+    box-shadow: none;
+    letter-spacing: 0.5px;
+    display: inline-block;
+  }
+  @media (max-width: 700px) {
+    .steps-list {
+      font-size: 0.97em;
+      padding: 0;
+    }
+    .steps-list li {
+      padding: 0.9rem 6em 0.9rem 0.7em;
+      font-size: 1em;
+    }
+    .steps-list li::before {
+      font-size: 0.98em;
+      min-width: 70px;
+      padding: 0.18em 0.7em;
+      right: 0.7em;
+    }
+  }
+
+  /* اجعل رقم RIP لا يلتف للسطر التالي */
+  .rip-value {
+    white-space: nowrap;
+  }
+
+  .pay-card {
+  background: #ffffff;
+  border: 1px solid #d6d9e7;
+  border-radius: 14px;
+  padding: 1.8rem 1.5rem;
+  flex: 1 1 500px; /* مساحة مبدئية واسعة */
+  max-width: 720px; /* عرض البطاقة الأقصى */
+  min-width: 340px; /* أصغر عرض مسموح به */
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(76, 29, 149, 0.1);
+  position: relative;
+  font-size: 1.1em; /* حجم الخط داخل البطاقة */
+  margin: 0 auto; /* توسيط البطاقة */
+}
+
+.poste-data {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 12px 18px;
+  font-size: 1.15rem;
+  line-height: 2;
+  color: #1e293b;
+  background-color: #f9fafb;
+  padding: 1.4rem;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  max-width: 520px;
+  width: 100%;
+  margin: 1.2rem auto 0 auto;
+}
+/* تحسين تصميم عناصر الفيديو */
+.playlist-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.playlist-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* تحسين تصميم الصور */
+.playlist-thumbnail {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: opacity 0.3s ease;
+}
+
+.playlist-item:hover .playlist-thumbnail {
+  opacity: 1; /* إزالة الغمام */
+}
+
+/* تحسين تصميم النصوص */
+.playlist-info h4 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1e293b;
+  margin: 0;
+}
+
+.playlist-info .playlist-status {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #ffffff;
+  background: #7c3aed;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.playlist-info .playlist-status:hover {
+  background: #5b21b6;
+}
+
+/* تحسين تصميم الصور وجعلها واضحة */
+.playlist-thumbnail {
+  width: 120px; /* عرض الصورة */
+  height: 80px; /* ارتفاع الصورة */
+  object-fit: cover; /* لضمان ملء الصورة بالكامل */
+  border-radius: 8px; /* زوايا مستديرة */
+  transition: transform 0.3s ease, filter 0.3s ease; /* تأثير عند التمرير */
+  filter: none; /* إزالة أي تأثيرات مظللة */
+  opacity: 1; /* جعل الصورة واضحة تمامًا */
+}
+
+/* تأثير عند التمرير على العنصر */
+.playlist-item:hover .playlist-thumbnail {
+  transform: scale(1.05); /* تكبير الصورة قليلاً عند التمرير */
+  filter: brightness(1.1); /* زيادة السطوع لجعلها أكثر وضوحًا */
+}
+.video-container {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  padding: 28px 22px;
+  margin: 36px auto;
+  max-width: 800px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-container h4 {
+  margin-bottom: 18px;
+  font-size: 1.3rem;
+  color: #1a1a1a;
+  font-weight: 700;
+  text-align: center;
+}
+
+.responsive-mux-player {
+  width: 100%;
+  max-width: 720px;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+  background: #000;
+  display: block;
+  min-height: 240px;
+}
+@media (max-width: 600px) {
+  .video-container {
+    padding: 12px 4px;
+  }
+  .responsive-mux-player {
+    min-height: 180px;
+  }
+}
+.video-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.8);
+}
+.video-modal iframe {
+  width: 80vw;
+  height: 45vw;
+  max-width: 1000px;
+  max-height: 562px;
+  background: #000;
+}
+.close-modal {
+  position: absolute;
+  top: 30px; right: 50px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10000;
+}
+.playlist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 20px;
+  margin-bottom: 24px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.playlist-thumbnail {
+  width: 160px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.playlist-info {
+  flex: 1;
+}
+
+/* ⭐️ قسم التقييم العام */
+#rating-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #f9fafb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* العنوان */
+#rating-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #1f2937;
+  text-align: center;
+}
+
+/* النجوم */
+#rating-section .stars {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+#rating-section .star {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+#rating-section .star:hover,
+#rating-section .star.selected {
+  color: #f59e0b;
+}
+
+/* حقول الإدخال */
+#rating-section input,
+#rating-section textarea {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.6rem 0;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #fff;
+}
+
+#rating-section textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* الزر */
+#submitRating {
+  background-color: #7c3aed;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+#submitRating:hover {
+  background-color: #5b21b6;
+}
+
+/* الرسائل */
+#ratingMessage {
+  margin-top: 0.7rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+#average-rating {
+  margin-top: 1.2rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #f59e0b;
+}
+/* تنسيق إضافي للنجوم */
+#rating-section .stars {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  gap: 6px;
+}
+
+#rating-section .star {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+/* النجوم المضيئة */
+#rating-section .star.hovered,
+#rating-section .star.selected {
+  color: #f59e0b;
+}
+
+/* الرقم الظاهر بجانب النجوم */
+#rating-value-display {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4c1d95;
+}
+.booking-style {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem;
+  border: 2px solid #6a0dad;
+  border-radius: 12px;
+  background: #f9f8ff;
+  font-size: 0.95rem;
+}
+
+.booking-inline label {
+  margin-right: 0.5rem;
+}
+
+.booking-inline select,
+.upload-inline input[type="file"] {
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.upload-inline button {
+  margin-left: 0.5rem;
+  background-color: #6a0dad;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.welcome-text {
+  display: inline-block;
+  background-color: #f0f4ff;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 0.96rem;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin: 10px auto;
+  animation: fadeIn 0.4s ease-in-out;
+  text-align: center;
+  line-height: 1.5;
+  max-width: 95%;
+}
+
+.welcome-text strong {
+  color: #4a00e0;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,187 @@
+.signup-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px; /* زِد هذه القيمة مثلاً من 10px إلى 80px */
+  padding-bottom: 40px;
+}
+
+
+.signup-form {
+  max-width: 410px; /* تكبير العرض */
+  width: 100%;
+  padding: 32px 24px;
+  background-color: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.08);
+  animation: fadeInUp 0.5s ease;
+    margin-bottom: 80px; /* أضف هذا السطر */
+
+}
+
+
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 26px;
+  color: #1f2937;
+}
+
+/* Google Button */
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  background-color: #fff;
+  color: #444;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 24px;
+}
+
+.google-btn:hover {
+  background-color: #f5f5f5;
+  border-color: #bbb;
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Divider */
+.divider {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.divider::before {
+  left: 0;
+}
+.divider::after {
+  right: 0;
+}
+
+.divider span {
+  padding: 0 12px;
+  background-color: #fff;
+}
+
+/* Inputs */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 15px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 14px;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #7c3aed;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+/* Forgot Password Link */
+.forgot-container {
+  text-align: right;
+  margin-top: 6px;
+  margin-bottom: 18px;
+}
+
+.forgot-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: #651fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+  color: #4a00e0;
+  text-decoration: underline;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  background-color: #651fff;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: #4a00e0;
+  transform: translateY(-1px);
+}
+
+/* Footer */
+.form-footer-text {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-footer-text a {
+  color: #651fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.form-footer-text a:hover {
+  text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

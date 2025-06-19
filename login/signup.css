@@ -1,0 +1,206 @@
+/* === نموذج التسجيل === */
+.signup-form {
+  max-width: 420px;
+  width: 100%;
+  margin-top: 0; /* ✅ إلغاء أي مسافة إضافية من الأعلى */
+  padding: 28px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  animation: fadeInUp 0.5s ease;
+}
+
+/* عنوان */
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 24px;
+  color: #1f2937;
+}
+
+/* الحقول */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #374151;
+  font-size: 15px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 14px;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #7c3aed;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.form-group input[type="file"] {
+  padding: 10px;
+}
+
+/* زر الإرسال */
+button[type="submit"] {
+  background-color: #651fff;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #4a00e0;
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .signup-form {
+    margin-top: 0;
+    padding: 20px;
+  }
+
+  .signup-form h2 {
+    font-size: 20px;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  button[type="submit"] {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
+/* === Animation === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.signup-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 0px;
+  padding-bottom: 40px;
+  margin-top: -35px; /* ✅ ارفع النموذج فوق الهيدر قليلاً */
+}
+.form-footer-text {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-footer-text a {
+  color: #651fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.form-footer-text a:hover {
+  text-decoration: underline;
+}
+/* زر إظهار قائمة التخصصات */
+.toggle-courses-btn {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #374151;
+  background-color: #f1f5f9;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.toggle-courses-btn::after {
+  content: "▼";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #6b7280;
+  transition: transform 0.2s ease;
+}
+
+.toggle-courses-btn.active::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* مجموعة التخصصات */
+.checkbox-group {
+  display: none; /* مخفية مبدئياً */
+  margin-top: 10px;
+  padding: 12px 16px;
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.checkbox-group.active {
+  display: block;
+}
+
+/* عناصر التخصصات */
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  accent-color: #651fff;
+  width: 16px;
+  height: 16px;
+}
+    .signup-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding-top: 40px;
+    }
+    .error-text {
+  color: #e11d48; /* أحمر */
+  font-size: 13px;
+  white-space: nowrap;
+}

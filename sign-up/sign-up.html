@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="signup.css" />
+      <script src="../js/search.js" defer></script>
+<link rel="icon" type="image/jpg" href="../Logo.jpg">
+
+</head>
+
+
+<body class="signup-page">
+
+   <!-- HEADER -->
+<header class="main-header">
+  <div class="left-section">
+    <a href="../index.html" class="logo">
+      <span class="purple">D</span>erradj Academy
+    </a>
+
+    <div class="explore-dropdown">
+      <a href="#" class="explore-link">Explore</a>
+      <ul class="dropdown-menu">
+        <li><a href="../courses/ondes_et_vibrations.html">Ondes et Vibrations</a></li>
+        <li><a href="../courses/electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
+        <li><a href="../courses/electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
+        <li><a href="../courses/electricite_industrielle.html">Électricité Industrielle</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="search-box">
+    <input type="text" placeholder="Search for anything" id="searchInput" />
+    <ul class="suggestions" id="suggestionsList"></ul>
+  </div>
+
+    <nav class="right-links">
+      <a href="#why-us" class="nav-link">Why Choose Us?</a>
+      <a href="#why-us" class="nav-link">About Us</a>
+      <a href="../All playlist/all-playlists.html" class="cart-icon">🛒</a>
+      <a href="../login/login.html" class="btn login">Log in</a>
+      <a href="" class="btn signup">Sign up</a>
+      <a href="#support" class="support-icon" title="الدعم الفني">💬</a>
+    </nav>
+</header>
+
+  <!-- ✅ SIGNUP FORM WRAPPER -->
+  <main class="signup-wrapper">
+    <form class="signup-form" action="submit-signup.php" method="POST" enctype="multipart/form-data">
+      <h2>Create Your Account</h2>
+
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="contact">Phone Number or Email</label>
+        <input type="text" id="contact" name="contact" placeholder="Phone or email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a password" required />
+      </div>
+
+<div class="form-group">
+  <label>Select the modules you want to study</label>
+  <div class="select-wrapper" style="display: flex; align-items: center; gap: 10px;">
+    <button type="button" class="toggle-courses-btn">Select Courses</button>
+    <div id="moduleError" class="error-text"></div>
+  </div>
+
+  <div class="checkbox-group" id="coursesList">
+  <!-- ✅ قائمة مختصرة بـ 4 مواد فقط -->
+<div class="course-checkboxes">
+  <label>
+    <input type="checkbox" name="courses[]" value="ondes_et_vibrations">
+    Ondes et Vibrations
+  </label>
+  <label>
+    <input type="checkbox" name="courses[]" value="electrotechnique_fondamentale1">
+    Électrotechnique Fondamentale 1
+  </label>
+  <label>
+    <input type="checkbox" name="courses[]" value="electronique_fondamentale1">
+    Électronique Fondamentale 1
+  </label>
+  <label>
+    <input type="checkbox" name="courses[]" value="electricite_industrielle">
+    Électricité Industrielle
+  </label>
+</div>
+
+</div>
+
+<!-- عرض المواد المحددة -->
+<div class="selected-courses" id="selectedModulesBox" style="display: none;">
+  <h3>Selected Modules</h3>
+  <ul id="selectedModulesList"></ul>
+</div>
+
+
+
+
+
+      <div class="form-group">
+        <label for="paymentProof">Upload Payment Receipt</label>
+        <input type="file" id="paymentProof" name="paymentProof" accept=".jpg,.jpeg,.png,.pdf" required />
+      </div>
+
+<button type="submit">Sign Up</button>
+
+<p class="form-footer-text">
+  Already have an account?
+  <a href="../login/login.html">Log in</a>
+</p>
+    </form>
+  </main>
+
+<footer class="main-footer" dir="rtl">
+  <div class="footer-content">
+    <!-- عن المنصة -->
+    <div class="footer-section about">
+      <h3>عن المنصة</h3>
+      <p>منصة جزائرية تعليمية موجهة لطلبة الجامعات، تقدم دورات مبسطة، ملفات PDF، وفيديوهات مباشرة مع أساتذة مؤهلين.</p>
+    </div>
+
+    <!-- روابط سريعة -->
+    <div class="footer-section links">
+      <h3>روابط سريعة</h3>
+      <ul>
+        <li><a href="../index.html">الرئيسية</a></li>
+        <li><a href="../index.html#why-us">لماذا نحن؟</a></li>
+        <li><a href="../index.html#pay-methods-section">طرق الدفع</a></li>
+        <li><a href="">إنشاء حساب</a></li>
+        <li><a href="../All playlist/all-playlists.html">الدورات</a></li>
+      </ul>
+    </div>
+
+    <!-- تواصل معنا -->
+    <div class="footer-section contact">
+      <h3>تواصل معنا</h3>
+<p>
+  <strong>📞</strong>
+  <a href="tel:+213555491316" dir="ltr">+213 555 49 13 16</a>
+</p>
+      <p><strong>📧</strong> <a href="mailto:abdellahderradj918@gmail.com">abdellahderradj918@gmail.com
+</a></p>
+      <p><strong>📍</strong> الجزائر، الجزائر العاصمة</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>جميع الحقوق محفوظة &copy; 2025 - Derradj Academy</p>
+  </div>
+</footer>
+
+<!-- ✅ TOGGLE COURSE CHECKBOXES -->
+<!-- ✅ TOGGLE COURSE CHECKBOXES -->
+<script>
+(() => {
+  const toggleBtn = document.querySelector('.toggle-courses-btn');
+  const coursesList = document.getElementById('coursesList');
+
+  toggleBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    coursesList.classList.toggle('active');
+    toggleBtn.classList.toggle('active');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.select-wrapper')) {
+      coursesList.classList.remove('active');
+      toggleBtn.classList.remove('active');
+    }
+  });
+})();
+</script>
+
+<!-- ✅ SUPABASE REGISTRATION -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const { createClient } = supabase;
+
+  const supabaseClient = createClient(
+    'https://sgcypxmnlyiwljuqvcup.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
+  );
+
+  const form = document.querySelector('.signup-form');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const fullName = document.getElementById('fullName').value.trim();
+    const contact = document.getElementById('contact').value.trim();
+    const password = document.getElementById('password').value;
+    const modules = Array.from(document.querySelectorAll('input[name="courses[]"]:checked')).map(cb => cb.value);
+    const paymentFile = document.getElementById('paymentProof').files[0];
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    // تحقق من اختيار مادة واحدة على الأقل
+    if (modules.length === 0) {
+      document.getElementById("moduleError").textContent = "❌ يجب اختيار مادة واحدة على الأقل.";
+      return;
+    } else {
+      document.getElementById("moduleError").textContent = "";
+    }
+
+    if (!paymentFile) {
+      alert("❌ يرجى رفع وصل الدفع.");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Please wait...";
+
+    try {
+      // تحقق إذا كان الحساب مسجل مسبقًا بنفس contact فقط
+      const { data: existingUser, error: checkError } = await supabaseClient
+        .from('registrations')
+        .select('*')
+        .eq('contact', contact)
+        .single();
+
+      if (existingUser) {
+        alert("❌ هذا الرقم أو البريد الإلكتروني مستعمل من قبل. يرجى استخدام رقم أو بريد آخر.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Sign Up";
+        return;
+      }
+
+      // رفع الملف
+      const fileName = `${Date.now()}_${paymentFile.name}`;
+      const { data: fileData, error: fileError } = await supabaseClient
+        .storage
+        .from('receipts')
+        .upload(fileName, paymentFile);
+
+      if (fileError) throw fileError;
+
+      const receiptUrl = supabaseClient
+        .storage
+        .from('receipts')
+        .getPublicUrl(fileData.path).data.publicUrl;
+
+      // إدخال البيانات في الجدول
+      const { error: dbError } = await supabaseClient
+        .from('registrations')
+        .insert([{
+          full_name: fullName,
+          contact,
+          password,
+          modules,
+          receipt_url: receiptUrl,
+          is_approved: null
+        }]);
+
+      if (dbError) throw dbError;
+
+      // حفظ البيانات محليًا وتوجيه المستخدم
+      localStorage.setItem("userModules", JSON.stringify(modules));
+      localStorage.setItem("userName", fullName);
+      window.location.href = "my-courses.html";
+
+    } catch (err) {
+      console.error(err);
+      alert("❌ حدث خطأ أثناء التسجيل.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Sign Up";
+    }
+  });
+</script>
+
+<!-- ✅ مراقبة تغيّر اختيار المواد وعرضها -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const coursesList = document.getElementById('coursesList');
+  const selectedModulesList = document.getElementById('selectedModulesList');
+  const selectedModulesBox = document.getElementById('selectedModulesBox'); // تأكد من وجوده في HTML
+  const checkboxes = document.querySelectorAll('input[name="courses[]"]');
+
+  let selectedCourses = [];
+
+  // مسح رسالة الخطأ عند التغيير
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      const selected = Array.from(checkboxes).filter(c => c.checked);
+      if (selected.length > 0) {
+        document.getElementById("moduleError").textContent = "";
+      }
+    });
+  });
+
+  // تحديث قائمة المواد المختارة عند تغيير اختيار checkbox
+  coursesList.addEventListener('change', (e) => {
+    if (e.target.name !== "courses[]") return;
+
+    const value = e.target.value;
+    const label = e.target.closest('label')?.textContent.trim() || value;
+
+    if (e.target.checked) {
+      // إضافة إذا غير موجودة
+      if (!selectedCourses.some(c => c.value === value)) {
+        selectedCourses.push({ value, label });
+      }
+    } else {
+      // إزالة المادة
+      selectedCourses = selectedCourses.filter(c => c.value !== value);
+    }
+
+    renderSelectedCourses();
+  });
+
+  function renderSelectedCourses() {
+    selectedModulesList.innerHTML = '';
+
+    if (selectedCourses.length > 0) {
+      selectedModulesBox.style.display = 'block';
+    } else {
+      selectedModulesBox.style.display = 'none';
+    }
+
+    selectedCourses.forEach(course => {
+      const li = document.createElement('li');
+      li.textContent = course.label + " ";
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.textContent = 'Remove';
+
+      removeBtn.addEventListener('click', () => {
+        // إزالة المادة من المصفوفة
+        selectedCourses = selectedCourses.filter(c => c.value !== course.value);
+
+        // إلغاء تحديد الـ checkbox
+        const checkbox = coursesList.querySelector(`input[type="checkbox"][value="${course.value}"]`);
+        if (checkbox) checkbox.checked = false;
+
+        renderSelectedCourses();
+      });
+
+      li.appendChild(removeBtn);
+      selectedModulesList.appendChild(li);
+    });
+  }
+
+  // في البداية قم بعرض قائمة المواد المختارة إذا كانت موجودة مسبقاً
+  renderSelectedCourses();
+});
+</script>
+
+
+
+</body>
+</html>

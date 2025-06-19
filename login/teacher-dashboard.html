@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teacher Dashboard - Derradj Academy</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="teacher-dashboard.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../Logo.jpg" />
+
+  <!-- Scripts -->
+  <script src="../js/search.js" defer></script>
+  <script type="module" src="teacher-dashboard.js" defer></script>
+</head>
+<body>
+
+<!-- HEADER المشترك مع المنصة -->
+<header class="main-header">
+  <div class="left-section">
+    <a href="" class="logo">
+      <span class="purple">D</span>erradj Academy
+    </a>
+
+    <div class="explore-dropdown">
+      <a href="#" class="explore-link">Explore</a>
+      <ul class="dropdown-menu">
+        <li><a href="../courses/ondes_et_vibrations.html">Ondes et Vibrations</a></li>
+        <li><a href="../courses/electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
+        <li><a href="../courses/electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
+        <li><a href="../courses/electricite_industrielle.html">Électricité Industrielle</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <nav class="right-links">
+    <a href="../#student-feedback" class="nav-link">What Our Students Say</a>
+    <a href="../All playlist/all-playlists.html" class="cart-icon">🛒</a>
+    <button id="logoutBtn" class="btn signup">Log out</button>
+  </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="dashboard">
+  <div class="cards" aria-label="Statistics cards">
+    <div class="card" role="region" aria-labelledby="students-enrolled-title">
+      <h3 id="students-enrolled-title">👨‍🎓 Students Enrolled</h3>
+      <div class="value" id="studentCount" aria-live="polite" aria-atomic="true">...</div>
+    </div>
+    <div class="card" role="region" aria-labelledby="live-sessions-title">
+      <h3 id="live-sessions-title">📺 Live Sessions</h3>
+      <div class="value" id="sessionCount" aria-live="polite" aria-atomic="true">...</div>
+    </div>
+    <div class="card" role="region" aria-labelledby="total-earnings-title">
+      <h3 id="total-earnings-title">
+        <a href="withdraw-request.html" style="text-decoration: none; color: inherit; cursor: pointer;">
+          💰 Total Earnings (DA)
+        </a>
+      </h3>
+      <div class="value" id="totalEarnings" aria-live="polite" aria-atomic="true">...</div>
+    </div>
+  </div>
+
+  <section class="teacher-subjects" aria-label="Subjects you teach">
+    <h3>📚 Subjects You Teach</h3>
+    <ul id="subjectsList" role="list">
+      <!-- المواد تظهر هنا برمجياً -->
+    </ul>
+  </section>
+</main>
+
+<!-- LOGOUT FUNCTION -->
+<script>
+  document.getElementById('logoutBtn')?.addEventListener('click', () => {
+    localStorage.clear();
+    window.location.href = '../login/login.html';
+  });
+</script>
+
+</body>
+</html>

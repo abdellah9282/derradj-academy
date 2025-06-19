@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Électrotechnique Fondamentale 1 - Course</title>
+  <meta name="description" content="Cours d'Électrotechnique Fondamentale 1 pour les étudiants en ST, avec vidéos explicatives, fichiers PDF et séances en direct.">
+
+  <!-- الروابط -->
+  <link rel="stylesheet" href="course-card-content.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/js/search.js" defer></script>
+    <link rel="icon" type="image/png" href="/Logo.jpg">
+
+  <script type="module" src="course.js"></script>
+</head>
+
+<body data-module="electrotechnique_fondamentale1">
+<!-- HEADER -->
+<header class="main-header">
+  <div class="left-section">
+    <a href="../login/dashboard.html" class="logo">
+      <span class="purple">D</span>erradj Academy
+    </a>
+  </div>
+
+  <!-- ✅ رسالة ترحيبية -->
+<div class="welcome-text">
+  <p>
+    Welcome <strong id="username">User</strong> 👋 This is a personal account and must not be shared.
+    If sharing is detected, access will be automatically revoked.
+  </p>
+</div>
+
+
+
+  <nav class="right-links">
+    <a href="#" class="btn signup" onclick="logout()">Sign Out</a>
+  </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="course-content">
+  <div class="course-header-box">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+      <h1 class="course-title" style="margin:0;">
+        <a href="https://www.youtube.com/watch?v=example" target="_blank" style="text-decoration: none; color: inherit;">
+          Électrotechnique Fondamentale 1
+        </a>
+      </h1>
+    </div>
+    <div class="instructor-details">
+<p class="instructor-name"><strong>Teacher :</strong> Professor A. Bouzida</p>
+      <p class="instructor-bio">Pr. Azzouz vous explique les principes de l’électrotechnique de façon simple et claire.</p>
+    </div>
+<div class="live-announcement booking-style">
+  <span class="live-icon">📅</span>
+
+  <div class="booking-inline">
+    <label for="sessionDuration"><strong>Book a Live Session:</strong></label>
+    <select id="sessionDuration" onchange="showReceiptUpload()">
+      <option value="">-- Choose duration --</option>
+      <option value="15">15 min – 500 DA</option>
+      <option value="30">30 min – 900 DA</option>
+      <option value="45">45 min – 1300 DA</option>
+      <option value="60">1 hour – 1600 DA</option>
+    </select>
+  </div>
+
+  <div class="upload-inline" id="uploadSection" style="display:none;">
+    <input type="file" id="paymentReceipt" accept="image/*, .pdf" />
+<button id="submitBookingButton" onclick="submitBooking()">Send</button>
+  </div>
+  <div id="booking-message" style="margin-top: 1rem; font-weight: bold;"></div>
+  <span class="live-badge">LIVE</span>
+</div>
+</div>
+
+  <div class="course-columns">
+    <!-- Left Column -->
+    <div class="column-left">
+      <h2 class="section-title">Video Lessons</h2>
+
+      <div class="playlist-container">
+        <h3 class="section-subtitle">Travaux Dirigés (TD)</h3>
+
+        <h4 class="section-subtitle">TD1: Circuits électrotechniques</h4>
+        <div class="playlist-container">
+          <div class="playlist-item" id="videoContainer">
+            <img
+              src="/ondes et vibrations/02.jpg"
+              alt="Video Thumbnail"
+              class="playlist-thumbnail"
+              style="cursor: pointer;"
+              onclick="loadMuxVideo()"
+            >
+            <div class="playlist-info">
+              <h4>Video 1: Bases des circuits</h4>
+              <span class="playlist-status" onclick="loadMuxVideo()" style="cursor:pointer;">▶️ Watch Now</span>
+            </div>
+          </div>
+
+          <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+          <script>
+            function loadMuxVideo() {
+              const container = document.getElementById("videoContainer");
+              container.innerHTML = `
+                <mux-player
+                  playback-id="WvTsVwOIzUmGwnGycEj02nfL4OHugxZdG00wcz00OTdnnY"
+                  metadata-video-title="TD1: Bases des circuits"
+                  stream-type="on-demand"
+                  autoplay
+                  style="width: 100%; aspect-ratio: 16/9; max-width: 100%; border-radius: 12px; overflow: hidden;"
+                ></mux-player>
+              `;
+            }
+          </script>
+
+          <div class="playlist-item">
+            <img src="/ondes et vibrations/02.jpg" alt="TD1 Video 2" class="playlist-thumbnail">
+            <div class="playlist-info">
+              <h4>Video 2: Puissance électrique</h4>
+              <a href="https://www.example.com/video2" target="_blank" class="playlist-status">▶️ Watch Now</a>
+            </div>
+          </div>
+        </div>
+
+        <h4 class="section-subtitle">TD2: Machines électriques</h4>
+        <div class="playlist-container">
+          <div class="playlist-item">
+            <img src="/ondes et vibrations/02.jpg" alt="TD2 Video 1" class="playlist-thumbnail">
+            <div class="playlist-info">
+              <h4>Video 1: Moteurs triphasés</h4>
+              <a href="https://www.example.com/video3" target="_blank" class="playlist-status">▶️ Watch Now</a>
+            </div>
+          </div>
+          <div class="playlist-item">
+            <img src="/ondes et vibrations/02.jpg" alt="TD2 Video 2" class="playlist-thumbnail">
+            <div class="playlist-info">
+              <h4>Video 2: Transformateurs</h4>
+              <a href="https://www.example.com/video4" target="_blank" class="playlist-status">▶️ Watch Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-subtitle">Tests & Exams</h3>
+      <div class="playlist-container">
+        <div class="playlist-item">
+          <img src="/ondes et vibrations/02.jpg" alt="Test Video" class="playlist-thumbnail">
+          <div class="playlist-info">
+            <h4>Test 1: Théorie des circuits</h4>
+            <a href="https://www.example.com/test1" target="_blank" class="playlist-status">▶️ Watch Now</a>
+          </div>
+        </div>
+        <div class="playlist-item">
+          <img src="/ondes et vibrations/02.jpg" alt="Exam Video" class="playlist-thumbnail">
+          <div class="playlist-info">
+            <h4>Exam 1: Électrotechnique</h4>
+            <a href="https://www.example.com/exam1" target="_blank" class="playlist-status">▶️ Watch Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="column-right">
+      <h2 class="section-title">PDF Files</h2>
+      <div class="pdf-list">
+        <h3 class="section-subtitle">Cours & TD</h3>
+        <div class="pdf-item">
+          <div class="pdf-info">
+            <h4>Résumé Électrotechnique</h4>
+            <a href="/pdfs/resume_electrotechnique1.pdf" target="_blank" class="playlist-status">📄 View</a>
+          </div>
+        </div>
+        <div class="pdf-item">
+          <div class="pdf-info">
+            <h4>TD1 Corrigé</h4>
+            <a href="/pdfs/td1_corrige_electrotechnique1.pdf" target="_blank" class="playlist-status">📄 View</a>
+          </div>
+        </div>
+
+        <h3 class="section-subtitle">Tests & Exams</h3>
+        <div class="pdf-item">
+          <div class="pdf-info">
+            <h4>Examen Blanc Électrotechnique</h4>
+            <a href="/pdfs/examen_blanc_electrotechnique1.pdf" target="_blank" class="playlist-status">📄 View</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ⭐️ التقييم -->
+<div id="rating-section">
+<h3>: قيّم الدورة</h3>
+  <div class="stars">
+    <span class="star" data-value="1">&#9733;</span>
+    <span class="star" data-value="2">&#9733;</span>
+    <span class="star" data-value="3">&#9733;</span>
+    <span class="star" data-value="4">&#9733;</span>
+    <span class="star" data-value="5">&#9733;</span>
+  </div>
+  <p id="rating-value-display">0/5</p>
+  <textarea id="userComment" placeholder="اكتب رأيك (اختياري)"></textarea>
+  <button id="submitRating">إرسال التقييم</button>
+  <p id="ratingMessage"></p>
+  <p id="average-rating"></p>
+</div>
+
+<section class="contact-form" id="support">
+  <h2>هل لديك سؤال؟</h2>
+  <form id="questionForm">
+    <input type="text" name="name" id="name" placeholder="الاسم الكامل" required />
+    <input type="email" name="email" id="email" placeholder=" البريد الإلكتروني أو رقم الهاتف" required />
+    <textarea name="message" id="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+    <button type="submit">إرسال</button>
+    <p id="support-message" style="margin-top:1rem; color:green;"></p>
+  </form>
+</section>
+
+<footer class="main-footer">
+  <div class="footer-content">
+    <div class="footer-section about">
+      <h3>عن المنصة</h3>
+      <p>منصة تعليمية تقدم دورات مميزة للطلبة الجامعيين مع شروحات مبسطة وملفات PDF وبث مباشر.</p>
+    </div>
+
+    <div class="footer-section links">
+      <h3>روابط سريعة</h3>
+      <ul>
+        <li><a href="/index.html">الرئيسية</a></li>
+        <li><a href="#">من نحن</a></li>
+        <li><a href="#payment-info">طرق الدفع</a></li>
+        <li><a href="/sign-up/sign-up.html">التسجيل</a></li>
+        <li><a href="/all-playlists.html">الدورات</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section contact">
+      <h3>تواصل معنا</h3>
+      <p><strong>📞</strong> +213 555 49 13 16</p>
+      <p><strong>📧</strong> edu-platform@example.com</p>
+      <p><strong>📍</strong> الجزائر</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>All rights reserved &copy; 2025 - Derradj Academy</p>
+  </div>
+</footer>
+<script>
+  function logout() {
+    localStorage.clear();
+    window.location.href = '../login/login.html'; // تأكد من المسار الصحيح
+  }
+</script>
+
+</body>
+</html>
