@@ -16,10 +16,10 @@ function formatSubjectName(code) {
 }
 
 const subjectPrices = {
-  'ondes_et_vibrations': 3000,
-  'electronique_fondamentale1': 3000,
-  'electrotechnique_fondamentale1': 3000,
-  'electricite_industrielle': 3000,
+  'ondes_et_vibrations': 2500,
+  'electronique_fondamentale1': 2500,
+  'electrotechnique_fondamentale1': 2500,
+  'electricite_industrielle': 2500,
 };
 
 async function fetchTeacherModules() {
@@ -135,7 +135,7 @@ async function fetchDashboardData() {
 
   sortedSubjects.forEach(subj => {
     const students = studentCounts[subj] || 0;
-    const unitPrice = subjectPrices[subj] || 3000;
+    const unitPrice = subjectPrices[subj] || 2500;
     const totalPrice = students * unitPrice;
     const teacherEarning = (unitPrice / 2) * students;
 
@@ -164,7 +164,7 @@ async function fetchDashboardData() {
 
   const totalEarningsRaw = Object.values(studentCounts).reduce((sum, val, i) => {
     const subj = teacherModules[i];
-    const price = subjectPrices[subj] || 3000;
+    const price = subjectPrices[subj] || 2500;
     return sum + val * price;
   }, 0);
   const teacherShare = totalEarningsRaw / 2;
