@@ -43,38 +43,41 @@
 <main class="course-content">
   <div class="course-header-box">
     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-      <h1 class="course-title" style="margin:0;">
-        <a href="https://www.youtube.com/watch?v=example" target="_blank" style="text-decoration: none; color: inherit;">
-          Électrotechnique Fondamentale 1
-        </a>
-      </h1>
+      <h1 class="course-title">Électrotechnique Fondamentale 1</h1>
     </div>
+
     <div class="instructor-details">
-<p class="instructor-name"><strong>Teacher :</strong> Professor A. Bouzida</p>
-      <p class="instructor-bio">Professor A. Bouzida vous explique les principes de l’électrotechnique de façon simple et claire.</p>
+      <p class="instructor-name"><strong>Teacher:</strong> Prof. A Bouzida</p>
+      <p class="instructor-bio">Fundamental course in electrotechnics with clear explanations and real-life technical examples by Prof. A Bouzida.</p>
     </div>
-<div class="live-announcement booking-style">
-  <span class="live-icon">📅</span>
 
-  <div class="booking-inline">
-    <label for="sessionDuration"><strong>Book a Live Session:</strong></label>
-    <select id="sessionDuration" onchange="showReceiptUpload()">
-      <option value="">-- Choose duration --</option>
-      <option value="15">15 min – 500 DA</option>
-      <option value="30">30 min – 900 DA</option>
-      <option value="45">45 min – 1300 DA</option>
-      <option value="60">1 hour – 1600 DA</option>
-    </select>
+    <!-- Booking Section -->
+    <div class="live-announcement booking-style">
+      <span class="live-icon">📅</span>
+
+      <div class="booking-inline">
+        <label for="sessionDuration"><strong>Book a Live Session:</strong></label>
+        <select id="sessionDuration" onchange="showReceiptUpload()">
+          <option value="">-- Choose duration --</option>
+          <option value="15">15 min – 500 DA</option>
+          <option value="30">30 min – 900 DA</option>
+          <option value="45">45 min – 1300 DA</option>
+          <option value="60">1 hour – 1600 DA</option>
+        </select>
+      </div>
+
+      <div class="upload-inline" id="uploadSection" style="display: none;">
+        <input type="file" id="paymentReceipt" accept="image/*, .pdf" />
+        <button id="submitBookingButton" onclick="submitBooking()">Send</button>
+      </div>
+
+      <div id="booking-message" style="margin-top: 1rem; font-weight: bold;"></div>
+
+      <span class="live-badge">LIVE</span>
+    </div>
   </div>
 
-  <div class="upload-inline" id="uploadSection" style="display:none;">
-    <input type="file" id="paymentReceipt" accept="image/*, .pdf" />
-<button id="submitBookingButton" onclick="submitBooking()">Send</button>
-  </div>
-  <div id="booking-message" style="margin-top: 1rem; font-weight: bold;"></div>
-  <span class="live-badge">LIVE</span>
-</div>
-</div>
+
 
   <div class="course-columns">
     <!-- Left Column -->
