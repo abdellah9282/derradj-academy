@@ -412,7 +412,7 @@ const sessionLinks = {
 };
 // ✅ عرض الاسم في رسالة الترحيب
 window.addEventListener("DOMContentLoaded", () => {
-  const username = localStorage.getItem("fullName") || "User";
+const username = localStorage.getItem("userName") || "User";
   const nameSpan = document.getElementById("username");
   if (nameSpan) nameSpan.textContent = username;
 });
