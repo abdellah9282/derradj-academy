@@ -103,21 +103,72 @@
             </div>
           </div>
 
-          <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
-          <script>
-            function loadMuxVideo() {
-              const container = document.getElementById("videoContainer");
-              container.innerHTML = `
-                <mux-player
-                  playback-id="WvTsVwOIzUmGwnGycEj02nfL4OHugxZdG00wcz00OTdnnY"
-                  metadata-video-title="TD1: Diodes et Transistors"
-                  stream-type="on-demand"
-                  autoplay
-                  style="width: 100%; aspect-ratio: 16/9; max-width: 100%; border-radius: 12px; overflow: hidden;"
-                ></mux-player>
-              `;
-            }
-          </script>
+<!-- مكتبة MUX -->
+<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+
+<!-- مكتبة Supabase -->
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+  const supabase = createClient(
+    'https://sgcypxmnlyiwljuqvcup.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
+  );
+
+  const moduleName = "electricite_industrielle";
+  const playbackId = "WvTsVwOIzUmGwnGycEj02nfL4OHugxZdG00wcz00OTdnnY";
+
+  window.loadMuxVideo = async function () {
+    const sessionId = localStorage.getItem("sessionId");
+
+    if (!sessionId) {
+      alert("⚠️ الرجاء تسجيل الدخول أولاً.");
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from("registrations")
+      .select("modules")
+      .eq("session_id", sessionId)
+      .maybeSingle();
+
+    if (error || !data) {
+      alert("🚫 غير مصرح لك بمشاهدة هذا الفيديو.");
+      return;
+    }
+
+    const modules = data.modules || [];
+    const hasAccess = modules.includes(moduleName);
+
+    if (!hasAccess) {
+      alert("🚫 لا تملك صلاحية مشاهدة هذه المادة.");
+      return;
+    }
+
+    const container = document.getElementById("videoContainer");
+    container.innerHTML = `
+      <mux-player
+        playback-id="${playbackId}"
+        metadata-video-title="TD1: Introduction aux circuits"
+        stream-type="on-demand"
+        autoplay
+        style="width: 100%; aspect-ratio: 16/9; max-width: 100%; border-radius: 12px; overflow: hidden;"
+      ></mux-player>
+    `;
+  };
+
+  // الحماية البسيطة
+  document.addEventListener("contextmenu", e => e.preventDefault());
+  document.onkeydown = function (e) {
+    if (
+      e.key === "F12" ||
+      (e.ctrlKey && e.shiftKey && ["I", "C", "J"].includes(e.key)) ||
+      (e.ctrlKey && e.key === "U")
+    ) {
+      return false;
+    }
+  };
+</script>
 
           <div class="playlist-item">
             <img src="/ondes et vibrations/02.jpg" alt="TD1 Video 2" class="playlist-thumbnail">
@@ -224,34 +275,47 @@
   </form>
 </section>
 
-<footer class="main-footer">
+<footer class="main-footer" dir="rtl">
   <div class="footer-content">
+    <!-- عن المنصة -->
     <div class="footer-section about">
       <h3>عن المنصة</h3>
-      <p>منصة تعليمية تقدم دورات مميزة للطلبة الجامعيين مع شروحات مبسطة وملفات PDF وبث مباشر.</p>
+      <p>منصة جزائرية تعليمية موجهة لطلبة الجامعات، تقدم دورات مبسطة، ملفات PDF، وفيديوهات مباشرة مع أساتذة مؤهلين.</p>
+   <p style="color: rgb(255, 42, 42); font-weight: bold; margin-top: 10px;">
+  ⚠️ تنبيه هام: جميع الفيديوهات المعروضة على منصة Derradj Academy محمية بموجب حقوق الملكية الفكرية.  
+  يُمنع منعًا باتًا نسخها أو تحميلها أو مشاركتها بأي وسيلة كانت.  
+  أي خرق لهذه القواعد يُعد انتهاكًا قانونيًا صريحًا، ويعرّض مرتكبه للملاحقة القضائية دون سابق إنذار.
+</p>
+
     </div>
 
+    <!-- روابط سريعة -->
     <div class="footer-section links">
       <h3>روابط سريعة</h3>
       <ul>
-        <li><a href="/index.html">الرئيسية</a></li>
-        <li><a href="#">من نحن</a></li>
-        <li><a href="#payment-info">طرق الدفع</a></li>
-        <li><a href="/sign-up/sign-up.html">التسجيل</a></li>
-        <li><a href="/all-playlists.html">الدورات</a></li>
+        <li><a href="/">الرئيسية</a></li>
+        <li><a href="#why-us">لماذا نحن؟</a></li>
+        <li><a href="#pay-methods-section">طرق الدفع</a></li>
+        <li><a href="sign-up/sign-up.html">إنشاء حساب</a></li>
+        <li><a href="All playlist/all-playlists.html">الدورات</a></li>
       </ul>
     </div>
 
+    <!-- تواصل معنا -->
     <div class="footer-section contact">
       <h3>تواصل معنا</h3>
-      <p><strong>📞</strong> +213 555 49 13 16</p>
-      <p><strong>📧</strong> edu-platform@example.com</p>
-      <p><strong>📍</strong> الجزائر</p>
+<p>
+  <strong>📞</strong>
+  <a href="tel:+213555491316" dir="ltr">+213 555 49 13 16</a>
+</p>
+      <p><strong>📧</strong> <a href="mailto:abdellahderradj918@gmail.com">abdellahderradj918@gmail.com
+</a></p>
+      <p><strong>📍</strong> الجزائر، الجزائر العاصمة</p>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <p>All rights reserved &copy; 2025 - Derradj Academy</p>
+    <p>جميع الحقوق محفوظة &copy; 2025 - Derradj Academy</p>
   </div>
 </footer>
 <script>
@@ -260,6 +324,51 @@
     window.location.href = '../login/login.html'; // تأكد من المسار الصحيح
   }
 </script>
+<script>
+  function logout() {
+    localStorage.clear();
+    window.location.href = '../login/login.html'; // تأكد من المسار الصحيح
+  }
+</script>
+<script>
+// ✅ منع فتح أدوات المطور - F12, Ctrl+U, Ctrl+Shift+I/J/C
+document.addEventListener('keydown', function (e) {
+  const key = e.key.toLowerCase();
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && key === 'u') ||
+    (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(key))
+  ) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+});
 
+// ✅ منع الزر الأيمن تمامًا
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+  return false;
+});
+
+// ✅ مراقبة DevTools وقطع الاتصال إذا تم فتحها
+(function () {
+  let open = false;
+  const threshold = 160;
+
+  setInterval(() => {
+    const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+    const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+    if (widthThreshold || heightThreshold) {
+      if (!open) {
+        open = true;
+        document.body.innerHTML = ""; // إزالة كل المحتوى
+      }
+    } else {
+      open = false;
+    }
+  }, 500);
+})();
+</script>
 </body>
 </html>
