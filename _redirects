@@ -1,0 +1,3 @@
+/:page             /:page.html             200
+/:folder/:page     /:folder/:page.html     200
+/:folder/:sub/:page /:folder/:sub/:page.html 200
