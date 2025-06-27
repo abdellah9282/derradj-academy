@@ -204,7 +204,7 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
     const scrollContainer = document.querySelector('.course-cards');
     const scrollRightBtn = document.querySelector('.scroll-right-btn');
     const scrollLeftBtn = document.querySelector('.scroll-left-btn');
-    const scrollAmount = 600;
+    const scrollAmount = 320;
 
     scrollRightBtn.addEventListener('click', () => {
       scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
@@ -220,6 +220,22 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
       }, 400);
     });
 
+    // ✅ التمرير التلقائي يمينًا كل 4 ثواني ثم يعود للبداية
+    const autoScrollDelay = 2500; // ⏱ كل 4 ثواني
+    setInterval(() => {
+      const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      const currentScroll = scrollContainer.scrollLeft;
+
+      if (currentScroll >= maxScroll - 10) {
+        scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+        scrollLeftBtn.style.display = 'none';
+      } else {
+        scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        scrollLeftBtn.style.display = 'block';
+      }
+    }, autoScrollDelay);
+
+    // Auto-scroll for categories ← لا تلمس ما بعد هذا
     // Auto-scroll for categories
     const catScrollContainer = document.querySelector('.categories-scroll');
     const catScrollStep = 200;
@@ -520,7 +536,7 @@ fetchModernComments();
 
 </script>
 
-<script src="js/protect.js"></script>
+<script src="Ljs/protect.js"></script>
 
 </body>
 </html>

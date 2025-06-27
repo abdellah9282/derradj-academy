@@ -1790,3 +1790,186 @@ body, html {
       gap: 2rem;
       padding: 2rem;
     }
+
+    @media (max-width: 768px) {
+  .main-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .left-section {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; /* ✅ جعله يبدأ من اليسار */
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 12px; /* ✅ مسافة بين Explore واسم الأكاديمية */
+  }
+
+  .explore-dropdown {
+    order: -1; /* ✅ يجعل "Explore" يظهر قبل اسم Derradj Academy */
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .explore-link {
+    padding: 6px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 4px;
+    z-index: 999;
+    min-width: 200px;
+  }
+
+  .dropdown-menu li {
+    list-style: none;
+  }
+
+  .dropdown-menu li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 0.95rem;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  .right-links {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .right-links a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+  }
+
+  .right-links .btn {
+    padding: 8px 14px;
+  }
+
+  .suggestions {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 768px) {
+  .left-section {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* ✅ يجعل العناصر في الوسط */
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 12px;
+    position: relative;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0 auto; /* ✅ للمحافظة على تمركزها */
+  }
+
+  .explore-dropdown {
+    position: absolute;
+    left: 12px; /* ✅ يثبت Explore في أقصى اليسار */
+    top: 0;
+  }
+}
+@media (max-width: 768px) {
+  #pay-methods-section {
+    padding: 0 12px;
+  }
+
+  #pay-methods-section h2 {
+    text-align: center;
+    font-size: 1.4em;
+  }
+
+  #pay-methods-section p {
+    font-size: 1rem !important;
+    padding: 1rem 1rem !important;
+  }
+
+  .pay-card {
+    padding: 1rem 1rem !important;
+    max-width: 100% !important;
+    margin: 1rem auto !important;
+    font-size: 1rem !important;
+  }
+
+  .pay-card h3 {
+    font-size: 1.15em !important;
+  }
+
+  .poste-data {
+    grid-template-columns: 1fr !important;
+    gap: 8px 0 !important;
+    font-size: 1rem !important;
+  }
+
+  .poste-data span {
+    text-align: right;
+  }
+
+  .poste-note {
+    font-size: 0.95em !important;
+    padding: 0.6rem !important;
+  }
+
+  .pay-methods-list > div {
+    margin-bottom: 1.5rem;
+  }
+
+  .badge {
+    font-size: 0.8em !important;
+    padding: 3px 8px !important;
+    right: 12px !important;
+  }
+}
+@media (max-width: 768px) {
+  .poste-data {
+    direction: ltr !important;
+    text-align: left !important;
+  }
+
+  .poste-data span {
+    direction: ltr !important;
+    text-align: left !important;
+  }
+}
