@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- الصفحة الرئيسية -->
+  <url>
+    <loc>https://www.derradjacademy.com/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- صفحة تسجيل الدخول -->
+  <url>
+    <loc>https://www.derradjacademy.com/login/login.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- صفحة تسجيل الطلاب -->
+  <url>
+    <loc>https://www.derradjacademy.com/sign-up/sign-up.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- صفحة تسجيل الأساتذة -->
+  <url>
+    <loc>https://www.derradjacademy.com/sign-up/teacher-signup.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- صفحة كل الدورات -->
+  <url>
+    <loc>https://www.derradjacademy.com/All%20playlist/all-playlists.html</loc>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- المواد من مجلد courses -->
+  <url>
+    <loc>https://www.derradjacademy.com/courses/electricite_industrielle.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.derradjacademy.com/courses/electronique_fondamentale1.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.derradjacademy.com/courses/electrotechnique_fondamentale1.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.derradjacademy.com/courses/ondes_et_vibrations.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+</urlset>
