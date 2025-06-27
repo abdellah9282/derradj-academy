@@ -1973,3 +1973,83 @@ body, html {
     text-align: left !important;
   }
 }
+@media (max-width: 768px) {
+  #pay-methods-section {
+    padding: 0 12px;
+  }
+
+  #pay-methods-section h2 {
+    text-align: center;
+    font-size: 1.4em;
+  }
+
+  #pay-methods-section p {
+    font-size: 1rem !important;
+    padding: 1rem 1rem !important;
+  }
+
+  .pay-card {
+    padding: 1rem 1rem !important;
+    max-width: 100% !important;
+    margin: 1rem auto !important;
+    font-size: 1rem !important;
+  }
+
+  .pay-card h3 {
+    font-size: 1.15em !important;
+  }
+
+  .poste-data {
+    grid-template-columns: 1fr !important;
+    gap: 8px 0 !important;
+    font-size: 1rem !important;
+  }
+
+  .poste-data span {
+    text-align: right;
+  }
+
+  .poste-note {
+    font-size: 0.95em !important;
+    padding: 0.6rem !important;
+  }
+
+  .pay-methods-list > div {
+    margin-bottom: 1.5rem;
+  }
+
+  .badge {
+    font-size: 0.8em !important;
+    padding: 3px 8px !important;
+    right: 12px !important;
+  }
+}
+@media (max-width: 768px) {
+  .poste-data {
+    direction: ltr !important;
+    text-align: left !important;
+  }
+
+  .poste-data span {
+    direction: ltr !important;
+    text-align: left !important;
+  }
+}
+@media (max-width: 768px) {
+  .baridi-rip {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+
+  .baridi-rip-label {
+    font-size: 1rem;
+    color: #1e40af;
+    margin-bottom: 0.4rem;
+  }
+
+  .baridi-rip-value {
+    font-size: 1.3rem;
+    word-break: break-word;
+  }
+}
