@@ -1968,3 +1968,21 @@ body, html {
     text-align: left !important;
   }
 }
+@media (max-width: 768px) {
+  .baridi-rip {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+
+  .baridi-rip-label {
+    font-size: 1rem;
+    color: #1e40af;
+    margin-bottom: 0.4rem;
+  }
+
+  .baridi-rip-value {
+    font-size: 1.3rem;
+    word-break: break-word;
+  }
+}
