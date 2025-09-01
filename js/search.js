@@ -1,9 +1,20 @@
 const courses = [
   { title: "Ondes Et Vibrations", link: "/courses/ondes_et_vibrations.html" },
-  { title: "Électronique Fondamentale 1", link: "/courses/electronique_fondamentale1.html" },
+  { title: "Electronique Fondamentale 1", link: "/courses/electronique_fondamentale1.html" },
   { title: "Electrotechnique Fondamentale 1", link: "/courses/electrotechnique_fondamentale1.html" },
-  { title: "Electricité Industrielle", link: "/courses/electricite_industrielle.html" }
+  { title: "Electronique De Puissance", link: "/courses/electronique_de_puissance.html" },
+  { title: "Informatique 1", link: "/courses/informatique01.html" },
+  { title: "Informatique 2", link: "/courses/informatique02.html" },
+  { title: "Informatique 3", link: "/courses/informatique03.html" },
+  { title: "Logique Combinatoire et Séquentielle", link: "/courses/logique.html" },
+  { title: "Methodes Numériques (L2 + M1)", link: "/courses/methode.html" },
+  { title: "Probabilité Et Statistique", link: "/courses/probabilite_et_statistique.html" },
+  { title: "Reseaux Électrique", link: "/courses/reseaux_electrique.html" },
+  { title: "Systemes Asservis", link: "/courses/systeme_asservis.html" },
+  { title: "Theorie du signal", link: "/courses/theorie_du_signal.html" },
 ];
+
+
 
 const input = document.getElementById("searchInput");
 const suggestionsList = document.getElementById("suggestionsList");

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Électronique Fondamentale 1 - Course</title>
-  <meta name="description" content="Cours d'Électronique Fondamentale 1 pour les étudiants en ST, avec vidéos explicatives, fichiers PDF et séances en direct.">
+  <title>Électricité Industrielle - Course</title>
+  <meta name="description" content="Cours d'Électricité Industrielle pour les étudiants en ST, avec vidéos explicatives, fichiers PDF et séances en direct.">
 
   <!-- الروابط -->
   <link rel="stylesheet" href="course-card-content.css" />
@@ -13,9 +13,9 @@
     <link rel="icon" type="image/jpeg" href="../Logo.jpg">
 
   <script type="module" src="course.js"></script>
-</head>
 
-<body data-module="electronique_fondamentale1">
+</head>
+<body data-module="electricite_industrielle">
 <!-- HEADER -->
 <header class="main-header">
   <div class="left-section">
@@ -24,7 +24,6 @@
     </a>
   </div>
 
-  <!-- ✅ رسالة ترحيبية -->
 <div class="welcome-banner">
   <div class="welcome-text">
     👋 Welcome <strong id="username">User</strong> — This is a personal account and must not be shared. 
@@ -45,12 +44,12 @@
 <main class="course-content">
   <div class="course-header-box">
     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-      <h1 class="course-title">Électronique Fondamentale 1</h1>
+      <h1 class="course-title">Électricité Industrielle</h1>
     </div>
 
     <div class="instructor-details">
       <p class="instructor-name"><strong>Teacher:</strong> Prof. A Bouzida</p>
-      <p class="instructor-bio">Introductory course to fundamental electronics explained in a simplified and practical way by Prof. A Bouzida.</p>
+      <p class="instructor-bio">Comprehensive course in industrial electricity with real-world applications and examples.</p>
     </div>
 
     <!-- Booking Section -->
@@ -79,32 +78,34 @@
     </div>
   </div>
 
-
-
+  
+  <!-- Course Columns -->
   <div class="course-columns">
-    <!-- Left Column -->
+
+    <!-- Left: Video Playlist -->
     <div class="column-left">
       <h2 class="section-title">Video Lessons</h2>
 
       <div class="playlist-container">
         <h3 class="section-subtitle">Travaux Dirigés (TD)</h3>
 
-        <h4 class="section-subtitle">TD1: Composants Électroniques</h4>
+        <h4 class="section-subtitle">TD1: Circuits de base</h4>
         <div class="playlist-container">
           <div class="playlist-item" id="videoContainer">
             <img
-              src="/ondes et vibrations/02.jpg"
+              src="/ondes et vibrations/01.webp"
               alt="Video Thumbnail"
               class="playlist-thumbnail"
               style="cursor: pointer;"
               onclick="loadMuxVideo()"
             >
             <div class="playlist-info">
-              <h4>Video 1: Diodes et Transistors</h4>
+              <h4>Video 1: Introduction aux circuits</h4>
               <span class="playlist-status" onclick="loadMuxVideo()" style="cursor:pointer;">▶️ Watch Now</span>
             </div>
           </div>
 
+          <!-- تحميل Mux Player -->
 <!-- مكتبة MUX -->
 <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
 
@@ -159,94 +160,79 @@
     `;
   };
 
-  // الحماية البسيطة
-  document.addEventListener("contextmenu", e => e.preventDefault());
-  document.onkeydown = function (e) {
-    if (
-      e.key === "F12" ||
-      (e.ctrlKey && e.shiftKey && ["I", "C", "J"].includes(e.key)) ||
-      (e.ctrlKey && e.key === "U")
-    ) {
-      return false;
-    }
+
+</script>
+
+
+<div class="playlist-container">
+  <div class="playlist-item" id="ytVideoContainer">
+    <img
+      src="/ondes et vibrations/02.jpg"
+      alt="Video Thumbnail"
+      class="playlist-thumbnail"
+      style="cursor: pointer;"
+      onclick="loadYoutubeVideo()"
+    >
+    <div class="playlist-info">
+      <h4>Video 2: Lois de Kirchhoff</h4>
+      <span class="playlist-status" onclick="loadYoutubeVideo()" style="cursor:pointer;">▶️ Watch Now</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const youtubeId = "evovy_YIIxA";
+
+  window.loadYoutubeVideo = function () {
+    const container = document.getElementById("ytVideoContainer");
+    container.innerHTML = `
+      <div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden;">
+<div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/evovy_YIIxA?autoplay=1&rel=0&modestbranding=1&controls=1&iv_load_policy=3"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    style="width:100%; height:100%;"
+  ></iframe>
+
+  <!-- غطاء علوي لإخفاء زر المشاركة + شعار YouTube -->
+  <div style="
+    position:absolute;
+    top:0; right:0;
+    width:80px; height:40px;
+    background:rgba(0,0,0,0.6);
+    border-bottom-left-radius:8px;
+    pointer-events:none;
+  "></div>
+</div>
+
+
+        <!-- غطاء لإخفاء شعار يوتيوب وزر المشاركة -->
+        <div style="
+          position:absolute;
+          top:0; left:0;
+          width:100%; height:30px;
+          background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+          pointer-events:none;
+        "></div>
+
+        <div style="
+          position:absolute;
+          bottom:0; left:0;
+          width:100%; height:30px;
+          background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+          pointer-events:none;
+        "></div>
+      </div>
+    `;
   };
 </script>
 
-          <div class="playlist-item">
-            <img src="/ondes et vibrations/02.jpg" alt="TD1 Video 2" class="playlist-thumbnail">
-            <div class="playlist-info">
-              <h4>Video 2: Circuits simples</h4>
-              <a href="https://www.example.com/video2" target="_blank" class="playlist-status">▶️ Watch Now</a>
-            </div>
-          </div>
         </div>
 
-        <h4 class="section-subtitle">TD2: Amplificateurs</h4>
-        <div class="playlist-container">
-          <div class="playlist-item">
-            <img src="/ondes et vibrations/02.jpg" alt="TD2 Video 1" class="playlist-thumbnail">
-            <div class="playlist-info">
-              <h4>Video 1: Amplificateur opérationnel</h4>
-              <a href="https://www.example.com/video3" target="_blank" class="playlist-status">▶️ Watch Now</a>
-            </div>
-          </div>
-          <div class="playlist-item">
-            <img src="/ondes et vibrations/02.jpg" alt="TD2 Video 2" class="playlist-thumbnail">
-            <div class="playlist-info">
-              <h4>Video 2: Applications pratiques</h4>
-              <a href="https://www.example.com/video4" target="_blank" class="playlist-status">▶️ Watch Now</a>
-            </div>
-          </div>
-        </div>
-      </div>
+     
 
-      <h3 class="section-subtitle">Tests & Exams</h3>
-      <div class="playlist-container">
-        <div class="playlist-item">
-          <img src="/ondes et vibrations/02.jpg" alt="Test Video" class="playlist-thumbnail">
-          <div class="playlist-info">
-            <h4>Test 1: Théorie des circuits</h4>
-            <a href="https://www.example.com/test1" target="_blank" class="playlist-status">▶️ Watch Now</a>
-          </div>
-        </div>
-        <div class="playlist-item">
-          <img src="/ondes et vibrations/02.jpg" alt="Exam Video" class="playlist-thumbnail">
-          <div class="playlist-info">
-            <h4>Exam 1: Bilan général</h4>
-            <a href="https://www.example.com/exam1" target="_blank" class="playlist-status">▶️ Watch Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Column -->
-    <div class="column-right">
-      <h2 class="section-title">PDF Files</h2>
-      <div class="pdf-list">
-        <h3 class="section-subtitle">Cours & TD</h3>
-        <div class="pdf-item">
-          <div class="pdf-info">
-            <h4>Résumé Électronique 1</h4>
-            <a href="/pdfs/resume_electronique1.pdf" target="_blank" class="playlist-status">📄 View</a>
-          </div>
-        </div>
-        <div class="pdf-item">
-          <div class="pdf-info">
-            <h4>TD1 Corrigé</h4>
-            <a href="/pdfs/td1_corrige_electronique1.pdf" target="_blank" class="playlist-status">📄 View</a>
-          </div>
-        </div>
-
-        <h3 class="section-subtitle">Tests & Exams</h3>
-        <div class="pdf-item">
-          <div class="pdf-info">
-            <h4>Examen Blanc Électronique</h4>
-            <a href="/pdfs/examen_blanc_electronique1.pdf" target="_blank" class="playlist-status">📄 View</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </main>
 
 <!-- ⭐️ التقييم -->
@@ -321,10 +307,24 @@
   </div>
 </footer>
 <script>
-  function logout() {
-    localStorage.clear();
-    window.location.href = '../login/login.html'; // تأكد من المسار الصحيح
+function showReceiptUpload() {
+  const duration = document.getElementById('sessionDuration').value;
+  const section = document.getElementById('uploadSection');
+  section.style.display = duration ? 'flex' : 'none';
+}
+
+function submitBooking() {
+  const duration = document.getElementById('sessionDuration').value;
+  const file = document.getElementById('paymentReceipt').files[0];
+
+  if (!duration || !file) {
+    alert('Please choose a duration and upload the receipt.');
+    return;
   }
+
+  // يمكنك تعديل هذا الجزء لحفظ البيانات في Supabase لاحقًا
+  alert(`Session booked for ${duration} min. Receipt uploaded.`);
+}
 </script>
 <script>
   function logout() {
@@ -372,8 +372,45 @@ document.addEventListener('contextmenu', function (e) {
   }, 500);
 })();
 </script>
-
 <script src="../js/protect.js"></script>
+<script>
+(function () {
+  // غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
+  const TARGET_URL = "../../index.html";
+
+  function leave() {
+    // replace يمنع الرجوع بزر الرجوع إلى الصفحة السابقة
+    window.location.replace(TARGET_URL);
+  }
+
+  // 1) التقاط ضغطة الزر الأيمن (أقوى مع طور الالتقاط capture)
+  function onContextMenu(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    leave();
+  }
+  window.addEventListener("contextmenu", onContextMenu, { capture: true });
+
+  // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
+  window.addEventListener("mousedown", function (e) {
+    if (e.button === 2) {
+      e.preventDefault();
+      e.stopPropagation();
+      leave();
+    }
+  }, { capture: true });
+
+  // 3) للجوال: محاولة كشف الضغط المطوّل (قد يفتح قائمة سياق في بعض المتصفحات)
+  let pressTimer;
+  window.addEventListener("touchstart", function () {
+    pressTimer = setTimeout(leave, 600);
+  }, { passive: true });
+  window.addEventListener("touchend", function () {
+    clearTimeout(pressTimer);
+  });
+})();
+</script>
+
 
 </body>
 </html>

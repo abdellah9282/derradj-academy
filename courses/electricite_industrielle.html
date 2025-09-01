@@ -24,7 +24,7 @@
 <meta name="twitter:image" content="https://www.derradjacademy.com/Logo.jpg" />
 
 <!-- Author and keywords -->
-<meta name="author" content="Pr. Ahcene Bouzida" />
+<meta name="author" content="Pr. Abdellah Derradj" />
 <meta name="keywords" content="Électricité Industrielle, cours ST, TDs, examens, vidéos, Pr. Bouzida, Derradj Academy, université algérienne" />
 
   <link rel="stylesheet" href="course-card-content.css" />
@@ -44,10 +44,19 @@
     <div class="explore-dropdown">
       <a href="#" class="explore-link">Explore</a>
       <ul class="dropdown-menu">
-        <li><a href="ondes_et_vibrations.html">Ondes et Vibrations</a></li>
-        <li><a href="electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
-        <li><a href="electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
-        <li><a href="electricite_industrielle.html">Électricité Industrielle</a></li>
+  <li><a href="../courses/ondes_et_vibrations.html">Ondes et Vibrations</a></li>
+  <li><a href="../courses/electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
+  <li><a href="../courses/electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
+  <li><a href="../courses/electronique_de_puissance.html">Électronique de Puissance</a></li>
+  <li><a href="../courses/informatique01.html">Informatique 1</a></li>
+  <li><a href="../courses/informatique02.html">Informatique 2</a></li>
+  <li><a href="../courses/informatique03.html">Informatique 3</a></li>
+  <li><a href="../courses/logique.html">Logique Combinatoire et Séquentielle</a></li>
+  <li><a href="../courses/methode.html">Méthodes Numériques (L2 + M1)</a></li>
+  <li><a href="../courses/probabilite_et_statistique.html">Probabilité et Statistique</a></li>
+  <li><a href="../courses/réseaux_electrique.html">Réseaux Électrique</a></li>
+  <li><a href="../courses/systeme_asservis.html">Systèmes Asservis</a></li>
+  <li><a href="../courses/theorie_du_signal.html">Théorie du Signal</a></li>
       </ul>
     </div>
   </div>
@@ -443,6 +452,43 @@
 </script>
 
 <script src="../js/protect.js"></script>
+<script>
+(function () {
+  // غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
+  const TARGET_URL = "../../index.html";
+
+  function leave() {
+    // replace يمنع الرجوع بزر الرجوع إلى الصفحة السابقة
+    window.location.replace(TARGET_URL);
+  }
+
+  // 1) التقاط ضغطة الزر الأيمن (أقوى مع طور الالتقاط capture)
+  function onContextMenu(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    leave();
+  }
+  window.addEventListener("contextmenu", onContextMenu, { capture: true });
+
+  // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
+  window.addEventListener("mousedown", function (e) {
+    if (e.button === 2) {
+      e.preventDefault();
+      e.stopPropagation();
+      leave();
+    }
+  }, { capture: true });
+
+  // 3) للجوال: محاولة كشف الضغط المطوّل (قد يفتح قائمة سياق في بعض المتصفحات)
+  let pressTimer;
+  window.addEventListener("touchstart", function () {
+    pressTimer = setTimeout(leave, 600);
+  }, { passive: true });
+  window.addEventListener("touchend", function () {
+    clearTimeout(pressTimer);
+  });
+})();
+</script>
 
 </body>
 </html>

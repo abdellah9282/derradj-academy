@@ -171,6 +171,43 @@
 
 
 <script src="../js/protect.js"></script>
+<script>
+(function () {
+  // غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
+  const TARGET_URL = "../../index.html";
+
+  function leave() {
+    // replace يمنع الرجوع بزر الرجوع إلى الصفحة السابقة
+    window.location.replace(TARGET_URL);
+  }
+
+  // 1) التقاط ضغطة الزر الأيمن (أقوى مع طور الالتقاط capture)
+  function onContextMenu(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    leave();
+  }
+  window.addEventListener("contextmenu", onContextMenu, { capture: true });
+
+  // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
+  window.addEventListener("mousedown", function (e) {
+    if (e.button === 2) {
+      e.preventDefault();
+      e.stopPropagation();
+      leave();
+    }
+  }, { capture: true });
+
+  // 3) للجوال: محاولة كشف الضغط المطوّل (قد يفتح قائمة سياق في بعض المتصفحات)
+  let pressTimer;
+  window.addEventListener("touchstart", function () {
+    pressTimer = setTimeout(leave, 600);
+  }, { passive: true });
+  window.addEventListener("touchend", function () {
+    clearTimeout(pressTimer);
+  });
+})();
+</script>
 
 </body>
 </html>

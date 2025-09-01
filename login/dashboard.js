@@ -41,43 +41,129 @@ const supabase = createClient(
   }
 })();
 
-// كائن الدورات (نفسه الذي أرسلته)
+// كائن الدورات (جميع مواد الأستاذ Abdellah Derradj)
 const allCourses = {
   ondes_et_vibrations: {
     title: "Ondes et Vibrations",
-    instructor: "Pr. A Bouzida",
+    instructor: "Pr. Abdellah Derradj",
+    price: 1200,
     rating: 4.5,
-    reviews: 48098,
-    image: "/ondes et vibrations/01.webp"
+    reviews: 48000,
+    image: "../Thumbnail/ondes_et_vibrations/01.jpg"
   },
   electrotechnique_fondamentale1: {
     title: "Électrotechnique Fondamentale 1",
-    instructor: "Pr. A Bouzida",
+    instructor: "Pr. Abdellah Derradj",
+    price: 1500,
     rating: 4.6,
-    reviews: 56210,
-    image: "/ondes et vibrations/02.jpg"
+    reviews: 56000,
+    image: "../Thumbnail/elt_f_1/04.jpg"
   },
   electronique_fondamentale1: {
     title: "Électronique Fondamentale 1",
-    instructor: "Pr. A Bouzida",
+    instructor: "Pr. Abdellah Derradj",
+    price: 1500,
     rating: 4.7,
-    reviews: 32421,
-    image: "/ondes et vibrations/02.jpg"
+    reviews: 32000,
+    image: "../Thumbnail/electroniquef1/01.jpg"
   },
-  electricite_industrielle: {
-    title: "Électricité Industrielle",
-    instructor: "Pr. A Bouzida",
+  informatique01: {
+    title: "Informatique 1",
+    instructor: "Pr. Abdellah Derradj",
+    price: 800,
+    rating: 4.4,
+    reviews: 15000,
+    image: "../Thumbnail/informatique1/01.jpg"
+  },
+  informatique02: {
+    title: "Informatique 2 (Pascal)",
+    instructor: "Pr. Abdellah Derradj",
+    price: 800,
+    rating: 4.5,
+    reviews: 14000,
+    image: "../Thumbnail/Informatique2/02.jpg"
+  },
+  informatique03: {
+    title: "Informatique 3 (MATLAB)",
+    instructor: "Pr. Abdellah Derradj",
+    price: 800,
+    rating: 4.5,
+    reviews: 14200,
+    image: "../Thumbnail/Informatique3/01.webp"
+  },
+  electronique_de_puissance: {
+    title: "Électronique de Puissance (avancée)",
+    instructor: "Pr. Abdellah Derradj",
+    price: 1200,
+    rating: 4.8,
+    reviews: 22000,
+    image: "../Thumbnail/electronique_de_puissance/03.webp"
+  },
+  probabilite_et_statistique: {
+    title: "Probabilité et Statistique",
+    instructor: "Pr. Abdellah Derradj",
+    price: 800,
+    rating: 4.4,
+    reviews: 18500,
+    image: "../Thumbnail/statistique/01.jpg"
+  },
+  logique: {
+    title: "Logique Combinatoire et Séquentielle",
+    instructor: "Pr. Abdellah Derradj",
+    price: 1000,
+    rating: 4.3,
+    reviews: 12000,
+    image: "../Thumbnail/Logique Combinatoire et Séquentielle/08.jpg"
+  },
+  methode: {
+    title: "Méthodes Numériques L2+M1",
+    instructor: "Pr. Abdellah Derradj",
+    price: 1000,
+    rating: 4.5,
+    reviews: 13000,
+    image: "../Thumbnail/methode_numerique/01.jpg"
+  },
+  systeme_asservis: {
+    title: "Systèmes Asservis",
+    instructor: "Pr. Abdellah Derradj",
+    price: 800,
+    rating: 4.4,
+    reviews: 11000,
+    image: "../Thumbnail/systemeasservi/02.jpg"
+  },
+  reseaux_electrique: {
+    title: "Réseaux Électriques",
+    instructor: "Pr. Abdellah Derradj",
+    price: 1000,
+    rating: 4.5,
+    reviews: 12500,
+    image: "../Thumbnail/reseau_electrique/01.jpg"
+  },
+  theorie_du_signal: {
+    title: "Théorie du Signal",
+    instructor: "Pr. Abdellah Derradj",
+    price: 800,
     rating: 4.6,
-    reviews: 34100,
-    image: "/ondes et vibrations/02.jpg"
+    reviews: 11800,
+    image: "../Thumbnail/theorie_de_signal/02.jpg"
   }
 };
 
+// روابط الصفحات الخاصة بكل مادة
 const courseLinks = {
   ondes_et_vibrations: "../courses-cards/ondes_et_vibrations.html",
   electrotechnique_fondamentale1: "../courses-cards/electrotechnique_fondamentale1.html",
   electronique_fondamentale1: "../courses-cards/electronique_fondamentale1.html",
-  electricite_industrielle: "../courses-cards/electricite_industrielle.html"
+  informatique01: "../courses-cards/informatique01.html",
+  informatique02: "../courses-cards/informatique02.html",
+  informatique03: "../courses-cards/informatique03.html",
+  electronique_de_puissance: "../courses-cards/electronique_de_puissance.html",
+  probabilite_et_statistique: "../courses-cards/probabilite_et_statistique.html",
+  logique: "../courses-cards/logique.html",
+  methode: "../courses-cards/methode.html",
+  systeme_asservis: "../courses-cards/systeme_asservis.html",
+  reseaux_electrique: "../courses-cards/reseaux_electrique.html",
+  theorie_du_signal: "../courses-cards/theorie_du_signal.html"
 };
 
 

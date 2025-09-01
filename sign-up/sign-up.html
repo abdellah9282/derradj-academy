@@ -3,44 +3,43 @@
 <head>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Create a Student Account | Derradj Academy</title>
-<meta name="description" content="Register on Derradj Academy to access Algerian university courses, educational videos, PDFs, solved TDs, and online academic support.">
-<meta name="robots" content="index, follow" />
-<meta name="author" content="Derradj Academy" />
-<meta name="keywords" content="student registration, create university account, Derradj Academy, Algerian course platform, higher education Algeria, university videos, supabase registration" />
+  <title>Create a Student Account | Derradj Academy</title>
+  <meta name="description" content="Register on Derradj Academy to access Algerian university courses, educational videos, PDFs, solved TDs, and online academic support.">
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Derradj Academy" />
+  <meta name="keywords" content="student registration, create university account, Derradj Academy, Algerian course platform, higher education Algeria, university videos, supabase registration" />
 
-<!-- Canonical URL -->
-<link rel="canonical" href="https://www.derradjacademy.com/sign-up/sign-up.html" />
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.derradjacademy.com/sign-up/sign-up.html" />
 
-<!-- Open Graph / Facebook -->
-<meta property="og:title" content="Create a Student Account | Derradj Academy" />
-<meta property="og:description" content="Sign up to access our courses, videos, TDs, and online support sessions.">
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.derradjacademy.com/sign-up/sign-up.html" />
-<meta property="og:image" content="https://www.derradjacademy.com/Logo.jpg" />
-<meta property="og:site_name" content="Derradj Academy" />
-<meta property="og:locale" content="en_US" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Create a Student Account | Derradj Academy" />
+  <meta property="og:description" content="Sign up to access our courses, videos, TDs, and online support sessions.">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.derradjacademy.com/sign-up/sign-up.html" />
+  <meta property="og:image" content="https://www.derradjacademy.com/Logo.jpg" />
+  <meta property="og:site_name" content="Derradj Academy" />
+  <meta property="og:locale" content="en_US" />
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Create a Student Account | Derradj Academy" />
-<meta name="twitter:description" content="Join Algeria's leading university platform, Derradj Academy, and learn at your own pace.">
-<meta name="twitter:image" content="https://www.derradjacademy.com/Logo.jpg" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Create a Student Account | Derradj Academy" />
+  <meta name="twitter:description" content="Join Algeria's leading university platform, Derradj Academy, and learn at your own pace.">
+  <meta name="twitter:image" content="https://www.derradjacademy.com/Logo.jpg" />
 
-<!-- Styles -->
-<link rel="stylesheet" href="/style.css" />
-<link rel="stylesheet" href="signup.css" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="signup.css" />
 
-<!-- Favicon -->
-<link rel="icon" type="image/jpeg" href="../Logo.jpg" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="../Logo.jpg" />
 
-<!-- JS -->
-<script src="../js/search.js" defer></script>
-
-
+  <!-- JS -->
+  <script src="../js/search.js" defer></script>
+</head>
 <body class="signup-page">
 
    <!-- HEADER -->
@@ -66,15 +65,14 @@
     <ul class="suggestions" id="suggestionsList"></ul>
   </div>
 
-    <nav class="right-links">
-      <a href="../index.html#student-feedback" class="nav-link">What Our Students Say</a>
-
-      <a href="../index.html#why-us" class="nav-link">About Us</a>
-      <a href="../All playlist/all-playlists.html" class="cart-icon">🛒</a>
-      <a href="../login/login.html" class="btn login">Log in</a>
-      <a href="../sign-up/sign-up.html" class="btn signup">Sign up</a>
-      <a href="../index.html#support" class="support-icon" title="الدعم الفني">💬</a>
-    </nav>
+  <nav class="right-links">
+    <a href="../index.html#student-feedback" class="nav-link">What Our Students Say</a>
+    <a href="../index.html#why-us" class="nav-link">About Us</a>
+    <a href="../All playlist/all-playlists.html" class="cart-icon">🛒</a>
+    <a href="../login/login.html" class="btn login">Log in</a>
+    <a href="../sign-up/sign-up.html" class="btn signup">Sign up</a>
+    <a href="../index.html#support" class="support-icon" title="الدعم الفني">💬</a>
+  </nav>
 </header>
 
   <!-- ✅ SIGNUP FORM WRAPPER -->
@@ -97,59 +95,61 @@
         <input type="password" id="password" name="password" placeholder="Create a password" required />
       </div>
 
-<div class="form-group">
-  <label>Select the modules you want to study</label>
-  <div class="select-wrapper" style="display: flex; align-items: center; gap: 10px;">
-    <button type="button" class="toggle-courses-btn">Select Courses</button>
-    <div id="moduleError" class="error-text"></div>
-  </div>
-
-  <div class="checkbox-group" id="coursesList">
-  <!-- ✅ قائمة مختصرة بـ 4 مواد فقط -->
-<div class="course-checkboxes">
-  <label>
-    <input type="checkbox" name="courses[]" value="ondes_et_vibrations">
-    Ondes et Vibrations
-  </label>
-  <label>
-    <input type="checkbox" name="courses[]" value="electrotechnique_fondamentale1">
-    Électrotechnique Fondamentale 1
-  </label>
-  <label>
-    <input type="checkbox" name="courses[]" value="electronique_fondamentale1">
-    Électronique Fondamentale 1
-  </label>
-  <label>
-    <input type="checkbox" name="courses[]" value="electricite_industrielle">
-    Électricité Industrielle
-  </label>
+      <div class="form-group">
+        <label>Select the modules you want to study</label>
+        <div class="select-wrapper" style="display: flex; align-items: center; gap: 10px;">
+          <button type="button" class="toggle-courses-btn">Select Courses</button>
+          <div id="moduleError" class="error-text"></div>
+        </div>
+<!-- ✅ قائمة كاملة بالمواد مع الأسعار -->
+<div class="checkbox-group course-checkboxes" id="coursesList">
+  <label><input type="checkbox" name="courses[]" value="ondes_et_vibrations" data-price="1200"> Ondes et Vibrations (1200 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="electrotechnique_fondamentale1" data-price="1500"> Électrotechnique Fondamentale 1 (1500 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="electronique_fondamentale1" data-price="1500"> Électronique Fondamentale 1 (1500 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="informatique01" data-price="800"> Informatique 1 (800 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="informatique02" data-price="800"> Informatique 2 (Pascal) (800 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="informatique03" data-price="800"> Informatique 3 (MATLAB) (800 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="electronique_de_puissance" data-price="1200"> Électronique de Puissance (avancée) (1200 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="probabilite_et_statistique" data-price="800"> Probabilité et Statistique (800 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="logique" data-price="1000"> Logique Combinatoire et Séquentielle (1000 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="methode" data-price="1000"> Méthodes Numériques L2+M1 (1000 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="systeme_asservis" data-price="800"> Systèmes Asservis (800 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="reseaux_electrique" data-price="1000"> Réseaux Électriques (1000 DA)</label>
+  <label><input type="checkbox" name="courses[]" value="theorie_du_signal" data-price="800"> Théorie du Signal (800 DA)</label>
 </div>
 
-</div>
 
-<!-- عرض المواد المحددة -->
+
+
+<!-- ✅ عرض المواد المحددة -->
 <div class="selected-courses" id="selectedModulesBox" style="display: none;">
   <h3>Selected Modules</h3>
   <ul id="selectedModulesList"></ul>
+
+  <!-- ✅ السعر الإجمالي -->
+  <div id="total-price" style="margin-top:15px; font-weight:bold; font-size:18px; color:#2c3e50;">
+    السعر الإجمالي: 0 دج
+  </div>
 </div>
 
 
 
 
-
+      </div>
       <div class="form-group">
         <label for="paymentProof">Upload Payment Receipt</label>
         <input type="file" id="paymentProof" name="paymentProof" accept=".jpg,.jpeg,.png,.pdf" required />
       </div>
 
-<button type="submit">Sign Up</button>
+      <button type="submit">Sign Up</button>
 
-<p class="form-footer-text">
-  Already have an account?
-  <a href="../login/login.html">Log in</a>
-</p>
+      <p class="form-footer-text">
+        Already have an account?
+        <a href="../login/login.html">Log in</a>
+      </p>
     </form>
   </main>
+
 
 <footer class="main-footer" dir="rtl">
   <div class="footer-content">
@@ -308,56 +308,23 @@
   });
 </script>
 
-<!-- ✅ مراقبة تغيّر اختيار المواد وعرضها -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const coursesList = document.getElementById('coursesList');
   const selectedModulesList = document.getElementById('selectedModulesList');
-  const selectedModulesBox = document.getElementById('selectedModulesBox'); // تأكد من وجوده في HTML
+  const selectedModulesBox = document.getElementById('selectedModulesBox');
+  const totalPriceEl = document.getElementById('total-price');
   const checkboxes = document.querySelectorAll('input[name="courses[]"]');
 
   let selectedCourses = [];
 
-  // مسح رسالة الخطأ عند التغيير
-  checkboxes.forEach(cb => {
-    cb.addEventListener('change', () => {
-      const selected = Array.from(checkboxes).filter(c => c.checked);
-      if (selected.length > 0) {
-        document.getElementById("moduleError").textContent = "";
-      }
-    });
-  });
-
-  // تحديث قائمة المواد المختارة عند تغيير اختيار checkbox
-  coursesList.addEventListener('change', (e) => {
-    if (e.target.name !== "courses[]") return;
-
-    const value = e.target.value;
-    const label = e.target.closest('label')?.textContent.trim() || value;
-
-    if (e.target.checked) {
-      // إضافة إذا غير موجودة
-      if (!selectedCourses.some(c => c.value === value)) {
-        selectedCourses.push({ value, label });
-      }
-    } else {
-      // إزالة المادة
-      selectedCourses = selectedCourses.filter(c => c.value !== value);
-    }
-
-    renderSelectedCourses();
-  });
-
-  function renderSelectedCourses() {
-    selectedModulesList.innerHTML = '';
-
-    if (selectedCourses.length > 0) {
-      selectedModulesBox.style.display = 'block';
-    } else {
-      selectedModulesBox.style.display = 'none';
-    }
+  function updateDisplay() {
+    selectedModulesList.innerHTML = "";
+    let total = 0;
 
     selectedCourses.forEach(course => {
+      total += parseInt(course.price) || 0;
+
       const li = document.createElement('li');
       li.textContent = course.label + " ";
 
@@ -373,20 +340,80 @@ document.addEventListener('DOMContentLoaded', () => {
         const checkbox = coursesList.querySelector(`input[type="checkbox"][value="${course.value}"]`);
         if (checkbox) checkbox.checked = false;
 
-        renderSelectedCourses();
+        updateDisplay(); // تحديث القائمة والسعر بعد الحذف
       });
 
       li.appendChild(removeBtn);
       selectedModulesList.appendChild(li);
     });
+
+    totalPriceEl.textContent = "السعر الإجمالي: " + total + " دج";
+    selectedModulesBox.style.display = selectedCourses.length > 0 ? "block" : "none";
   }
 
-  // في البداية قم بعرض قائمة المواد المختارة إذا كانت موجودة مسبقاً
-  renderSelectedCourses();
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      const value = cb.value;
+      const label = cb.closest('label')?.textContent.replace(/\s*\d+\s*دج$/, '').trim() || value;
+      const price = cb.dataset.price || 0;
+
+      if (cb.checked) {
+        if (!selectedCourses.some(c => c.value === value)) {
+          selectedCourses.push({ value, label, price });
+        }
+      } else {
+        selectedCourses = selectedCourses.filter(c => c.value !== value);
+      }
+
+      updateDisplay();
+    });
+  });
+
+  // عرض المواد المختارة في البداية إذا كانت موجودة مسبقاً
+  updateDisplay();
 });
 </script>
 
 
+
 <script src="../js/protect.js"></script>
+<script>
+(function () {
+  // غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
+  const TARGET_URL = "../../index.html";
+
+  function leave() {
+    // replace يمنع الرجوع بزر الرجوع إلى الصفحة السابقة
+    window.location.replace(TARGET_URL);
+  }
+
+  // 1) التقاط ضغطة الزر الأيمن (أقوى مع طور الالتقاط capture)
+  function onContextMenu(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    leave();
+  }
+  window.addEventListener("contextmenu", onContextMenu, { capture: true });
+
+  // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
+  window.addEventListener("mousedown", function (e) {
+    if (e.button === 2) {
+      e.preventDefault();
+      e.stopPropagation();
+      leave();
+    }
+  }, { capture: true });
+
+  // 3) للجوال: محاولة كشف الضغط المطوّل (قد يفتح قائمة سياق في بعض المتصفحات)
+  let pressTimer;
+  window.addEventListener("touchstart", function () {
+    pressTimer = setTimeout(leave, 600);
+  }, { passive: true });
+  window.addEventListener("touchend", function () {
+    clearTimeout(pressTimer);
+  });
+})();
+</script>
+
 </body>
 </html>
