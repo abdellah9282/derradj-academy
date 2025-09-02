@@ -256,12 +256,12 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 
 <!-- ★ Electronique de Puissance (avancée) -->
 <a href="courses/electronique_de_puissance.html" style="text-decoration: none; color: inherit;">
-  <div class="course-card" data-course-id="electronique-puissance">
+  <div class="course-card" data-course-id="electronique_de_puissance_avancee">
     <img src="Thumbnail/electronique_de_puissance/03.webp" alt="Course Image" class="course-img" />
     <div class="course-content">
       <h3 class="course-title">Electronique de Puissance (avancée)</h3>
       <p class="instructor">Pr. Abdellah Derradj</p>
-      <div class="rating">
+      <div class="rating" data-module="electronique_de_puissance_avancee">
         <span class="rating-value">...</span>
         <span class="stars">★ ★ ★ ★ ★</span>
         <span class="reviews">(....)</span>
@@ -270,6 +270,7 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
     </div>
   </div>
 </a>
+
 
 
 <!-- ★ Probabilité et Statistique -->
@@ -618,38 +619,43 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
   );
 
   // ✅ دالة عرض التقييمات
-  async function fetchAndDisplayRatings() {
-    const cards = document.querySelectorAll('.course-card');
+async function fetchAndDisplayRatings() {
+  const cards = document.querySelectorAll('.course-card');
 
-    for (const card of cards) {
-      const moduleId = card.dataset.courseId;
-      if (!moduleId) continue;
+  for (const card of cards) {
+    const moduleId = card.getAttribute('data-course-id'); // 🔹 أخذ اسم المادة من الـ attribute
+    if (!moduleId) continue;
 
-      const { data, error } = await supabase
-        .from('course_ratings')
-        .select('rating')
-        .eq('module', moduleId);
+    const { data, error } = await supabase
+      .from('course_ratings')
+      .select('rating')
+      .eq('module', moduleId);
 
-      if (error) {
-        console.error(`❌ خطأ في جلب تقييمات: ${moduleId}`, error.message);
-        continue;
-      }
-
-      if (data.length === 0) {
-        card.querySelector('.rating-value').textContent = '0.0';
-        card.querySelector('.reviews').textContent = '(0)';
-        continue;
-      }
-
-      const ratings = data.map(entry => entry.rating);
-      const average = (ratings.reduce((sum, r) => sum + r, 0) / ratings.length).toFixed(1);
-
-      card.querySelector('.rating-value').textContent = average;
-      card.querySelector('.reviews').textContent = `(${data.length})`;
+    if (error) {
+      console.error(`❌ خطأ في جلب تقييمات: ${moduleId}`, error.message);
+      continue;
     }
-  }
 
-  fetchAndDisplayRatings();
+    const ratingEl = card.querySelector('.rating-value');
+    const reviewsEl = card.querySelector('.reviews');
+
+    if (!data || data.length === 0) {
+      if (ratingEl) ratingEl.textContent = '0.0';
+      if (reviewsEl) reviewsEl.textContent = '(0)';
+      continue;
+    }
+
+    const ratings = data.map(entry => Number(entry.rating)); // 🔹 تأكد أنه رقم
+    const average = (ratings.reduce((sum, r) => sum + r, 0) / ratings.length).toFixed(1);
+
+    if (ratingEl) ratingEl.textContent = average;
+    if (reviewsEl) reviewsEl.textContent = `(${ratings.length})`;
+  }
+}
+
+// تشغيل الدالة بعد تحميل الصفحة
+document.addEventListener("DOMContentLoaded", fetchAndDisplayRatings);
+
 
   // ✅ إرسال نموذج السؤال
   const form = document.getElementById('questionForm');
