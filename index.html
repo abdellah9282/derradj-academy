@@ -733,43 +733,64 @@ fetchModernComments();
 </script>
 
 <script src="js/protect.js"></script>
+<style>
+
+</style>
+
+<div id="warningOverlay">
+  ⚠️ Right click or copying is disabled! You will be redirected...
+</div>
+
 <script>
 (function () {
-  // غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
-  const TARGET_URL = "index.html";
+  const TARGET_URL = "sign-up/sign-up.html";
+  const overlay = document.getElementById("warningOverlay");
 
-  function leave() {
-    // replace يمنع الرجوع بزر الرجوع إلى الصفحة السابقة
-    window.location.replace(TARGET_URL);
-  }
-
-  // 1) التقاط ضغطة الزر الأيمن (أقوى مع طور الالتقاط capture)
-  function onContextMenu(e) {
+  function triggerWarning(e) {
     e.preventDefault();
     e.stopPropagation();
-    leave();
-  }
-  window.addEventListener("contextmenu", onContextMenu, { capture: true });
 
-  // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
-  window.addEventListener("mousedown", function (e) {
-    if (e.button === 2) {
-      e.preventDefault();
-      e.stopPropagation();
-      leave();
-    }
+    // إخفاء المؤشر
+    document.body.style.cursor = "none";
+
+    // عرض الرسالة التحذيرية
+    overlay.style.display = "block";
+
+    // منع أي تفاعل آخر
+    ["click","mousedown","mouseup","keydown","keyup","touchstart","touchend","contextmenu"].forEach(evt => {
+      document.addEventListener(evt, function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }, { capture: true });
+    });
+
+    // بعد ثانيتين، إعادة توجيه المستخدم
+    setTimeout(() => {
+      window.location.href = TARGET_URL;
+    }, 2000);
+  }
+
+  // منع الزر الأيمن
+  window.addEventListener("contextmenu", triggerWarning, { capture: true });
+  window.addEventListener("mousedown", function(e) {
+    if (e.button === 2) triggerWarning(e);
   }, { capture: true });
 
-  // 3) للجوال: محاولة كشف الضغط المطوّل (قد يفتح قائمة سياق في بعض المتصفحات)
+  // منع النسخ (Ctrl+C)
+  window.addEventListener("copy", triggerWarning);
+
+  // للجوال: كشف الضغط المطوّل
   let pressTimer;
-  window.addEventListener("touchstart", function () {
-    pressTimer = setTimeout(leave, 600);
+  window.addEventListener("touchstart", function() {
+    pressTimer = setTimeout(triggerWarning, 600);
   }, { passive: true });
-  window.addEventListener("touchend", function () {
+  window.addEventListener("touchend", function() {
     clearTimeout(pressTimer);
   });
 })();
 </script>
+
+
 
 </body>
 </html>

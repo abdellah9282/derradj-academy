@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Électricité Industrielle - Course</title>
-  <meta name="description" content="Cours d'Électricité Industrielle pour les étudiants en ST, avec vidéos explicatives, fichiers PDF et séances en direct.">
+  <title>Electronique fondamentale 1</title>
+  <meta name="description" content="Cours d'Electronique fondamentale 1 pour les étudiants en ST, avec vidéos explicatives, fichiers PDF et séances en direct.">
 
   <!-- الروابط -->
   <link rel="stylesheet" href="course-card-content.css" />
@@ -15,7 +15,7 @@
   <script type="module" src="course.js"></script>
 
 </head>
-<body data-module="electricite_industrielle">
+<body data-module="electronique_fondamentale_1">
 <!-- HEADER -->
 <header class="main-header">
   <div class="left-section">
@@ -44,192 +44,446 @@
 <main class="course-content">
   <div class="course-header-box">
     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-      <h1 class="course-title">Électricité Industrielle</h1>
+      <h1 class="course-title">Electronique fondamentale 1</h1>
     </div>
 
     <div class="instructor-details">
-      <p class="instructor-name"><strong>Teacher:</strong> Prof. A Bouzida</p>
-      <p class="instructor-bio">Comprehensive course in industrial electricity with real-world applications and examples.</p>
+      <p class="instructor-name"><strong>Teacher:</strong> Abdellah Derradj </p>
+<p class="instructor-bio">Lessons, summaries, and TD solutions in Arabic with simplified explanations</p>
     </div>
 
-    <!-- Booking Section -->
-    <div class="live-announcement booking-style">
-      <span class="live-icon">📅</span>
+      <div class="live-announcement">
+  <span class="live-icon">📩</span>
+  <span><strong>  Contact us on 
+      <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" class="instagram-link">
+        Instagram
+      </a>
+    </strong> — for questions</span>
+  <span class="live-badge">
+    <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" style="color: inherit; text-decoration: underline;">
+      INSTAGRAM
+    </a>
+  </span>
+</div>
+<style>
+  .instagram-link {
+    color: #d62976; /* لون إنستغرام الأساسي */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
 
-      <div class="booking-inline">
-        <label for="sessionDuration"><strong>Book a Live Session:</strong></label>
-        <select id="sessionDuration" onchange="showReceiptUpload()">
-          <option value="">-- Choose duration --</option>
-          <option value="15">15 min – 500 DA</option>
-          <option value="30">30 min – 900 DA</option>
-          <option value="45">45 min – 1300 DA</option>
-          <option value="60">1 hour – 1600 DA</option>
-        </select>
-      </div>
+  .instagram-link:hover {
+    color: #962fbf; /* لون أغمق عند المرور */
+    text-decoration: underline;
+    transform: scale(1.05);
+  }
 
-      <div class="upload-inline" id="uploadSection" style="display: none;">
-        <input type="file" id="paymentReceipt" accept="image/*, .pdf" />
-        <button id="submitBookingButton" onclick="submitBooking()">Send</button>
-      </div>
-
-      <div id="booking-message" style="margin-top: 1rem; font-weight: bold;"></div>
-
-      <span class="live-badge">LIVE</span>
+  .live-badge a {
+    text-decoration: none;
+  }
+</style>
     </div>
+
+
   </div>
 
   
-  <!-- Course Columns -->
-  <div class="course-columns">
+<!-- ================= Course Columns ================= -->
+<div class="course-columns">
 
-    <!-- Left: Video Playlist -->
-    <div class="column-left">
-      <h2 class="section-title">Video Lessons</h2>
+  <!-- Left: Video Playlist -->
+  <div class="column-left">
+    <h2 class="section-title">Video Lessons</h2>
 
-      <div class="playlist-container">
-        <h3 class="section-subtitle">Travaux Dirigés (TD)</h3>
-
-        <h4 class="section-subtitle">TD1: Circuits de base</h4>
-        <div class="playlist-container">
-          <div class="playlist-item" id="videoContainer">
-            <img
-              src="/ondes et vibrations/01.webp"
-              alt="Video Thumbnail"
-              class="playlist-thumbnail"
-              style="cursor: pointer;"
-              onclick="loadMuxVideo()"
-            >
-            <div class="playlist-info">
-              <h4>Video 1: Introduction aux circuits</h4>
-              <span class="playlist-status" onclick="loadMuxVideo()" style="cursor:pointer;">▶️ Watch Now</span>
-            </div>
-          </div>
-
-          <!-- تحميل Mux Player -->
-<!-- مكتبة MUX -->
-<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
-
-<!-- مكتبة Supabase -->
-<script type="module">
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-
-  const supabase = createClient(
-    'https://sgcypxmnlyiwljuqvcup.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
-  );
-
-  const moduleName = "electricite_industrielle";
-  const playbackId = "WvTsVwOIzUmGwnGycEj02nfL4OHugxZdG00wcz00OTdnnY";
-
-  window.loadMuxVideo = async function () {
-    const sessionId = localStorage.getItem("sessionId");
-
-    if (!sessionId) {
-      alert("⚠️ الرجاء تسجيل الدخول أولاً.");
-      return;
-    }
-
-    const { data, error } = await supabase
-      .from("registrations")
-      .select("modules")
-      .eq("session_id", sessionId)
-      .maybeSingle();
-
-    if (error || !data) {
-      alert("🚫 غير مصرح لك بمشاهدة هذا الفيديو.");
-      return;
-    }
-
-    const modules = data.modules || [];
-    const hasAccess = modules.includes(moduleName);
-
-    if (!hasAccess) {
-      alert("🚫 لا تملك صلاحية مشاهدة هذه المادة.");
-      return;
-    }
-
-    const container = document.getElementById("videoContainer");
-    container.innerHTML = `
-      <mux-player
-        playback-id="${playbackId}"
-        metadata-video-title="TD1: Introduction aux circuits"
-        stream-type="on-demand"
-        autoplay
-        style="width: 100%; aspect-ratio: 16/9; max-width: 100%; border-radius: 12px; overflow: hidden;"
-      ></mux-player>
-    `;
-  };
-
-
-</script>
-
-
-<div class="playlist-container">
-  <div class="playlist-item" id="ytVideoContainer">
-    <img
-      src="/ondes et vibrations/02.jpg"
-      alt="Video Thumbnail"
-      class="playlist-thumbnail"
-      style="cursor: pointer;"
-      onclick="loadYoutubeVideo()"
-    >
-    <div class="playlist-info">
-      <h4>Video 2: Lois de Kirchhoff</h4>
-      <span class="playlist-status" onclick="loadYoutubeVideo()" style="cursor:pointer;">▶️ Watch Now</span>
-    </div>
+    <div class="playlist-container">
+      <h3 class="section-subtitle">Travaux Dirigés (TD)</h3>
+<!-- Video 01 -->
+<div class="playlist-item" id="ytVideoContainer1">
+  <img src="../Thumbnail/electroniquef1/01.jpg" alt="EP01" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer1', 'GHeIm3WTMWo')">
+  <div class="playlist-info">
+    <h4>EP01 Electronique fondamentale 1 - concepts de base</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer1', 'GHeIm3WTMWo')">▶️ Watch Now</span>
   </div>
+  <div id="ytVideoContainer1" style="margin-top:10px;"></div>
 </div>
 
+<!-- Video 02 -->
+<div class="playlist-item" id="ytVideoContainer2">
+  <img src="../Thumbnail/electroniquef1/02.jpg" alt="EP02" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer2', 'Q4RpbbjXcNg')">
+  <div class="playlist-info">
+    <h4>EP02 Electronique fondamentale 1 - شرح التيار و التوتر</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer2', 'Q4RpbbjXcNg')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer2" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 03 -->
+<div class="playlist-item" id="ytVideoContainer3">
+  <img src="../Thumbnail/electroniquef1/03.jpg" alt="EP03" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer3', '82iQf56n300')">
+  <div class="playlist-info">
+    <h4>EP03 Lois de Kirchhoff, lois des nœuds, lois des mailles شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer3', '82iQf56n300')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer3" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 04 -->
+<div class="playlist-item" id="ytVideoContainer4">
+  <img src="../Thumbnail/electroniquef1/04.jpg" alt="EP04" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer4', '-VSvfg2PiEQ')">
+  <div class="playlist-info">
+    <h4>EP04 Electronique fondamentale 1 : Association de résistances en série et en parallèle شرح</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer4', '-VSvfg2PiEQ')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer4" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 05 -->
+<div class="playlist-item" id="ytVideoContainer5">
+  <img src="../Thumbnail/electroniquef1/05.jpg" alt="EP05" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer5', 'VfIOc3e7iG0')">
+  <div class="playlist-info">
+    <h4>EP05 Diviseur de tension et de courant شرح</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer5', 'VfIOc3e7iG0')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer5" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 06 -->
+<div class="playlist-item" id="ytVideoContainer6">
+  <img src="../Thumbnail/electroniquef1/06.jpg" alt="EP06" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer6', 'Yvr5jRpWAOI')">
+  <div class="playlist-info">
+    <h4>EP06 Théorème de Superposition شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer6', 'Yvr5jRpWAOI')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer6" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 07 -->
+<div class="playlist-item" id="ytVideoContainer7">
+  <img src="../Thumbnail/electroniquef1/07.jpg" alt="EP07" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer7', 'EI3hIu3REik')">
+  <div class="playlist-info">
+    <h4>EP07 Exercice sur le Théorème de Superposition شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer7', 'EI3hIu3REik')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer7" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 08 -->
+<div class="playlist-item" id="ytVideoContainer8">
+  <img src="../Thumbnail/electroniquef1/08.webp" alt="EP08" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer8', 'w2uxR4EcMpk')">
+  <div class="playlist-info">
+    <h4>EP08 Théorème de Millman شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer8', 'w2uxR4EcMpk')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer8" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 09 -->
+<div class="playlist-item" id="ytVideoContainer9">
+  <img src="../Thumbnail/electroniquef1/09.jpg" alt="EP09" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer9', 'ho9Sb27TjwY')">
+  <div class="playlist-info">
+    <h4>EP09 حل تمرين شامل عن طريقة حساب التيار مهم لكل طالب هندسة كهربائية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer9', 'ho9Sb27TjwY')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer9" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 10 -->
+<div class="playlist-item" id="ytVideoContainer10">
+  <img src="../Thumbnail/electroniquef1/10.jpg" alt="EP10" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer10', 'W3NndZC92t4')">
+  <div class="playlist-info">
+    <h4>EP10 Théorème de Thévenin - Exercice Corrigé شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer10', 'W3NndZC92t4')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer10" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 11 -->
+<div class="playlist-item" id="ytVideoContainer11">
+  <img src="../Thumbnail/electroniquef1/11.jpg" alt="EP11" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer11', 'UcqqgJ4V2ag')">
+  <div class="playlist-info">
+    <h4>EP11 Théorème de Norton شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer11', 'UcqqgJ4V2ag')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer11" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 12 -->
+<div class="playlist-item" id="ytVideoContainer12">
+  <img src="../Thumbnail/electroniquef1/12.jpg" alt="EP12" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer12', 'uMwc5lCWmbk')">
+  <div class="playlist-info">
+    <h4>EP12 Théorème de Kennelly شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer12', 'uMwc5lCWmbk')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer12" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 13 -->
+<div class="playlist-item" id="ytVideoContainer13">
+  <img src="../Thumbnail/electroniquef1/13.jpg" alt="EP13" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer13', '1TR5QDJ-FJ8')">
+  <div class="playlist-info">
+    <h4>EP13 Test Electronique Fondamentale 1 en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer13', '1TR5QDJ-FJ8')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer13" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 14 -->
+<div class="playlist-item" id="ytVideoContainer14">
+  <img src="../Thumbnail/electroniquef1/14.jpg" alt="EP14" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer14', 'gOXs8NIFwvI')">
+  <div class="playlist-info">
+    <h4>EP14 Exercice Electronique Fondamentale 1 en Arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer14', 'gOXs8NIFwvI')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer14" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 15 -->
+<div class="playlist-item" id="ytVideoContainer15">
+  <img src="../Thumbnail/electroniquef1/15.jpg" alt="EP15" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer15', 'ZvOUEaDsPFE')">
+  <div class="playlist-info">
+    <h4>Les Quadripôles : Matrices Impédances شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer15', 'ZvOUEaDsPFE')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer15" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 16 -->
+<div class="playlist-item" id="ytVideoContainer16">
+  <img src="../Thumbnail/electroniquef1/16.jpg" alt="EP16" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer16', 'xOBIpjgR5Qk')">
+  <div class="playlist-info">
+    <h4>Le Quadripôle : Matrices Impédances Schéma Équivalent شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer16', 'xOBIpjgR5Qk')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer16" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 17 -->
+<div class="playlist-item" id="ytVideoContainer17">
+  <img src="../Thumbnail/electroniquef1/17.jpg" alt="EP17" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer17', 'WgmswHOCNEE')">
+  <div class="playlist-info">
+    <h4>Les Quadripôles : Matrices Impédances (Exercice) شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer17', 'WgmswHOCNEE')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer17" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 18 -->
+<div class="playlist-item" id="ytVideoContainer18">
+  <img src="../Thumbnail/electroniquef1/18.jpg" alt="EP18" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer18', 'vssSApa603s')">
+  <div class="playlist-info">
+    <h4>Le Quadripôle : La Matrice Admittance شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer18', 'vssSApa603s')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer18" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 19 -->
+<div class="playlist-item" id="ytVideoContainer19">
+  <img src="../Thumbnail/electroniquef1/19.jpg" alt="EP19" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer19', 'vssSApa603s')">
+  <div class="playlist-info">
+    <h4>Le Quadripôle : Exercice sur la Matrice Admittance شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer19', 'vssSApa603s')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer19" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 20 -->
+<div class="playlist-item" id="ytVideoContainer20">
+  <img src="../Thumbnail/electroniquef1/20.jpg" alt="EP20" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer20', 'oFR-aY9L7oI')">
+  <div class="playlist-info">
+    <h4>Le Quadripôle : La Matrice Transfert شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer20', 'oFR-aY9L7oI')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer20" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 21 -->
+<div class="playlist-item" id="ytVideoContainer21">
+  <img src="../Thumbnail/electroniquef1/21.jpg" alt="EP21" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer21', 'cT_vFr6N6GM')">
+  <div class="playlist-info">
+    <h4>Le Quadripôle : Exercice sur La Matrice Transfert شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer21', 'cT_vFr6N6GM')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer21" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 22 -->
+<div class="playlist-item" id="ytVideoContainer22">
+  <img src="../Thumbnail/electroniquef1/22.jpg" alt="EP22" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer22', 'WAiibjWc-Xo')">
+  <div class="playlist-info">
+    <h4>Association en Série avec le Quadripôle شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer22', 'WAiibjWc-Xo')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer22" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 23 -->
+<div class="playlist-item" id="ytVideoContainer23">
+  <img src="../Thumbnail/electroniquef1/23.jpg" alt="EP23" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer23', 'bXyczjFF2eo')">
+  <div class="playlist-info">
+    <h4>L'Association en Parallèle avec le Quadripôle شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer23', 'bXyczjFF2eo')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer23" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 24 -->
+<div class="playlist-item" id="ytVideoContainer24">
+  <img src="../Thumbnail/electroniquef1/24.jpg" alt="EP24" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer24', 'ccEHB7icrjQ')">
+  <div class="playlist-info">
+    <h4>L'Association en Cascade avec le Quadripôle شرح باللغة العربية</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer24', 'ccEHB7icrjQ')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer24" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 25 -->
+<div class="playlist-item" id="ytVideoContainer25">
+  <img src="../Thumbnail/electroniquef1/25.jpg" alt="EP25" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer25', '8BOdlolZiNc')">
+  <div class="playlist-info">
+    <h4>EP15 Examen Electronique Fondamentale 1 - Exercice 01 - en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer25', '8BOdlolZiNc')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer25" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 26 -->
+<div class="playlist-item" id="ytVideoContainer26">
+  <img src="../Thumbnail/electroniquef1/26.webp" alt="EP26" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer26', 'snPwXrogqGY')">
+  <div class="playlist-info">
+    <h4>ملخص شامل حول Les Diodes</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer26', 'snPwXrogqGY')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer26" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 27 -->
+<div class="playlist-item" id="ytVideoContainer27">
+  <img src="../Thumbnail/electroniquef1/27.webp" alt="EP27" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer27', 'fsZryhOf3gs')">
+  <div class="playlist-info">
+    <h4>ملخص شامل حول Thyristor</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer27', 'fsZryhOf3gs')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer27" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 28 -->
+<div class="playlist-item" id="ytVideoContainer28">
+  <img src="../Thumbnail/electroniquef1/28.jpg" alt="EP28" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer28', 'KiZXxCiLzmk')">
+  <div class="playlist-info">
+    <h4>Thyristor GTO ملخص شامل حول (Gate Turn-Off Thyristor)</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer28', 'KiZXxCiLzmk')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer28" style="margin-top:10px;"></div>
+</div>
+
+
+
+      <!-- يمكنك إضافة المزيد بنفس الصيغة -->
+
+    </div> <!-- End playlist-container -->
+  </div> <!-- End column-left -->
+
+</div> <!-- End course-columns -->
+
+<!-- ================= JavaScript مشترك ================= -->
 <script>
-  const youtubeId = "evovy_YIIxA";
-
-  window.loadYoutubeVideo = function () {
-    const container = document.getElementById("ytVideoContainer");
+  function loadYoutubeVideo(containerId, youtubeId) {
+    const container = document.getElementById(containerId);
     container.innerHTML = `
-      <div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden;">
-<div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden;">
-  <iframe
-    src="https://www.youtube-nocookie.com/embed/evovy_YIIxA?autoplay=1&rel=0&modestbranding=1&controls=1&iv_load_policy=3"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-    style="width:100%; height:100%;"
-  ></iframe>
+      <div style="position:relative; width:500px; height:280px; border-radius:12px; overflow:hidden;">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&controls=1&iv_load_policy=3"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="width:100%; height:100%; border-radius:12px;"
+        ></iframe>
 
-  <!-- غطاء علوي لإخفاء زر المشاركة + شعار YouTube -->
-  <div style="
-    position:absolute;
-    top:0; right:0;
-    width:80px; height:40px;
-    background:rgba(0,0,0,0.6);
-    border-bottom-left-radius:8px;
-    pointer-events:none;
-  "></div>
-</div>
-
+        <!-- غطاء لإخفاء زر المشاركة + شعار YouTube -->
+        <div style="
+          position:absolute; top:0; right:0;
+          width:80px; height:40px;
+          background:rgba(0,0,0,0.6);
+          border-bottom-left-radius:8px;
+          pointer-events:none;
+        "></div>
 
         <!-- غطاء لإخفاء شعار يوتيوب وزر المشاركة -->
         <div style="
-          position:absolute;
-          top:0; left:0;
-          width:100%; height:30px;
+          position:absolute; top:0; left:0;
+          width:100%; height:20px;
           background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
           pointer-events:none;
         "></div>
 
         <div style="
-          position:absolute;
-          bottom:0; left:0;
-          width:100%; height:30px;
+          position:absolute; bottom:0; left:0;
+          width:100%; height:20px;
           background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
           pointer-events:none;
         "></div>
       </div>
     `;
-  };
+  }
 </script>
-
-        </div>
 
      
 
