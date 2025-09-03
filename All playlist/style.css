@@ -2053,3 +2053,20 @@ body, html {
     word-break: break-word;
   }
 }
+/* === على الهواتف: محاذاة البطاقات في منتصف الشاشة === */
+@media (max-width: 600px) {
+  .all-courses-grid {
+    display: flex;               /* اجعلها صف أفقي */
+    flex-wrap: nowrap;           /* لا التفاف */
+    justify-content: center;     /* ضع البطاقات في الوسط */
+    overflow-x: auto;            /* السماح بالتمرير إذا زادت البطاقات */
+    gap: 12px;                   /* مسافة بين البطاقات */
+    padding: 10px 0;             /* حشوة علوية وسفلية */
+  }
+
+  .all-courses-grid .course-card {
+    min-width: 200px;            /* عرض البطاقة */
+    flex: 0 0 auto;              /* البطاقة لا تتقلص */
+    margin: 0;                   /* إزالة أي هامش زائد */
+  }
+}
