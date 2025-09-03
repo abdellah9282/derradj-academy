@@ -374,32 +374,38 @@
 <script src="../js/protect.js"></script>
 <script>
 (function () {
-  // غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
-  const TARGET_URL = "../../index.html";
+  // 🔗 غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
+  const TARGET_URL = "../index.html";
 
   function leave() {
     // replace يمنع الرجوع بزر الرجوع إلى الصفحة السابقة
     window.location.replace(TARGET_URL);
   }
 
-  // 1) التقاط ضغطة الزر الأيمن (أقوى مع طور الالتقاط capture)
-  function onContextMenu(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    leave();
+  // 📱 التحقق إذا الجهاز موبايل
+  function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   }
-  window.addEventListener("contextmenu", onContextMenu, { capture: true });
 
-  // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
-  window.addEventListener("mousedown", function (e) {
-    if (e.button === 2) {
+  // 🚫 فقط على الكمبيوتر (ماوس)
+  if (!isMobileDevice()) {
+    // 1) التقاط ضغطة الزر الأيمن (contextmenu)
+    function onContextMenu(e) {
       e.preventDefault();
       e.stopPropagation();
       leave();
     }
-  }, { capture: true });
+    window.addEventListener("contextmenu", onContextMenu, { capture: true });
 
-  
+    // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
+    window.addEventListener("mousedown", function (e) {
+      if (e.button === 2) {
+        e.preventDefault();
+        e.stopPropagation();
+        leave();
+      }
+    }, { capture: true });
+  }
 })();
 </script>
 
