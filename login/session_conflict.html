@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تحذير تسجيل الدخول</title>
+  <style>
+    /* ===== تصميم الصفحة ===== */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8d7da;
+      color: #721c24;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background: #fff;
+      border: 2px solid #f5c6cb;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+    button {
+      background-color: #d9534f;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #c9302c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚨 تنبيه أمني</h1>
+    <p>
+   .تم تسجيل الدخول بنفس الحساب من جهاز آخر<br>
+      يرجى عدم مشاركة حسابك مع أي شخص آخر حفاظًا على أمانك وحماية محتوى الحساب
+    </p>
+    <button onclick="redirectToLogin()">تسجيل الدخول مرة أخرى</button>
+  </div>
+
+  <script>
+    // دالة لتوجيه المستخدم لصفحة تسجيل الدخول
+    function redirectToLogin() {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "/login/login.html";
+    }
+
+    // منع الرجوع إلى الصفحة السابقة
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
+  </script>
+</body>
+</html>

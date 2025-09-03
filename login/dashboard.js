@@ -31,14 +31,17 @@ const supabase = createClient(
     return;
   }
 
-  if (data.session_id !== sessionId || data.device_id !== deviceId) {
-    console.warn("🚫 تم تسجيل الدخول من جهاز آخر أو تم إنهاء الجلسة. سيتم تسجيل خروجك الآن.");
+if (data.session_id !== sessionId || data.device_id !== deviceId) {
+  console.warn("🚫 تم تسجيل الدخول من جهاز آخر أو تم إنهاء الجلسة. سيتم تسجيل خروجك الآن.");
+  setTimeout(() => {
     localStorage.clear();
     window.location.href = "/login/login.html";
-  } else {
-    console.log("✅ الجلسة والجهاز مطابقين.");
-    localStorage.setItem("userToken", "ok");
-  }
+  }, 5000); // 2000 مللي ثانية = 2 ثوانٍ
+} else {
+  console.log("✅ الجلسة والجهاز مطابقين.");
+  localStorage.setItem("userToken", "ok");
+}
+
 })();
 
 // كائن الدورات (جميع مواد الأستاذ Abdellah Derradj)

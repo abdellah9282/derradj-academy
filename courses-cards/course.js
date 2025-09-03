@@ -50,7 +50,7 @@ function redirectToLogin(reason = "") {
   console.warn("🚫 Redirecting due to:", reason);
   localStorage.clear();
   sessionStorage.clear();
-  window.location.href = "../../login/login.html";
+  window.location.href = "../login/session_conflict.html";
 }
 
 function setupLogoutButton() {
@@ -60,7 +60,7 @@ function setupLogoutButton() {
       e.preventDefault();
       localStorage.clear();
       sessionStorage.clear();
-      window.location.href = "../../login/login.html";
+      window.location.href = "../login/session_conflict.html";
     });
   }
 }
@@ -129,7 +129,7 @@ function startPeriodicSessionCheck() {
       console.warn("🚫 تم اكتشاف جلسة/جهاز مختلف. تسجيل الخروج...");
       localStorage.clear();
       sessionStorage.clear();
-      window.location.href = "../../login/login.html";
+      window.location.href = "../login/session_conflict.html";
     }
   }, 15000);
 }
