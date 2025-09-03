@@ -25,11 +25,12 @@
   </div>
 
 <div class="welcome-banner">
-  <div class="welcome-text">
-    👋 Welcome <strong id="username">User</strong> — This is a personal account and must not be shared. 
-    If sharing is detected, access will be automatically revoked. 
-    Please review our <a href="../terms.html" target="_blank">User Terms</a>.
-  </div>
+<div class="welcome-text" style="text-align: right !important; direction: rtl !important;">
+    👋 مرحبًا <strong id="username">المستخدم</strong> — هذا حساب شخصي ولا يجب مشاركته.
+    إذا تم اكتشاف أي مشاركة، سيتم إلغاء الوصول تلقائيًا.
+    يرجى مراجعة 
+    <a href="../terms.html" target="_blank" rel="noopener noreferrer">شروط الاستخدام</a>.
+</div>
 </div>
 
 
@@ -356,11 +357,8 @@
     <div class="footer-section links">
       <h3>روابط سريعة</h3>
       <ul>
-        <li><a href="/">الرئيسية</a></li>
-        <li><a href="#why-us">لماذا نحن؟</a></li>
-        <li><a href="#pay-methods-section">طرق الدفع</a></li>
-        <li><a href="sign-up/sign-up.html">إنشاء حساب</a></li>
-        <li><a href="All playlist/all-playlists.html">الدورات</a></li>
+        <li><a href="../login/dashboard.html">الرئيسية</a></li>
+        <li><a href="../terms.html" target="_blank" rel="noopener noreferrer">الشروط والأحكام</a> </li>
       </ul>
     </div>
 
@@ -475,14 +473,7 @@ document.addEventListener('contextmenu', function (e) {
     }
   }, { capture: true });
 
-  // 3) للجوال: محاولة كشف الضغط المطوّل (قد يفتح قائمة سياق في بعض المتصفحات)
-  let pressTimer;
-  window.addEventListener("touchstart", function () {
-    pressTimer = setTimeout(leave, 600);
-  }, { passive: true });
-  window.addEventListener("touchend", function () {
-    clearTimeout(pressTimer);
-  });
+
 })();
 </script>
 

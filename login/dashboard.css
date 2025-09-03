@@ -193,7 +193,9 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 12px; /* ← أضف هذا السطر لإنزال الزر قليلًا */
 }
+
 
 .buy-new-course button[type="submit"]:hover {
   background-color: #4a00e0;
@@ -292,4 +294,22 @@
 
 .signout-button:hover {
   background: linear-gradient(to right, #5a00e0, #3a00c0);
+}
+
+
+/* ✅ محاذاة القوائم في وسط الشاشة على الهاتف */
+@media (max-width: 600px) {
+  .all-courses-grid {
+    display: flex;           /* تحويل الـ grid إلى flex */
+    flex-direction: column;  /* ترتيب عمودي */
+    justify-content: center;  /* محاذاة عمودية */
+    align-items: center;      /* محاذاة أفقية */
+    padding: 1rem;
+  }
+
+  .all-courses-grid .course-card {
+    width: 90%;              /* عرض مناسب للهاتف */
+    max-width: 400px;        /* حد أقصى للعرض */
+    margin-bottom: 1.5rem;   /* مسافة بين البطاقات */
+  }
 }

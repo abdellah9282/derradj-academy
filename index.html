@@ -737,14 +737,9 @@ fetchModernComments();
 
 </script>
 
-<script src="js/protect.js"></script>
-<style>
 
-</style>
 
-<div id="warningOverlay">
-  ⚠️ Right click or copying is disabled! You will be redirected...
-</div>
+
 
 <script>
 (function () {
@@ -784,14 +779,7 @@ fetchModernComments();
   // منع النسخ (Ctrl+C)
   window.addEventListener("copy", triggerWarning);
 
-  // للجوال: كشف الضغط المطوّل
-  let pressTimer;
-  window.addEventListener("touchstart", function() {
-    pressTimer = setTimeout(triggerWarning, 600);
-  }, { passive: true });
-  window.addEventListener("touchend", function() {
-    clearTimeout(pressTimer);
-  });
+
 })();
 </script>
 
