@@ -556,14 +556,7 @@ document.addEventListener('contextmenu', function (e) {
     }
   }, { capture: true });
 
-  // 3) للجوال: محاولة كشف الضغط المطوّل (قد يفتح قائمة سياق في بعض المتصفحات)
-  let pressTimer;
-  window.addEventListener("touchstart", function () {
-    pressTimer = setTimeout(leave, 600);
-  }, { passive: true });
-  window.addEventListener("touchend", function () {
-    clearTimeout(pressTimer);
-  });
+  
 })();
 </script>
 
