@@ -7,19 +7,53 @@ const supabase = createClient(
 
 function formatSubjectName(code) {
   const map = {
-    'ondes_et_vibrations': 'Ondes et Vibrations',
-    'electronique_fondamentale1': 'Électronique Fondamentale 1',
-    'electrotechnique_fondamentale1': 'Électrotechnique Fondamentale 1',
-    'electricite_industrielle': 'Électricité Industrielle',
+  'ondes_et_vibrations': 'Ondes et Vibrations',
+  'electronique_fondamentale1': 'Électronique Fondamentale 1',
+  'electrotechnique_fondamentale1': 'Électrotechnique Fondamentale 1',
+  'electricite_industrielle': 'Électricité Industrielle',
+  'electronique_de_puissance': 'Électronique de Puissance',
+  'informatique01': 'Informatique 1',
+  'informatique02': 'Informatique 2 (Pascal)',
+  'informatique03': 'Informatique 3 (MATLAB)',
+  'logique': 'Logique Combinatoire et Séquentielle',
+  'methode': 'Méthodes Numériques L2+M1',
+  'probabilite_et_statistique': 'Probabilité et Statistique',
+  'reseaux_electrique': 'Réseaux Électriques',
+  'systeme_asservis': 'Systèmes Asservis',
+  'theorie_du_signal': 'Théorie du Signal',
+  'traitement_du_signal': 'Traitement du Signal',
+
+  // ✅ المواد الإضافية
+  'etat_de_l_art': 'État de l’art',
+  'machines_electriques': 'Machines Électriques',
+  'commandes_machines_electriques': 'Commandes des Machines Électriques',
+  'mesures_electriques_et_electroniques': 'Mesures Électriques et Électroniques'
   };
   return map[code] || code;
 }
 
 const subjectPrices = {
-  'ondes_et_vibrations': 2500,
-  'electronique_fondamentale1': 2500,
-  'electrotechnique_fondamentale1': 2500,
-  'electricite_industrielle': 2500,
+  'ondes_et_vibrations': 1500,
+  'electrotechnique_fondamentale1': 1500,
+  'electronique_fondamentale1': 1500,
+  'informatique01': 800,
+  'informatique02': 800,
+  'informatique03': 800,
+  'electronique_de_puissance': 1200,
+  'probabilite_et_statistique': 800,
+  'logique': 1000,
+  'methode': 1000,
+  'systeme_asservis': 800,
+  'reseaux_electrique': 1000,
+  'theorie_du_signal': 800,
+
+
+
+  // ✅ المواد الإضافية
+  'etat_de_l_art': 2500,
+  'machines_electriques': 2500,
+  'commandes_machines_electriques': 2500,
+  'mesures_electriques_et_electroniques': 2500
 };
 
 async function fetchTeacherModules() {
