@@ -7,45 +7,99 @@
     <priority>1.00</priority>
   </url>
 
-  <!-- صفحة تسجيل الدخول -->
+  <!-- المواد / الدورات -->
   <url>
-    <loc>https://www.derradjacademy.com/login/login.html</loc>
-    <priority>0.80</priority>
+    <loc>https://www.derradjacademy.com/courses/commandes_machines_electriques.html</loc>
+    <priority>0.75</priority>
   </url>
 
-  <!-- صفحة تسجيل الطلاب -->
-  <url>
-    <loc>https://www.derradjacademy.com/sign-up/sign-up.html</loc>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- صفحة تسجيل الأساتذة -->
-  <url>
-    <loc>https://www.derradjacademy.com/sign-up/teacher-signup.html</loc>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- صفحة كل الدورات -->
-  <url>
-    <loc>https://www.derradjacademy.com/All%20playlist/all-playlists.html</loc>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- المواد من مجلد courses -->
   <url>
     <loc>https://www.derradjacademy.com/courses/electricite_industrielle.html</loc>
     <priority>0.75</priority>
   </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/electronique_de_puissance.html</loc>
+    <priority>0.75</priority>
+  </url>
+
   <url>
     <loc>https://www.derradjacademy.com/courses/electronique_fondamentale1.html</loc>
     <priority>0.75</priority>
   </url>
+
   <url>
     <loc>https://www.derradjacademy.com/courses/electrotechnique_fondamentale1.html</loc>
     <priority>0.75</priority>
   </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/etat_de_l_art.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/informatique01.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/informatique02.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/informatique03.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/logique.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/machines_electriques.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/mesures_electriques_et_electroniques.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/methode.html</loc>
+    <priority>0.75</priority>
+  </url>
+
   <url>
     <loc>https://www.derradjacademy.com/courses/ondes_et_vibrations.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/probabilite_et_statistique.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/réseaux_electrique.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/systeme_asservis.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/theorie_du_signal.html</loc>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/courses/traitement_du_signal.html</loc>
     <priority>0.75</priority>
   </url>
 
