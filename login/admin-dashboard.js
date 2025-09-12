@@ -6,45 +6,7 @@ const supabase = createClient(
 );
 // ✅ منع الدخول لغير الأدمن
 if (localStorage.getItem("isAdmin") !== "true") {
-  document.head.innerHTML = `
-    <title>404 Not Found</title>
-    <style>
-      body {
-        background: #f8f9fa;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding: 50px;
-      }
-      h1 {
-        font-size: 6rem;
-        margin-bottom: 20px;
-        color: #dc3545;
-      }
-      p {
-        font-size: 1.5rem;
-        color: #555;
-      }
-      a {
-        display: inline-block;
-        margin-top: 20px;
-        text-decoration: none;
-        padding: 10px 20px;
-        background: #007bff;
-        color: #fff;
-        border-radius: 6px;
-        transition: 0.3s;
-      }
-      a:hover {
-        background: #0056b3;
-      }
-    </style>
-  `;
-  document.body.innerHTML = `
-    <h1>404</h1>
-    <p>Oops! Page not found.</p>
-    <a href="../index.html">⬅️ Back to Home</a>
-  `;
-  throw new Error("Unauthorized access - admin only");
+  window.location.href = "../index.html"; // 🔄 تحويل للصفحة الرئيسية
 }
 
 async function loadRegistrations() {
