@@ -53,7 +53,12 @@ const subjectPrices = {
   'etat_de_l_art': 2500,
   'machines_electriques': 2500,
   'commandes_machines_electriques': 2500,
-  'mesures_electriques_et_electroniques': 2500
+  'mesures_electriques_et_electroniques': 2500,
+
+  // ✅ مواد الأستاذ Sami Braci
+'math1': 2000,
+'physique1': 2000,
+'chimie1': 2000
 };
 
 async function fetchTeacherModules() {
