@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (data.is_admin === true) {
       loginButton.textContent = "✅ Welcome admin";
       localStorage.setItem("isAdmin", "true");
-      window.location.href = "admin-dashboard.html";
+      window.location.href = "adin-dasbord.html";
       return;
     }
 
