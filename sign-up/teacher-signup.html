@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Teacher Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Create a Teacher Account | Derradj Academy</title>
+  <meta name="description" content="Register on Derradj Academy to access Algerian university courses, educational videos, PDFs, solved TDs, and online academic support.">
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Derradj Academy" />
+  <meta name="keywords" content="student registration, create university account, Derradj Academy, Algerian course platform, higher education Algeria, university videos, supabase registration" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.derradjacademy.com/sign-up/teacher-signup.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Create a Teacher Account | Derradj Academy" />
+  <meta property="og:description" content="Sign up to access our courses, videos, TDs, and online support sessions.">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.derradjacademy.com/sign-up/teacher-signup.html" />
+  <meta property="og:image" content="https://www.derradjacademy.com/Logo.jpg" />
+  <meta property="og:site_name" content="Derradj Academy" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Create a Teacher Account | Derradj Academy" />
+  <meta name="twitter:description" content="Join Algeria's leading university platform, Derradj Academy, and learn at your own pace.">
+  <meta name="twitter:image" content="https://www.derradjacademy.com/Logo.jpg" />
+
+  <!-- Styles -->
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="signup.css" />
-  <script src="../js/search.js" defer></script>
-<link rel="icon" type="image/jpeg" href="../Logo.jpg">
 
-<!-- Google tag (gtag.js) -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="../Logo.jpg" />
+
+  <!-- JS -->
+  <script src="../js/search.js" defer></script>
+
+  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XDHSVTPG"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -22,76 +53,102 @@
 
 </head>
 
+
 <body class="signup-page">
-  <!-- HEADER -->
-  <header class="main-header">
-    <div class="left-section">
-      <a href="../index.html" class="logo">
-        <span class="purple">D</span>erradj Academy
-      </a>
+
+   <!-- HEADER -->
+<header class="main-header">
+  <div class="left-section">
+    <a href="../index.html" class="logo">
+      <span class="purple">D</span>erradj Academy
+    </a>
+
+    <div class="explore-dropdown">
+      <a href="#" class="explore-link">Explore</a>
+      <ul class="dropdown-menu">
+  <li><a href="../courses/ondes_et_vibrations.html">Ondes et Vibrations</a></li>
+  <li><a href="../courses/electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
+  <li><a href="../courses/electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
+  <li><a href="../courses/electronique_de_puissance.html">Électronique de Puissance</a></li>
+  <li><a href="../courses/informatique01.html">Informatique 1</a></li>
+  <li><a href="../courses/informatique02.html">Informatique 2</a></li>
+  <li><a href="../courses/informatique03.html">Informatique 3</a></li>
+  <li><a href="../courses/logique.html">Logique Combinatoire et Séquentielle</a></li>
+  <li><a href="../courses/methode.html">Méthodes Numériques (L2 + M1)</a></li>
+  <li><a href="../courses/probabilite_et_statistique.html">Probabilité et Statistique</a></li>
+  <li><a href="../courses/réseaux_electrique.html">Réseaux Électrique</a></li>
+  <li><a href="../courses/systeme_asservis.html">Systèmes Asservis</a></li>
+  <li><a href="../courses/theorie_du_signal.html">Théorie du Signal</a></li>
+      </ul>
     </div>
-    <div class="search-box">
-      <input type="text" placeholder="Search for anything" id="searchInput" />
-      <ul class="suggestions" id="suggestionsList"></ul>
+  </div>
+
+  <div class="search-box">
+    <input type="text" placeholder="Search for anything" id="searchInput" />
+    <ul class="suggestions" id="suggestionsList"></ul>
+  </div>
+
+  <nav class="right-links">
+    <a href="../index.html#student-feedback" class="nav-link">What Our Students Say</a>
+    <a href="../index.html#why-us" class="nav-link">About Us</a>
+    <a href="../All playlist/all-playlists.html" class="cart-icon">🛒</a>
+    <a href="../login/login.html" class="btn login">Log in</a>
+    <a href="../sign-up/teacher-signup.html" class="btn signup">Sign up</a>
+    <a href="../index.html#support" class="support-icon" title="الدعم الفني">💬</a>
+  </nav>
+</header>
+
+<!-- ✅ TEACHER SIGNUP PAGE -->
+<main class="signup-wrapper">
+  <form class="signup-form">
+    <h2 class="form-title">👨‍🏫 Create Your Teacher Account</h2>
+
+    <!-- Full Name -->
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" placeholder="Enter your full name" required />
     </div>
-    <nav class="right-links">
-      <a href="#why-us" class="nav-link">Why Choose Us?</a>
-      <a href="#why-us" class="nav-link">About Us</a>
-      <a href="../All playlist/all-playlists.html" class="cart-icon">🛒</a>
-      <a href="../login/login.html" class="btn login">Log in</a>
-      <a href="" class="btn signup">Sign up</a>
-      <a href="#support" class="support-icon" title="الدعم الفني">💬</a>
-    </nav>
-  </header>
 
-  <!-- SIGNUP FORM -->
-  <main class="signup-wrapper">
-    <form class="signup-form">
-      <h2>Create Your Teacher Account</h2>
+    <!-- Contact -->
+    <div class="form-group">
+      <label for="contact">Email or Phone Number</label>
+      <input type="text" id="contact" placeholder="e.g. email@example.com or +213..." required />
+    </div>
 
-      <div class="form-group">
-        <label for="fullName">Full Name</label>
-        <input type="text" id="fullName" required />
-      </div>
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+<input type="password" id="password" name="password" placeholder="Enter a strong password" required />
+    </div>
 
-   <div class="form-group">
-  <label for="contact">Email or Phone Number</label>
-  <input type="text" id="contact" placeholder="e.g. email@example.com or +213..." required />
-</div>
+    <!-- Subjects -->
+    <div class="form-group">
+      <label for="subjects">Subjects</label>
+      <input type="text" id="subjects" placeholder="e.g. Math, Physics..." required />
+      <div id="moduleError" class="error-text"></div> <!-- ✅ مكان الخطأ -->
+    </div>
+
+    <!-- Upload CV -->
+    <div class="form-group">
+      <label for="cvFile">Upload Your CV or Certificate</label>
+      <input type="file" id="cvFile" accept=".jpg,.jpeg,.png,.pdf" required />
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn-submit">Sign Up</button>
+
+    <!-- مكان عرض الرسائل -->
+    <p id="message" style="margin-top:10px; font-weight: bold;"></p>
 
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" required />
-      </div>
 
-      <div class="form-group">
-        <label>Select the subjects you teach</label>
-        <div class="select-wrapper">
-          <button type="button" class="toggle-courses-btn">Select Subjects</button>
-          <div id="moduleError" class="error-text"></div>
-        </div>
+    <!-- Footer -->
+    <p class="form-footer-text">
+      Already have an account? <a href="../login/login.html">Log in</a>
+    </p>
+  </form>
+</main>
 
-        <div class="checkbox-group" id="coursesList">
-          <label><input type="checkbox" name="courses[]" value="chimie"> Chimie</label>
-          <label><input type="checkbox" name="courses[]" value="mecanique"> Mécanique</label>
-          <label><input type="checkbox" name="courses[]" value="electrotechnique"> Electrotechnique</label>
-          <label><input type="checkbox" name="courses[]" value="electronique"> Electronique</label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="paymentProof">Upload Your CV or Certificate</label>
-        <input type="file" id="paymentProof" accept=".jpg,.jpeg,.png,.pdf" required />
-      </div>
-
-      <button type="submit">Sign Up</button>
-
-      <p class="form-footer-text">
-        Already have an account? <a href="../login/login.html">Log in</a>
-      </p>
-    </form>
-  </main>
 
   <footer class="main-footer" dir="rtl">
     <div class="footer-content">
@@ -115,7 +172,7 @@
       <div class="footer-section contact">
         <h3>تواصل معنا</h3>
         <p><strong>📞</strong> <a href="tel:+213555491316" dir="ltr">+213 555 49 13 16</a></p>
-        <p><strong>📧</strong> <a href="mailto:abdellahderradj918@gmail.com">abdellahderradj918@gmail.com</a></p>
+        <p><strong>📧</strong> <a href="mailto:derradjacademy@gmail.com">derradjacademy@gmail.com</a></p>
         <p><strong>📍</strong> الجزائر، الجزائر العاصمة</p>
       </div>
     </div>
@@ -124,13 +181,14 @@
     </div>
   </footer>
 
-<!-- Toggle courses -->
+<!-- ✅ Toggle courses -->
 <script>
-  (() => {
-    const toggleBtn = document.querySelector('.toggle-courses-btn');
-    const coursesList = document.getElementById('coursesList');
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.querySelector('.toggle-courses-btn');
+  const coursesList = document.getElementById('coursesList');
 
-    toggleBtn?.addEventListener('click', (e) => {
+  if (toggleBtn && coursesList) {
+    toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       coursesList.classList.toggle('active');
       toggleBtn.classList.toggle('active');
@@ -142,140 +200,131 @@
         toggleBtn.classList.remove('active');
       }
     });
-  })();
+  }
+});
 </script>
 
-<!-- Supabase Script -->
+<!-- ✅ Supabase Script -->
 <script type="module">
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-  const supabase = createClient(
-    'https://sgcypxmnlyiwljuqvcup.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
-  );
+// ✅ Project URL & anon key
+const supabase = createClient(
+  'https://sgcypxmnlyiwljuqvcup.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
+);
 
+document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.signup-form');
+  if (!form) {
+    console.error('❌ signup form (.signup-form) غير موجود.');
+    return;
+  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    const fullName = document.getElementById('fullName').value.trim();
-    const contact = document.getElementById('contact').value.trim();
-    const password = document.getElementById('password').value;
-    const subjects = Array.from(document.querySelectorAll('input[name="courses[]"]:checked')).map(cb => cb.value);
-    const fileInput = document.getElementById('paymentProof');
-    const file = fileInput.files[0];
     const submitBtn = form.querySelector('button[type="submit"]');
 
-    if (subjects.length === 0) {
-      document.getElementById("moduleError").textContent = "❌ يرجى اختيار مادة واحدة على الأقل.";
+    // ✅ اجلب العناصر الصحيحة
+    const fullNameEl = document.getElementById('fullName');
+    const contactEl = document.getElementById('contact');
+    const passwordEl = document.getElementById('password');
+    const subjectsEl = document.getElementById('subjects'); // 👈 اجعل الـ id = subjects في HTML
+    const fileInput = document.getElementById('cvFile');    // 👈 اجعل الـ id = cvFile في HTML
+    const moduleError = document.getElementById('moduleError');
+
+    if (!fullNameEl || !contactEl || !passwordEl || !subjectsEl || !fileInput) {
+      alert('⚠️ تأكد من وجود الحقول fullName, contact, password, subjects, cvFile في HTML.');
+      return;
+    }
+
+    const fullName = fullNameEl.value.trim();
+    const contact = contactEl.value.trim();
+    const password = passwordEl.value;
+    const subjects = subjectsEl.value.trim();
+    const file = fileInput.files[0];
+
+    if (!subjects) {
+      if (moduleError) moduleError.textContent = '❌ يرجى كتابة المادة التي تريد تدريسها.';
       return;
     } else {
-      document.getElementById("moduleError").textContent = "";
+      if (moduleError) moduleError.textContent = '';
     }
 
     if (!file) {
-      alert("❌ يرجى رفع السيرة الذاتية أو شهادة الخبرة.");
+      alert('❌ يرجى رفع السيرة الذاتية أو شهادة الخبرة.');
       return;
     }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = "Please wait...";
+    submitBtn.textContent = 'Please wait...';
 
     try {
-      // تحقق من وجود مستخدم بنفس contact
+      // 🔎 تحقق من contact
       const { data: existing, error: existingError } = await supabase
-        .from('teachers')
-        .select('*')
+        .from('new_teachers')
+        .select('id')
         .eq('contact', contact)
-        .maybeSingle(); // ✅ safer to avoid 406 error
+        .maybeSingle();
 
+      if (existingError) throw existingError;
       if (existing) {
-        alert("❌ هذا البريد أو الرقم مستعمل من قبل.");
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Sign Up";
+        alert('❌ هذا البريد أو الرقم مستعمل من قبل.');
         return;
       }
 
-      // رفع الملف
-      const fileName = `teacher_${Date.now()}_${file.name}`;
+      // ⬆️ رفع الملف
+      const fileName = `teacher_${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
       const { data: uploadData, error: uploadError } = await supabase
         .storage
         .from('teacher-docs')
-        .upload(fileName, file);
+        .upload(fileName, file, { upsert: false });
 
       if (uploadError) throw uploadError;
 
-      const { data: { publicUrl } } = supabase
+      // 🔗 جلب URL
+      const { data: urlData } = supabase
         .storage
         .from('teacher-docs')
-        .getPublicUrl(uploadData.path);
+        .getPublicUrl(fileName);
 
-      // إدخال البيانات
-      const { error: insertError } = await supabase
-        .from('teachers')
-        .insert([{
-          full_name: fullName,
-          contact,
-          password,
-          subjects,
-          cv_url: publicUrl,
-          is_approved: null
-        }]);
+      const publicUrl = urlData?.publicUrl ?? null;
+
+      // 📝 إدخال البيانات
+const { data: inserted, error: insertError } = await supabase
+  .from('new_teachers')
+  .insert([{
+    full_name: fullName,
+    contact,
+    password,
+    subjects,
+    cv_url: publicUrl
+  }])
+  .select()
+  .single();
 
       if (insertError) throw insertError;
 
-      localStorage.setItem("teacherName", fullName);
-      localStorage.setItem("teacherSubjects", JSON.stringify(subjects));
+      console.log('Inserted row:', inserted);
 
-      window.location.href = "teacher-dashboard.html";
+      localStorage.setItem('teacherName', fullName);
+      localStorage.setItem('teacherSubjects', subjects);
+
+      // ✅ نجاح → Dashboard
+      window.location.href = 'my-courses.html';
+
     } catch (err) {
-      console.error("Error:", err);
-      alert("❌ حدث خطأ أثناء التسجيل. يرجى المحاولة لاحقًا.");
+      console.error('Signup error:', err);
+      alert('❌ حدث خطأ أثناء التسجيل. راجع الكونسول.');
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = "Sign Up";
+      submitBtn.textContent = 'Sign Up';
     }
   });
+});
 </script>
-<script src="../js/protect.js"></script>
-<script>
-(function () {
-  // غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
-  const TARGET_URL = "../../index.html";
 
-  function leave() {
-    // replace يمنع الرجوع بزر الرجوع إلى الصفحة السابقة
-    window.location.replace(TARGET_URL);
-  }
 
-  // 1) التقاط ضغطة الزر الأيمن (أقوى مع طور الالتقاط capture)
-  function onContextMenu(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    leave();
-  }
-  window.addEventListener("contextmenu", onContextMenu, { capture: true });
-
-  // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
-  window.addEventListener("mousedown", function (e) {
-    if (e.button === 2) {
-      e.preventDefault();
-      e.stopPropagation();
-      leave();
-    }
-  }, { capture: true });
-
-  // 3) للجوال: محاولة كشف الضغط المطوّل (قد يفتح قائمة سياق في بعض المتصفحات)
-  let pressTimer;
-  window.addEventListener("touchstart", function () {
-    pressTimer = setTimeout(leave, 600);
-  }, { passive: true });
-  window.addEventListener("touchend", function () {
-    clearTimeout(pressTimer);
-  });
-})();
-</script>
 
 </body>
 </html>

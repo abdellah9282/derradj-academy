@@ -309,3 +309,69 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
   // إعادة التوجيه لصفحة تسجيل الدخول
   window.location.href = "login.html";
 });
+
+const teachersTable = document.getElementById('teachersTable');
+
+async function fetchTeachers() {
+  const { data: teachers, error } = await supabase
+    .from('new_teachers')
+    .select('*')
+    .is('is_approved', null) // فقط الذين لم يتم الموافقة عليهم
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching teachers:', error);
+    return;
+  }
+
+  teachersTable.innerHTML = '';
+  teachers.forEach(t => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${t.full_name}</td>
+      <td>${t.contact}</td>
+      <td>${t.subjects}</td>
+      <td>${t.cv_url ? `<a href="${t.cv_url}" target="_blank">View CV</a>` : 'No CV'}</td>
+      <td>
+        <button class="approveBtn" data-id="${t.id}">✅ Approve</button>
+        <button class="rejectBtn" data-id="${t.id}">❌ Reject</button>
+      </td>
+    `;
+    teachersTable.appendChild(row);
+
+    // حدث Approve
+    row.querySelector('.approveBtn').addEventListener('click', async () => {
+      try {
+        await supabase
+          .from('new_teachers')
+          .update({ is_approved: true })
+          .eq('id', t.id);
+
+        // إزالة الصف من الجدول مباشرة
+        row.remove();
+      } catch (err) {
+        console.error('Error approving teacher:', err);
+        alert('❌ حدث خطأ أثناء الموافقة.');
+      }
+    });
+
+    // حدث Reject
+    row.querySelector('.rejectBtn').addEventListener('click', async () => {
+      try {
+        await supabase
+          .from('new_teachers')
+          .delete()
+          .eq('id', t.id);
+
+        // إزالة الصف من الجدول مباشرة
+        row.remove();
+      } catch (err) {
+        console.error('Error rejecting teacher:', err);
+        alert('❌ حدث خطأ أثناء الرفض.');
+      }
+    });
+  });
+}
+
+// استدعاء الدالة عند تحميل الصفحة
+fetchTeachers();
