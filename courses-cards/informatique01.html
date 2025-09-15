@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Électricité Industrielle - Course</title>
-  <meta name="description" content="Cours d'Électricité Industrielle pour les étudiants en ST, avec vidéos explicatives, fichiers PDF et séances en direct.">
-
+  <title>Informatique 1</title>
   <!-- الروابط -->
   <link rel="stylesheet" href="course-card-content.css" />
   <link rel="stylesheet" href="/style.css" />
@@ -25,11 +23,12 @@
   </div>
 
 <div class="welcome-banner">
-  <div class="welcome-text">
-    👋 Welcome <strong id="username">User</strong> — This is a personal account and must not be shared. 
-    If sharing is detected, access will be automatically revoked. 
-    Please review our <a href="../terms.html" target="_blank">User Terms</a>.
-  </div>
+<div class="welcome-text" style="text-align: right !important; direction: rtl !important;">
+    👋 مرحبًا <strong id="username">المستخدم</strong> — هذا حساب شخصي ولا يجب مشاركته.
+    إذا تم اكتشاف أي مشاركة، سيتم إلغاء الوصول تلقائيًا.
+    يرجى مراجعة 
+    <a href="../terms.html" target="_blank" rel="noopener noreferrer">شروط الاستخدام</a>.
+</div>
 </div>
 
 
@@ -44,192 +43,174 @@
 <main class="course-content">
   <div class="course-header-box">
     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-      <h1 class="course-title">Électricité Industrielle</h1>
+      <h1 class="course-title">Informatique 1</h1>
     </div>
 
     <div class="instructor-details">
-      <p class="instructor-name"><strong>Teacher:</strong> Prof. A Bouzida</p>
-      <p class="instructor-bio">Comprehensive course in industrial electricity with real-world applications and examples.</p>
+      <p class="instructor-name"><strong>Teacher:</strong> Abdellah Derradj </p>
+<p class="instructor-bio">Lessons, summaries, and TD solutions in Arabic with simplified explanations</p>
     </div>
 
-    <!-- Booking Section -->
-    <div class="live-announcement booking-style">
-      <span class="live-icon">📅</span>
+      <div class="live-announcement">
+  <span class="live-icon">📩</span>
+  <span><strong>  Contact us on 
+      <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" class="instagram-link">
+        Instagram
+      </a>
+    </strong> — for questions</span>
+  <span class="live-badge">
+    <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" style="color: inherit; text-decoration: underline;">
+      INSTAGRAM
+    </a>
+  </span>
+</div>
+<style>
+  .instagram-link {
+    color: #d62976; /* لون إنستغرام الأساسي */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
 
-      <div class="booking-inline">
-        <label for="sessionDuration"><strong>Book a Live Session:</strong></label>
-        <select id="sessionDuration" onchange="showReceiptUpload()">
-          <option value="">-- Choose duration --</option>
-          <option value="15">15 min – 500 DA</option>
-          <option value="30">30 min – 900 DA</option>
-          <option value="45">45 min – 1300 DA</option>
-          <option value="60">1 hour – 1600 DA</option>
-        </select>
-      </div>
+  .instagram-link:hover {
+    color: #962fbf; /* لون أغمق عند المرور */
+    text-decoration: underline;
+    transform: scale(1.05);
+  }
 
-      <div class="upload-inline" id="uploadSection" style="display: none;">
-        <input type="file" id="paymentReceipt" accept="image/*, .pdf" />
-        <button id="submitBookingButton" onclick="submitBooking()">Send</button>
-      </div>
-
-      <div id="booking-message" style="margin-top: 1rem; font-weight: bold;"></div>
-
-      <span class="live-badge">LIVE</span>
+  .live-badge a {
+    text-decoration: none;
+  }
+</style>
     </div>
+
+
   </div>
 
   
-  <!-- Course Columns -->
-  <div class="course-columns">
-
-    <!-- Left: Video Playlist -->
-    <div class="column-left">
-      <h2 class="section-title">Video Lessons</h2>
-
-      <div class="playlist-container">
-        <h3 class="section-subtitle">Travaux Dirigés (TD)</h3>
-
-        <h4 class="section-subtitle">TD1: Circuits de base</h4>
-        <div class="playlist-container">
-          <div class="playlist-item" id="videoContainer">
-            <img
-              src="/ondes et vibrations/01.webp"
-              alt="Video Thumbnail"
-              class="playlist-thumbnail"
-              style="cursor: pointer;"
-              onclick="loadMuxVideo()"
-            >
-            <div class="playlist-info">
-              <h4>Video 1: Introduction aux circuits</h4>
-              <span class="playlist-status" onclick="loadMuxVideo()" style="cursor:pointer;">▶️ Watch Now</span>
-            </div>
-          </div>
-
-          <!-- تحميل Mux Player -->
-<!-- مكتبة MUX -->
-<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
-
-<!-- مكتبة Supabase -->
-<script type="module">
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-
-  const supabase = createClient(
-    'https://sgcypxmnlyiwljuqvcup.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
-  );
-
-  const moduleName = "electricite_industrielle";
-  const playbackId = "WvTsVwOIzUmGwnGycEj02nfL4OHugxZdG00wcz00OTdnnY";
-
-  window.loadMuxVideo = async function () {
-    const sessionId = localStorage.getItem("sessionId");
-
-    if (!sessionId) {
-      alert("⚠️ الرجاء تسجيل الدخول أولاً.");
-      return;
-    }
-
-    const { data, error } = await supabase
-      .from("registrations")
-      .select("modules")
-      .eq("session_id", sessionId)
-      .maybeSingle();
-
-    if (error || !data) {
-      alert("🚫 غير مصرح لك بمشاهدة هذا الفيديو.");
-      return;
-    }
-
-    const modules = data.modules || [];
-    const hasAccess = modules.includes(moduleName);
-
-    if (!hasAccess) {
-      alert("🚫 لا تملك صلاحية مشاهدة هذه المادة.");
-      return;
-    }
-
-    const container = document.getElementById("videoContainer");
-    container.innerHTML = `
-      <mux-player
-        playback-id="${playbackId}"
-        metadata-video-title="TD1: Introduction aux circuits"
-        stream-type="on-demand"
-        autoplay
-        style="width: 100%; aspect-ratio: 16/9; max-width: 100%; border-radius: 12px; overflow: hidden;"
-      ></mux-player>
-    `;
-  };
-
-
-</script>
-
-
-<div class="playlist-container">
-  <div class="playlist-item" id="ytVideoContainer">
-    <img
-      src="/ondes et vibrations/02.jpg"
-      alt="Video Thumbnail"
-      class="playlist-thumbnail"
-      style="cursor: pointer;"
-      onclick="loadYoutubeVideo()"
-    >
-    <div class="playlist-info">
-      <h4>Video 2: Lois de Kirchhoff</h4>
-      <span class="playlist-status" onclick="loadYoutubeVideo()" style="cursor:pointer;">▶️ Watch Now</span>
-    </div>
+<!-- Video 1 -->
+<div class="playlist-item" id="ytVideoContainer21">
+  <img src="../Thumbnail/informatique1/01.jpg" alt="EP01" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer21', 'evovy_YIIxA')">
+  <div class="playlist-info">
+    <h4>EP01 Informatique 1 : Comprendre les unités de stockage en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer21', 'evovy_YIIxA')">▶️ Watch Now</span>
   </div>
+  <div id="ytVideoContainer21" style="margin-top:10px;"></div>
 </div>
 
+<!-- Video 2 -->
+<div class="playlist-item" id="ytVideoContainer22">
+  <img src="../Thumbnail/informatique1/02.jpg" alt="EP02" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer22', '201Q0eMqJTs')">
+  <div class="playlist-info">
+    <h4>EP02 Informatique 1 Conversion entre Binaire, Décimal, Octal et Hexadécimal en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer22', '201Q0eMqJTs')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer22" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 3 -->
+<div class="playlist-item" id="ytVideoContainer23">
+  <img src="../Thumbnail/informatique1/03.jpg" alt="EP03" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer23', 'DlCfHdp1FqU')">
+  <div class="playlist-info">
+    <h4>EP03 Informatique 1 Comprendre la Conversion entre Octal, Décimal, Binaire et Hexadécimal en Arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer23', 'DlCfHdp1FqU')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer23" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 4 -->
+<div class="playlist-item" id="ytVideoContainer24">
+  <img src="../Thumbnail/informatique1/04.jpg" alt="EP04" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer24', '_FmqUd1GgTU')">
+  <div class="playlist-info">
+    <h4>EP04 Informatique 1 Maîtriser l'Addition et la Soustraction des Nombres Binaires en Arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer24', '_FmqUd1GgTU')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer24" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 5 -->
+<div class="playlist-item" id="ytVideoContainer25">
+  <img src="../Thumbnail/informatique1/05.jpg" alt="EP05" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer25', 'NmHT7GN-NbQ')">
+  <div class="playlist-info">
+    <h4>EP05 Informatique 1 | codage binaire (notation signe grandeur complément à 1 et à 2) (en arabe)</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer25', 'NmHT7GN-NbQ')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer25" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 6 -->
+<div class="playlist-item" id="ytVideoContainer26">
+  <img src="../Thumbnail/informatique1/06.jpg" alt="EP06" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer26', 'PY1vL6WfAcE')">
+  <div class="playlist-info">
+    <h4>EP06 Informatique 1 | Étape par étape pour apprendre le Pascal en Arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer26', 'PY1vL6WfAcE')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer26" style="margin-top:10px;"></div>
+</div>
+
+
+
+
+      <!-- يمكنك إضافة المزيد بنفس الصيغة -->
+
+    </div> <!-- End playlist-container -->
+  </div> <!-- End column-left -->
+
+</div> <!-- End course-columns -->
+
+<!-- ================= JavaScript مشترك ================= -->
 <script>
-  const youtubeId = "evovy_YIIxA";
-
-  window.loadYoutubeVideo = function () {
-    const container = document.getElementById("ytVideoContainer");
+  function loadYoutubeVideo(containerId, youtubeId) {
+    const container = document.getElementById(containerId);
     container.innerHTML = `
-      <div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden;">
-<div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden;">
-  <iframe
-    src="https://www.youtube-nocookie.com/embed/evovy_YIIxA?autoplay=1&rel=0&modestbranding=1&controls=1&iv_load_policy=3"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-    style="width:100%; height:100%;"
-  ></iframe>
+      <div style="position:relative; width:500px; height:280px; border-radius:12px; overflow:hidden;">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&controls=1&iv_load_policy=3"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="width:100%; height:100%; border-radius:12px;"
+        ></iframe>
 
-  <!-- غطاء علوي لإخفاء زر المشاركة + شعار YouTube -->
-  <div style="
-    position:absolute;
-    top:0; right:0;
-    width:80px; height:40px;
-    background:rgba(0,0,0,0.6);
-    border-bottom-left-radius:8px;
-    pointer-events:none;
-  "></div>
-</div>
-
+        <!-- غطاء لإخفاء زر المشاركة + شعار YouTube -->
+        <div style="
+          position:absolute; top:0; right:0;
+          width:80px; height:40px;
+          background:rgba(0,0,0,0.6);
+          border-bottom-left-radius:8px;
+          pointer-events:none;
+        "></div>
 
         <!-- غطاء لإخفاء شعار يوتيوب وزر المشاركة -->
         <div style="
-          position:absolute;
-          top:0; left:0;
-          width:100%; height:30px;
+          position:absolute; top:0; left:0;
+          width:100%; height:20px;
           background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
           pointer-events:none;
         "></div>
 
         <div style="
-          position:absolute;
-          bottom:0; left:0;
-          width:100%; height:30px;
+          position:absolute; bottom:0; left:0;
+          width:100%; height:20px;
           background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
           pointer-events:none;
         "></div>
       </div>
     `;
-  };
+  }
 </script>
-
-        </div>
 
      
 
@@ -277,15 +258,12 @@
 
     </div>
 
-    <!-- روابط سريعة -->
+ <!-- روابط سريعة -->
     <div class="footer-section links">
       <h3>روابط سريعة</h3>
       <ul>
-        <li><a href="/">الرئيسية</a></li>
-        <li><a href="#why-us">لماذا نحن؟</a></li>
-        <li><a href="#pay-methods-section">طرق الدفع</a></li>
-        <li><a href="sign-up/sign-up.html">إنشاء حساب</a></li>
-        <li><a href="All playlist/all-playlists.html">الدورات</a></li>
+        <li><a href="../login/dashboard.html">الرئيسية</a></li>
+        <li><a href="../terms.html" target="_blank" rel="noopener noreferrer">الشروط والأحكام</a> </li>
       </ul>
     </div>
 
@@ -375,41 +353,41 @@ document.addEventListener('contextmenu', function (e) {
 <script src="../js/protect.js"></script>
 <script>
 (function () {
-  // غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
-  const TARGET_URL = "../../index.html";
+  // 🔗 غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
+  const TARGET_URL = "../login/dashboard.html";
 
   function leave() {
     // replace يمنع الرجوع بزر الرجوع إلى الصفحة السابقة
     window.location.replace(TARGET_URL);
   }
 
-  // 1) التقاط ضغطة الزر الأيمن (أقوى مع طور الالتقاط capture)
-  function onContextMenu(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    leave();
+  // 📱 التحقق إذا الجهاز موبايل
+  function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   }
-  window.addEventListener("contextmenu", onContextMenu, { capture: true });
 
-  // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
-  window.addEventListener("mousedown", function (e) {
-    if (e.button === 2) {
+  // 🚫 فقط على الكمبيوتر (ماوس)
+  if (!isMobileDevice()) {
+    // 1) التقاط ضغطة الزر الأيمن (contextmenu)
+    function onContextMenu(e) {
       e.preventDefault();
       e.stopPropagation();
       leave();
     }
-  }, { capture: true });
+    window.addEventListener("contextmenu", onContextMenu, { capture: true });
 
-  // 3) للجوال: محاولة كشف الضغط المطوّل (قد يفتح قائمة سياق في بعض المتصفحات)
-  let pressTimer;
-  window.addEventListener("touchstart", function () {
-    pressTimer = setTimeout(leave, 600);
-  }, { passive: true });
-  window.addEventListener("touchend", function () {
-    clearTimeout(pressTimer);
-  });
+    // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
+    window.addEventListener("mousedown", function (e) {
+      if (e.button === 2) {
+        e.preventDefault();
+        e.stopPropagation();
+        leave();
+      }
+    }, { capture: true });
+  }
 })();
 </script>
+
 
 
 </body>
