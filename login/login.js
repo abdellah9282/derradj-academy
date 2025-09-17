@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ⏳ Awaiting approval
     if (data.is_approved === null) {
-      loginButton.textContent = "⏳ Awaiting approval";
+      loginButton.textContent = "⏳ في انتظار الموافقة";
       setTimeout(() => {
         loginButton.textContent = originalText;
         loginButton.disabled = false;
