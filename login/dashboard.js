@@ -48,7 +48,7 @@ if (data.session_id !== sessionId || data.device_id !== deviceId) {
 const allCourses = {
   ondes_et_vibrations: {
     title: "Ondes et Vibrations",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 1200,
     rating: 4.5,
     reviews: 48000,
@@ -56,7 +56,7 @@ const allCourses = {
   },
   electrotechnique_fondamentale1: {
     title: "Électrotechnique Fondamentale 1",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 1500,
     rating: 4.6,
     reviews: 56000,
@@ -64,7 +64,7 @@ const allCourses = {
   },
   electronique_fondamentale1: {
     title: "Électronique Fondamentale 1",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 1500,
     rating: 4.7,
     reviews: 32000,
@@ -72,7 +72,7 @@ const allCourses = {
   },
   informatique01: {
     title: "Informatique 1",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 800,
     rating: 4.4,
     reviews: 15000,
@@ -80,7 +80,7 @@ const allCourses = {
   },
   informatique02: {
     title: "Informatique 2 (Pascal)",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 800,
     rating: 4.5,
     reviews: 14000,
@@ -88,7 +88,7 @@ const allCourses = {
   },
   informatique03: {
     title: "Informatique 3 (MATLAB)",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 800,
     rating: 4.5,
     reviews: 14200,
@@ -96,7 +96,7 @@ const allCourses = {
   },
   electronique_de_puissance: {
     title: "Électronique de Puissance (avancée)",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 1200,
     rating: 4.8,
     reviews: 22000,
@@ -104,7 +104,7 @@ const allCourses = {
   },
   probabilite_et_statistique: {
     title: "Probabilité et Statistique",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 800,
     rating: 4.4,
     reviews: 18500,
@@ -112,7 +112,7 @@ const allCourses = {
   },
   logique: {
     title: "Logique Combinatoire et Séquentielle",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 1000,
     rating: 4.3,
     reviews: 12000,
@@ -120,7 +120,7 @@ const allCourses = {
   },
   methode: {
     title: "Méthodes Numériques L2+M1",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 1000,
     rating: 4.5,
     reviews: 13000,
@@ -128,7 +128,7 @@ const allCourses = {
   },
   systeme_asservis: {
     title: "Systèmes Asservis",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 800,
     rating: 4.4,
     reviews: 11000,
@@ -136,7 +136,7 @@ const allCourses = {
   },
   reseaux_electrique: {
     title: "Réseaux Électriques",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 1000,
     rating: 4.5,
     reviews: 12500,
@@ -144,7 +144,7 @@ const allCourses = {
   },
   theorie_du_signal: {
     title: "Théorie du Signal",
-    instructor: "Pr. Abdellah Derradj",
+    instructor: "Abdellah Derradj",
     price: 800,
     rating: 4.6,
     reviews: 11800,
