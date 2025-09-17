@@ -154,19 +154,19 @@ const allCourses = {
 
 // روابط الصفحات الخاصة بكل مادة
 const courseLinks = {
-  ondes_et_vibrations: "../courses-cards/ondes_et_vibrations.html",
-  electrotechnique_fondamentale1: "../courses-cards/electrotechnique_fondamentale1.html",
-  electronique_fondamentale1: "../courses-cards/electronique_fondamentale1.html",
-  informatique01: "../courses-cards/informatique01.html",
-  informatique02: "../courses-cards/informatique02.html",
-  informatique03: "../courses-cards/informatique03.html",
-  electronique_de_puissance: "../courses-cards/electronique_de_puissance.html",
-  probabilite_et_statistique: "../courses-cards/probabilite_et_statistique.html",
-  logique: "../courses-cards/logique.html",
-  methode: "../courses-cards/methode.html",
-  systeme_asservis: "../courses-cards/systeme_asservis.html",
-  reseaux_electrique: "../courses-cards/reseaux_electrique.html",
-  theorie_du_signal: "../courses-cards/theorie_du_signal.html"
+  ondes_et_vibrations: "../mycourses-board/ondes_et_vibrations.html",
+  electrotechnique_fondamentale1: "../mycourses-board/electrotechnique_fondamentale1.html",
+  electronique_fondamentale1: "../mycourses-board/electronique_fondamentale1.html",
+  informatique01: "../mycourses-board/informatique01.html",
+  informatique02: "../mycourses-board/informatique02.html",
+  informatique03: "../mycourses-board/informatique03.html",
+  electronique_de_puissance: "../mycourses-board/electronique_de_puissance.html",
+  probabilite_et_statistique: "../mycourses-board/probabilite_et_statistique.html",
+  logique: "../mycourses-board/logique.html",
+  methode: "../mycourses-board/methode.html",
+  systeme_asservis: "../mycourses-board/systeme_asservis.html",
+  reseaux_electrique: "../mycourses-board/reseaux_electrique.html",
+  theorie_du_signal: "../mycourses-board/theorie_du_signal.html"
 };
 
 
