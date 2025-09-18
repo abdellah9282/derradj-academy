@@ -1,113 +1,56 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>Probabilité et Statistique | Derradj Academy</title>
-  <meta name="description" content="Cours, exercices corrigés et vidéos explicatives en Probabilité et Statistique : bases, lois, estimateurs et tests d'hypothèses." />
-  <meta name="robots" content="index, follow" />
-  <meta name="author" content="Pr. Abdellah Derradj" />
-  <meta name="keywords" content="Probabilité, Statistique, Exercices corrigés, Lois de probabilité, Estimation, Tests, Derradj Academy, Université algérienne" />
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://www.derradjacademy.com/courses/probabilite_statistique.html" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Probabilité et Statistique | Derradj Academy" />
-  <meta property="og:description" content="Accédez à des vidéos pédagogiques, documents PDF et exercices corrigés en Probabilité et Statistique." />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://www.derradjacademy.com/courses/probabilite_statistique.html" />
-  <meta property="og:image" content="https://www.derradjacademy.com/Logo.jpg" />
-  <meta property="og:site_name" content="Derradj Academy" />
-  <meta property="og:locale" content="fr_FR" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Probabilité et Statistique | Derradj Academy" />
-  <meta name="twitter:description" content="Vidéos, fiches PDF, TDs corrigés et soutien académique en Probabilité et Statistique." />
-  <meta name="twitter:image" content="https://www.derradjacademy.com/Logo.jpg" />
-
-  <!-- Feuilles de style & scripts -->
+  <title>Probabilité et Statistique</title>
+  <!-- الروابط -->
   <link rel="stylesheet" href="course-card-content.css" />
-  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="/style.css" />
   <script src="/js/search.js" defer></script>
+    <link rel="icon" type="image/jpeg" href="../Logo.jpg">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="../Logo.jpg" />
+  <script type="module" src="course.js"></script>
+
 </head>
-
-
-<body>
+<body data-module="probabilite_et_statistique">
 <!-- HEADER -->
 <header class="main-header">
   <div class="left-section">
-    <a href="../index.html" class="logo">
+    <a href="../login/dashboard.html" class="logo">
       <span class="purple">D</span>erradj Academy
     </a>
-
-    <div class="explore-dropdown">
-      <a href="#" class="explore-link">Explore</a>
-      <ul class="dropdown-menu">
-  <li><a href="../courses/ondes_et_vibrations.html">Ondes et Vibrations</a></li>
-  <li><a href="../courses/electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
-  <li><a href="../courses/electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
-  <li><a href="../courses/electronique_de_puissance.html">Électronique de Puissance</a></li>
-  <li><a href="../courses/informatique01.html">Informatique 1</a></li>
-  <li><a href="../courses/informatique02.html">Informatique 2</a></li>
-  <li><a href="../courses/informatique03.html">Informatique 3</a></li>
-  <li><a href="../courses/logique.html">Logique Combinatoire et Séquentielle</a></li>
-  <li><a href="../courses/methode.html">Méthodes Numériques (L2 + M1)</a></li>
-  <li><a href="../courses/probabilite_et_statistique.html">Probabilité et Statistique</a></li>
-  <li><a href="../courses/réseaux_electrique.html">Réseaux Électrique</a></li>
-  <li><a href="../courses/systeme_asservis.html">Systèmes Asservis</a></li>
-  <li><a href="../courses/theorie_du_signal.html">Théorie du Signal</a></li>
-      </ul>
-    </div>
   </div>
 
-  <div class="search-box">
-    <input type="text" placeholder="Search for anything" id="searchInput" />
-    <ul class="suggestions" id="suggestionsList"></ul>
-  </div>
+<div class="welcome-banner">
+<div class="welcome-text" style="text-align: right !important; direction: rtl !important;">
+    👋 مرحبًا <strong id="username">المستخدم</strong> — هذا حساب شخصي ولا يجب مشاركته.
+    إذا تم اكتشاف أي مشاركة، سيتم إلغاء الوصول تلقائيًا.
+    يرجى مراجعة 
+    <a href="../terms.html" target="_blank" rel="noopener noreferrer">شروط الاستخدام</a>.
+</div>
+</div>
 
-    <nav class="right-links">
-      <a href="../index.html#student-feedback" class="nav-link">What Our Students Say</a>
 
-      <a href="../index.html#why-us" class="nav-link">About Us</a>
-      <a href="../All playlist/all-playlists.html" class="cart-icon">🛒</a>
-      <a href="../login/login.html" class="btn login">Log in</a>
-      <a href="../sign-up/sign-up.html" class="btn signup">Sign up</a>
-      <a href="../index.html#support" class="support-icon" title="الدعم الفني">💬</a>
-    </nav>
+
+
+  <nav class="right-links">
+    <a href="#" class="btn signup" onclick="logout()">Sign Out</a>
+  </nav>
 </header>
 
+<!-- MAIN CONTENT -->
+<main class="course-content">
+  <div class="course-header-box">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+      <h1 class="course-title">Probabilité et Statistique</h1>
+    </div>
 
-  <!-- MAIN CONTENT -->
-  <main class="course-content">
-    <div class="course-header-box">
-      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-  <h1 class="course-title">Probabilité et Statistique</h1>
-  <span style="
-    background: linear-gradient(90deg,#7c3aed 60%,#7f57f7 100%);
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 6px;
-    padding: 0.4rem 1.2rem;
-    margin: 0.5rem 0;
-    box-shadow: 0 2px 8px #7c3aed22;
-    border: 2px solid #a78bfa;
-    letter-spacing: 1px;
-    display: inline-block;
-    ">
-     سعر الدورة: <span style="font-size:1.2em;">800 دج</span>
-  </span>
-</div>
-      <div class="instructor-details">
-      <p class="instructor-name"><strong>Teacher :</strong> Abdellah Derradj</p>
+    <div class="instructor-details">
+      <p class="instructor-name"><strong>Teacher:</strong> Abdellah Derradj </p>
 <p class="instructor-bio">Lessons, summaries, and TD solutions in Arabic with simplified explanations</p>
-      </div>
+    </div>
+
       <div class="live-announcement">
   <span class="live-icon">📩</span>
   <span><strong>  Contact us on 
@@ -141,160 +84,186 @@
 </style>
     </div>
 
-    <!-- Course Columns -->
-    <div class="course-columns">
-      <!-- Left Column: Video Lessons -->
-      <div class="column-left">
-   <h2 class="section-title">Leçons Vidéo</h2>
 
-<div class="playlist-container">
-  <a href="../../login/login.html" class="playlist-link">
-    <div class="playlist-item locked">
-      <img src="../Thumbnail/statistique/01.jpg" alt="Vidéo 1" class="playlist-thumbnail">
-      <div class="playlist-info"><h4>EP01 Probabilité et Statistique S3 - 2ème année ST : une Introduction en Arabe</h4><p class="playlist-status">🔒 Locked</p></div>
-      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
-    </div>
-  </a>
-
-  <a href="../../login/login.html" class="playlist-link">
-    <div class="playlist-item locked">
-      <img src="../Thumbnail/statistique/02.jpg" alt="Vidéo 2" class="playlist-thumbnail">
-      <div class="playlist-info"><h4>EP02 - Probabilité et Statistique S3 - Tableau statistique - en arabe</h4><p class="playlist-status">🔒 Locked</p></div>
-      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
-    </div>
-  </a>
-
-  <a href="../../login/login.html" class="playlist-link">
-    <div class="playlist-item locked">
-      <img src="../Thumbnail/statistique//03.jpg" alt="Vidéo 3" class="playlist-thumbnail">
-      <div class="playlist-info"><h4>EP03 Exercices Pratiques sur le Tableau Statistique pour la Statistique S3 en Arabe</h4><p class="playlist-status">🔒 Locked</p></div>
-      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
-    </div>
-  </a>
-
-  <a href="../../login/login.html" class="playlist-link">
-    <div class="playlist-item locked">
-      <img src="../Thumbnail/statistique//04.jpg" alt="Vidéo 4" class="playlist-thumbnail">
-      <div class="playlist-info"><h4>EP04 - Probabilité et Statistique S3 - Diagramme : en bâtons - NICC - l'histogramme - en arabe</h4><p class="playlist-status">🔒 Locked</p></div>
-      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
-    </div>
-  </a>
-
-  <a href="../../login/login.html" class="playlist-link">
-    <div class="playlist-item locked">
-      <img src="../Thumbnail/statistique//05.jpg" alt="Vidéo 5" class="playlist-thumbnail">
-      <div class="playlist-info"><h4>EP05 - Probabilité et Statistique S3 - Les séries statistiques : Données brutes - en arabe</h4><p class="playlist-status">🔒 Locked</p></div>
-      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
-    </div>
-  </a>
-
-  <a href="../../login/login.html" class="playlist-link">
-    <div class="playlist-item locked">
-      <img src="../Thumbnail/statistique//06.jpg" alt="Vidéo 6" class="playlist-thumbnail">
-      <div class="playlist-info"><h4>EP06 - Probabilité et Statistique S3 - Les séries statistiques : Variable discrète - en arabe</h4><p class="playlist-status">🔒 Locked</p></div>
-      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
-    </div>
-  </a>
-
-  <a href="../../login/login.html" class="playlist-link">
-    <div class="playlist-item locked">
-      <img src="../Thumbnail/statistique//07.jpg" alt="Vidéo 7" class="playlist-thumbnail">
-      <div class="playlist-info"><h4>EP07 - Probabilité et Statistique S3 - Les séries statistiques : Variable continue - en arabe</h4><p class="playlist-status">🔒 Locked</p></div>
-      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
-    </div>
-  </a>
-
-  <a href="../../login/login.html" class="playlist-link">
-    <div class="playlist-item locked">
-      <img src="../Thumbnail/statistique//08.jpg" alt="Vidéo 8" class="playlist-thumbnail">
-      <div class="playlist-info"><h4>EP08 Découvrez les séries statistiques à deux variables en arabe | Probabilité et Statistique S3</h4><p class="playlist-status">🔒 Locked</p></div>
-      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
-    </div>
-  </a>
-
-  <a href="../../login/login.html" class="playlist-link">
-    <div class="playlist-item locked">
-      <img src="../Thumbnail/statistique//09.jpg" alt="Vidéo 9" class="playlist-thumbnail">
-      <div class="playlist-info"><h4>EP09 Les séries statistiques à deux variables | Probabilité et Statistique S3 en arabe</h4><p class="playlist-status">🔒 Locked</p></div>
-      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
-    </div>
-  </a>
+  </div>
+  
+<!-- Video 1 -->
+<div class="playlist-item" id="ytVideoContainer52">
+  <img src="../Thumbnail/statistique/01.jpg" alt="EP01" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer52', '4F2pHp26onM')">
+  <div class="playlist-info">
+    <h4>EP01 Probabilité et Statistique S3 - 2ème année ST : une Introduction en Arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer52', '4F2pHp26onM')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer52" style="margin-top:10px;"></div>
 </div>
 
+<!-- Video 2 -->
+<div class="playlist-item" id="ytVideoContainer53">
+  <img src="../Thumbnail/statistique/02.jpg" alt="EP02" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer53', 'ZWvTJc3JC3A')">
+  <div class="playlist-info">
+    <h4>EP02 - probabilité et statistique S3 - tableau statistique - en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer53', 'ZWvTJc3JC3A')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer53" style="margin-top:10px;"></div>
+</div>
 
+<!-- Video 3 -->
+<div class="playlist-item" id="ytVideoContainer54">
+  <img src="../Thumbnail/statistique/03.jpg" alt="EP03" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer54', 'lK2NPOIlonY')">
+  <div class="playlist-info">
+    <h4>EP03 Exercices Pratiques sur le Tableau Statistique pour la Statistique S3 en Arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer54', 'lK2NPOIlonY')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer54" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 4 -->
+<div class="playlist-item" id="ytVideoContainer55">
+  <img src="../Thumbnail/statistique/04.jpg" alt="EP04" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer55', 'gFXXY8U63s4')">
+  <div class="playlist-info">
+    <h4>EP04 - probabilité et statistique S3 - Diagramme : en bâtons - nicc - l'histogramme .... - en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer55', 'gFXXY8U63s4')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer55" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 5 -->
+<div class="playlist-item" id="ytVideoContainer56">
+  <img src="../Thumbnail/statistique/05.jpg" alt="EP05" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer56', 'vhcVYCDu8Tw')">
+  <div class="playlist-info">
+    <h4>EP05 - probabilité et statistique S3 - Les séries statistique : Données brutes - en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer56', 'vhcVYCDu8Tw')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer56" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 6 -->
+<div class="playlist-item" id="ytVideoContainer57">
+  <img src="../Thumbnail/statistique/06.jpg" alt="EP06" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer57', 'PpiTpx3KIAw')">
+  <div class="playlist-info">
+    <h4>EP06 - probabilité et statistique S3 - Les séries statistique : Variable discrète - en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer57', 'PpiTpx3KIAw')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer57" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 7 -->
+<div class="playlist-item" id="ytVideoContainer58">
+  <img src="../Thumbnail/statistique/07.jpg" alt="EP07" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer58', 'uuGEPw2IdB4')">
+  <div class="playlist-info">
+    <h4>EP07 - probabilité et statistique S3 - Les séries statistique : Variable continue - en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer58', 'uuGEPw2IdB4')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer58" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 8 -->
+<div class="playlist-item" id="ytVideoContainer59">
+  <img src="../Thumbnail/statistique/08.jpg" alt="EP08" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer59', 'cIpYfyVP2kI')">
+  <div class="playlist-info">
+    <h4>EP08 Découvrez les séries statistiques à deux variables en arabe | Probabilité et Statistique S3</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer59', 'cIpYfyVP2kI')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer59" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 9 -->
+<div class="playlist-item" id="ytVideoContainer60">
+  <img src="../Thumbnail/statistique/09.jpg" alt="EP09" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer60', 'KFcSszt5y6I')">
+  <div class="playlist-info">
+    <h4>EP09 Les séries statistiques à deux variables | Probabilité et Statistique S3 en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer60', 'KFcSszt5y6I')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer60" style="margin-top:10px;"></div>
+</div>
+
+      <!-- يمكنك إضافة المزيد بنفس الصيغة -->
+
+    </div> <!-- End playlist-container -->
+  </div> <!-- End column-left -->
+
+</div> <!-- End course-columns -->
+
+<!-- ================= JavaScript مشترك ================= -->
+<script>
+  function loadYoutubeVideo(containerId, youtubeId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = `
+      <div style="position:relative; width:500px; height:280px; border-radius:12px; overflow:hidden;">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&controls=1&iv_load_policy=3"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="width:100%; height:100%; border-radius:12px;"
+        ></iframe>
+
+        <!-- غطاء لإخفاء زر المشاركة + شعار YouTube -->
+        <div style="
+          position:absolute; top:0; right:0;
+          width:80px; height:40px;
+          background:rgba(0,0,0,0.6);
+          border-bottom-left-radius:8px;
+          pointer-events:none;
+        "></div>
+
+        <!-- غطاء لإخفاء شعار يوتيوب وزر المشاركة -->
+        <div style="
+          position:absolute; top:0; left:0;
+          width:100%; height:20px;
+          background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+          pointer-events:none;
+        "></div>
+
+        <div style="
+          position:absolute; bottom:0; left:0;
+          width:100%; height:20px;
+          background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+          pointer-events:none;
+        "></div>
+      </div>
+    `;
+  }
+</script>
+
+     
 
 </main>
 
-<section id="pay-methods-section">
-  <h2>طرق الدفع</h2>
-
-  <p style="max-width: 640px; margin: 1rem auto 2rem auto; background: #ffffff; border: 1px solid #dee2e6; box-shadow: 0 1px 5px rgba(76, 29, 149, 0.05); border-radius: 10px; padding: 1rem 1.5rem; font-size: 1.05em; color: #1e293b; line-height: 1.7; text-align: right; direction: rtl;">
-    لدفع ثمن الدورة، يُرجى إرسال المبلغ عبر <b>بريدي موب</b> أو <b>بريد الجزائر</b>، ثم تصوير وصل الدفع (لقطة شاشة أو صورة)، وأخيرًا الانتقال إلى
-    <a href="../../sign-up/sign-up.html" style="color:#1e293b; font-weight:bold;">صفحة التسجيل</a>
-    لتعبئة بياناتك وإرفاق صورة الوصل.
-  </p>
-
-  <div class="pay-methods-list">
-<!-- BaridiMob -->
-<div class="pay-card">
-  <span class="badge">BaridiMob</span>
-  <h3 style="color: #1e40af; font-size: 1.3em; margin-bottom: 1rem; text-align: center; font-weight: 700;">(BaridiMob)  الدفع عبر بريدي موب</h3>
-
-<p style="text-align:right; direction: rtl;">
-يرجى تحويل مبلغ الدورة عبر تطبيق <b style="direction: ltr; display: inline-block; margin: 0 4px;">BaridiMob</b> إلى الحساب التالي:
-</p>
-<ul style="direction: rtl; text-align: right; padding: 0; margin: 0; list-style: none; max-width: 360px;">
-<li style="display: flex; align-items: center; gap: 0.2em; background: #f8fafc; border: 1px solid #e0e7ef; border-radius: 10px; padding: 1rem 1.2rem;">
-  <span class="rip-value" style="font-size: 1.1em; color: #1e293b; font-family: 'Segoe UI', monospace; letter-spacing: 1px; font-weight: bold; order: 1;">
-    00799999002580233574
-  </span>
-<span style="font-weight: bold; color: #1e40af; font-size: 1.13em; min-width: 48px; order: 2; margin-left: 0.3em; margin-right: 0; text-align: left;">
-  RIP :
-</span>
-
-
-</li>
-</ul>
-
-</div>
-
-
-<!-- Algérie Poste Card -->
-<div class="pay-card" style="background: #ffffff; border: 1px solid #d6d9e7; border-radius: 14px; padding: 1.8rem 1.5rem; max-width: 720px; min-width: 340px; width: 100%; box-shadow: 0 4px 12px rgba(76, 29, 149, 0.1); margin: 0 auto; font-size: 1.1em; position: relative;">
-  <span class="badge" style="background: #14b8a6; color: #fff; padding: 4px 10px; font-size: 0.9em; border-radius: 7px; font-weight: bold; position: absolute; top: -14px; right: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">Algérie Poste</span>
-  <h3 style="color: #1e40af; font-size: 1.3em; margin-bottom: 1rem; text-align: center; font-weight: 700;">(CCP) الدفع عبر بريد الجزائر</h3>
-<p style="text-align:right; direction: rtl;">
-يرجى تحويل مبلغ الدورة عبر <b style="direction: ltr; display: inline-block; margin: 0 4px;">مركز بريد الجزائر</b> من خلال ملء الاستمارة الورقية إلى الحساب التالي:
-</p>
-
-  <div class="poste-data" style="display: grid; grid-template-columns: 130px 1fr; gap: 12px 18px; font-size: 1.15rem; line-height: 2; color: #1e293b; background-color: #f9fafb; padding: 1.4rem; border-radius: 10px; border: 1px solid #e2e8f0; max-width: 520px; width: 100%; margin: 1.2rem auto 0 auto;">
-    <span style="font-weight: bold; color: #1e40af;">Clé :</span>
-    <span style="font-weight: bold; color: #1e293b;">74</span>
-    <span style="font-weight: bold; color: #1e40af;">Compte :</span>
-    <span>
-      <span id="ccp-poste" style="font-weight: bold; color: #1e293b;">0025802335</span>
-    </span>
-    <span style="font-weight: bold; color: #1e40af;">Nom :</span>
-    <span style="font-weight: bold; color: #1e293b;">DERRADJ</span>
-    <span style="font-weight: bold; color: #1e40af;">Prénom :</span>
-    <span style="font-weight: bold; color: #1e293b;">ABDELLAH</span>
-    <span style="font-weight: bold; color: #1e40af;">Adresse :</span>
-    <span style="font-weight: bold; color: #1e293b;">BOUIRA</span>
-    <span style="font-weight: bold; color: #1e40af;">RIP :</span>
-    <span>
-      <span class="rip-value" id="rip-poste" style="font-weight: bold; color: #1e293b;">007 99999 0025802335 94</span>
-    </span>
+<!-- ⭐️ التقييم -->
+<div id="rating-section">
+<h3>: قيّم الدورة</h3>
+  <div class="stars">
+    <span class="star" data-value="1">&#9733;</span>
+    <span class="star" data-value="2">&#9733;</span>
+    <span class="star" data-value="3">&#9733;</span>
+    <span class="star" data-value="4">&#9733;</span>
+    <span class="star" data-value="5">&#9733;</span>
   </div>
-
-  <div class="poste-note" style="margin-top: 1rem; text-align: center; background: #ecfdf5; color: #065f46; font-weight: 500; padding: 0.6rem 0.5rem; border-radius: 6px; font-size: 0.95em;">
-    أرسل المبلغ إلى الحساب البريدي أعلاه ثم احتفظ بصورة الوصل لإرفاقها في التسجيل.
-  </div>
+  <p id="rating-value-display">0/5</p>
+  <textarea id="userComment" placeholder="اكتب رأيك (اختياري)"></textarea>
+  <button id="submitRating">إرسال التقييم</button>
+  <p id="ratingMessage"></p>
+  <p id="average-rating"></p>
 </div>
-
-<div style="margin-top:1rem; font-size:0.97em; color:#1e293b; text-align:center; background:#f1f5f9; border-radius:6px; padding:0.5em 0;">
-  <b>ملاحظة:</b> لن يتم تفعيل حسابك إلا بعد التحقق من وصل الدفع.
-</div>
-</section>
 
 <section class="contact-form" id="support">
   <h2>هل لديك سؤال؟</h2>
@@ -307,27 +276,28 @@
   </form>
 </section>
 
-
-
-
-<footer class="main-footer">
+<footer class="main-footer" dir="rtl">
   <div class="footer-content">
+    <!-- عن المنصة -->
     <div class="footer-section about">
       <h3>عن المنصة</h3>
-      <p>منصة تعليمية تقدم دورات مميزة للطلبة الجامعيين مع شروحات مبسطة وملفات PDF وبث مباشر.</p>
+      <p>منصة جزائرية تعليمية موجهة لطلبة الجامعات، تقدم دورات مبسطة، ملفات PDF، وفيديوهات مباشرة مع أساتذة مؤهلين.</p>
+   <p style="color: rgb(255, 42, 42); font-weight: bold; margin-top: 10px;">
+  ⚠️ تنبيه هام: جميع الفيديوهات المعروضة على منصة Derradj Academy محمية بموجب حقوق الملكية الفكرية.  
+  يُمنع منعًا باتًا نسخها أو تحميلها أو مشاركتها بأي وسيلة كانت.  
+  أي خرق لهذه القواعد يُعد انتهاكًا قانونيًا صريحًا، ويعرّض مرتكبه للملاحقة القضائية دون سابق إنذار.
+</p>
+
     </div>
 
+ <!-- روابط سريعة -->
     <div class="footer-section links">
       <h3>روابط سريعة</h3>
       <ul>
-        <li><a href="../index.html">الرئيسية</a></li>
-        <li><a href="../index.html#pay-methods-section">طرق الدفع</a></li>
-        <li><a href="../sign-up/sign-up.html">إنشاء حساب</a></li>
-        <li><a href="../All playlist/all-playlists.html">الدورات</a></li>
-        <li><a href="../terms.html" target="_blank" rel="noopener noreferrer">الشروط والأحكام</a></li>
+        <li><a href="../login/dashboard.html">الرئيسية</a></li>
+        <li><a href="../terms.html" target="_blank" rel="noopener noreferrer">الشروط والأحكام</a> </li>
       </ul>
     </div>
-
 
     <!-- تواصل معنا -->
     <div class="footer-section contact">
@@ -346,97 +316,111 @@
     <p>جميع الحقوق محفوظة &copy; 2025 - Derradj Academy</p>
   </div>
 </footer>
-<script type="module">
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+<script>
+function showReceiptUpload() {
+  const duration = document.getElementById('sessionDuration').value;
+  const section = document.getElementById('uploadSection');
+  section.style.display = duration ? 'flex' : 'none';
+}
 
-  const supabase = createClient(
-    'https://sgcypxmnlyiwljuqvcup.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
-  );
+function submitBooking() {
+  const duration = document.getElementById('sessionDuration').value;
+  const file = document.getElementById('paymentReceipt').files[0];
 
-  // ✅ إرسال رسالة الدعم
-  const form = document.getElementById('questionForm');
-  if (form) {
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
+  if (!duration || !file) {
+    alert('Please choose a duration and upload the receipt.');
+    return;
+  }
 
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn.textContent;
-      const supportMsg = document.getElementById('support-message');
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = "جاري الإرسال...";
-      supportMsg.textContent = "";
-      supportMsg.style.color = "green";
-
-      if (!name || !email || !message) {
-        supportMsg.textContent = "❌ الرجاء ملء جميع الحقول.";
-        supportMsg.style.color = "red";
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalBtnText;
-        return;
-      }
-
-      const { error } = await supabase
-        .from('messages')
-        .insert([{ name, email, message }]);
-
-      if (error) {
-        supportMsg.textContent = "❌ حدث خطأ أثناء إرسال الرسالة. الرجاء المحاولة لاحقًا.";
-        supportMsg.style.color = "red";
-      } else {
-        supportMsg.textContent = "✅ تم إرسال رسالتك بنجاح، سيتم الرد عليك قريبًا.";
-        supportMsg.style.color = "green";
-        form.reset();
-      }
-
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalBtnText;
-    });
+  // يمكنك تعديل هذا الجزء لحفظ البيانات في Supabase لاحقًا
+  alert(`Session booked for ${duration} min. Receipt uploaded.`);
+}
+</script>
+<script>
+  function logout() {
+    localStorage.clear();
+    window.location.href = '../login/login.html'; // تأكد من المسار الصحيح
   }
 </script>
+<script>
+// ✅ منع فتح أدوات المطور - F12, Ctrl+U, Ctrl+Shift+I/J/C
+document.addEventListener('keydown', function (e) {
+  const key = e.key.toLowerCase();
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && key === 'u') ||
+    (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(key))
+  ) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+});
 
+// ✅ منع الزر الأيمن تمامًا
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+  return false;
+});
+
+// ✅ مراقبة DevTools وقطع الاتصال إذا تم فتحها
+(function () {
+  let open = false;
+  const threshold = 160;
+
+  setInterval(() => {
+    const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+    const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+    if (widthThreshold || heightThreshold) {
+      if (!open) {
+        open = true;
+        document.body.innerHTML = ""; // إزالة كل المحتوى
+      }
+    } else {
+      open = false;
+    }
+  }, 500);
+})();
+</script>
 <script src="../js/protect.js"></script>
 <script>
 (function () {
-  // غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
-  const TARGET_URL = "../../index.html";
+  // 🔗 غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
+  const TARGET_URL = "../login/dashboard.html";
 
   function leave() {
     // replace يمنع الرجوع بزر الرجوع إلى الصفحة السابقة
     window.location.replace(TARGET_URL);
   }
 
-  // 1) التقاط ضغطة الزر الأيمن (أقوى مع طور الالتقاط capture)
-  function onContextMenu(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    leave();
+  // 📱 التحقق إذا الجهاز موبايل
+  function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   }
-  window.addEventListener("contextmenu", onContextMenu, { capture: true });
 
-  // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
-  window.addEventListener("mousedown", function (e) {
-    if (e.button === 2) {
+  // 🚫 فقط على الكمبيوتر (ماوس)
+  if (!isMobileDevice()) {
+    // 1) التقاط ضغطة الزر الأيمن (contextmenu)
+    function onContextMenu(e) {
       e.preventDefault();
       e.stopPropagation();
       leave();
     }
-  }, { capture: true });
+    window.addEventListener("contextmenu", onContextMenu, { capture: true });
 
-  // 3) للجوال: محاولة كشف الضغط المطوّل (قد يفتح قائمة سياق في بعض المتصفحات)
-  let pressTimer;
-  window.addEventListener("touchstart", function () {
-    pressTimer = setTimeout(leave, 600);
-  }, { passive: true });
-  window.addEventListener("touchend", function () {
-    clearTimeout(pressTimer);
-  });
+    // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
+    window.addEventListener("mousedown", function (e) {
+      if (e.button === 2) {
+        e.preventDefault();
+        e.stopPropagation();
+        leave();
+      }
+    }, { capture: true });
+  }
 })();
 </script>
+
+
 
 </body>
 </html>
