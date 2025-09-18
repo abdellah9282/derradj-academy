@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logique Combinatoire et Séquentielle</title>
+  <!-- الروابط -->
+  <link rel="stylesheet" href="course-card-content.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/js/search.js" defer></script>
+    <link rel="icon" type="image/jpeg" href="../Logo.jpg">
+
+  <script type="module" src="course.js"></script>
+
+</head>
+<body data-module="logique_combinatoire_et_sequentielle">
+<!-- HEADER -->
+<header class="main-header">
+  <div class="left-section">
+    <a href="../login/dashboard.html" class="logo">
+      <span class="purple">D</span>erradj Academy
+    </a>
+  </div>
+
+<div class="welcome-banner">
+<div class="welcome-text" style="text-align: right !important; direction: rtl !important;">
+    👋 مرحبًا <strong id="username">المستخدم</strong> — هذا حساب شخصي ولا يجب مشاركته.
+    إذا تم اكتشاف أي مشاركة، سيتم إلغاء الوصول تلقائيًا.
+    يرجى مراجعة 
+    <a href="../terms.html" target="_blank" rel="noopener noreferrer">شروط الاستخدام</a>.
+</div>
+</div>
+
+
+
+
+  <nav class="right-links">
+    <a href="#" class="btn signup" onclick="logout()">Sign Out</a>
+  </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="course-content">
+  <div class="course-header-box">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+      <h1 class="course-title">Logique Combinatoire et Séquentielle</h1>
+    </div>
+
+    <div class="instructor-details">
+      <p class="instructor-name"><strong>Teacher:</strong> Abdellah Derradj </p>
+<p class="instructor-bio">Lessons, summaries, and TD solutions in Arabic with simplified explanations</p>
+    </div>
+
+      <div class="live-announcement">
+  <span class="live-icon">📩</span>
+  <span><strong>  Contact us on 
+      <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" class="instagram-link">
+        Instagram
+      </a>
+    </strong> — for questions</span>
+  <span class="live-badge">
+    <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" style="color: inherit; text-decoration: underline;">
+      INSTAGRAM
+    </a>
+  </span>
+</div>
+<style>
+  .instagram-link {
+    color: #d62976; /* لون إنستغرام الأساسي */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+
+  .instagram-link:hover {
+    color: #962fbf; /* لون أغمق عند المرور */
+    text-decoration: underline;
+    transform: scale(1.05);
+  }
+
+  .live-badge a {
+    text-decoration: none;
+  }
+</style>
+    </div>
+
+
+  </div>
+<!-- Video 1 -->
+<div class="playlist-item" id="ytVideoContainer41">
+  <img src="../Thumbnail/logique/01.jpg" alt="EP01" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer41', 'WHUTCMiaBig')">
+  <div class="playlist-info">
+    <h4>Conversion de bases numériques - Logique Combinatoire et Séquentielle S4</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer41', 'WHUTCMiaBig')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer41" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 2 -->
+<div class="playlist-item" id="ytVideoContainer42">
+  <img src="../Thumbnail/logique/02.jpg" alt="EP02" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer42', '_gw3W8cFqI0')">
+  <div class="playlist-info">
+    <h4>Représentation des Nombres Négatifs - Logique Combinatoire et Séquentielle S4</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer42', '_gw3W8cFqI0')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer42" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 3 -->
+<div class="playlist-item" id="ytVideoContainer43">
+  <img src="../Thumbnail/logique/03.jpg" alt="EP03" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer43', 'oJMrzXhjdJ4')">
+  <div class="playlist-info">
+    <h4>Conversion entre les bases - Logique Combinatoire et Séquentielle S4</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer43', 'oJMrzXhjdJ4')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer43" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 4 -->
+<div class="playlist-item" id="ytVideoContainer44">
+  <img src="../Thumbnail/logique/04.jpg" alt="EP04" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer44', '1-Yw9IMAGnY')">
+  <div class="playlist-info">
+    <h4>Code : BCD, Gray, XS3 et bit de parité - Logique Combinatoire et Séquentielle S4</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer44', '1-Yw9IMAGnY')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer44" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 5 -->
+<div class="playlist-item" id="ytVideoContainer45">
+  <img src="../Thumbnail/logique/05.jpg" alt="EP05" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer45', 's6IHiZRxug8')">
+  <div class="playlist-info">
+    <h4>EP01 Logique Combinatoire et Séquentielle S4 | Les circuits logique : NON , OR , AND , NAND , NOR</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer45', 's6IHiZRxug8')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer45" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 6 -->
+<div class="playlist-item" id="ytVideoContainer46">
+  <img src="../Thumbnail/logique/06.jpg" alt="EP06" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer46', 'rWj1VMXfpLg')">
+  <div class="playlist-info">
+    <h4>EP02 Logique Combinatoire et Séquentielle S4 | Fonctions : XOR, NOR | les Maxtermes et les Mintermes</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer46', 'rWj1VMXfpLg')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer46" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 7 -->
+<div class="playlist-item" id="ytVideoContainer47">
+  <img src="../Thumbnail/logique/07.jpg" alt="EP07" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer47', 'tVlJKcuzEBE')">
+  <div class="playlist-info">
+    <h4>EP03 Logique Combinatoire et Séquentielle S4 | Table de Karnugh en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer47', 'tVlJKcuzEBE')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer47" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 8 -->
+<div class="playlist-item" id="ytVideoContainer48">
+  <img src="../Thumbnail/logique/08.jpg" alt="EP08" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer48', 'PLdij93dQbI')">
+  <div class="playlist-info">
+    <h4>EP04 Logique Combinatoire et Séquentielle | l'Additionneur , le Soustracteur et le Comparateur</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer48', 'PLdij93dQbI')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer48" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 9 -->
+<div class="playlist-item" id="ytVideoContainer49">
+  <img src="../Thumbnail/logique/09.jpg" alt="EP09" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer49', 'fv4Wy99QlrQ')">
+  <div class="playlist-info">
+    <h4>EP05 Logique Combinatoire et Séquentielle | Transcodeur, Codeur et Décodeur en arabe</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer49', 'fv4Wy99QlrQ')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer49" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 10 -->
+<div class="playlist-item" id="ytVideoContainer50">
+  <img src="../Thumbnail/logique/10.jpg" alt="EP10" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer50', 'TmaZnb6p54c')">
+  <div class="playlist-info">
+    <h4>EP06 Logique Combinatoire et Séquentielle Exo01 | Logic functions XOR, NOR, NAND, AND using decoders 1/4</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer50', 'TmaZnb6p54c')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer50" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 11 -->
+<div class="playlist-item" id="ytVideoContainer51">
+  <img src="../Thumbnail/logique/11.jpg" alt="EP11" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer51', 'jws9yRNlcaE')">
+  <div class="playlist-info">
+    <h4>EP07 Logique Combinatoire et Séquentielle Exo02 | comparateur entre deux nombres binaires à 3 bits</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer51', 'jws9yRNlcaE')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer51" style="margin-top:10px;"></div>
+</div>
+
+      <!-- يمكنك إضافة المزيد بنفس الصيغة -->
+
+    </div> <!-- End playlist-container -->
+  </div> <!-- End column-left -->
+
+</div> <!-- End course-columns -->
+
+<!-- ================= JavaScript مشترك ================= -->
+<script>
+  function loadYoutubeVideo(containerId, youtubeId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = `
+      <div style="position:relative; width:500px; height:280px; border-radius:12px; overflow:hidden;">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&controls=1&iv_load_policy=3"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="width:100%; height:100%; border-radius:12px;"
+        ></iframe>
+
+        <!-- غطاء لإخفاء زر المشاركة + شعار YouTube -->
+        <div style="
+          position:absolute; top:0; right:0;
+          width:80px; height:40px;
+          background:rgba(0,0,0,0.6);
+          border-bottom-left-radius:8px;
+          pointer-events:none;
+        "></div>
+
+        <!-- غطاء لإخفاء شعار يوتيوب وزر المشاركة -->
+        <div style="
+          position:absolute; top:0; left:0;
+          width:100%; height:20px;
+          background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+          pointer-events:none;
+        "></div>
+
+        <div style="
+          position:absolute; bottom:0; left:0;
+          width:100%; height:20px;
+          background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+          pointer-events:none;
+        "></div>
+      </div>
+    `;
+  }
+</script>
+
+     
+
+</main>
+
+<!-- ⭐️ التقييم -->
+<div id="rating-section">
+<h3>: قيّم الدورة</h3>
+  <div class="stars">
+    <span class="star" data-value="1">&#9733;</span>
+    <span class="star" data-value="2">&#9733;</span>
+    <span class="star" data-value="3">&#9733;</span>
+    <span class="star" data-value="4">&#9733;</span>
+    <span class="star" data-value="5">&#9733;</span>
+  </div>
+  <p id="rating-value-display">0/5</p>
+  <textarea id="userComment" placeholder="اكتب رأيك (اختياري)"></textarea>
+  <button id="submitRating">إرسال التقييم</button>
+  <p id="ratingMessage"></p>
+  <p id="average-rating"></p>
+</div>
+
+<section class="contact-form" id="support">
+  <h2>هل لديك سؤال؟</h2>
+  <form id="questionForm">
+    <input type="text" name="name" id="name" placeholder="الاسم الكامل" required />
+    <input type="email" name="email" id="email" placeholder=" البريد الإلكتروني أو رقم الهاتف" required />
+    <textarea name="message" id="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+    <button type="submit">إرسال</button>
+    <p id="support-message" style="margin-top:1rem; color:green;"></p>
+  </form>
+</section>
+
+<footer class="main-footer" dir="rtl">
+  <div class="footer-content">
+    <!-- عن المنصة -->
+    <div class="footer-section about">
+      <h3>عن المنصة</h3>
+      <p>منصة جزائرية تعليمية موجهة لطلبة الجامعات، تقدم دورات مبسطة، ملفات PDF، وفيديوهات مباشرة مع أساتذة مؤهلين.</p>
+   <p style="color: rgb(255, 42, 42); font-weight: bold; margin-top: 10px;">
+  ⚠️ تنبيه هام: جميع الفيديوهات المعروضة على منصة Derradj Academy محمية بموجب حقوق الملكية الفكرية.  
+  يُمنع منعًا باتًا نسخها أو تحميلها أو مشاركتها بأي وسيلة كانت.  
+  أي خرق لهذه القواعد يُعد انتهاكًا قانونيًا صريحًا، ويعرّض مرتكبه للملاحقة القضائية دون سابق إنذار.
+</p>
+
+    </div>
+
+ <!-- روابط سريعة -->
+    <div class="footer-section links">
+      <h3>روابط سريعة</h3>
+      <ul>
+        <li><a href="../login/dashboard.html">الرئيسية</a></li>
+        <li><a href="../terms.html" target="_blank" rel="noopener noreferrer">الشروط والأحكام</a> </li>
+      </ul>
+    </div>
+
+    <!-- تواصل معنا -->
+    <div class="footer-section contact">
+      <h3>تواصل معنا</h3>
+<p>
+  <strong>📞</strong>
+  <a href="tel:+213555491316" dir="ltr">+213 555 49 13 16</a>
+</p>
+      <p><strong>📧</strong> <a href="mailto:derradjacademy@gmail.com">derradjacademy@gmail.com
+</a></p>
+      <p><strong>📍</strong> الجزائر، الجزائر العاصمة</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>جميع الحقوق محفوظة &copy; 2025 - Derradj Academy</p>
+  </div>
+</footer>
+<script>
+function showReceiptUpload() {
+  const duration = document.getElementById('sessionDuration').value;
+  const section = document.getElementById('uploadSection');
+  section.style.display = duration ? 'flex' : 'none';
+}
+
+function submitBooking() {
+  const duration = document.getElementById('sessionDuration').value;
+  const file = document.getElementById('paymentReceipt').files[0];
+
+  if (!duration || !file) {
+    alert('Please choose a duration and upload the receipt.');
+    return;
+  }
+
+  // يمكنك تعديل هذا الجزء لحفظ البيانات في Supabase لاحقًا
+  alert(`Session booked for ${duration} min. Receipt uploaded.`);
+}
+</script>
+<script>
+  function logout() {
+    localStorage.clear();
+    window.location.href = '../login/login.html'; // تأكد من المسار الصحيح
+  }
+</script>
+<script>
+// ✅ منع فتح أدوات المطور - F12, Ctrl+U, Ctrl+Shift+I/J/C
+document.addEventListener('keydown', function (e) {
+  const key = e.key.toLowerCase();
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && key === 'u') ||
+    (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(key))
+  ) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+});
+
+// ✅ منع الزر الأيمن تمامًا
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+  return false;
+});
+
+// ✅ مراقبة DevTools وقطع الاتصال إذا تم فتحها
+(function () {
+  let open = false;
+  const threshold = 160;
+
+  setInterval(() => {
+    const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+    const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+    if (widthThreshold || heightThreshold) {
+      if (!open) {
+        open = true;
+        document.body.innerHTML = ""; // إزالة كل المحتوى
+      }
+    } else {
+      open = false;
+    }
+  }, 500);
+})();
+</script>
+<script src="../js/protect.js"></script>
+<script>
+(function () {
+  // 🔗 غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
+  const TARGET_URL = "../login/dashboard.html";
+
+  function leave() {
+    // replace يمنع الرجوع بزر الرجوع إلى الصفحة السابقة
+    window.location.replace(TARGET_URL);
+  }
+
+  // 📱 التحقق إذا الجهاز موبايل
+  function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  }
+
+  // 🚫 فقط على الكمبيوتر (ماوس)
+  if (!isMobileDevice()) {
+    // 1) التقاط ضغطة الزر الأيمن (contextmenu)
+    function onContextMenu(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      leave();
+    }
+    window.addEventListener("contextmenu", onContextMenu, { capture: true });
+
+    // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
+    window.addEventListener("mousedown", function (e) {
+      if (e.button === 2) {
+        e.preventDefault();
+        e.stopPropagation();
+        leave();
+      }
+    }, { capture: true });
+  }
+})();
+</script>
+
+
+
+</body>
+</html>

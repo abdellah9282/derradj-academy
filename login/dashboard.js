@@ -110,15 +110,15 @@ const allCourses = {
     reviews: 18500,
     image: "../Thumbnail/statistique/01.jpg"
   },
-  logique: {
+  logique_combinatoire_et_sequentielle: {
     title: "Logique Combinatoire et Séquentielle",
     instructor: "Abdellah Derradj",
     price: 1000,
     rating: 4.3,
     reviews: 12000,
-    image: "../Thumbnail/Logique Combinatoire et Séquentielle/08.jpg"
+    image: "../Thumbnail/logique/08.jpg"
   },
-  methode: {
+  methodes_numeriques: {
     title: "Méthodes Numériques L2+M1",
     instructor: "Abdellah Derradj",
     price: 1000,
@@ -162,8 +162,8 @@ const courseLinks = {
   informatique03: "../mycourses-board/informatique03.html",
   electronique_de_puissance: "../mycourses-board/electronique_de_puissance.html",
   probabilite_et_statistique: "../mycourses-board/probabilite_et_statistique.html",
-  logique: "../mycourses-board/logique.html",
-  methode: "../mycourses-board/methode.html",
+  logique_combinatoire_et_sequentielle : "../mycourses-board/logique_combinatoire_et_sequentielle.html",
+  methodes_numeriques: "../mycourses-board/methodes_numeriques.html",
   systeme_asservis: "../mycourses-board/systeme_asservis.html",
   reseaux_electrique: "../mycourses-board/reseaux_electrique.html",
   theorie_du_signal: "../mycourses-board/theorie_du_signal.html"
