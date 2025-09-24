@@ -424,6 +424,50 @@ document.addEventListener('contextmenu', function (e) {
 })();
 </script>
 
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+const supabase = createClient(
+  "https://sgcypxmnlyiwljuqvcup.supabase.co",
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
+);
+
+// 🟣 اسم المادة (يجب أن يكون مطابق لما تخزنه في JSONB عمود modules)
+const moduleName = "informatique02";
+
+(async () => {
+  const contact = localStorage.getItem("userContact");
+  if (!contact) {
+    localStorage.clear();
+    window.location.href = "../login/login.html";
+    return;
+  }
+
+  // ✅ اجلب modules الخاصة بالطالب
+  const { data, error } = await supabase
+    .from("registrations")
+    .select("modules")
+    .eq("contact", contact)
+    .single();
+
+  if (error || !data) {
+    console.warn("🚫 لم يتم العثور على المستخدم أو خطأ في جلب البيانات.");
+    localStorage.clear();
+    window.location.href = "../login/login.html";
+    return;
+  }
+
+  const modules = data.modules || [];
+  if (!modules.includes(moduleName)) {
+    console.warn(`🚫 الطالب لا يملك صلاحية لهذه المادة: ${moduleName}`);
+    localStorage.clear();
+    window.location.href = "../login/login.html";
+    return;
+  }
+
+  console.log(`✅ الطالب يملك صلاحية الوصول إلى ${moduleName}`);
+})();
+</script>
 
 
 </body>
