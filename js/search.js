@@ -9,7 +9,7 @@ const courses = [
   { title: "Logique Combinatoire et Séquentielle", link: "/courses/logique.html" },
   { title: "Methodes Numériques (L2 + M1)", link: "/courses/methode.html" },
   { title: "Probabilité Et Statistique", link: "/courses/probabilite_et_statistique.html" },
-  { title: "Reseaux Électrique", link: "/courses/reseaux_electrique.html" },
+  { title: "Reseaux Électrique", link: "/courses/réseaux_electrique.html" },
   { title: "Systemes Asservis", link: "/courses/systeme_asservis.html" },
   { title: "Theorie du signal", link: "/courses/theorie_du_signal.html" },
 ];

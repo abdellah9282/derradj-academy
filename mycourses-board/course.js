@@ -221,7 +221,7 @@ async function fetchAverageRating() {
     const avg = data.reduce((sum, r) => sum + r.rating, 0) / data.length;
     display.textContent = `⭐ متوسط التقييم: ${avg.toFixed(1)} من 5 (${data.length} تقييم)`;
   } else {
-    display.textContent = "لا توجد تقييمات بعد.";
+    display.textContent = "لا توجد تقييمات بعد";
   }
 }
 window.addEventListener("DOMContentLoaded", async () => {
