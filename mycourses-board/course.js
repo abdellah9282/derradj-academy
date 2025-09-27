@@ -228,6 +228,42 @@ window.addEventListener("DOMContentLoaded", async () => {
   guardPageAccess();
   setupLogoutButton();
   setupSupportForm();
+// ✅ اسم المادة الحالية
+const moduleName = document.body.dataset.module || "chimie1";
+
+// ✅ تحقق إذا الطالب قام بالتقييم أم لا
+(async () => {
+  const contact = localStorage.getItem("userContact");
+  if (!contact) return;
+
+  const { data, error } = await supabase
+    .from("course_ratings")
+    .select("id")
+    .eq("contact", contact)
+    .eq("module", moduleName)
+    .maybeSingle();
+
+  if (error) {
+    console.error("خطأ في جلب التقييم:", error);
+    return;
+  }
+
+  if (!data) {
+    // 🚨 لم نجد تقييم → أظهر البطاقة
+    document.getElementById("rating-popup").style.display = "flex";
+  }
+
+  // زر الغلق
+  document.getElementById("close-popup").addEventListener("click", () => {
+    document.getElementById("rating-popup").style.display = "none";
+  });
+
+  // زر الانتقال إلى قسم التقييمات
+  document.getElementById("go-to-rating").addEventListener("click", () => {
+    document.getElementById("rating-popup").style.display = "none";
+    document.getElementById("rating-section").scrollIntoView({ behavior: "smooth" });
+  });
+})();
 
   // تقييم الدورة
   const ratingBtn = document.getElementById("submitRating");

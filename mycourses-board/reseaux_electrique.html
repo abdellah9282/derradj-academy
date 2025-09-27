@@ -369,6 +369,70 @@
 
 </main>
 
+<!-- 🟣 بطاقة التقييم المنبثقة -->
+<div id="rating-popup" class="rating-popup">
+  <div class="popup-content">
+    <span id="close-popup" class="close-btn">&times;</span>
+    <h3>⭐ تقييمك يهمنا</h3>
+    <p>لم تقم بعد بتقييم هذه الدورة. اضغط أدناه لتقييمها</p>
+    <button id="go-to-rating">قيّم الآن</button>
+  </div>
+</div>
+
+<style>
+.rating-popup {
+  display: none; /* مخفية افتراضياً */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.rating-popup .popup-content {
+  position: relative; /* ضروري لوضع زر الإغلاق */
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+.rating-popup h3 {
+  margin-bottom: 0.5rem;
+}
+.rating-popup .close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.rating-popup .close-btn:hover {
+  color: #000;
+  transform: scale(1.1);
+}
+.rating-popup button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background: linear-gradient(90deg,#7c3aed 60%,#7f57f7 100%);
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.rating-popup button:hover {
+  transform: scale(1.05);
+}
+</style>
+
 <!-- ⭐️ التقييم -->
 <div id="rating-section">
 <h3>: قيّم الدورة</h3>
