@@ -2023,7 +2023,7 @@ body, html {
     }
   }
 
-  .section-subtitle {
+  #hero-subtitle {
   font-size: 1rem;            /* حجم متوازن */
   line-height: 1.7;           /* مسافة مريحة بين الأسطر */
   font-weight: 300;           /* خفيف وأنيق */
@@ -2032,5 +2032,5 @@ body, html {
   margin: 15px auto 0 auto;   /* توسيط النص + مسافة فوق */
   padding: 0 15px;            /* تباعد بسيط يمين ويسار */
   text-align: center;         /* وسط */
-  font-family: "Cairo", sans-serif; /* خط عربي أنيق (قابل للاستبدال بـ Tahoma/Arial) */
+  font-family: "Cairo", sans-serif; /* خط عربي أنيق */
 }
