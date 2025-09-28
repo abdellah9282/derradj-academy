@@ -2022,3 +2022,15 @@ body, html {
       max-width: 340px; /* أقصى عرض مريح */
     }
   }
+
+  .section-subtitle {
+  font-size: 1rem;            /* حجم متوازن */
+  line-height: 1.7;           /* مسافة مريحة بين الأسطر */
+  font-weight: 300;           /* خفيف وأنيق */
+  color: #555;                /* رمادي ناعم بدل الأسود القوي */
+  max-width: 720px;           /* عرض مناسب لعدم التمدد كثير */
+  margin: 15px auto 0 auto;   /* توسيط النص + مسافة فوق */
+  padding: 0 15px;            /* تباعد بسيط يمين ويسار */
+  text-align: center;         /* وسط */
+  font-family: "Cairo", sans-serif; /* خط عربي أنيق (قابل للاستبدال بـ Tahoma/Arial) */
+}
