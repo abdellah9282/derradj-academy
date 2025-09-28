@@ -504,39 +504,71 @@
   );
 
   // ✅ دالة عرض التقييمات
-  async function fetchAndDisplayRatings() {
-    const cards = document.querySelectorAll('.course-card');
+async function fetchAndDisplayRatings() {
+  const cards = document.querySelectorAll('.course-card');
 
-    for (const card of cards) {
-      const moduleId = card.dataset.courseId;
-      if (!moduleId) continue;
+  for (const card of cards) {
+    const moduleId = card.getAttribute('data-course-id');
+    if (!moduleId) continue;
 
-      const { data, error } = await supabase
-        .from('course_ratings')
-        .select('rating')
-        .eq('module', moduleId);
+    const { data, error } = await supabase
+      .from('course_ratings')
+      .select('rating')
+      .eq('module', moduleId);
 
-      if (error) {
-        console.error(`❌ خطأ في جلب تقييمات: ${moduleId}`, error.message);
-        continue;
+    if (error) {
+      console.error(`❌ خطأ في جلب تقييمات: ${moduleId}`, error.message);
+      continue;
+    }
+
+    const ratingEl = card.querySelector('.rating-value');
+    const reviewsEl = card.querySelector('.reviews');
+    const starsEl = card.querySelector('.stars');
+
+    // 🟣 حالة عدم وجود أي تقييم
+    if (!data || data.length === 0) {
+      if (ratingEl) ratingEl.textContent = '—'; // أو "0.0"
+      if (reviewsEl) reviewsEl.textContent = '(كن أول من يقيّم هذه الدورة)';
+      if (starsEl) {
+        starsEl.innerHTML = `
+          <span style="color:#d1d5db;">★</span>
+          <span style="color:#d1d5db;">★</span>
+          <span style="color:#d1d5db;">★</span>
+          <span style="color:#d1d5db;">★</span>
+          <span style="color:#d1d5db;">★</span>
+        `;
       }
+      continue;
+    }
 
-      const ratingEl = card.querySelector('.rating-value');
-      const reviewEl = card.querySelector('.reviews');
+    // 🟢 حساب المعدل
+    const ratings = data.map(entry => Number(entry.rating));
+    const average = (ratings.reduce((sum, r) => sum + r, 0) / ratings.length).toFixed(1);
 
-      if (data.length === 0) {
-        ratingEl.textContent = '0.0';
-        reviewEl.textContent = '(0)';
-        continue;
-      }
+    if (ratingEl) ratingEl.textContent = average;
+    if (reviewsEl) reviewsEl.textContent = `(${ratings.length})`;
 
-      const ratings = data.map(entry => entry.rating);
-      const average = (ratings.reduce((sum, r) => sum + r, 0) / ratings.length).toFixed(1);
+    // 🔹 إنشاء النجوم حسب المعدل
+    if (starsEl) {
+      const fullStars = Math.floor(average); // عدد النجوم الممتلئة
+      const halfStar = (average - fullStars >= 0.5) ? 1 : 0; // نصف نجمة إذا وجد
+      const emptyStars = 5 - fullStars - halfStar;
 
-      ratingEl.textContent = average;
-      reviewEl.textContent = `(${data.length})`;
+      let starsHTML = '★'.repeat(fullStars);
+      if (halfStar) starsHTML += '☆'; // نصف نجمة مؤقتة
+      starsHTML += '☆'.repeat(emptyStars);
+
+      // 🟠 نجوم ملونة بالذهبي
+      starsEl.innerHTML = starsHTML
+        .split('')
+        .map(s => s === '★'
+          ? `<span style="color:#f59e0b;">★</span>`
+          : `<span style="color:#d1d5db;">★</span>`
+        ).join('');
     }
   }
+}
+
 
   fetchAndDisplayRatings();
 

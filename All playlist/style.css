@@ -489,9 +489,17 @@ body {
   height: 180px;      /* ارتفاع الصورة أكبر */
   object-fit: cover;
 }
-.rating span:first-child {
-  color: #d5aa0d; /* لون أصفر مشابه لمواقع التقييم */
+.stars span {
+  font-size: 15px;      /* أكبر قليلاً من السابق */
+  color: #f59e0b;       /* ذهبي */
+  line-height: 1;       /* لتفادي اختلاف المحاذاة */
+}
+
+/* ✅ عدّل رقم التقييم لونه يكون أنيق وواضح */
+.rating-value {
   font-weight: bold;
+  color: #f59e0b; /* رمادي أنيق (أو استبدل بـ #f59e0b إذا تحب نفس لون النجوم) */
+  font-size: 15px;
 }
 .course-card {
   background-color: white;
@@ -816,19 +824,19 @@ body {
   text-overflow: ellipsis;
 }
 
-.rating {
-  font-size: 14px;
-  color: #f59e0b;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 8px;
+.stars span {
+  font-size: 15px;       /* حجم النجوم */
+  color: #f59e0b;        /* ذهبي */
+  line-height: 1;
 }
 
+/* ✅ رقم التقييم بنفس الذهبي لكن أوضح قليلاً */
 .rating-value {
   font-weight: bold;
-  color: #111827;
+  color: #eab308;        /* أصفر ذهبي أفتح يندمج مع النجوم */
+  font-size: 15px;
 }
+
 
 .stars {
   color: #f59e0b;

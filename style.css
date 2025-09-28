@@ -489,10 +489,21 @@ body {
   height: 180px;      /* ارتفاع الصورة أكبر */
   object-fit: cover;
 }
-.rating span:first-child {
-  color: #d5aa0d; /* لون أصفر مشابه لمواقع التقييم */
-  font-weight: bold;
+/* ✅ اجعل النجوم كلها بنفس الحجم واللون */
+.stars span {
+  font-size: 15px;       /* حجم النجوم */
+  color: #f59e0b;        /* ذهبي */
+  line-height: 1;
 }
+
+/* ✅ رقم التقييم بنفس الذهبي لكن أوضح قليلاً */
+.rating-value {
+  font-weight: bold;
+  color: #eab308;        /* أصفر ذهبي أفتح يندمج مع النجوم */
+  font-size: 15px;
+}
+
+
 .course-card {
   background-color: white;
   border-radius: 12px;
@@ -825,10 +836,7 @@ body {
   margin-bottom: 8px;
 }
 
-.rating-value {
-  font-weight: bold;
-  color: #111827;
-}
+
 
 .stars {
   color: #f59e0b;
