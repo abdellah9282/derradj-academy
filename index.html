@@ -140,6 +140,148 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 
       <div class="course-cards">
 
+<!-- ✅ إعلان البث المباشر المنبثق -->
+<div id="offer-popup" class="offer-popup">
+  <div class="popup-content">
+    <span id="close-offer" class="close-btn">&times;</span>
+    
+    <h2>📡 بث مباشر خاص</h2>
+    <p style="font-size:1rem; color:#444; margin:0.8rem 0;">
+      🎓 انضم إلينا يوم <strong style="color:#d32f2f;">الجمعة 3 أكتوبر</strong> 
+      على الساعة <strong style="color:#2e7d32;">10:00 صباحًا</strong>
+    </p>
+    <p style="font-size:0.95rem; color:#555; margin:0.6rem 0;">
+<p style="font-size:0.95rem; color:#555; margin:0.6rem 0;">
+  🔥 سنقوم بشرح <strong>التوتر، التيار، المقاومة</strong> 
+  مع تقديم <strong>معلومات عامة أساسية</strong> مباشرة مع الأستاذ
+</p>
+<p style="font-size:1.05rem; color:#444; margin-bottom:1rem; line-height:1.6;">
+ : متاح فقط للمشتركين في دورة 
+</p>
+<p>
+  <strong>Électronique Fondamentale 1</strong>
+</p>
+    </p>
+    
+<a href="sign-up/sign-up.html" target="_blank">
+  <button class="buy-btn">📘 اشترك الآن في الدورة</button>
+</a>
+  </div>
+</div>
+
+<style>
+/* خلفية داكنة شفافة */
+.offer-popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Cairo", sans-serif;
+}
+
+/* البطاقة */
+.offer-popup .popup-content {
+  background: #fff;
+  padding: 2.2rem 2rem;
+  border-radius: 20px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  animation: slideDown 0.5s ease;
+  position: relative;
+}
+
+/* زر الإغلاق */
+.offer-popup .close-btn {
+  position: absolute;
+  top: 15px; right: 20px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #999;
+  transition: 0.2s;
+}
+.offer-popup .close-btn:hover {
+  color: #e63946;
+}
+
+/* العنوان */
+.offer-popup h2 {
+  color: #e63946;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* النص */
+.offer-popup p {
+  font-size: 1.05rem;
+  color: #555;
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+}
+
+/* السعر */
+.offer-popup .price {
+  margin: 1rem 0;
+  font-size: 1.3rem;
+}
+.offer-popup .price del {
+  color: #888;
+  font-size: 0.95rem;
+  margin-right: 6px;
+}
+.offer-popup .price span {
+  color: #ff9800;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+/* زر الاشتراك */
+.offer-popup .buy-btn {
+  background: linear-gradient(90deg,#43a047,#2e7d32);
+  color: #fff;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+.offer-popup .buy-btn:hover {
+  background: linear-gradient(90deg,#2e7d32,#1b5e20);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(46,125,50,0.4);
+}
+
+/* حركة دخول */
+@keyframes slideDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+</style>
+
+<script>
+// إظهار الإعلان تلقائيا بعد 2 ثانية
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("offer-popup").style.display = "flex";
+  }, 2000);
+});
+
+// إغلاق عند الضغط على ×
+document.getElementById("close-offer").onclick = () => {
+  document.getElementById("offer-popup").style.display = "none";
+};
+</script>
 
 
 

@@ -151,37 +151,71 @@
       <p class="instructor-name"><strong>Teacher :</strong> Abdellah Derradj</p>
 <p class="instructor-bio">Lessons, summaries, and TD solutions in Arabic with simplified explanations</p>
       </div>
-      <div class="live-announcement">
-  <span class="live-icon">📩</span>
-  <span><strong>  Contact us on 
-      <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" class="instagram-link">
-        Instagram
-      </a>
-    </strong> — for questions</span>
-  <span class="live-badge">
-    <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" style="color: inherit; text-decoration: underline;">
-      INSTAGRAM
-    </a>
+<div class="live-announcement">
+  <span class="live-icon"></span>
+  <span>
+    <strong>بث مباشر خاص</strong> يوم 
+    <strong style="color:#d32f2f;">الجمعة 3 أكتوبر</strong> 
+    على الساعة <strong style="color:#2e7d32;">10:00 صباحًا</strong> — 
+    <span style="color:#444;">متاح فقط للمشتركين في هذه الدورة</span>.
   </span>
+  <span class="live-badge">LIVE</span>
 </div>
+
 <style>
-  .instagram-link {
-    color: #d62976; /* لون إنستغرام الأساسي */
+  .live-announcement {
+    direction: rtl;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Tajawal", sans-serif;
+    font-size: 1rem;
+  }
+
+  .live-icon {
+    font-size: 1.4rem;
+    color: #e63946;
+    animation: pulse 1.5s infinite;
+  }
+
+  .live-badge {
+    background: #e63946;
+    color: #fff;
+    font-size: 0.85rem;
     font-weight: bold;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 4px 10px;
+    border-radius: 6px;
+    animation: blink 1s infinite;
   }
 
-  .instagram-link:hover {
-    color: #962fbf; /* لون أغمق عند المرور */
-    text-decoration: underline;
-    transform: scale(1.05);
-  }
+@keyframes blink {
+  0%   { opacity: 1; }
+  40%  { opacity: 0.6; }
+  60%  { opacity: 0.8; }
+  100% { opacity: 1; }
+}
 
-  .live-badge a {
-    text-decoration: none;
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    text-shadow: 0 0 4px #ff4d4d, 0 0 8px #ff1a1a;
   }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+    text-shadow: 0 0 8px #ff4d4d, 0 0 16px #ff1a1a;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    text-shadow: 0 0 4px #ff4d4d, 0 0 8px #ff1a1a;
+  }
+}
+
 </style>
+
+
     </div>
 
     <!-- Course Columns -->
