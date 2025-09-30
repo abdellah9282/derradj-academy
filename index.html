@@ -272,10 +272,12 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 <script>
 // ✅ إظهار الإعلان تلقائياً بعد 2 ثانية (مرة واحدة فقط)
 window.addEventListener("load", () => {
+  const popup = document.getElementById("offer-popup");
+  const closeBtn = document.getElementById("close-offer");
+
   // لو ما أغلقش الإعلان من قبل
   if (!localStorage.getItem("offerClosed")) {
     setTimeout(() => {
-      const popup = document.getElementById("offer-popup");
       if (popup) {
         popup.style.display = "flex";
       }
@@ -283,13 +285,20 @@ window.addEventListener("load", () => {
   }
 
   // ✅ إغلاق عند الضغط على ×
-  const closeBtn = document.getElementById("close-offer");
   if (closeBtn) {
     closeBtn.addEventListener("click", () => {
-      const popup = document.getElementById("offer-popup");
       if (popup) {
         popup.style.display = "none";
-        // نخزن أنه أغلق الإعلان
+        localStorage.setItem("offerClosed", "true");
+      }
+    });
+  }
+
+  // ✅ إغلاق عند الضغط خارج البطاقة
+  if (popup) {
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) {
+        popup.style.display = "none";
         localStorage.setItem("offerClosed", "true");
       }
     });
