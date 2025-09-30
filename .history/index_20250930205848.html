@@ -917,6 +917,7 @@ window.addEventListener("load", () => {
     'https://sgcypxmnlyiwljuqvcup.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
   );
+
 // ✅ دالة عرض التقييمات
 async function fetchAndDisplayRatings() {
   const cards = document.querySelectorAll('.course-card');
@@ -957,47 +958,28 @@ async function fetchAndDisplayRatings() {
 
     // 🟢 حساب المعدل
     const ratings = data.map(entry => Number(entry.rating));
-    const avg = ratings.reduce((sum, r) => sum + r, 0) / ratings.length;
-    const average = avg.toFixed(1);
+    const average = (ratings.reduce((sum, r) => sum + r, 0) / ratings.length).toFixed(1);
 
     if (ratingEl) ratingEl.textContent = average;
     if (reviewsEl) reviewsEl.textContent = `(${ratings.length})`;
 
     // 🔹 إنشاء النجوم حسب المعدل
     if (starsEl) {
-      const fullStars = Math.floor(avg); // عدد النجوم الممتلئة
-      const halfStar = (avg - fullStars >= 0.5) ? 1 : 0; // نصف نجمة إذا وجد
+      const fullStars = Math.floor(average); // عدد النجوم الممتلئة
+      const halfStar = (average - fullStars >= 0.5) ? 1 : 0; // نصف نجمة إذا وجد
       const emptyStars = 5 - fullStars - halfStar;
 
-      let starsHTML = '';
+      let starsHTML = '★'.repeat(fullStars);
+      if (halfStar) starsHTML += '☆'; // نصف نجمة مؤقتة
+      starsHTML += '☆'.repeat(emptyStars);
 
-      // ⭐ نجمات ممتلئة
-      for (let i = 0; i < fullStars; i++) {
-        starsHTML += `<span style="color:#f59e0b;">★</span>`;
-      }
-
-      // ✴ نصف نجمة
-      if (halfStar) {
-        starsHTML += `
-          <span style="display:inline-block; position:relative; width:1em; color:#d1d5db;">
-            ★
-            <span style="
-              position:absolute;
-              top:0; left:0;
-              width:50%;
-              overflow:hidden;
-              color:#f59e0b;
-            ">★</span>
-          </span>
-        `;
-      }
-
-      // ☆ نجمات فارغة
-      for (let i = 0; i < emptyStars; i++) {
-        starsHTML += `<span style="color:#d1d5db;">★</span>`;
-      }
-
-      starsEl.innerHTML = starsHTML;
+      // 🟠 نجوم ملونة بالذهبي
+      starsEl.innerHTML = starsHTML
+        .split('')
+        .map(s => s === '★'
+          ? `<span style="color:#f59e0b;">★</span>`
+          : `<span style="color:#d1d5db;">★</span>`
+        ).join('');
     }
   }
 }
