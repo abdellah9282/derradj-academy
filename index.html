@@ -270,33 +270,30 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 </style>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const popup = document.getElementById("offer-popup");
-  const closeBtn = document.getElementById("close-offer");
-
-  // 🔹 لا نعرض الإعلان إذا سبق وأغلقه المستخدم
+// ✅ إظهار الإعلان تلقائياً بعد 2 ثانية (مرة واحدة فقط)
+window.addEventListener("load", () => {
+  // لو ما أغلقش الإعلان من قبل
   if (!localStorage.getItem("offerClosed")) {
     setTimeout(() => {
-      popup.style.display = "flex";
-      document.body.style.overflow = "hidden"; // منع التمرير في الخلفية
+      const popup = document.getElementById("offer-popup");
+      if (popup) {
+        popup.style.display = "flex";
+      }
     }, 2000);
   }
 
-  // 🔹 عند الضغط على زر ×
-  closeBtn.addEventListener("click", () => {
-    popup.style.display = "none";
-    document.body.style.overflow = "auto"; // إعادة التمرير
-    localStorage.setItem("offerClosed", "true");
-  });
-
-  // 🔹 عند الضغط خارج محتوى الإعلان يغلق أيضًا (مهم للموبايل)
-  popup.addEventListener("click", (e) => {
-    if (e.target === popup) {
-      popup.style.display = "none";
-      document.body.style.overflow = "auto";
-      localStorage.setItem("offerClosed", "true");
-    }
-  });
+  // ✅ إغلاق عند الضغط على ×
+  const closeBtn = document.getElementById("close-offer");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      const popup = document.getElementById("offer-popup");
+      if (popup) {
+        popup.style.display = "none";
+        // نخزن أنه أغلق الإعلان
+        localStorage.setItem("offerClosed", "true");
+      }
+    });
+  }
 });
 </script>
 
