@@ -318,33 +318,56 @@
         return;
       }
 
-      // رفع الملف
-      const fileName = `${Date.now()}_${paymentFile.name}`;
-      const { data: fileData, error: fileError } = await supabaseClient
-        .storage
-        .from('receipts')
-        .upload(fileName, paymentFile);
+    // ✅ تنظيف اسم الملف (إزالة الرموز الغريبة)
+const cleanName = paymentFile.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+const fileName = `${Date.now()}_${cleanName}`;
 
-      if (fileError) throw fileError;
+// ✅ تحقق من الحجم (مثلاً 10MB كحد أقصى)
+if (paymentFile.size > 10 * 1024 * 1024) {
+  alert("❌ حجم الملف كبير جدًا. الرجاء رفع ملف أقل من 10MB.");
+  submitBtn.disabled = false;
+  submitBtn.textContent = "Sign Up";
+  return;
+}
 
-      const receiptUrl = supabaseClient
-        .storage
-        .from('receipts')
-        .getPublicUrl(fileData.path).data.publicUrl;
+// ✅ رفع الملف
+const { data: fileData, error: fileError } = await supabaseClient
+  .storage
+  .from('receipts')
+  .upload(fileName, paymentFile);
 
-      // إدخال البيانات في الجدول
-      const { error: dbError } = await supabaseClient
-        .from('registrations')
-        .insert([{
-          full_name: fullName,
-          contact,
-          password,
-          modules,
-          receipt_url: receiptUrl,
-          is_approved: null
-        }]);
+if (fileError) {
+  alert("❌ فشل رفع الملف: " + fileError.message);
+  submitBtn.disabled = false;
+  submitBtn.textContent = "Sign Up";
+  return;
+}
 
-      if (dbError) throw dbError;
+// ✅ جلب الرابط العمومي للملف
+const receiptUrl = supabaseClient
+  .storage
+  .from('receipts')
+  .getPublicUrl(fileData.path).data.publicUrl;
+
+// ✅ إدخال البيانات في الجدول
+const { error: dbError } = await supabaseClient
+  .from('registrations')
+  .insert([{
+    full_name: fullName,
+    contact,
+    password,
+    modules,
+    receipt_url: receiptUrl,
+    is_approved: null
+  }]);
+
+if (dbError) {
+  alert("❌ خطأ في حفظ البيانات: " + dbError.message);
+  submitBtn.disabled = false;
+  submitBtn.textContent = "Sign Up";
+  return;
+}
+
 
       // حفظ البيانات محليًا وتوجيه المستخدم
       localStorage.setItem("userModules", JSON.stringify(modules));
