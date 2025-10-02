@@ -102,33 +102,65 @@
   <h1 class="course-title">Électronique Fondamentale 1</h1>
 
  <a href="http://pay.chargily.com/payment-links/01k63gy914224nvmhjs12k1dmx" target="_blank" class="btn-green-shiny">
-  💳 دفع ثمن الدورة من هنا
+💳 الدفع بالبطاقة الذهبية
 </a>
 
 <style>
 .btn-green-shiny {
-  background: linear-gradient(180deg, #22c55e 0%, #27ae60 100%); /* تدرج أخضر لطيف */
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%); /* أخضر زمردي أنيق */
   color: #fff;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 6px;
-  padding: 0.4rem 1.2rem;
-  margin: 0.5rem 0;
-  box-shadow: 0 3px 10px rgba(34, 197, 94, 0.3); /* ظل خفيف */
-  border: 2px solid #16a34a;
-  letter-spacing: 1px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 10px;  /* زوايا أكثر نعومة */
+  padding: 0.5rem 1.4rem;
+  margin: 0.6rem 0;
+  border: none;
+  letter-spacing: 0.5px;
   display: inline-block;
   text-decoration: none;
   text-align: center;
-  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  
+  /* تأثير لمعة خفيفة */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+  transition: all 0.3s ease;
+}
+
+.btn-green-shiny::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-25deg);
+}
+
+.btn-green-shiny:hover::before {
+  animation: shine 0.8s ease forwards;
+}
+
+@keyframes shine {
+  0% { left: -75%; }
+  100% { left: 125%; }
 }
 
 /* تأثير المرور */
 .btn-green-shiny:hover {
-  background: linear-gradient(180deg, #27ae60 0%, #22c55e 100%); /* عكس التدرج عند المرور */
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(34, 197, 94, 0.4); /* يزيد بروز الزر */
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.5);
 }
+
+/* عند الضغط */
+.btn-green-shiny:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
 </style>
 
   <span style="
