@@ -126,6 +126,8 @@
 
 <!-- ✅ قائمة كاملة بالمواد مع الأسعار -->
 <div class="checkbox-group course-checkboxes" id="coursesList">
+  <label>
+<input type="checkbox" name="courses[]" value="bundle_second_year" data-price="5000">(5000 DA) باقة السنة الثانية – 5 مواد   </label>
   <label><input type="checkbox" name="courses[]" value="ondes_et_vibrations" data-price="1500"> Ondes et Vibrations (1500 DA)</label>
   <label><input type="checkbox" name="courses[]" value="electrotechnique_fondamentale1" data-price="1500"> Électrotechnique Fondamentale 1 (1500 DA)</label>
   <label><input type="checkbox" name="courses[]" value="electronique_fondamentale1" data-price="1500"> Électronique Fondamentale 1 (1500 DA)</label>
@@ -158,11 +160,12 @@
   <ul id="selectedModulesList"></ul>
 
 <!-- ✅ عرض التخفيض -->
-<div style="text-align:center; margin:15px 0; padding:12px; border:2px dashed #27ae60; border-radius:10px; background:#f9fdf9; font-family:'Cairo','Arial',sans-serif;">
+<div id="discount-msg-box" style="text-align:center; margin:15px 0; padding:12px; border:2px dashed #27ae60; border-radius:10px; background:#f9fdf9; font-family:'Cairo','Arial',sans-serif;">
   <p style="margin:0; font-weight:600; font-size:18px; color:#2c3e50; line-height:1.5;">
      اشترِ <span style="color:#27ae60;">3 مواد أو أكثر</span> واحصل على تخفيض <span style="color:#27ae60;">1000 دج</span>
   </p>
 </div>
+
 
 
 
@@ -278,7 +281,9 @@
     const fullName = document.getElementById('fullName').value.trim();
     const contact = document.getElementById('contact').value.trim();
     const password = document.getElementById('password').value;
-    const modules = Array.from(document.querySelectorAll('input[name="courses[]"]:checked')).map(cb => cb.value);
+    const modules = Array.from(document.querySelectorAll('input[name="courses[]"]:checked'))
+  .map(cb => cb.value)
+  .filter(v => v !== 'bundle_second_year'); // ✅ استبعاد الباقة من الإرسال
     const paymentFile = document.getElementById('paymentProof').files[0];
     const submitBtn = form.querySelector('button[type="submit"]');
 
@@ -375,51 +380,101 @@ document.addEventListener('DOMContentLoaded', () => {
   totalPriceEl.insertAdjacentElement("afterend", discountMsg);
 
   function updateDisplay() {
-    selectedModulesList.innerHTML = "";
-    let total = 0;
+  selectedModulesList.innerHTML = "";
+  let total = 0;
 
-    selectedCourses.forEach(course => {
-      total += parseInt(course.price) || 0;
+  const hasBundle5000 = selectedCourses.some(c => c.value === 'bundle_second_year');
 
-      const li = document.createElement('li');
-      li.textContent = course.label + " ";
+  selectedCourses.forEach(course => {
+    total += parseInt(course.price) || 0;
+    const li = document.createElement('li');
+    li.textContent = course.label + " ";
 
-      const removeBtn = document.createElement('button');
-      removeBtn.type = 'button';
-      removeBtn.textContent = 'Remove';
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.textContent = 'Remove';
 
-      removeBtn.addEventListener('click', () => {
-        // إزالة المادة من المصفوفة
-        selectedCourses = selectedCourses.filter(c => c.value !== course.value);
-
-        // إلغاء تحديد الـ checkbox
-        const checkbox = coursesList.querySelector(`input[type="checkbox"][value="${course.value}"]`);
-        if (checkbox) checkbox.checked = false;
-
-        updateDisplay();
-      });
-
-      li.appendChild(removeBtn);
-      selectedModulesList.appendChild(li);
+    removeBtn.addEventListener('click', () => {
+      selectedCourses = selectedCourses.filter(c => c.value !== course.value);
+      const checkbox = coursesList.querySelector(`input[type="checkbox"][value="${course.value}"]`);
+      if (checkbox) checkbox.checked = false;
+      updateDisplay();
     });
 
-    // ✅ تطبيق التخفيض
-    if (selectedCourses.length >= 3) {
-      total -= 1000;
-      discountMsg.textContent = "🎉 تم تطبيق التخفيض: 1000 دج";
-    } else {
-      discountMsg.textContent = "";
-    }
+    li.appendChild(removeBtn);
+    selectedModulesList.appendChild(li);
+  });
 
-    totalPriceEl.textContent = "السعر الإجمالي: " + total + " دج";
-    selectedModulesBox.style.display = selectedCourses.length > 0 ? "block" : "none";
+  // تعطيل المواد الفردية إذا اختيرت الباقة
+  const bundleMaterials = ['ondes_et_vibrations', 'electrotechnique_fondamentale1', 'electronique_fondamentale1', 'informatique03', 'probabilite_et_statistique'];
+  checkboxes.forEach(cb => {
+    if (hasBundle5000 && bundleMaterials.includes(cb.value)) {
+      cb.disabled = cb.value !== 'bundle_second_year';
+    } else {
+      cb.disabled = false;
+    }
+  });
+
+  // ✅ إخفاء عرض التخفيض إذا كانت الباقة
+  const discountBox = document.getElementById("discount-msg-box");
+  if (hasBundle5000) {
+    discountBox.style.display = "none";
+  } else {
+    discountBox.style.display = "block";
   }
+
+  // ✅ تطبيق التخفيض على المواد الفردية
+  if (!hasBundle5000 && selectedCourses.length >= 3) {
+    total -= 1000;
+    discountMsg.textContent = "🎉 تم تطبيق التخفيض: 1000 دج";
+  } else {
+    discountMsg.textContent = "";
+  }
+
+  totalPriceEl.textContent = "السعر الإجمالي: " + total + " دج";
+  selectedModulesBox.style.display = selectedCourses.length > 0 ? "block" : "none";
+}
+
 
   checkboxes.forEach(cb => {
     cb.addEventListener('change', () => {
       const value = cb.value;
       const label = cb.closest('label')?.textContent.trim() || value;
       const price = cb.dataset.price || 0;
+
+      // ✅ عند اختيار الباقة، اختر المواد الخمس تلقائيًا
+      if (value === 'bundle_second_year' && cb.checked) {
+        const bundleMaterials = [
+          'ondes_et_vibrations',
+          'electrotechnique_fondamentale1',
+          'electronique_fondamentale1',
+          'informatique03',
+          'probabilite_et_statistique'
+        ];
+        bundleMaterials.forEach(mat => {
+          const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
+          if (matCb && !matCb.checked) {
+            matCb.checked = true;
+          }
+        });
+      }
+
+      // ✅ عند إلغاء الباقة، ألغ تحديد المواد الخمس
+      if (value === 'bundle_second_year' && !cb.checked) {
+        const bundleMaterials = [
+          'ondes_et_vibrations',
+          'electrotechnique_fondamentale1',
+          'electronique_fondamentale1',
+          'informatique03',
+          'probabilite_et_statistique'
+        ];
+        bundleMaterials.forEach(mat => {
+          const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
+          if (matCb && matCb.checked) {
+            matCb.checked = false;
+          }
+        });
+      }
 
       if (cb.checked) {
         if (!selectedCourses.some(c => c.value === value)) {
@@ -432,8 +487,8 @@ document.addEventListener('DOMContentLoaded', () => {
       updateDisplay();
     });
   });
-
-  // عرض المواد المختارة في البداية إذا كانت موجودة مسبقاً
+  
+ 
   updateDisplay();
 });
 </script>
