@@ -736,18 +736,13 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
   <h2>هل لديك سؤال؟</h2>
   <form id="questionForm">
     <input type="text" name="name" id="name" placeholder="الاسم الكامل" required />
-    <input type="email" name="email" id="email" placeholder=" البريد الإلكتروني أو رقم الهاتف" required />
+    <input type="text" name="contact" id="contact" placeholder="البريد الإلكتروني أو رقم الهاتف" required />
     <textarea name="message" id="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
     <button type="submit">إرسال</button>
     <p id="support-message" style="margin-top:1rem; color:green;"></p>
   </form>
 </section>
-<section class="student-comments-modern" id="student-feedback">
-  <h2 class="comments-title">💬 Student Feedback</h2>
-  <div id="modern-comments-container" class="comments-grid">
-    <!-- البطاقات تُضاف هنا تلقائيًا -->
-  </div>
-</section>
+
 
 <footer class="main-footer" dir="rtl">
   <div class="footer-content">
@@ -897,50 +892,64 @@ async function fetchAndDisplayRatings() {
 // تشغيل الدالة بعد تحميل الصفحة
 document.addEventListener("DOMContentLoaded", fetchAndDisplayRatings);
 
+// ✅ إرسال نموذج السؤال
+const form = document.getElementById('questionForm');
+if (form) {
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-  // ✅ إرسال نموذج السؤال
-  const form = document.getElementById('questionForm');
-  if (form) {
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const contact = document.getElementById('contact').value.trim(); // <-- ممكن يكون رقم أو إيميل
+    const message = document.getElementById('message').value.trim();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    const supportMsg = document.getElementById('support-message');
 
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn.textContent;
-      const supportMsg = document.getElementById('support-message');
+    submitBtn.disabled = true;
+    submitBtn.textContent = "جاري الإرسال...";
+    supportMsg.textContent = "";
+    supportMsg.style.color = "green";
 
-      submitBtn.disabled = true;
-      submitBtn.textContent = "جاري الإرسال...";
-      supportMsg.textContent = "";
-      supportMsg.style.color = "green";
-
-      if (!name || !email || !message) {
-        supportMsg.textContent = "❌ الرجاء ملء جميع الحقول.";
-        supportMsg.style.color = "red";
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalBtnText;
-        return;
-      }
-
-      const { error } = await supabase
-        .from('messages')
-        .insert([{ name, email, message }]);
-
-      if (error) {
-        supportMsg.textContent = "❌ حدث خطأ أثناء إرسال الرسالة. الرجاء المحاولة لاحقًا.";
-        supportMsg.style.color = "red";
-      } else {
-        supportMsg.textContent = "✅ تم إرسال رسالتك بنجاح، سيتم الرد عليك عن قريب.";
-        supportMsg.style.color = "green";
-        form.reset();
-      }
-
+    if (!name || !contact || !message) {
+      supportMsg.textContent = "❌ الرجاء ملء جميع الحقول.";
+      supportMsg.style.color = "red";
       submitBtn.disabled = false;
       submitBtn.textContent = originalBtnText;
-    });
-  }
+      return;
+    }
+
+    // ✅ التحقق إذا كان بريد إلكتروني أو رقم هاتف
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{8,15}$/;
+
+    if (!emailRegex.test(contact) && !phoneRegex.test(contact)) {
+      supportMsg.textContent = "❌ الرجاء إدخال بريد إلكتروني صحيح أو رقم هاتف صالح.";
+      supportMsg.style.color = "red";
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+      return;
+    }
+
+    // ✅ نحفظ المدخل (سواء رقم أو إيميل) داخل عمود email
+    const { error } = await supabase
+      .from('messages')
+      .insert([{ name, email: contact, message }]);
+
+    if (error) {
+      supportMsg.textContent = "❌ خطأ: " + error.message; // لعرض السبب الحقيقي
+      supportMsg.style.color = "red";
+    } else {
+      supportMsg.textContent = "✅ تم إرسال رسالتك بنجاح، سيتم الرد عليك قريبًا.";
+      supportMsg.style.color = "green";
+      form.reset();
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
+  });
+}
+
+
   async function fetchModernComments() {
   const container = document.getElementById("modern-comments-container");
   if (!container) return;
