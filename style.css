@@ -314,7 +314,8 @@ body {
 
 /* === Categories === */
 .categories-section {
- padding: 20px 5% 40px 5%;  background-color: #f9f9f9;
+padding: 20px 5% 1px 5%;
+  background-color: #f9f9f9;
   color: #222;
   text-align: center;
 }
@@ -2034,3 +2035,163 @@ body, html {
   text-align: center;         /* وسط */
   font-family: "Cairo", sans-serif; /* خط عربي أنيق */
 }
+
+/* ✅ قسم الباقات - نسخة محسّنة للهاتف والكمبيوتر */
+.special-bundles-section {
+  margin: 2rem 0;
+  text-align: center;
+  background: none;
+  padding: 1rem 0;
+  border-radius: 16px;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.special-bundles-section h2 {
+  color: #6a1b9a;
+  margin-bottom: 1.2rem;
+  font-size: 1.8em;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.special-bundles-section h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg,#6a1b9a,#4a148c);
+  margin: 0.4rem auto 0;
+  border-radius: 3px;
+}
+
+.bundles-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0 6px;
+}
+
+.bundle-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 1.2rem 1rem;
+  max-width: 330px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(76,29,149,0.07);
+  text-align: center;
+  transition: transform 0.22s, box-shadow 0.22s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.7s ease-out forwards;
+}
+
+.bundle-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(76,29,149,0.12);
+  border-color: #6a1b9a;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bundle-card h3 {
+  color: #6a1b9a;
+  font-size: 1.2em;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.bundle-courses,
+.bundle-benefits {
+  text-align: right;
+  direction: rtl;
+  font-size: 1em;
+  margin-bottom: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.bundle-courses li,
+.bundle-benefits li {
+  margin-bottom: 0.45em;
+  padding-right: 1em;
+  position: relative;
+}
+
+
+
+.bundle-price {
+  font-size: 1.05em;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.bundle-price .old-price {
+  color: #888;
+  text-decoration: line-through;
+  margin-left: 8px;
+  font-size: 0.95em;
+}
+
+.bundle-price .new-price {
+  color: #16a34a;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.bundle-discount {
+  margin-bottom: 0.8rem;
+  color: #6a1b9a;
+  font-size: 0.95em;
+  font-weight: 500;
+}
+
+.bundle-btn {
+  display: inline-block;
+  background: linear-gradient(90deg,#6a1b9a,#4a148c);
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95em;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 8px rgba(76,29,149,0.1);
+  transition: background 0.22s, transform 0.22s;
+}
+
+.bundle-btn:hover {
+  background: linear-gradient(90deg,#4a148c,#6a1b9a);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* 🎁 شارة خصم */
+.bundle-card::after {
+  content: " %23 خصم";
+  position: absolute;
+  top: -14px;
+  left: 14px;
+  background: linear-gradient(90deg,#16a34a,#15803d);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(22,163,74,0.18);
+  letter-spacing: 0.3px;
+}
+
