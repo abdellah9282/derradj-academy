@@ -2240,3 +2240,50 @@ body, html {
 .bundle-btn {
   margin-top: 20px;  /* 🔹 ينزل الزر لأسفل */
 }
+/* زر تثبيت التطبيق */
+.install-btn {
+  display: none; /* مبدئياً مخفي */
+  padding: 10px 18px;
+  background: #6a1b9a;
+  color: #fff;
+  border: none;
+  border-radius: 50px;           /* شكل كبسولة أنيق */
+  font-size: 0.95em;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 14px auto;
+  width: fit-content;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.25);
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.install-btn:hover {
+  background: #50157a;
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(106, 27, 154, 0.35);
+}
+
+/* Active (عند الضغط) */
+.install-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(106, 27, 154, 0.25);
+}
+
+/* 📱 نسخة الهاتف */
+@media (max-width: 600px) {
+  .install-btn {
+    width: 90%;                 /* يأخذ تقريبًا عرض الشاشة */
+    min-width: unset;
+    font-size: 0.9em;            /* خط أصغر قليلاً */
+    padding: 12px;               /* توازن في الهوامش */
+    border-radius: 40px;         /* شكل كبسولة */
+    position: fixed;             /* يثبت أسفل الشاشة */
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+  }
+}

@@ -56,6 +56,10 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 
   gtag('config', 'G-F5XDHSVTPG');
 </script>
+
+<link rel="manifest" href="manifest.json">
+
+
 </head>
 
 <body>
@@ -96,11 +100,20 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
       <a href="#student-feedback" class="nav-link">What Our Students Say</a>
 
       <a href="#why-us" class="nav-link">About Us</a>
+
+      <button id="installBtn" class="install-btn">
+ 📲 Derradj Academy تنزيل تطبيق
+</button>
+
+
       <a href="All playlist/all-playlists.html" class="cart-icon">🛒</a>
       <a href="login/login.html" class="btn login">Log in</a>
       <a href="sign-up/sign-up.html" class="btn signup">Sign up</a>
       <a href="#support" class="support-icon" title="الدعم الفني">💬</a>
     </nav>
+
+
+
 </header>
 
 
@@ -127,6 +140,7 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
         <button class="category">🔴 Live Sessions</button>
         <button class="category">📺 Recorded Revisions</button>
         <button class="category">📝 Exams & Corrections</button>
+
       </div>
     </div>
 
@@ -1044,7 +1058,33 @@ fetchModernComments();
 })();
 </script>
 
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js")
+      .then(reg => console.log("✅ Service Worker مسجل:", reg))
+      .catch(err => console.log("❌ خطأ:", err));
+  }
+</script>
 
+<script>
+  let deferredPrompt;
+  const installBtn = document.getElementById("installBtn");
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "block"; // إظهار الزر
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log("📌 اختيار المستخدم:", outcome);
+      deferredPrompt = null;
+    }
+  });
+</script>
 
 </body>
 </html>
