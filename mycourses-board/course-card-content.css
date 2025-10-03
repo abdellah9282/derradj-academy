@@ -902,3 +902,198 @@
 .signout-button:hover {
   background: linear-gradient(to right, #5a00e0, #3a00c0);
 }
+/* 🎯 حاوية التقييم */
+#rating-section {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  max-width: 600px;
+  margin: 40px auto;
+  font-family: "Cairo", Arial, sans-serif;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* العنوان */
+#rating-section h3 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #4a148c;
+  font-weight: bold;
+}
+
+/* 🏆 إعلان المسابقة */
+.contest-banner {
+  background: linear-gradient(135deg, #ffcc00, #ff8800);
+  color: #222;
+  padding: 12px 18px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  font-size: 1rem;
+  animation: pulse 2s infinite;
+}
+
+/* النجوم */
+.stars {
+  margin: 15px 0;
+}
+
+.star {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.star:hover,
+.star.selected {
+  color: #ff9800;
+  transform: scale(1.2);
+}
+
+/* عرض قيمة التقييم */
+#rating-value-display {
+  font-size: 1.1rem;
+  margin: 8px 0;
+  color: #444;
+  font-weight: 600;
+}
+
+/* حقل التعليق */
+#userComment {
+  width: 100%;
+  min-height: 100px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  resize: vertical;
+}
+
+#userComment:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.3);
+  outline: none;
+}
+
+/* زر الإرسال */
+#submitRating {
+  margin-top: 15px;
+  padding: 12px 24px;
+  background: linear-gradient(90deg,#7c3aed 0%,#9d50ff 100%);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#submitRating:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(124,58,237,0.4);
+}
+
+/* الرسائل */
+#ratingMessage {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: green;
+}
+
+#average-rating {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* 🎬 الحركات */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 8px rgba(255,200,0,0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(255,136,0,0.6); }
+  100% { transform: scale(1); box-shadow: 0 0 8px rgba(255,200,0,0.4); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.contest-banner {
+  background: linear-gradient(135deg, #fff7d6, #fff3e0);
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 15px 20px;
+  margin: 15px 0 20px;
+  text-align: center;
+  font-family: "Cairo", Arial, sans-serif;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 1s ease-in-out;
+}
+
+
+
+.trophy {
+  font-size: 1.8rem;
+  margin-right: 8px;
+}
+
+.contest-banner .highlight {
+  color: #d35400;
+  font-weight: bold;
+}
+
+/* أنيميشن تحريك الإطار */
+@keyframes borderMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+#userComment {
+  width: 100%;
+  min-height: 120px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 1rem;
+  font-family: "Cairo", Arial, sans-serif;
+  direction: rtl;          /* ✅ النص من اليمين لليسار */
+  text-align: right;       /* ✅ المحاذاة إلى اليمين */
+  resize: vertical;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#userComment:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
+  outline: none;
+}
+.contest-deadline {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #b71c1c; /* أحمر مشجع */
+  font-weight: bold;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
