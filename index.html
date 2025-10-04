@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" translate="no">
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -120,29 +121,63 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
  <!-- Categories Section -->
 <section class="categories-section">
   <h2 class="section-title">🎓 Derradj Academy – Learn Everywhere, Anytime</h2>
-  <p id="hero-subtitle">
-    دروس مبسطة بالعربية مع أمثلة وتمارين متنوعة • ساعدت مئات الطلاب على النجاح • أسعار أقل من الدعم الحضوري • إشترك الآن
-  </p>
+<p id="hero-subtitle">
+  فهم المواد الجامعية لم يعد صعبًا!
+  احصل على شروحات مبسطة بالعربية، وتمارين محلولة خطوة بخطوة
+  وفر أكثر من <strong>70%</strong> مقارنة بالدروس الخصوصية، وابدأ رحلتك نحو النجاح اليوم
+
+</p>
 
 
 
 
+<div class="categories-scroll-container"
+     style="overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
+  <div class="categories-scroll"
+       style="display: flex; flex-direction: row-reverse; justify-content: center; gap: 12px; min-width: max-content;">
+    <button class="category" onclick="window.location.href='All%20playlist/all-playlists.html'">
+      جميع الدورات
+    </button>
+    <button class="category">🔒 موقع آمن وموثوق</button>
+    <button class="category">💳 دفع بالبطاقة الذهبية، بريدي موب، أو بريد الجزائر</button>
+    <button class="category">💬 دعم فني دائم 24/7</button>
+    <button class="category">🎓 آلاف الطلاب يثقون بنا</button>
+  </div>
+</div>
+
+<!-- ✅ إخفاء شريط التمرير وتكبير النص -->
+<style>
+.categories-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* 🔹 نفس التنسيق مع تكبير خفيف للخط */
+.category {
+  font-size: 1rem;   /* كان 0.96rem — زيدناه قليلاً فقط */
+  font-weight: 545;     /* نفس السماكة */
+  padding: 10px 16px;   /* بدون تغيير */
+}
+</style>
 
 
-    <div class="categories-scroll-container">
-      <div class="categories-scroll">
-<button class="category" onclick="window.location.href='All%20playlist/all-playlists.html'">
-  All Playlists
-</button>
+<!-- ✅ التمرير يبدأ من أقصى اليمين فقط -->
+<script>
+window.addEventListener("load", () => {
+  const container = document.querySelector(".categories-scroll-container");
+  if (!container) return;
 
-        <button class="category">🎥 Video Lessons</button>
-        <button class="category">📄 PDF Documents</button>
-        <button class="category">🔴 Live Sessions</button>
-        <button class="category">📺 Recorded Revisions</button>
-        <button class="category">📝 Exams & Corrections</button>
+  if (window.innerWidth <= 768) {
+    // ابدأ من أقصى اليمين
+    setTimeout(() => {
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      container.scrollLeft = maxScroll;
+    }, 200);
+  }
+});
+</script>
 
-      </div>
-    </div>
+
+
 
 
 
@@ -422,7 +457,7 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
     </div>
   </section>
 
-</script>
+
   <script>
     const scrollContainer = document.querySelector('.course-cards');
     const scrollRightBtn = document.querySelector('.scroll-right-btn');
@@ -458,20 +493,7 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
       }
     }, autoScrollDelay);
 
-    // Auto-scroll for categories ← لا تلمس ما بعد هذا
-    // Auto-scroll for categories
-    const catScrollContainer = document.querySelector('.categories-scroll');
-    const catScrollStep = 200;
-    const catScrollDelay = 3000;
 
-    setInterval(() => {
-      const maxScrollLeft = catScrollContainer.scrollWidth - catScrollContainer.clientWidth;
-      if (catScrollContainer.scrollLeft >= maxScrollLeft - 5) {
-        catScrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        catScrollContainer.scrollBy({ left: catScrollStep, behavior: 'smooth' });
-      }
-    }, catScrollDelay);
   </script>
 
 <section class="special-bundles-section">
