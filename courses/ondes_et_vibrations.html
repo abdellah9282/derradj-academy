@@ -120,7 +120,7 @@
   text-decoration: none;
   text-align: center;
   cursor: pointer;
-  
+
   /* تأثير لمعة خفيفة */
   position: relative;
   overflow: hidden;
@@ -183,39 +183,67 @@
       <p class="instructor-name"><strong>Teacher :</strong> Abdellah Derradj</p>
 <p class="instructor-bio">Lessons, summaries, and TD solutions in Arabic with simplified explanations</p>
       </div>
-      <div class="live-announcement">
-  <span class="live-icon">📩</span>
-  <span><strong>  Contact us on 
-      <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" class="instagram-link">
-        Instagram
-      </a>
-    </strong> — for questions</span>
-  <span class="live-badge">
-    <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" style="color: inherit; text-decoration: underline;">
-      INSTAGRAM
-    </a>
+<div class="live-announcement" dir="rtl">
+  <span class="live-icon"></span>
+  <span>
+    <strong> بث مباشر يوم الجمعة 10 أكتوبر 2025 من الساعة 09:30 إلى 11:00 صباحًا</strong>
+  </span>
+  <span id="broadcast-tag" class="broadcast-tag">
+    <span class="broadcast-dot"></span> بث مباشر
   </span>
 </div>
+
 <style>
   .instagram-link {
-    color: #d62976; /* لون إنستغرام الأساسي */
+    color: #d62976;
     font-weight: bold;
     text-decoration: none;
     transition: color 0.3s ease, transform 0.2s ease;
   }
 
   .instagram-link:hover {
-    color: #962fbf; /* لون أغمق عند المرور */
+    color: #962fbf;
     text-decoration: underline;
     transform: scale(1.05);
   }
 
-  .live-badge a {
-    text-decoration: none;
+  /* تنسيق الشارة الجديدة */
+  .broadcast-tag {
+    background-color: #dc2626;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-right: auto; /* 🔥 لتظهر في أقصى اليسار */
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    animation: pulse 1.5s infinite;
   }
-</style>
-    </div>
 
+  .broadcast-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    animation: blink 1.2s infinite ease-in-out;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+  }
+
+</style>
+
+    </div>
+    
     <!-- Course Columns -->
     <div class="course-columns">
       <!-- Left Column: Video Lessons -->
@@ -458,7 +486,7 @@
   <h2 style="text-align:center; color:#1e40af; margin-bottom:1rem;"> أمثلة عن وصل الدفع</h2>
 
   <p style="max-width: 640px; margin: 1rem auto 2rem auto; background: #ffffff; border: 1px solid #dee2e6; box-shadow: 0 1px 5px rgba(76, 29, 149, 0.05); border-radius: 10px; padding: 1rem 1.5rem; font-size: 1.05em; color: #1e293b; line-height: 1.7; text-align: right; direction: rtl;">
-    هذه أمثلة توضيحية لطرق الدفع عبر <b>بريدي موب</b> و <b>بريد الجزائر</b>. 
+    هذه أمثلة توضيحية لطرق الدفع عبر <b>بريدي موب</b> و <b>بريد الجزائر</b>.
     اضغط على أي صورة لمعاينتها بشكل أوضح (PDF).
   </p>
 
@@ -483,13 +511,13 @@
 <!-- أول سطر فيه صورتين -->
 <div style="display:flex; justify-content:center; margin-bottom:18px; flex-wrap:wrap; column-gap:60px;">
   <a href="../payment/Baridimob01.pdf" target="_blank">
-    <img src="../payment/Baridimob01.png" alt="وصل بريدي موب 1" 
-         style="width:150px; border-radius:12px; border:1px solid #e2e8f0; 
+    <img src="../payment/Baridimob01.png" alt="وصل بريدي موب 1"
+         style="width:150px; border-radius:12px; border:1px solid #e2e8f0;
                 box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer;">
   </a>
   <a href="../payment/Baridimob1500.pdf" target="_blank">
-    <img src="../payment/Baridimob1500.png" alt="وصل بريدي موب 2" 
-         style="width:150px; border-radius:12px; border:1px solid #e2e8f0; 
+    <img src="../payment/Baridimob1500.png" alt="وصل بريدي موب 2"
+         style="width:150px; border-radius:12px; border:1px solid #e2e8f0;
                 box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer;">
   </a>
 </div>
@@ -506,14 +534,14 @@
 <!-- بريد الجزائر -->
 <div class="pay-card" style="background:#ffffff; border:1px solid #d6d9e7; border-radius:14px; padding:2rem 1.5rem 1.8rem 1.5rem; max-width:420px; width:100%; box-shadow:0 4px 12px rgba(76,29,149,0.1); font-size:1.05em; text-align:center; position:relative;">
   <span class="badge" style="background: #14b8a6; color: #fff; padding: 4px 10px; font-size: 0.9em; border-radius: 7px; font-weight: bold; position: absolute; top: -14px; right: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">Algérie Poste</span>
-  
+
   <h3 style="color:#1e40af; font-size:1.3em; margin-bottom:1.8rem; font-weight:700;">📮 مثال الدفع عبر بريد الجزائر</h3>
 
   <div class="pay-grid" style="display:flex; justify-content:center;">
     <div style="width:100%;">
 <a href="../payment/1500.pdf" target="_blank" style="display:block; width:100%;">
   <img src="../payment/1500.png" alt="وصل 1500 دج" class="poste-img"
-       style="width:100%; height:auto; border-radius:12px; border:1px solid #e2e8f0; 
+       style="width:100%; height:auto; border-radius:12px; border:1px solid #e2e8f0;
               box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer;">
 </a>
 
