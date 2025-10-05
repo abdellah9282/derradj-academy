@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" translate="no">
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -56,6 +57,10 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 
   gtag('config', 'G-F5XDHSVTPG');
 </script>
+
+<link rel="manifest" href="manifest.json">
+
+
 </head>
 
 <body>
@@ -96,39 +101,83 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
       <a href="#student-feedback" class="nav-link">What Our Students Say</a>
 
       <a href="#why-us" class="nav-link">About Us</a>
+
+      <button id="installBtn" class="install-btn">
+ 📲 Derradj Academy تنزيل تطبيق
+</button>
+
+
       <a href="All playlist/all-playlists.html" class="cart-icon">🛒</a>
       <a href="login/login.html" class="btn login">Log in</a>
       <a href="sign-up/sign-up.html" class="btn signup">Sign up</a>
       <a href="#support" class="support-icon" title="الدعم الفني">💬</a>
     </nav>
+
+
+
 </header>
 
 
  <!-- Categories Section -->
 <section class="categories-section">
   <h2 class="section-title">🎓 Derradj Academy – Learn Everywhere, Anytime</h2>
-  <p id="hero-subtitle">
-    دروس مبسطة بالعربية مع أمثلة وتمارين متنوعة • ساعدت مئات الطلاب على النجاح • أسعار أقل من الدعم الحضوري • إشترك الآن
-  </p>
+<p id="hero-subtitle">
+  فهم المواد الجامعية لم يعد صعبًا!
+  احصل على شروحات مبسطة بالعربية، وتمارين محلولة خطوة بخطوة
+  وفر أكثر من <strong>70%</strong> مقارنة بالدروس الخصوصية، وابدأ رحلتك نحو النجاح اليوم
+
+</p>
 
 
 
 
+<div class="categories-scroll-container"
+     style="overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
+  <div class="categories-scroll"
+       style="display: flex; flex-direction: row-reverse; justify-content: center; gap: 12px; min-width: max-content;">
+    <button class="category" onclick="window.location.href='All%20playlist/all-playlists.html'">
+      جميع الدورات
+    </button>
+    <button class="category">🔒 موقع آمن وموثوق</button>
+    <button class="category">💳 دفع بالبطاقة الذهبية، بريدي موب، أو بريد الجزائر</button>
+    <button class="category">💬 دعم فني دائم 24/7</button>
+    <button class="category">🎓 آلاف الطلاب يثقون بنا</button>
+  </div>
+</div>
+
+<!-- ✅ إخفاء شريط التمرير وتكبير النص -->
+<style>
+.categories-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* 🔹 نفس التنسيق مع تكبير خفيف للخط */
+.category {
+  font-size: 1rem;   /* كان 0.96rem — زيدناه قليلاً فقط */
+  font-weight: 545;     /* نفس السماكة */
+  padding: 10px 16px;   /* بدون تغيير */
+}
+</style>
 
 
-    <div class="categories-scroll-container">
-      <div class="categories-scroll">
-<button class="category" onclick="window.location.href='All%20playlist/all-playlists.html'">
-  All Playlists
-</button>
+<!-- ✅ التمرير يبدأ من أقصى اليمين فقط -->
+<script>
+window.addEventListener("load", () => {
+  const container = document.querySelector(".categories-scroll-container");
+  if (!container) return;
 
-        <button class="category">🎥 Video Lessons</button>
-        <button class="category">📄 PDF Documents</button>
-        <button class="category">🔴 Live Sessions</button>
-        <button class="category">📺 Recorded Revisions</button>
-        <button class="category">📝 Exams & Corrections</button>
-      </div>
-    </div>
+  if (window.innerWidth <= 768) {
+    // ابدأ من أقصى اليمين
+    setTimeout(() => {
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      container.scrollLeft = maxScroll;
+    }, 200);
+  }
+});
+</script>
+
+
+
 
 
 
@@ -199,7 +248,7 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
   </div>
 </a>
 
-<!-- ★ Electricité Industrielle 
+<!-- ★ Electricité Industrielle
 <a href="courses/electricite_industrielle.html" style="text-decoration: none; color: inherit;">
 <div class="course-card" data-course-id="electricite_industrielle">
     <img src="ondes et vibrations/03.jpg" alt="Course Image" class="course-img" />
@@ -408,7 +457,7 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
     </div>
   </section>
 
-</script>
+
   <script>
     const scrollContainer = document.querySelector('.course-cards');
     const scrollRightBtn = document.querySelector('.scroll-right-btn');
@@ -444,21 +493,65 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
       }
     }, autoScrollDelay);
 
-    // Auto-scroll for categories ← لا تلمس ما بعد هذا
-    // Auto-scroll for categories
-    const catScrollContainer = document.querySelector('.categories-scroll');
-    const catScrollStep = 200;
-    const catScrollDelay = 3000;
 
-    setInterval(() => {
-      const maxScrollLeft = catScrollContainer.scrollWidth - catScrollContainer.clientWidth;
-      if (catScrollContainer.scrollLeft >= maxScrollLeft - 5) {
-        catScrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        catScrollContainer.scrollBy({ left: catScrollStep, behavior: 'smooth' });
-      }
-    }, catScrollDelay);
   </script>
+
+<section class="special-bundles-section">
+  <h2>باقة المواد الخاصة</h2>
+
+  <div class="bundles-container">
+
+    <!-- 🎓 بطاقة الباقة -->
+    <div class="bundle-card">
+      <h3>باقة المواد العلمية المميزة</h3>
+
+      <!-- 📚 المواد -->
+<ul class="bundle-courses" style="text-align: left; direction: ltr; padding-left: 0;">
+  <li style="position: relative; ">🎓 Ondes et Vibrations</li>
+  <li style="position: relative; ">🎓 Electronique Fondamentale 1</li>
+  <li style="position: relative; ">🎓 Electrotechnique Fondamentale 1</li>
+  <li style="position: relative; ">🎓 Probabilité et Statistique</li>
+  <li style="position: relative; ">🎓 Informatique 3</li>
+</ul>
+
+
+      <!-- 💰 السعر -->
+      <div class="bundle-price">
+        <span class="old-price"> دج 6500 </span>
+        <span class="new-price">4999 دج فقط</span>
+      </div>
+<div class="bundle-discount">
+  وفر <strong>1500 دج (23%)</strong>
+</div>
+
+      <!-- ✅ المزايا -->
+      <ul class="bundle-benefits">
+        <li>✔️ دروس فيديو لكل مادة</li>
+        <li>✔️ دعم مباشر من الأستاذ</li>
+        <li>✔️ بث مباشر عند الطلب</li>
+        <li>✔️ دخول لجميع الدروس والاختبارات</li>
+      </ul>
+
+      <!-- 🔘 زر الاشتراك -->
+
+      <!-- خيارات الدفع -->
+<div class="payment-options">
+  <h4 style="margin-bottom: 10px; font-size:1.1em;"> : طرق الدفع</h4>
+  <div class="payment-methods">
+<button class="pay-option" onclick="window.open('payment/5000.pdf', '_blank')">📱 بريدي موب</button>
+<button class="pay-option" onclick="window.open('http://pay.chargily.com/payment-links/01k6jwwyjvndyr4x2yvya8qs59', '_blank')">
+  💳 البطاقة الذهبية
+</button>
+    <button class="pay-option" onclick="window.open('payment/5000ccp.pdf', '_blank')">📮 بريد الجزائر</button>
+  </div>
+</div>
+      <a href="sign-up/sign-up.html" class="bundle-btn">اشترك في الباقة الآن</a>
+
+    </div>
+    <!-- 🔁 يمكن إضافة باقات أخرى بنفس التنسيق هنا -->
+
+  </div>
+</section>
 
 <!-- استبدل قسم الدفع القديم بهذا -->
 <section id="pay-methods-section">
@@ -530,7 +623,7 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
   <h2 style="text-align:center; color:#1e40af; margin-bottom:1rem;"> أمثلة عن وصل الدفع</h2>
 
   <p style="max-width: 640px; margin: 1rem auto 2rem auto; background: #ffffff; border: 1px solid #dee2e6; box-shadow: 0 1px 5px rgba(76, 29, 149, 0.05); border-radius: 10px; padding: 1rem 1.5rem; font-size: 1.05em; color: #1e293b; line-height: 1.7; text-align: right; direction: rtl;">
-    هذه أمثلة توضيحية لطرق الدفع عبر <b>بريدي موب</b> و <b>بريد الجزائر</b>. 
+    هذه أمثلة توضيحية لطرق الدفع عبر <b>بريدي موب</b> و <b>بريد الجزائر</b>.
     اضغط على أي صورة لمعاينتها بشكل أوضح (PDF).
   </p>
 
@@ -568,7 +661,7 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 <!-- بريد الجزائر (يسار) -->
 <div class="pay-card" style="background:#ffffff; border:1px solid #d6d9e7; border-radius:14px; padding:1.8rem 1.5rem; max-width:720px; width:100%; box-shadow:0 4px 12px rgba(76,29,149,0.1); font-size:1.05em; text-align:center; order:2; position:relative;">
   <span class="badge" style="background: #14b8a6; color: #fff; padding: 4px 10px; font-size: 0.9em; border-radius: 7px; font-weight: bold; position: absolute; top: -14px; right: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">Algérie Poste</span>
-  
+
   <h3 style="color:#1e40af; font-size:1.3em; margin-bottom:1.8rem; font-weight:700;">📮 أمثلة الدفع عبر بريد الجزائر</h3>
 
   <div class="pay-grid">
@@ -663,9 +756,9 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
   <p style="font-size:1em; margin-bottom:15px;">
     انضم إلى فريقنا وشارك معرفتك، طوّر مهاراتك التعليمية، وحقق دخلًا إضافيًا من خلال التدريس عبر الإنترنت.
   </p>
-  <a href="../sign-up/teacher-signup.html" class="btn" 
+  <a href="../sign-up/teacher-signup.html" class="btn"
      style="display:inline-block; background-color:#6a1b9a; color:#fff; padding:12px 25px; border-radius:8px; text-decoration:none; font-weight:bold; transition:0.3s;">
-    سجل الآن كأستاذ 
+    سجل الآن كأستاذ
   </a>
 </div>
 
@@ -679,18 +772,21 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
   <h2>هل لديك سؤال؟</h2>
   <form id="questionForm">
     <input type="text" name="name" id="name" placeholder="الاسم الكامل" required />
-    <input type="email" name="email" id="email" placeholder=" البريد الإلكتروني أو رقم الهاتف" required />
+    <input type="text" name="contact" id="contact" placeholder="البريد الإلكتروني أو رقم الهاتف" required />
     <textarea name="message" id="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
     <button type="submit">إرسال</button>
     <p id="support-message" style="margin-top:1rem; color:green;"></p>
   </form>
 </section>
+
+
 <section class="student-comments-modern" id="student-feedback">
-  <h2 class="comments-title">💬 Student Feedback</h2>
+  <h2 class="comments-title">💬 آراء الطلاب</h2>
   <div id="modern-comments-container" class="comments-grid">
-    <!-- البطاقات تُضاف هنا تلقائيًا -->
+    <!-- التعليقات ستُضاف تلقائيًا عبر JavaScript -->
   </div>
 </section>
+
 
 <footer class="main-footer" dir="rtl">
   <div class="footer-content">
@@ -751,7 +847,6 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
     'https://sgcypxmnlyiwljuqvcup.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
   );
-
 // ✅ دالة عرض التقييمات
 async function fetchAndDisplayRatings() {
   const cards = document.querySelectorAll('.course-card');
@@ -792,28 +887,47 @@ async function fetchAndDisplayRatings() {
 
     // 🟢 حساب المعدل
     const ratings = data.map(entry => Number(entry.rating));
-    const average = (ratings.reduce((sum, r) => sum + r, 0) / ratings.length).toFixed(1);
+    const avg = ratings.reduce((sum, r) => sum + r, 0) / ratings.length;
+    const average = avg.toFixed(1);
 
     if (ratingEl) ratingEl.textContent = average;
     if (reviewsEl) reviewsEl.textContent = `(${ratings.length})`;
 
     // 🔹 إنشاء النجوم حسب المعدل
     if (starsEl) {
-      const fullStars = Math.floor(average); // عدد النجوم الممتلئة
-      const halfStar = (average - fullStars >= 0.5) ? 1 : 0; // نصف نجمة إذا وجد
+      const fullStars = Math.floor(avg); // عدد النجوم الممتلئة
+      const halfStar = (avg - fullStars >= 0.5) ? 1 : 0; // نصف نجمة إذا وجد
       const emptyStars = 5 - fullStars - halfStar;
 
-      let starsHTML = '★'.repeat(fullStars);
-      if (halfStar) starsHTML += '☆'; // نصف نجمة مؤقتة
-      starsHTML += '☆'.repeat(emptyStars);
+      let starsHTML = '';
 
-      // 🟠 نجوم ملونة بالذهبي
-      starsEl.innerHTML = starsHTML
-        .split('')
-        .map(s => s === '★'
-          ? `<span style="color:#f59e0b;">★</span>`
-          : `<span style="color:#d1d5db;">★</span>`
-        ).join('');
+      // ⭐ نجمات ممتلئة
+      for (let i = 0; i < fullStars; i++) {
+        starsHTML += `<span style="color:#f59e0b;">★</span>`;
+      }
+
+      // ✴ نصف نجمة
+      if (halfStar) {
+        starsHTML += `
+          <span style="display:inline-block; position:relative; width:1em; color:#d1d5db;">
+            ★
+            <span style="
+              position:absolute;
+              top:0; left:0;
+              width:50%;
+              overflow:hidden;
+              color:#f59e0b;
+            ">★</span>
+          </span>
+        `;
+      }
+
+      // ☆ نجمات فارغة
+      for (let i = 0; i < emptyStars; i++) {
+        starsHTML += `<span style="color:#d1d5db;">★</span>`;
+      }
+
+      starsEl.innerHTML = starsHTML;
     }
   }
 }
@@ -822,50 +936,64 @@ async function fetchAndDisplayRatings() {
 // تشغيل الدالة بعد تحميل الصفحة
 document.addEventListener("DOMContentLoaded", fetchAndDisplayRatings);
 
+// ✅ إرسال نموذج السؤال
+const form = document.getElementById('questionForm');
+if (form) {
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-  // ✅ إرسال نموذج السؤال
-  const form = document.getElementById('questionForm');
-  if (form) {
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const contact = document.getElementById('contact').value.trim(); // <-- ممكن يكون رقم أو إيميل
+    const message = document.getElementById('message').value.trim();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    const supportMsg = document.getElementById('support-message');
 
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn.textContent;
-      const supportMsg = document.getElementById('support-message');
+    submitBtn.disabled = true;
+    submitBtn.textContent = "جاري الإرسال...";
+    supportMsg.textContent = "";
+    supportMsg.style.color = "green";
 
-      submitBtn.disabled = true;
-      submitBtn.textContent = "جاري الإرسال...";
-      supportMsg.textContent = "";
-      supportMsg.style.color = "green";
-
-      if (!name || !email || !message) {
-        supportMsg.textContent = "❌ الرجاء ملء جميع الحقول.";
-        supportMsg.style.color = "red";
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalBtnText;
-        return;
-      }
-
-      const { error } = await supabase
-        .from('messages')
-        .insert([{ name, email, message }]);
-
-      if (error) {
-        supportMsg.textContent = "❌ حدث خطأ أثناء إرسال الرسالة. الرجاء المحاولة لاحقًا.";
-        supportMsg.style.color = "red";
-      } else {
-        supportMsg.textContent = "✅ تم إرسال رسالتك بنجاح، سيتم الرد عليك عن قريب.";
-        supportMsg.style.color = "green";
-        form.reset();
-      }
-
+    if (!name || !contact || !message) {
+      supportMsg.textContent = "❌ الرجاء ملء جميع الحقول.";
+      supportMsg.style.color = "red";
       submitBtn.disabled = false;
       submitBtn.textContent = originalBtnText;
-    });
-  }
+      return;
+    }
+
+    // ✅ التحقق إذا كان بريد إلكتروني أو رقم هاتف
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{8,15}$/;
+
+    if (!emailRegex.test(contact) && !phoneRegex.test(contact)) {
+      supportMsg.textContent = "❌ الرجاء إدخال بريد إلكتروني صحيح أو رقم هاتف صالح.";
+      supportMsg.style.color = "red";
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+      return;
+    }
+
+    // ✅ نحفظ المدخل (سواء رقم أو إيميل) داخل عمود email
+    const { error } = await supabase
+      .from('messages')
+      .insert([{ name, email: contact, message }]);
+
+    if (error) {
+      supportMsg.textContent = "❌ خطأ: " + error.message; // لعرض السبب الحقيقي
+      supportMsg.style.color = "red";
+    } else {
+      supportMsg.textContent = "✅ تم إرسال رسالتك بنجاح، سيتم الرد عليك قريبًا.";
+      supportMsg.style.color = "green";
+      form.reset();
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
+  });
+}
+
+
   async function fetchModernComments() {
   const container = document.getElementById("modern-comments-container");
   if (!container) return;
@@ -952,7 +1080,33 @@ fetchModernComments();
 })();
 </script>
 
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js")
+      .then(reg => console.log("✅ Service Worker مسجل:", reg))
+      .catch(err => console.log("❌ خطأ:", err));
+  }
+</script>
 
+<script>
+  let deferredPrompt;
+const installBtn = document.querySelector(".install-btn");
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "block"; // إظهار الزر
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log("📌 اختيار المستخدم:", outcome);
+      deferredPrompt = null;
+    }
+  });
+</script>
 
 </body>
 </html>
