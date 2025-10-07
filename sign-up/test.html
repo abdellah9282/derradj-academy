@@ -185,7 +185,6 @@
       </div>
 
       <button type="submit">Sign Up</button>
-<div id="formError" class="error-text" style="color:red; margin-top:10px; text-align:center;"></div>
 
       <p class="form-footer-text">
         Already have an account?
@@ -264,142 +263,121 @@
 })();
 </script>
 
+<!-- ✅ SUPABASE REGISTRATION WITH AUTH + FILE UPLOAD + LOGIN SAVE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
   const { createClient } = supabase;
+
   const supabaseClient = createClient(
-    "https://sgcypxmnlyiwljuqvcup.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
+    'https://sgcypxmnlyiwljuqvcup.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
   );
 
-  const form = document.querySelector(".signup-form");
-  const errorBox = document.getElementById("formError");
-  const moduleErrorBox = document.getElementById("moduleError");
+  const form = document.querySelector('.signup-form');
 
-  // ✅ تحسين شكل ظهور الخطأ
-  errorBox.style.transition = "all 0.3s ease";
-  errorBox.style.opacity = "0";
-
-  function showError(message, target = errorBox) {
-    target.textContent = message;
-    target.style.opacity = "1";
-    target.style.color = "#e74c3c";
-    target.style.fontWeight = "bold";
-    target.style.textAlign = "center";
-    target.style.marginTop = "10px";
-  }
-
-  function hideError(target = errorBox) {
-    target.textContent = "";
-    target.style.opacity = "0";
-  }
-
-  // ✅ إخفاء الأخطاء عند تعديل أي حقل
-  form.querySelectorAll("input, select").forEach((input) => {
-    input.addEventListener("input", () => {
-      hideError();
-      hideError(moduleErrorBox);
-    });
-    input.addEventListener("change", () => {
-      hideError();
-      hideError(moduleErrorBox);
-    });
-  });
-
-  // ✅ عند الإرسال
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    hideError();
-    hideError(moduleErrorBox);
 
-    const fullName = document.getElementById("fullName").value.trim();
-    const contact = document.getElementById("contact").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const paymentFile = document.getElementById("paymentProof").files[0];
-    const modules = Array.from(
-      document.querySelectorAll('input[name="courses[]"]:checked')
-    )
-      .map((cb) => cb.value)
-      .filter((v) => v !== "bundle_second_year");
-
+    const fullName = document.getElementById('fullName').value.trim();
+    const contact = document.getElementById('contact').value.trim();
+    const password = document.getElementById('password').value;
+    const modules = Array.from(document.querySelectorAll('input[name="courses[]"]:checked'))
+      .map(cb => cb.value)
+      .filter(v => v !== 'bundle_second_year'); // ✅ استبعاد الباقة من الإرسال
+    const paymentFile = document.getElementById('paymentProof').files[0];
     const submitBtn = form.querySelector('button[type="submit"]');
 
-    // ✅ التحقق من الحقول
-    if (!fullName) return showError("❌ يرجى إدخال الاسم الكامل");
-    if (!contact)
-      return showError("❌ يرجى إدخال رقم الهاتف أو البريد الإلكتروني");
-    if (!password || password.length < 6)
-      return showError("❌ كلمة المرور يجب أن تكون من 6 أحرف على الأقل");
-    if (modules.length === 0)
-      return showError("❌ يجب اختيار مادة واحدة على الأقل", moduleErrorBox);
-    if (!paymentFile) return showError("❌ يرجى رفع وصل الدفع");
+    // ✅ تحقق من اختيار مادة واحدة على الأقل
+    if (modules.length === 0) {
+      document.getElementById("moduleError").textContent = "❌ يجب اختيار مادة واحدة على الأقل.";
+      return;
+    } else {
+      document.getElementById("moduleError").textContent = "";
+    }
+
+    // ✅ تحقق من رفع الملف
+    if (!paymentFile) {
+      alert("❌ يرجى رفع وصل الدفع.");
+      return;
+    }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = "⏳ Creating account...";
+    submitBtn.textContent = "Please wait...";
 
     try {
-      // تحقق من وجود المستخدم مسبقًا
-      const { data: existingUser } = await supabaseClient
-        .from("registrations")
-        .select("contact")
-        .eq("contact", contact)
-        .maybeSingle();
+      // ✅ تحقق إذا كان الحساب موجودًا مسبقًا بنفس contact
+      const { data: existingUser, error: checkError } = await supabaseClient
+        .from('registrations')
+        .select('*')
+        .eq('contact', contact)
+        .single();
 
       if (existingUser) {
-        showError(
-          "❌ البريد أو الرقم مسجّل من قبل"
-        );
+        alert("❌ هذا الرقم أو البريد الإلكتروني مستعمل من قبل. يرجى استخدام رقم أو بريد آخر.");
         submitBtn.disabled = false;
         submitBtn.textContent = "Sign Up";
         return;
       }
 
-      const emailValue = contact.includes("@")
-        ? contact
-        : `${contact}@derradjacademy.com`;
-
-      const { data: signUpData, error: signUpError } =
-        await supabaseClient.auth.signUp({
-          email: emailValue,
-          password: password,
-        });
+      // ✅ إنشاء حساب في Supabase Auth (حتى لو contact رقم نحوله إلى بريد وهمي)
+      const emailValue = contact.includes('@') ? contact : `${contact}@derradjacademy.com`;
+      const { data: signUpData, error: signUpError } = await supabaseClient.auth.signUp({
+        email: emailValue,
+        password: password
+      });
 
       if (signUpError) throw signUpError;
+      const userId = signUpData.user.id;
 
-      const userId = signUpData.user?.id;
-      if (!userId) throw new Error("فشل إنشاء الحساب، حاول مرة أخرى");
-
+      // ✅ تنظيف اسم الملف والتحقق من الحجم
       const cleanName = paymentFile.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
       const fileName = `${Date.now()}_${cleanName}`;
 
       if (paymentFile.size > 10 * 1024 * 1024) {
-        showError("❌ حجم الملف كبير جدًا. الرجاء رفع ملف أقل من 10MB");
+        alert("❌ حجم الملف كبير جدًا. الرجاء رفع ملف أقل من 10MB.");
         submitBtn.disabled = false;
         submitBtn.textContent = "Sign Up";
         return;
       }
 
-      const { data: fileData, error: fileError } = await supabaseClient.storage
-        .from("receipts")
+      // ✅ رفع الملف إلى Supabase Storage
+      const { data: fileData, error: fileError } = await supabaseClient
+        .storage.from('receipts')
         .upload(fileName, paymentFile);
-      if (fileError) throw fileError;
 
-      const receiptUrl = supabaseClient.storage
-        .from("receipts")
+      if (fileError) {
+        alert("❌ فشل رفع الملف: " + fileError.message);
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Sign Up";
+        return;
+      }
+
+      const receiptUrl = supabaseClient
+        .storage
+        .from('receipts')
         .getPublicUrl(fileData.path).data.publicUrl;
 
-      const { error: dbError } = await supabaseClient.from("registrations").insert([
-        {
+      // ✅ حفظ بيانات المستخدم في جدول registrations
+      const { error: dbError } = await supabaseClient
+        .from('registrations')
+        .insert([{
           user_id: userId,
           full_name: fullName,
           contact,
+          password,
           modules,
           receipt_url: receiptUrl,
           is_approved: null,
-        },
-      ]);
-      if (dbError) throw dbError;
+          is_teacher: false,
+          is_admin: false
+        }]);
+
+      if (dbError) {
+        alert("❌ خطأ في حفظ البيانات: " + dbError.message);
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Sign Up";
+        return;
+      }
 
       // ✅ حفظ بيانات الدخول محليًا
       localStorage.setItem("userModules", JSON.stringify(modules));
@@ -408,19 +386,17 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("userId", userId);
       localStorage.setItem("isLoggedIn", "true");
 
+      // ✅ توجيه المستخدم إلى صفحة الدروس
       window.location.href = "my-courses.html";
+
     } catch (err) {
       console.error(err);
-      showError(
-        "❌ حدث خطأ أثناء التسجيل: " +
-          (err.message || "تحقق من اتصالك بالإنترنت أو البيانات المدخلة.")
-      );
+      alert("❌ حدث خطأ أثناء التسجيل: " + err.message);
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = "Sign Up";
     }
   });
-});
 </script>
 
 
