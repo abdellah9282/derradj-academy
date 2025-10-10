@@ -1,11 +1,31 @@
 {
-  "name": "Derradj Academy",
-  "short_name": "DAcademy",
-  "start_url": "/index.html",
+  "name": "Derradj Academy – Learn Everywhere, Anytime",
+  "short_name": "Derradj",
+  "description": "منصة تعليمية جزائرية تقدم دروسًا جامعية تفاعلية، فيديوهات، وتمارين محلولة مع أساتذة مختصين.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#6a1b9a",
+  "dir": "rtl",
+  "lang": "ar",
   "icons": [
+    {
+      "src": "icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
     {
       "src": "icons/icon-192.png",
       "sizes": "192x192",
