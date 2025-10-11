@@ -2061,3 +2061,6 @@ body, html {
     word-break: break-word;
   }
 }
+  .rating {
+    display: none !important;       /* إلغاء ظهور التقييمات*/
+  }

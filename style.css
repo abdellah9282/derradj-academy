@@ -2287,3 +2287,6 @@ body, html {
     z-index: 9999;
   }
 }
+  .rating {
+    display: none !important;       /* إلغاء ظهور التقييمات*/
+  }
