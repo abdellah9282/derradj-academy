@@ -1186,13 +1186,6 @@ fetchModernComments();
 })();
 </script>
 
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js")
-      .then(reg => console.log("✅ Service Worker مسجل:", reg))
-      .catch(err => console.log("❌ خطأ:", err));
-  }
-</script>
 
 <script>
   let deferredPrompt;
@@ -1213,6 +1206,14 @@ const installBtn = document.querySelector(".install-btn");
     }
   });
 </script>
-
+<script>if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(registrations => {
+    for (let reg of registrations) {
+      reg.unregister();
+    }
+  });
+  caches.keys().then(names => names.forEach(name => caches.delete(name)));
+}
+</script>
 </body>
 </html>
