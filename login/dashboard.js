@@ -44,113 +44,33 @@ if (data.session_id !== sessionId || data.device_id !== deviceId) {
 
 })();
 
-// كائن الدورات (جميع مواد الأستاذ Abdellah Derradj)
 const allCourses = {
-  ondes_et_vibrations: {
-    title: "Ondes et Vibrations",
-    instructor: "Abdellah Derradj",
-    price: 1200,
-    rating: 4.5,
-    reviews: 48000,
-    image: "../Thumbnail/ondes_et_vibrations/01.jpg"
-  },
-  electrotechnique_fondamentale1: {
-    title: "Électrotechnique Fondamentale 1",
-    instructor: "Abdellah Derradj",
-    price: 1500,
-    rating: 4.6,
-    reviews: 56000,
-    image: "../Thumbnail/elt_f_1/04.jpg"
-  },
-  electronique_fondamentale1: {
-    title: "Électronique Fondamentale 1",
-    instructor: "Abdellah Derradj",
-    price: 1500,
-    rating: 4.7,
-    reviews: 32000,
-    image: "../Thumbnail/electroniquef1/01.jpg"
-  },
-  informatique01: {
-    title: "Informatique 1",
-    instructor: "Abdellah Derradj",
-    price: 800,
-    rating: 4.4,
-    reviews: 15000,
-    image: "../Thumbnail/informatique1/01.jpg"
-  },
-  informatique02: {
-    title: "Informatique 2 (Pascal)",
-    instructor: "Abdellah Derradj",
-    price: 800,
-    rating: 4.5,
-    reviews: 14000,
-    image: "../Thumbnail/Informatique2/02.jpg"
-  },
-  informatique03: {
-    title: "Informatique 3 (MATLAB)",
-    instructor: "Abdellah Derradj",
-    price: 800,
-    rating: 4.5,
-    reviews: 14200,
-    image: "../Thumbnail/Informatique3/01.webp"
-  },
-  electronique_de_puissance: {
-    title: "Électronique de Puissance (avancée)",
-    instructor: "Abdellah Derradj",
-    price: 1200,
-    rating: 4.8,
-    reviews: 22000,
-    image: "../Thumbnail/electronique_de_puissance/03.webp"
-  },
-  probabilite_et_statistique: {
-    title: "Probabilité et Statistique",
-    instructor: "Abdellah Derradj",
-    price: 800,
-    rating: 4.4,
-    reviews: 18500,
-    image: "../Thumbnail/statistique/01.jpg"
-  },
-  logique_combinatoire_et_sequentielle: {
-    title: "Logique Combinatoire et Séquentielle",
-    instructor: "Abdellah Derradj",
-    price: 1000,
-    rating: 4.3,
-    reviews: 12000,
-    image: "../Thumbnail/logique/08.jpg"
-  },
-  methodes_numeriques: {
-    title: "Méthodes Numériques L2+M1",
-    instructor: "Abdellah Derradj",
-    price: 1000,
-    rating: 4.5,
-    reviews: 13000,
-    image: "../Thumbnail/methode_numerique/01.jpg"
-  },
-  systeme_asservis: {
-    title: "Systèmes Asservis",
-    instructor: "Abdellah Derradj",
-    price: 800,
-    rating: 4.4,
-    reviews: 11000,
-    image: "../Thumbnail/systemeasservi/02.jpg"
-  },
-  reseaux_electrique: {
-    title: "Réseaux Électriques",
-    instructor: "Abdellah Derradj",
-    price: 1000,
-    rating: 4.5,
-    reviews: 12500,
-    image: "../Thumbnail/reseau_electrique/01.jpg"
-  },
-  theorie_du_signal: {
-    title: "Théorie du Signal",
-    instructor: "Abdellah Derradj",
-    price: 800,
-    rating: 4.6,
-    reviews: 11800,
-    image: "../Thumbnail/theorie_de_signal/02.jpg"
-  }
+  ondes_et_vibrations: { title: "Ondes et Vibrations", instructor: "Abdellah Derradj", price: 1500, image: "../Thumbnail/ondes_et_vibrations/01.jpg" },
+  electrotechnique_fondamentale1: { title: "Électrotechnique Fondamentale 1", instructor: "Abdellah Derradj", price: 1500, image: "../Thumbnail/elt_f_1/04.jpg" },
+  electronique_fondamentale1: { title: "Électronique Fondamentale 1", instructor: "Abdellah Derradj", price: 1500, image: "../Thumbnail/electroniquef1/01.jpg" },
+  informatique01: { title: "Informatique 1", instructor: "Abdellah Derradj", price: 1000, image: "../Thumbnail/informatique1/01.jpg" },
+  informatique02: { title: "Informatique 2 (Pascal)", instructor: "Abdellah Derradj", price: 1000, image: "../Thumbnail/Informatique2/02.jpg" },
+  informatique03: { title: "Informatique 3 (MATLAB)", instructor: "Abdellah Derradj", price: 1000, image: "../Thumbnail/Informatique3/01.webp" },
+  electronique_de_puissance: { title: "Électronique de Puissance (avancée)", instructor: "Abdellah Derradj", price: 1500, image: "../Thumbnail/electronique_de_puissance/03.webp" },
+  probabilite_et_statistique: { title: "Probabilité et Statistique", instructor: "Abdellah Derradj", price: 1000, image: "../Thumbnail/statistique/01.jpg" },
+  logique_combinatoire_et_sequentielle: { title: "Logique Combinatoire et Séquentielle", instructor: "Abdellah Derradj", price: 1000, image: "../Thumbnail/logique/08.jpg" },
+  methodes_numeriques: { title: "Méthodes Numériques (L2 + M1)", instructor: "Abdellah Derradj", price: 1200, image: "../Thumbnail/methode_numerique/01.jpg" },
+  systeme_asservis: { title: "Systèmes Asservis", instructor: "Abdellah Derradj", price: 1200, image: "../Thumbnail/systemeasservi/02.jpg" },
+  reseaux_electrique: { title: "Réseaux Électriques", instructor: "Abdellah Derradj", price: 1200, image: "../Thumbnail/reseau_electrique/01.jpg" },
+  theorie_du_signal: { title: "Théorie du Signal", instructor: "Abdellah Derradj", price: 800, image: "../Thumbnail/theorie_de_signal/02.jpg" },
+  bundle_second_year: { title: "باقة السنة الثانية – 5 مواد", instructor: "Abdellah Derradj", price: 4999 }
 };
+const priceInput = document.getElementById("coursePrice");
+if (courseSelect && priceInput) {
+  courseSelect.addEventListener("change", () => {
+    const selected = courseSelect.value;
+    if (selected && allCourses[selected]) {
+      priceInput.value = `${allCourses[selected].price} DA`;
+    } else {
+      priceInput.value = "—";
+    }
+  });
+}
 
 // روابط الصفحات الخاصة بكل مادة
 const courseLinks = {
@@ -274,10 +194,10 @@ if (messageDiv) {
   const pendingRequest = localStorage.getItem("pendingRequest");
   if (pendingRequest === "true") {
     submitBtn.disabled = true;
-    submitBtn.textContent = "✅.تم إرسال الطلب بنجاح، بانتظار الموافقة";
+    submitBtn.textContent = "✅تم إرسال الطلب بنجاح، بانتظار الموافقة";
     submitBtn.style.backgroundColor = "#ccc";
     submitBtn.style.cursor = "not-allowed";
-    messageDiv.textContent = "⚠️.لديك طلب جارٍ قيد المراجعة، لا يمكن إرسال طلب جديد حالياً";
+    messageDiv.textContent = "⚠️لديك طلب جارٍ قيد المراجعة، لا يمكن إرسال طلب جديد حالياً";
     messageDiv.style.color = "orange";
     return;
   }
@@ -509,4 +429,3 @@ document.addEventListener("DOMContentLoaded", () => {
     usernameEl.textContent = fullName;
   }
 });
-

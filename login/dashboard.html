@@ -25,7 +25,7 @@
 <div class="welcome-text" style="text-align: right !important; direction: rtl !important;">
     👋 مرحبًا <strong id="username">المستخدم</strong> — هذا حساب شخصي ولا يجب مشاركته.
     إذا تم اكتشاف أي مشاركة، سيتم إلغاء الوصول تلقائيًا.
-    يرجى مراجعة 
+    يرجى مراجعة
     <a href="../terms.html" target="_blank" rel="noopener noreferrer">شروط الاستخدام</a>.
 </div>
 
@@ -50,34 +50,52 @@
 <div id="courses-container" class="all-courses-grid"></div>
   </section>
 
-  <!-- ✅ Buy a New Course Form -->
-  <section class="buy-new-course">
-    <h2>📥 شراء دورة جديدة</h2>
+  <!-- ✅ نموذج شراء مادة جديدة -->
+<section class="buy-new-course" dir="rtl" style="text-align: right;">
+  <h2>📥 شراء مادة جديدة</h2>
 
-    <form id="purchase-form">
-      <div>
-        <label for="courseSelect">Select a New Course</label>
-        <select id="courseSelect" name="course" required class="form-input">
-          <option value="">Loading available courses...</option>
-        </select>
-      </div>
+  <form id="purchase-form">
+    <!-- ✅ اختيار المادة -->
+    <div>
+      <label for="courseSelect">اختر مادة جديدة</label>
+      <select id="courseSelect" name="course" required class="form-input">
+        <option value="">جاري تحميل المواد المتاحة...</option>
+      </select>
+    </div>
 
-      <div>
-        <label for="receipt">Upload Payment Receipt (رفع إيصال الدفع)</label>
-        <input
-          type="file"
-          id="receipt"
-          name="receipt"
-          accept="image/*,application/pdf"
-          required
-          class="form-input"
-        />
-      </div>
+    <!-- ✅ عرض السعر -->
+    <div>
+      <label for="coursePrice">💰 السعر</label>
+      <input
+        type="text"
+        id="coursePrice"
+        class="form-input"
+        readonly
+        placeholder="—"
+      />
+    </div>
 
-      <button type="submit" class="btn">Submit Request</button>
-      <p id="purchase-message" style="margin-top: 1rem; color: green;"></p>
-    </form>
-  </section>
+    <!-- ✅ رفع إيصال الدفع -->
+    <div>
+      <label for="receipt">📎 رفع إيصال الدفع</label>
+      <input
+        type="file"
+        id="receipt"
+        name="receipt"
+        accept="image/*,application/pdf"
+        required
+        class="form-input"
+      />
+    </div>
+
+    <!-- ✅ زر الإرسال -->
+    <button type="submit" class="btn">إرسال الطلب</button>
+
+    <!-- ✅ رسالة حالة الطلب -->
+    <p id="purchase-message" style="margin-top: 1rem; color: green; text-align:center;"></p>
+  </form>
+</section>
+
  <!-- ✅ FOOTER -->
 <footer class="main-footer" dir="rtl">
   <div class="footer-content">
@@ -86,8 +104,8 @@
       <h3>عن المنصة</h3>
       <p>منصة جزائرية تعليمية موجهة لطلبة الجامعات، تقدم دورات مبسطة، ملفات PDF، وفيديوهات مباشرة مع أساتذة مؤهلين.</p>
    <p style="color: rgb(255, 42, 42); font-weight: bold; margin-top: 10px;">
-  ⚠️ تنبيه هام: جميع الفيديوهات المعروضة على منصة Derradj Academy محمية بموجب حقوق الملكية الفكرية.  
-  يُمنع منعًا باتًا نسخها أو تحميلها أو مشاركتها بأي وسيلة كانت.  
+  ⚠️ تنبيه هام: جميع الفيديوهات المعروضة على منصة Derradj Academy محمية بموجب حقوق الملكية الفكرية.
+  يُمنع منعًا باتًا نسخها أو تحميلها أو مشاركتها بأي وسيلة كانت.
   أي خرق لهذه القواعد يُعد انتهاكًا قانونيًا صريحًا، ويعرّض مرتكبه للملاحقة القضائية دون سابق إنذار.
 </p>
     </div>
