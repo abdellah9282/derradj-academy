@@ -121,7 +121,7 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
  <!-- Categories Section -->
 <section class="categories-section">
   <h2 class="section-title">🎓 Derradj Academy – Learn Everywhere, Anytime</h2>
-
+<!--
   <p id="hero-subtitle">
   فهم المواد الجامعية أصبح أسهل من أي وقت!
   شروحات مبسطة بالعربية وتمارين محلولة خطوة بخطوة،
@@ -129,7 +129,121 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
   انضم إلى آلاف الطلاب وابدأ طريقك نحو النجاح بثقة
 
 </p>
+-->
+<!-- 🎥 إعلان الحصة المباشرة الجماعية - النسخة المحسنة -->
+<section class="live-banner" dir="rtl" id="live-session">
+  <div class="live-container">
+    <span class="live-badge">🎥 حصة مباشرة جماعية</span>
 
+    <h2 class="live-title">
+      احجز مقعدك في <span class="highlight">Math 3 (Analyse 3)</span> مع البروفيسور
+    </h2>
+
+    <p class="live-desc">
+      جلسة تفاعلية مباشرة لـ <strong>5 طلاب فقط</strong> — فهم عميق، أسئلة فورية، وتمارين تطبيقية
+      تساعدك على إتقان المفاهيم الصعبة بخطوة بخطوة.
+    </p>
+
+    <div class="live-details">
+      <div class="detail" id="session-date">
+  <span>🗓️ تاريخ البث المباشر:</span>
+  <strong id="session-date-text">تحميل...</strong>
+</div>
+
+<div class="detail" id="countdown">
+  <span>⏳ يبدأ البث بعد:</span>
+  <strong id="time-remaining">—</strong>
+</div>
+
+      <div class="detail"><span>💰 السعر:</span><strong>1000 دج / طالب</strong></div>
+      <div class="detail"><span>⏱️ المدة:</span><strong>60 – 90 دقيقة</strong></div>
+      <div class="detail" id="seatsDisplay">
+        <span></span>
+        <strong>تحميل...</strong>
+      </div>
+    </div>
+
+    <div class="live-cta">
+      <a href="sign-up/live-session.html#live-session" class="btn ghost">📘 تفاصيل المادة</a>
+      <a href="sign-up/live-session.html" class="btn solid">🎥 احجز مقعدك الآن</a>
+    </div>
+  </div>
+</section>
+
+
+<style>
+/* 🎨 تصميم الإعلان */
+.live-banner {
+  background: linear-gradient(180deg, #faf5ff, #ffffff);
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  max-width: 920px;
+  margin: 1.5rem auto 2rem auto;
+  box-shadow: 0 6px 16px rgba(91, 33, 182, 0.12);
+  transition: transform 0.3s ease;
+}
+.live-banner:hover { transform: translateY(-3px); }
+
+.live-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 10px rgba(91, 33, 182, 0.25);
+  animation: pulseGlow 2.6s infinite ease-in-out;
+}
+@keyframes pulseGlow {
+  0%,100% { box-shadow: 0 0 8px rgba(109, 40, 217, 0.4); }
+  50% { box-shadow: 0 0 18px rgba(139, 92, 246, 0.7); }
+}
+.live-title { font-size: 1.8rem; color: #111827; font-weight: 700; margin: 0.8rem 0 1rem 0; }
+.live-title .highlight { color: #5b21b6; }
+.live-desc { color: #374151; font-size: 1.08rem; max-width: 680px; margin: 0 auto 1.5rem auto; line-height: 1.9; }
+.live-details { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 1.8rem; }
+.live-details .detail {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1e293b;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.live-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+.live-cta .btn {
+  padding: 12px 22px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.live-cta .solid {
+  background: #5b21b6;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(91, 33, 182, 0.2);
+}
+.live-cta .solid:hover { background: #4c1d95; }
+.live-cta .ghost {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
+}
+.live-cta .ghost:hover { background: #f9fafb; }
+#session-date strong,
+#countdown strong {
+  color: #5b21b6;
+  font-weight: 700;
+}
+
+</style>
 
 
 
@@ -1142,6 +1256,71 @@ if (form) {
 
 fetchModernComments();
 
+// ============================================================
+// ✅ عرض عدد المقاعد المتبقية فقط (يتحدث تلقائيًا)
+// ============================================================
+
+async function loadSeatsRemaining() {
+  const seatEl = document.querySelector("#seatsDisplay strong");
+  if (!seatEl) return;
+
+  const MAX_SEATS = 10;     // عدد المقاعد الكلي
+  const SESSION_ID = 1;    // رقم الجلسة في قاعدة البيانات
+
+  try {
+    // 📥 جلب عدد الطلبات المقبولة فقط (status = true)
+    const { data, error } = await supabase
+      .from("live_registrations")
+      .select("id", { count: "exact" })
+      .eq("session_id", SESSION_ID)
+      .eq("status", true);
+
+    if (error) {
+      console.error("⚠️ خطأ في تحميل البيانات:", error.message);
+      seatEl.textContent = "⚠️ خطأ في التحميل";
+      seatEl.style.color = "red";
+      return;
+    }
+
+    // ✅ حساب المقاعد المتبقية
+    const acceptedCount = data.length;
+    const remainingSeats = Math.max(MAX_SEATS - acceptedCount, 0);
+
+    // ✅ صياغة النص حسب العدد
+    let text = "";
+    if (remainingSeats === 0) {
+      text = "👥 ممتلئة — لا توجد مقاعد متبقية";
+      seatEl.style.color = "#dc2626"; // أحمر
+    } else if (remainingSeats === 1) {
+      text = "👥 عدد المقاعد المتبقية: مقعد واحد";
+      seatEl.style.color = "#ca8a04"; // ذهبي
+    } else if (remainingSeats === 2) {
+      text = "👥 عدد المقاعد المتبقية: مقعدان";
+      seatEl.style.color = "#ca8a04"; // ذهبي
+    } else if (remainingSeats >= 3 && remainingSeats <= 10) {
+      text = `👥 عدد المقاعد المتبقية: ${remainingSeats} مقاعد`;
+      seatEl.style.color = "#111827"; // رمادي داكن
+    } else {
+      text = `👥 عدد المقاعد المتبقية: ${remainingSeats}`;
+      seatEl.style.color = "#111827";
+    }
+
+    // 🖋️ عرض النتيجة
+    seatEl.textContent = text;
+
+  } catch (err) {
+    console.error("❌ خطأ في الاتصال:", err);
+    seatEl.textContent = "⚠️ خطأ في الاتصال";
+    seatEl.style.color = "red";
+  }
+}
+
+// 📡 تشغيل عند تحميل الصفحة
+document.addEventListener("DOMContentLoaded", loadSeatsRemaining);
+
+// 🔁 تحديث تلقائي كل 15 ثانية
+setInterval(loadSeatsRemaining, 15000);
+
 </script>
 
 
@@ -1219,5 +1398,69 @@ const installBtn = document.querySelector(".install-btn");
   caches.keys().then(names => names.forEach(name => caches.delete(name)));
 }
 </script>
+
+<script type="module">
+document.addEventListener("DOMContentLoaded", () => {
+  // 🕕 تاريخ ووقت البث المحدد
+  const sessionDate = new Date("2025-10-18T19:00:00"); // ← عدّل التاريخ والوقت هنا
+
+  const dateEl = document.getElementById("session-date-text");
+  const countdownEl = document.getElementById("time-remaining");
+
+  // 🗓️ تنسيق التاريخ يدويًا + الصيغة العربية
+  const daysOfWeek = ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+  const months = [
+    "جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان",
+    "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+  ];
+
+  const dayName = daysOfWeek[sessionDate.getDay()];
+  const day = sessionDate.getDate();
+  const month = months[sessionDate.getMonth()];
+  const year = sessionDate.getFullYear();
+
+  let hours = sessionDate.getHours();
+  const minutes = String(sessionDate.getMinutes()).padStart(2, "0");
+
+  // ☀️🌙 تحديد الصباح أو المساء
+  const period = hours < 13 ? "صباحًا ☀️" : "مساءً 🌙";
+
+  // تحويل الساعة إلى صيغة 12 ساعة للعرض فقط
+  const displayHours = hours === 0 ? 12 : (hours > 12 ? hours - 12 : hours);
+  const formattedHours = String(displayHours).padStart(2, "0");
+
+  // 🗓️ عرض التاريخ الكامل
+  dateEl.textContent = `${dayName} ${day} ${month} ${year} - ${formattedHours}:${minutes} ${period}`;
+
+  // ⏳ العدّ التنازلي للجلسة
+  function updateCountdown() {
+    const now = new Date();
+    const diff = sessionDate - now;
+
+    if (diff <= 0) {
+      countdownEl.textContent = "🎥 بدأ البث المباشر الآن";
+      countdownEl.style.color = "#16a34a"; // أخضر
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    let timeText = "";
+    if (days > 0) timeText += `${days} يوم${days > 1 ? "ًا" : ""} `;
+    if (hours > 0) timeText += `${hours} ساعة `;
+    if (minutes > 0) timeText += `${minutes} دقيقة `;
+    if (seconds >= 0) timeText += `${seconds} ث`;
+
+    countdownEl.textContent = timeText.trim();
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+});
+</script>
+
 </body>
 </html>
