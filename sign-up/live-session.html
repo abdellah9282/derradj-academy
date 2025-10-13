@@ -198,7 +198,7 @@
   padding:12px;
   font-weight:bold;
 ">
-  ✅ تم تسجيلك بنجاح، سنتواصل معك قريبًا لتأكيد المشاركة
+  ✅ تم تسجيلك بنجاح! سنتواصل معك قريبًا لتأكيد المشاركة.
 </div>
 
 <script>
@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
     successBox.style.display = "none";
 
     // تغيير نص الزر أثناء المعالجة
-    reserveBtn.textContent = "⏳... جاري تسجيلك ";
+    reserveBtn.textContent = "⏳ جاري تسجيلك...";
     reserveBtn.disabled = true;
     reserveBtn.style.opacity = "0.8";
 
@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const receiptFile = document.getElementById("receipt").files[0];
 
     if (!fullName || !contact || !receiptFile) {
-      errorBox.textContent = "❌ يرجى ملء جميع الحقول المطلوبة";
+      errorBox.textContent = "❌ يرجى ملء جميع الحقول المطلوبة.";
       reserveBtn.textContent = "💳 احجز الآن";
       reserveBtn.disabled = false;
       reserveBtn.style.opacity = "1";

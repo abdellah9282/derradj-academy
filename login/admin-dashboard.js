@@ -375,3 +375,75 @@ async function fetchTeachers() {
 
 // استدعاء الدالة عند تحميل الصفحة
 fetchTeachers();
+
+
+// ===============================
+// 📡 عرض المسجلين في البث المباشر (live_registrations)
+// ===============================
+async function loadLiveRegistrations() {
+const table = document.getElementById("liveRegistrationsTable");
+  if (!table) return;
+
+  table.innerHTML = "<tr><td colspan='6'>⏳ جاري تحميل بيانات البث المباشر...</td></tr>";
+
+  const { data, error } = await supabase
+    .from("live_registrations")
+    .select("*")
+    .order("id", { ascending: false });
+
+  if (error) {
+    console.error("⚠️ خطأ في جلب المسجلين:", error.message);
+    table.innerHTML = `<tr><td colspan="6" style="color:red;">⚠️ فشل تحميل البيانات</td></tr>`;
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    table.innerHTML = `<tr><td colspan="6" style="text-align:center;">لا يوجد طلبات حاليًا</td></tr>`;
+    return;
+  }
+
+  table.innerHTML = "";
+  data.forEach((r) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${r.full_name}</td>
+      <td>${r.contact}</td>
+      <td>${r.subject || "غير محدد"}</td>
+      <td><a href="${r.receipt_url}" target="_blank" style="color:#2563eb;">📎 عرض الوصل</a></td>
+      <td>${r.status === true ? "✅ مقبول" : r.status === false ? "❌ مرفوض" : "⏳ قيد المراجعة"}</td>
+      <td>
+        <button class="approveLive" data-id="${r.id}" style="margin-right:4px;">✅ قبول</button>
+        <button class="rejectLive" data-id="${r.id}" style="color:red;">❌ رفض</button>
+      </td>
+    `;
+    table.appendChild(row);
+  });
+
+  // 🎯 التعامل مع أزرار القبول والرفض
+  document.querySelectorAll(".approveLive").forEach((btn) =>
+    btn.addEventListener("click", () => updateLiveStatus(btn.dataset.id, true))
+  );
+
+  document.querySelectorAll(".rejectLive").forEach((btn) =>
+    btn.addEventListener("click", () => updateLiveStatus(btn.dataset.id, false))
+  );
+}
+
+// ✅ تحديث حالة المسجل في البث
+async function updateLiveStatus(id, status) {
+  const { error } = await supabase
+    .from("live_registrations")
+    .update({ status })
+    .eq("id", id);
+
+  if (error) {
+    alert("⚠️ حدث خطأ أثناء التحديث");
+    console.error(error);
+  } else {
+    alert("✅ تم تحديث الحالة بنجاح");
+    loadLiveRegistrations();
+  }
+}
+
+// ⏱️ استدعاء الدالة عند تحميل الصفحة
+loadLiveRegistrations();
