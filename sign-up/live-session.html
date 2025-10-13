@@ -198,7 +198,7 @@
   padding:12px;
   font-weight:bold;
 ">
-  ✅ تم تسجيلك بنجاح! سنتواصل معك قريبًا لتأكيد المشاركة.
+  ✅ تم تسجيلك بنجاح، سنتواصل معك قريبًا لتأكيد المشاركة
 </div>
 
 <script>
@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
     successBox.style.display = "none";
 
     // تغيير نص الزر أثناء المعالجة
-    reserveBtn.textContent = "⏳ جاري تسجيلك...";
+    reserveBtn.textContent = "⏳... جاري تسجيلك ";
     reserveBtn.disabled = true;
     reserveBtn.style.opacity = "0.8";
 
@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const receiptFile = document.getElementById("receipt").files[0];
 
     if (!fullName || !contact || !receiptFile) {
-      errorBox.textContent = "❌ يرجى ملء جميع الحقول المطلوبة.";
+      errorBox.textContent = "❌ يرجى ملء جميع الحقول المطلوبة";
       reserveBtn.textContent = "💳 احجز الآن";
       reserveBtn.disabled = false;
       reserveBtn.style.opacity = "1";
@@ -674,83 +674,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </footer>
 
-  <!-- SCRIPT -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const { createClient } = supabase;
-  const supabaseClient = createClient(
-    "https://sgcypxmnlyiwljuqvcup.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
-  );
 
-  const form = document.getElementById("liveSessionForm");
-  const errorBox = document.getElementById("errorBox");
-  const successBox = document.getElementById("successBox");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    errorBox.textContent = "";
-    successBox.style.display = "none";
-
-    const fullName = document.getElementById("fullName").value.trim();
-    const contact = document.getElementById("contact").value.trim();
-    const note = document.getElementById("note").value.trim();
-    const receiptFile = document.getElementById("receipt").files[0];
-
-    // اسم المادة الحالي
-    const subject = "Math 3 (Analyse 3)";
-
-    if (!fullName || !contact || !receiptFile) {
-      errorBox.textContent = "❌ يرجى ملء جميع الحقول المطلوبة.";
-      return;
-    }
-
-    try {
-      // 🔹 رفع وصل الدفع إلى Supabase Storage
-      const fileName =
-        Date.now() +
-        "_" +
-        receiptFile.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
-
-      const { data: fileData, error: uploadError } = await supabaseClient
-        .storage
-        .from("receipts")
-        .upload(fileName, receiptFile);
-
-      if (uploadError) throw uploadError;
-
-      const receiptUrl = supabaseClient
-        .storage
-        .from("receipts")
-        .getPublicUrl(fileData.path).data.publicUrl;
-
-      // 🔹 إدخال البيانات إلى الجدول
-      const { error: dbError } = await supabaseClient
-        .from("live_registrations")
-        .insert([
-          {
-            full_name: fullName,
-            contact: contact,
-            note: note || null,
-            receipt_url: receiptUrl,
-            subject: subject,
-            session_id: 1,
-            status: null  // 👈 الحالة تترك فارغة (لم تُراجع بعد)
-          }
-        ]);
-
-      if (dbError) throw dbError;
-
-      // ✅ نجاح العملية
-      form.reset();
-      successBox.style.display = "block";
-    } catch (err) {
-      console.error(err);
-      errorBox.textContent = "⚠️ حدث خطأ أثناء التسجيل. حاول مجددًا.";
-    }
-  });
-});
-</script>
 
 <script src="../js/protect.js"></script>
 <script>
