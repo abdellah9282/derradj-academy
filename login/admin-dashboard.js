@@ -377,18 +377,18 @@ async function fetchTeachers() {
 fetchTeachers();
 
 
-// ===============================
 // 📡 عرض المسجلين في البث المباشر (live_registrations)
-// ===============================
 async function loadLiveRegistrations() {
-const table = document.getElementById("liveRegistrationsTable");
+  const table = document.getElementById("liveRegistrationsTable");
   if (!table) return;
 
-  table.innerHTML = "<tr><td colspan='6'>⏳ جاري تحميل بيانات البث المباشر...</td></tr>";
+  // تفريغ الجدول مؤقتًا أثناء التحميل
+  table.innerHTML = "<tr><td colspan='6'>⏳ جاري تحميل البيانات...</td></tr>";
 
   const { data, error } = await supabase
     .from("live_registrations")
     .select("*")
+    .is("status", null) // ✅ إظهار فقط الطلبات المعلقة
     .order("id", { ascending: false });
 
   if (error) {
@@ -397,11 +397,13 @@ const table = document.getElementById("liveRegistrationsTable");
     return;
   }
 
+  // إذا لا توجد طلبات معلقة، نجعل الجدول فارغ بدون أي رسالة
   if (!data || data.length === 0) {
-    table.innerHTML = `<tr><td colspan="6" style="text-align:center;">لا يوجد طلبات حاليًا</td></tr>`;
+    table.innerHTML = "";
     return;
   }
 
+  // تعبئة البيانات
   table.innerHTML = "";
   data.forEach((r) => {
     const row = document.createElement("tr");
@@ -441,7 +443,7 @@ async function updateLiveStatus(id, status) {
     console.error(error);
   } else {
     alert("✅ تم تحديث الحالة بنجاح");
-    loadLiveRegistrations();
+    loadLiveRegistrations(); // 🔄 إعادة تحميل الجدول بدون الطلب المقبول أو المرفوض
   }
 }
 
