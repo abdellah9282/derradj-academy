@@ -130,41 +130,43 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 
 </p>
 -->
-<!-- 🎥 إعلان الحصة المباشرة الجماعية - النسخة المحسنة -->
+<!-- 🎥 إعلان الحصة الجماعية المجانية - النسخة المحسنة -->
 <section class="live-banner" dir="rtl" id="live-session">
   <div class="live-container">
-    <span class="live-badge">🎥 حصة مباشرة جماعية</span>
+    <span class="live-badge">🎥 حصة جماعية مجانية</span>
 
 <h2 class="live-title">
-  انضم إلى أول بث مباشر لمادة <span class="highlight">Math 3 (Analyse 3)</span> مع البروفيسور أمزيان
+  انضم إلى أول حصة مجانية لمادة <span class="highlight">Math 3 (Analyse 3)</span> مع البروفيسور أمزيان
 </h2>
 
-
 <p class="live-desc" style="text-align:center; color:#1e293b; line-height:1.8; font-size:1.05rem;">
-بث مباشر مع <strong>البروفيسور الجامعي Ameziane, S.</strong>، أستاذ ذو خبرة واسعة في تدريس مادة <strong>Math 3</strong>، مخصّص لفوج محدود من <strong>10 طلاب فقط</strong> — تجربة تفاعلية متميزة تضمن فهمًا عميقًا وواضحًا للمادة.
-    <div class="live-details">
+<p class="live-desc" style="text-align:center; color:#1e293b; line-height:1.8; font-size:1.05rem;">
+حصة مجانية يقدمها <strong>البروفيسور Ameziane, S.</strong> تهدف إلى ترسيخ المفاهيم الأساسية وتبسيط محتوى <strong>Math 3</strong> بطريقة واضحة وتفاعلية، وتُقام هنا على المنصة لتضمن لك تجربة تعليمية مريحة ومتميزة.
+</p>
+
+<div class="live-details">
       <div class="detail" id="session-date">
-  <span>🗓️ تاريخ البث المباشر:</span>
+  <span>🗓️ تاريخ الحصة:</span>
   <strong id="session-date-text">تحميل...</strong>
 </div>
 
 <div class="detail" id="countdown">
-  <span>⏳ يبدأ البث بعد:</span>
+  <span>⏳ تبدأ الحصة بعد:</span>
   <strong id="time-remaining">—</strong>
 </div>
 
-      <div class="detail"><span>💰 السعر:</span><strong>1000 دج / طالب</strong></div>
+      <div class="detail"><span>💰 السعر:</span><strong style="color:#16a34a;">مجانية 🎉</strong></div>
       <div class="detail"><span>⏱️ المدة:</span><strong>60 – 90 دقيقة</strong></div>
-      <div class="detail" id="seatsDisplay">
+  <!--    <div class="detail" id="seatsDisplay">
         <span></span>
         <strong>تحميل...</strong>
       </div>
-    </div>
+    </div> -->
 
-    <div class="live-cta">
+  <!--  <div class="live-cta">
       <a href="sign-up/live-session.html#live-session" class="btn ghost">📘 تفاصيل المادة</a>
-      <a href="sign-up/live-session.html" class="btn solid">🎥 احجز مقعدك الآن</a>
-    </div>
+      <a href="sign-up/live-session.html" class="btn solid">🎥 احجز مقعدك المجاني الآن</a>
+    </div>  -->
   </div>
 </section>
 
@@ -240,8 +242,8 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
   color: #5b21b6;
   font-weight: 700;
 }
-
 </style>
+
 
 
 
@@ -1400,7 +1402,7 @@ const installBtn = document.querySelector(".install-btn");
 <script type="module">
 document.addEventListener("DOMContentLoaded", () => {
   // 🕕 تاريخ ووقت البث المحدد
-  const sessionDate = new Date("2025-10-18T19:00:00"); // ← عدّل التاريخ والوقت هنا
+  const sessionDate = new Date("2025-10-25T19:00:00"); // ← عدّل التاريخ والوقت هنا
 
   const dateEl = document.getElementById("session-date-text");
   const countdownEl = document.getElementById("time-remaining");
