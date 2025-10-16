@@ -653,7 +653,7 @@ window.addEventListener("load", () => {
     لتعبئة بياناتك وإرفاق صورة الوصل.
   </p>
 
-  <div class="pay-methods-list">
+<div class="pay-methods-list">
     <!-- BaridiMob -->
     <div class="pay-card">
       <span class="badge">BaridiMob</span>
@@ -662,17 +662,90 @@ window.addEventListener("load", () => {
         يرجى تحويل مبلغ الدورة عبر تطبيق <b style="direction: ltr; display: inline-block; margin: 0 4px;">BaridiMob</b> إلى الحساب التالي:
       </p>
 <ul style="direction: rtl; text-align: right; padding: 0; margin: 0; list-style: none; max-width: 360px;">
-  <li class="baridi-rip" style="display: flex; align-items: center; gap: 0.4em; background: #f8fafc; border: 1px solid #e0e7ef; border-radius: 10px; padding: 1rem 1.2rem;">
-    <span class="baridi-rip-value" style="font-size: 1.1em; color: #1e293b; font-family: 'Segoe UI', monospace; letter-spacing: 1px; font-weight: bold;">
+  <li class="baridi-rip" style="display: flex; align-items: center; gap: 0.6em; background: #f8fafc; border: 1px solid #e0e7ef; border-radius: 10px; padding: 1rem 0.9rem;">
+    <span class="baridi-rip-value" id="baridiRip" style="font-size: 1.1em; color: #1e293b; font-family: 'Segoe UI', monospace; letter-spacing: 1px; font-weight: bold;">
       00799999002580233574
     </span>
     <span class="baridi-rip-label" style="font-weight: bold; color: #1e40af; font-size: 1.13em; min-width: 48px;">
       RIP :
     </span>
+
+    <!-- زر نسخ RIP -->
+<button type="button" class="copy-rip-btn" aria-label="نسخ RIP" data-rip="00799999002580233574"
+  style="
+    margin-inline-start:8px;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color:#ffffff;                /* ✅ اللون الأبيض للنص */
+    border:none;
+    padding:10px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:0.95rem;
+    line-height:1;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction: row-reverse;  /* ✅ يعكس الاتجاه لتناسب العربية */
+    gap:6px;
+    box-shadow:0 4px 12px rgba(79,70,229,0.25);
+    transition: all 0.25s ease-in-out;
+  "
+  onmouseover="this.style.background='linear-gradient(135deg, #4338ca, #4f46e5)'; this.style.transform='translateY(-2px)';"
+  onmouseout="this.style.background='linear-gradient(135deg, #4f46e5, #6366f1)'; this.style.transform='none';"
+  onclick="
+    navigator.clipboard.writeText(this.dataset.rip).then(()=>{
+      this.querySelector('span').textContent='تم النسخ ✅';
+      this.style.background='linear-gradient(135deg, #15803d, #16a34a)';
+      setTimeout(()=>{
+        this.querySelector('span').textContent='نسخ';
+        this.style.background='linear-gradient(135deg, #4f46e5, #6366f1)';
+      },2000);
+    });
+  ">
+  <span style="display:inline-block; color:#ffffff;">نسخ</span> 📋
+</button>
+
   </li>
 </ul>
 
     </div>
+<!-- ...existing code... -->
+
+<!-- سكربت بسيط لنسخ RIP وإظهار رسالة مؤقتة -->
+<script>
+  (function(){
+    const btn = document.querySelector('.copy-rip-btn');
+    if (!btn) return;
+    const originalText = btn.textContent;
+
+    btn.addEventListener('click', async () => {
+      const value = btn.getAttribute('data-rip') || document.getElementById('baridiRip')?.textContent?.trim();
+      if (!value) return;
+
+      // حاول استخدام واجهة الحافظة الحديثة ثم fallback
+      try {
+        await navigator.clipboard.writeText(value);
+      } catch (err) {
+        // fallback
+        const ta = document.createElement('textarea');
+        ta.value = value;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        ta.remove();
+      }
+
+      // إظهار تغييّر مؤقت
+      btn.textContent = 'تم النسخ';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }, 1500);
+    });
+  })();
+</script>
 
     <!-- Algérie Poste Card -->
     <div class="pay-card" style="background: #ffffff; border: 1px solid #d6d9e7; border-radius: 14px; padding: 1.8rem 1.5rem; max-width: 720px; min-width: 340px; width: 100%; box-shadow: 0 4px 12px rgba(76, 29, 149, 0.1); margin: 0 auto; font-size: 1.1em; position: relative;">
