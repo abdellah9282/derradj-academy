@@ -2340,16 +2340,22 @@ body, html {
 }
 
 /* اقتطاع النصوص الطويلة بدلاً من تغيير حجم البطاقة */
+/* ✂️ اقتطاع النصوص الطويلة داخل بطاقات الدورات */
 .course-title,
 .course-card h3 {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  display: box; /* دعم أوسع */
   -webkit-box-orient: vertical;
+          box-orient: vertical;
+  -webkit-line-clamp: 2;
+          line-clamp: 2; /* ✅ الخاصية القياسية الحديثة */
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.2;
-  max-height: 2.4em;
+  line-height: 1.4; /* تباعد أسطر مريح */
+  max-height: calc(1.4em * 2); /* ضبط الارتفاع بدقة */
+  white-space: normal; /* السماح بكسر الأسطر */
 }
+
 
 /* معالج الأسماء والمدرّس */
 .instructor {
@@ -2379,5 +2385,45 @@ body, html {
   .course-image {
     height: 150px !important;
     flex: 0 0 150px !important;
+  }
+}
+/* ✅ تحسين عرض بطاقات الدورات على الهاتف */
+@media (max-width: 600px) {
+  .course-card {
+    flex: 0 0 300px !important;   /* كانت 260px، أصبحت أكبر قليلاً */
+    width: 300px !important;
+    min-width: 300px !important;
+    height: 430px !important;     /* ارتفاع متناسب مع العرض */
+    padding: 16px !important;
+    border-radius: 14px !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+    margin-bottom: 12px !important;
+  }
+
+  .course-card .course-img,
+  .course-image {
+    height: 170px !important;     /* رفع ارتفاع الصورة لتبدو أوضح */
+    border-radius: 10px !important;
+  }
+
+  .course-title,
+  .course-card h3 {
+    font-size: 15px !important;   /* أكبر قليلًا للقراءة على الهاتف */
+    line-height: 1.5 !important;
+  }
+
+  .instructor {
+    font-size: 13px !important;
+  }
+
+  .price {
+    font-size: 16px !important;
+    padding: 8px 22px !important;
+    border-radius: 10px !important;
+  }
+
+  .course-cards {
+    gap: 14px !important;         /* زيادة المسافة قليلاً بين البطاقات */
+    padding: 8px 4px !important;
   }
 }

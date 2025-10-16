@@ -570,3 +570,140 @@
   width: 100%;
   margin: 1.2rem auto 0 auto;
 }
+/* ✅ تحسين شامل لعرض صفحة Math 3 على الهاتف */
+@media (max-width: 600px) {
+
+  /* 🟣 تهيئة عامة */
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: #fafafa;
+  }
+
+  .course-content {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  /* 🟢 رأس الصفحة */
+  .course-header-box {
+    padding: 1.2rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+
+  .course-title {
+    font-size: 1.4rem;
+    line-height: 1.4;
+  }
+
+  .instructor-name,
+  .instructor-bio {
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  /* 🟠 بطاقات الفيديوهات */
+  .playlist-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .playlist-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 14px;
+  }
+
+  .playlist-thumbnail {
+    width: 100%;
+    max-width: 330px;
+    height: auto;
+    margin-bottom: 0.7rem;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .playlist-info h4 {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .hover-bar {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  /* 🔵 قسم الدفع */
+  #pay-methods-section {
+    width: 100vw;
+    border-radius: 0;
+    margin: 1rem 0 0 0;
+    box-shadow: none;
+    border: none;
+  }
+
+  #pay-methods-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .pay-card {
+    width: 90%;
+    margin: 0.8rem auto;
+    font-size: 1rem;
+    padding: 1.2rem;
+  }
+
+  .poste-data {
+    font-size: 0.95rem;
+    grid-template-columns: 100px 1fr;
+    gap: 6px 10px;
+    padding: 1rem;
+  }
+
+  /* 🟡 قسم التواصل */
+  .contact-form {
+    padding: 1.5rem 1rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  .contact-form button {
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+    color: #fff;
+    border: none;
+  }
+
+  /* 🟣 الفوتر */
+  .main-footer {
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+
+  .footer-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-section h3 {
+    font-size: 1.1rem;
+  }
+
+  .footer-section p,
+  .footer-section a {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}
