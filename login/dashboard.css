@@ -313,3 +313,42 @@
     margin-bottom: 1.5rem;   /* مسافة بين البطاقات */
   }
 }
+/* 🎨 تنسيق قسم الدورات في صفحة لوحة المستخدم */
+.dashboard-courses-section {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.dashboard-section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #5b21b6;
+  margin-bottom: 1.5rem;
+}
+
+/* شبكة البطاقات */
+.dashboard-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  align-items: stretch;
+}
+
+/* 📱 تحسين للهواتف */
+@media (max-width: 600px) {
+  .dashboard-section-title {
+    font-size: 1.4rem;
+  }
+
+  .dashboard-courses-section {
+    padding: 1.5rem 0.8rem;
+  }
+
+  .dashboard-courses-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}

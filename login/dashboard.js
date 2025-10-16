@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const userModules = JSON.parse(userModulesRaw);
-  const container = document.getElementById("courses-container");
+const container = document.getElementById("dashboard-courses-container");
 
   if (!Array.isArray(userModules) || userModules.length === 0) {
     container.innerHTML = "<p style='text-align: center; color:red;'>❌ No registered courses found.</p>";
@@ -123,7 +123,7 @@ userModules.forEach((moduleKey) => {
         <span class="stars">★ ★ ★ ★ ★</span>
         <span class="reviews" id="reviews-${moduleKey}">(...)</span>
       </div>
-      <a href="${courseLinks[moduleKey] || '#'}" class="course-btn">Go to Course</a>
+      <a href="${courseLinks[moduleKey] || '#'}" class="course-btn">اضغط هنا لمشاهدة الدورة</a>
     </div>
   `;
   fragment.appendChild(card);
