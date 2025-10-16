@@ -2290,3 +2290,94 @@ body, html {
   .rating {
     display: none !important;       /* إلغاء ظهور التقييمات*/
   }
+/* ===== تحسين عرض course-cards: أحجام ثابتة، ترتيب أفقي متسق ===== */
+.course-cards {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 16px !important;
+  padding: 8px 6px !important;
+  margin: 0 !important;
+  overflow-x: auto !important;
+  scroll-snap-type: x mandatory !important;
+  align-items: stretch !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* حجم ثابت ومتناسق لكل بطاقة */
+.course-card {
+  flex: 0 0 320px !important;    /* ثابت العرض */
+  width: 320px !important;
+  min-width: 330px !important;
+  max-width: 320px !important;
+  height: 420px !important;      /* ارتفاع موحّد للحفاظ على توازن الشبكة */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  box-sizing: border-box !important;
+  scroll-snap-align: start !important;
+  overflow: hidden !important;
+}
+
+/* صورة بحجم ثابت داخل البطاقة */
+.course-card .course-img,
+.course-image {
+  width: 100% !important;
+  height: 180px !important;
+  object-fit: cover !important;
+  flex: 0 0 180px !important;
+  border-radius: 6px !important;
+}
+
+/* محتوى البطاقة يتصرف بشكل مرن ويملأ المساحة المتبقية */
+.course-card .course-content,
+.course-content {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 12px !important;
+}
+
+/* اقتطاع النصوص الطويلة بدلاً من تغيير حجم البطاقة */
+.course-title,
+.course-card h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  max-height: 2.4em;
+}
+
+/* معالج الأسماء والمدرّس */
+.instructor {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* تأكد من أن السعر/زر يظهر في أسفل البطاقة */
+.course-card .price,
+.price {
+  margin-top: 12px !important;
+  align-self: center; /* ✅ يضع العنصر في المنتصف داخل flex container */
+  text-align: center;
+}
+
+
+/* استجابة للشاشات الصغيرة: تقليل العرض مع الحفاظ على نفس النسبة */
+@media (max-width: 600px) {
+  .course-card {
+    flex: 0 0 260px !important;
+    width: 260px !important;
+    min-width: 260px !important;
+    height: 400px !important;
+  }
+  .course-card .course-img,
+  .course-image {
+    height: 150px !important;
+    flex: 0 0 150px !important;
+  }
+}
