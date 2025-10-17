@@ -288,5 +288,3 @@ button[type="submit"]:hover {
 .toggle-courses-btn.active::after {
   transform: translateY(-50%) rotate(180deg);
 }
-
-

@@ -180,8 +180,8 @@
 </div>
       </div>
       <div class="form-group">
-        <label for="paymentProof">Upload Payment Receipt</label>
-        <input type="file" id="paymentProof" name="paymentProof" accept=".jpg,.jpeg,.png,.pdf" required />
+        <label for="paymentProof">Upload Payment Receipt (تحميل وصل الدفع)</label>
+        <input type="file" id="paymentProof" name="paymentProof" accept=".jpg,.jpeg,.png,.pdf,.heic,.webp,.jfif,.bmp" required />
       </div>
 
       <button type="submit">Sign Up</button>
@@ -380,9 +380,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const { data: fileData, error: fileError } = await supabaseClient.storage
-        .from("receipts")
-        .upload(fileName, paymentFile);
+const { data: fileData, error: fileError } = await supabaseClient.storage
+  .from("receipts")
+  .upload(fileName, paymentFile, {
+    cacheControl: "3600",
+    upsert: true, // ✅ يسمح باستبدال الملف إذا وُجد بنفس الاسم لتفادي الأخطاء
+    contentType: paymentFile.type || "application/octet-stream", // ✅ يحدد نوع الملف تلقائيًا
+  });
+
       if (fileError) throw fileError;
 
       const receiptUrl = supabaseClient.storage
