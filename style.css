@@ -2309,7 +2309,7 @@ body, html {
   width: 320px !important;
   min-width: 330px !important;
   max-width: 320px !important;
-  height: 420px !important;      /* ارتفاع موحّد للحفاظ على توازن الشبكة */
+  height: 390px !important;      /* ارتفاع موحّد للحفاظ على توازن الشبكة */
   display: flex !important;
   flex-direction: column !important;
   justify-content: flex-start !important;
@@ -2393,7 +2393,7 @@ body, html {
     flex: 0 0 300px !important;   /* كانت 260px، أصبحت أكبر قليلاً */
     width: 300px !important;
     min-width: 300px !important;
-    height: 430px !important;     /* ارتفاع متناسب مع العرض */
+    height: 390px !important;     /* ارتفاع متناسب مع العرض */
     padding: 16px !important;
     border-radius: 14px !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
@@ -2463,4 +2463,16 @@ grid-template-columns: repeat(2, 1fr); / صفين فقط على التابلت *
 .course-cards {
 grid-template-columns: 1fr; /* دورة واحدة في كل صف */
 }
+}
+.course-card .price {
+  margin-top: auto !important;     /* يدفع السعر إلى أسفل البطاقة */
+  margin-bottom: -7px !important;  /* يترك مسافة بسيطة من الحافة */
+  align-self: center;
+  text-align: center;
+}
+.course-card .instructor {
+  margin-bottom: 6x !important;  /* ينزله قليلاً للأسفل */
+  margin-top: auto !important;    /* يثبت موقعه فوق السعر مباشرة */
+  text-align: center;
+  color: #6b7280;
 }
