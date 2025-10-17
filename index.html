@@ -245,31 +245,17 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
      style="overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
   <div class="categories-scroll"
        style="display: flex; flex-direction: row-reverse; justify-content: center; gap: 12px; min-width: max-content;">
-    <button class="category" onclick="window.location.href='All%20playlist/all-playlists.html'">
-      جميع الدورات
-    </button>
+<!-- ...existing code... -->
+<button class="category highlight" aria-label="باقة السنة الثانية جامعي">
+  🎓 دروس أكاديمية بجودة عالية
+</button>
+<!-- ...existing code... -->
     <button class="category">🔒 موقع آمن وموثوق</button>
     <button class="category">💳 دفع بالبطاقة الذهبية، بريدي موب، أو بريد الجزائر</button>
     <button class="category">💬 دعم فني دائم 24/7</button>
     <button class="category">🎓 آلاف الطلاب يثقون بنا</button>
   </div>
 </div>
-
-
-<style>
-.categories-scroll-container::-webkit-scrollbar {
-  display: none;
-}
-
-/* 🔹 نفس التنسيق مع تكبير خفيف للخط */
-.category {
-  font-size: 1rem;   /* كان 0.96rem — زيدناه قليلاً فقط */
-  font-weight: 545;     /* نفس السماكة */
-  padding: 10px 16px;   /* بدون تغيير */
-}
-</style>
-
-
 
 <script>
 window.addEventListener("load", () => {
@@ -285,6 +271,22 @@ window.addEventListener("load", () => {
   }
 });
 </script>
+<style>
+.categories-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* 🔹 نفس التنسيق مع تكبير خفيف للخط */
+.category {
+  font-size: 1rem;   /* كان 0.96rem — زيدناه قليلاً فقط */
+  font-weight: 545;     /* نفس السماكة */
+  padding: 10px 16px;   /* بدون تغيير */
+}
+</style>
+
+
+
+
 
 
 
@@ -295,8 +297,6 @@ window.addEventListener("load", () => {
     <!-- Course Cards with scroll buttons -->
     <div class="course-scroll-container" style="position: relative;">
 
-      <!-- Scroll Left Button -->
-      <button class="scroll-left-btn" style="display: none;">&#10094;</button>
 
       <div class="course-cards">
 
@@ -541,52 +541,13 @@ window.addEventListener("load", () => {
 
 
 
-      <!-- Scroll Right Button -->
-      <button class="scroll-right-btn">&#10095;</button>
-    </div>
+
   </section>
 
 
-  <script>
-    const scrollContainer = document.querySelector('.course-cards');
-    const scrollRightBtn = document.querySelector('.scroll-right-btn');
-    const scrollLeftBtn = document.querySelector('.scroll-left-btn');
-    const scrollAmount = 320;
-
-    scrollRightBtn.addEventListener('click', () => {
-      scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      scrollLeftBtn.style.display = 'block';
-    });
-
-    scrollLeftBtn.addEventListener('click', () => {
-      scrollContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      setTimeout(() => {
-        if (scrollContainer.scrollLeft < 50) {
-          scrollLeftBtn.style.display = 'none';
-        }
-      }, 400);
-    });
-
-    // ✅ التمرير التلقائي يمينًا كل 4 ثواني ثم يعود للبداية
-    const autoScrollDelay = 5000; // ⏱ كل 4 ثواني
-    setInterval(() => {
-      const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-      const currentScroll = scrollContainer.scrollLeft;
-
-      if (currentScroll >= maxScroll - 10) {
-        scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
-        scrollLeftBtn.style.display = 'none';
-      } else {
-        scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        scrollLeftBtn.style.display = 'block';
-      }
-    }, autoScrollDelay);
 
 
-  </script>
-
-
-<section class="special-bundles-section">
+<section id="bundle-section" class="special-bundles-section">
   <h2>باقة المواد الخاصة</h2>
 
   <div class="bundles-container">

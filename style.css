@@ -2427,3 +2427,40 @@ body, html {
     padding: 8px 4px !important;
   }
 }
+
+
+.course-cards {
+display: grid !important;
+grid-template-columns: repeat(3, 1fr); /* 🔹 ثلاث بطاقات في كل صف /
+gap: 24px; / 🔹 تباعد مريح بين البطاقات */
+padding: 20px 5%;
+justify-items: center;
+background-color: var(--bg-light, #f9f9fc);
+}
+
+/* تحسين المظهر لكل بطاقة */
+.course-card {
+width: 100%;
+max-width: 320px;
+background: #fff;
+border-radius: 12px;
+box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+transition: transform 0.3s ease;
+}
+
+.course-card:hover {
+transform: translateY(-5px);
+}
+
+/* 📱 استجابة للشاشات /
+@media (max-width: 900px) {
+.course-cards {
+grid-template-columns: repeat(2, 1fr); / صفين فقط على التابلت */
+
+
+
+@media (max-width: 600px) {
+.course-cards {
+grid-template-columns: 1fr; /* دورة واحدة في كل صف */
+}
+}
