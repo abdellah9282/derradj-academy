@@ -12,6 +12,8 @@ const courses = [
   { title: "Reseaux Électrique", link: "/courses/réseaux_electrique.html" },
   { title: "Systemes Asservis", link: "/courses/systeme_asservis.html" },
   { title: "Theorie du signal", link: "/courses/theorie_du_signal.html" },
+    { title: "Théorie du Champ Électromagnétique", link: "/courses/theorie_du_champ.html" },
+
 ];
 
 

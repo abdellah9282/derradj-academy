@@ -58,6 +58,8 @@ const allCourses = {
   systeme_asservis: { title: "Systèmes Asservis", instructor: "Abdellah Derradj", price: 1200, image: "../Thumbnail/systemeasservi/02.jpg" },
   reseaux_electrique: { title: "Réseaux Électriques", instructor: "Abdellah Derradj", price: 1200, image: "../Thumbnail/reseau_electrique/01.jpg" },
   theorie_du_signal: { title: "Théorie du Signal", instructor: "Abdellah Derradj", price: 800, image: "../Thumbnail/theorie_de_signal/02.jpg" },
+    theorie_du_champ: { title: "Théorie du Champ Électromagnétique L3", instructor: "Abdellah Derradj", price: 800, image: "../Thumbnail/theorie_champ/03.jpg" },
+
   bundle_second_year: { title: "باقة السنة الثانية – 5 مواد", instructor: "Abdellah Derradj", price: 4999 }
 };
 const priceInput = document.getElementById("coursePrice");
@@ -86,6 +88,7 @@ const courseLinks = {
   methodes_numeriques: "../mycourses-board/methodes_numeriques.html",
   systeme_asservis: "../mycourses-board/systeme_asservis.html",
   reseaux_electrique: "../mycourses-board/reseaux_electrique.html",
+  theorie_du_champ: "../mycourses-board/theorie_du_champ.html",
   theorie_du_signal: "../mycourses-board/theorie_du_signal.html"
 };
 
