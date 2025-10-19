@@ -184,7 +184,7 @@ async function submitRating() {
   }
 
   btn.disabled = true;
-  btn.textContent = "جاري الإرسال...";
+  btn.textContent = "... جاري الإرسال ";
 
   const { data: existingRating } = await supabase
     .from("course_ratings")
