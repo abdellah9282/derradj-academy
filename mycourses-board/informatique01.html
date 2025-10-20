@@ -220,13 +220,11 @@
 <div id="rating-popup" class="rating-popup">
   <div class="popup-content">
     <span id="close-popup" class="close-btn">&times;</span>
-    <h3>🎁 شاركنا رأيك واربح</h3>
+    <h3>⭐ تقييمك يهمنا</h3>
     <p>
-      قم بترك تعليق <strong>إيجابي</strong> واحصل على
-      <strong>شحن رصيد أوريدو، جيزي أو موبيليس</strong>
-      بقيمة <strong> 500 دج </strong>
+      لم تقم بعد بتقييم هذه الدورة. اضغط أدناه لتقييمها
     </p>
-    <button id="go-to-rating">شارك الآن</button>
+    <button id="go-to-rating">قيّم الآن</button>
   </div>
 </div>
 
@@ -285,89 +283,69 @@
 }
 </style>
 
-<!-- ⭐️ التقييم -->
+<!-- ⭐️ قسم التقييم -->
 <div id="rating-section">
   <h3>⭐ قيّم الدورة</h3>
 
-  <!-- 🏆 إعلان المسابقة -->
-<!-- 🏆 إعلان المسابقة -->
-<div class="contest-banner">
-  <div class="banner-content">
-    <span class="trophy">🏆</span>
-    <div class="text">
-      <p>
-        قم بترك تعليق <strong>إيجابي</strong> ومميز لتحصل على
-        <strong>شحن رصيد 500 دج</strong>
-        إلى <span class="highlight">🎁 أوريدو، جيزي أو موبيليس</span>
-      </p>
-      <span class="limited-offer"> عرض محدود — سارع بالمشاركة قبل انتهاء العرض</span>
+  <!-- 🏆 إعلان التقييم -->
+  <div class="contest-banner">
+    <div class="banner-content">
+      <span class="trophy">🏆</span>
+      <div class="text">
+        <p>
+          شاركنا رأيك <strong>الإيجابي</strong> والمميز حول الدورة، وساعدنا في تحسين تجربتك التعليمية ✨
+        </p>
+        <span class="limited-offer">تعليقك اللطيف يُسعدنا ويُلهمنا للاستمرار في تقديم الأفضل </span>
+      </div>
     </div>
   </div>
-</div>
 
-<style>
-/* 🎨 خلفية عامة جذابة */
-.contest-banner {
-  background: linear-gradient(90deg, #f3e8ff 0%, #ede9fe 100%);
-  border: 2px solid #c084fc;
-  border-radius: 14px;
-  padding: 16px 18px;
-  margin: 15px 0;
-  box-shadow: 0 4px 10px rgba(124, 58, 237, 0.15);
-  text-align: center;
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-/* 🏆 الأيقونة */
-.trophy {
-  font-size: 2rem;
-  display: inline-block;
-  animation: bounce 1.8s infinite;
-}
-
-/* ✨ النص */
-.contest-banner .text p {
-  font-size: 1rem;
-  color: #3b0764;
-  margin: 8px 0;
-  line-height: 1.6;
-}
-
-.highlight {
-  color: #7c3aed;
-  font-weight: bold;
-}
-
-/* 🔥 العرض المحدود */
-.limited-offer {
-  display: inline-block;
-  background: #dc2626;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: bold;
-  margin-top: 8px;
-  animation: pulse 1.5s infinite;
-}
-
-/* 🎬 حركات لطيفة */
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.8; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-</style>
+  <style>
+  .contest-banner {
+    background: #faf5ff;
+    border: 1px solid #d8b4fe;
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin: 15px 0;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.1);
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  .trophy {
+    font-size: 2rem;
+    display: inline-block;
+    animation: bounce 1.8s infinite;
+  }
+  .contest-banner .text p {
+    font-size: 1rem;
+    color: #3b0764;
+    margin: 8px 0;
+    line-height: 1.6;
+  }
+  .highlight {
+    color: #7c3aed;
+    font-weight: bold;
+  }
+  .limited-offer {
+    display: inline-block;
+    color: #da4f4f;
+    font-weight: bold;
+    margin-top: 8px;
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  </style>
 
   <!-- ⭐️ النجوم -->
   <div class="stars">
@@ -380,30 +358,21 @@
 
   <p id="rating-value-display">0/5</p>
 
- <!-- ✍️ كتابة تعليق -->
-<textarea
-  id="userComment"
-  placeholder="💬 اكتب تعليقًا إيجابيًا عن الدورة واحصل على شحن رصيد بقيمة 500 دج 🎁 جميع التعليقات الإيجابية فائزة"
-></textarea>
+  <!-- ✍️ كتابة تعليق -->
+  <textarea
+    id="userComment"
+    placeholder="💬 اكتب تعليقًا إيجابيًا يُظهر تقديرك للمجهود، فكل كلمة منك تصنع فرقًا "
+  ></textarea>
 
-<!-- 📱 إدخال رقم الهاتف -->
-<input
-  type="tel"
-  id="userPhone"
-  placeholder="💰 أدخل رقم هاتفك بدقة لاستلام شحن الرصيد (أوريدو / جيزي / موبيليس) "
-  pattern="[0-9]{10}"
-  maxlength="10"
-  style="margin-top: 10px; padding: 8px; width: 100%; border-radius: 8px; border: 1px solid #ccc; direction: rtl; text-align: right;"
-/>
-
-<!-- 📩 زر الإرسال -->
-<button id="submitRating">إرسال التقييم</button>
-
+  <!-- 📩 زر الإرسال -->
+  <button id="submitRating">إرسال التقييم</button>
 
   <!-- 📊 رسائل ونتائج -->
   <p id="ratingMessage"></p>
   <p id="average-rating"></p>
 </div>
+
+
 <section class="contact-form" id="support">
   <h2>هل لديك سؤال؟</h2>
   <form id="questionForm">

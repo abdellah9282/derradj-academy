@@ -167,25 +167,26 @@ async function submitRating() {
   const contact = localStorage.getItem("userContact");
   const full_name = localStorage.getItem("userName");
   const comment = document.getElementById('userComment').value.trim();
-  const phone_number = document.getElementById('userPhone').value.trim();
   const messageBox = document.getElementById('ratingMessage');
   const btn = document.getElementById('submitRating');
 
+  // ✅ تحقق من البيانات الأساسية
   if (!contact || selectedRating === 0) {
-    messageBox.textContent = "❌ يرجى اختيار عدد النجوم وإدخال  رقمك";
+    messageBox.textContent = "❌ يرجى اختيار عدد النجوم وكتابة تعليقك أولًا";
     messageBox.style.color = "red";
     return;
   }
 
-  if (!phone_number) {
-    messageBox.textContent = "❌ يرجى إدخال رقم هاتفك لاستلام الجائزة";
+  if (!comment) {
+    messageBox.textContent = "❌ يرجى كتابة تعليق قبل الإرسال";
     messageBox.style.color = "red";
     return;
   }
 
   btn.disabled = true;
-  btn.textContent = "... جاري الإرسال ";
+  btn.textContent = "⏳... جاري الإرسال";
 
+  // ✅ تحقق إن كان المستخدم قيّم سابقًا
   const { data: existingRating } = await supabase
     .from("course_ratings")
     .select("id")
@@ -194,21 +195,23 @@ async function submitRating() {
     .maybeSingle();
 
   if (existingRating) {
-    messageBox.textContent = "❌ لقد قمت بتقييم هذه المادة مسبقًا";
+    messageBox.textContent = "❌ لقد قمت بتقييم هذه المادة مسبقًا.";
     messageBox.style.color = "red";
     btn.disabled = true;
     return;
   }
 
-  const { error } = await supabase.from("course_ratings").insert([
-    { contact, full_name, module: moduleName, rating: selectedRating, comment, phone_number }
-  ]);
+  // ✅ إدخال التقييم في Supabase
+  const { error } = await supabase
+    .from("course_ratings")
+    .insert([{ contact, full_name, module: moduleName, rating: selectedRating, comment }]);
 
   if (error) {
-    messageBox.textContent = "❌ حدث خطأ أثناء الإرسال";
+    console.error(error);
+    messageBox.textContent = "❌ حدث خطأ أثناء الإرسال، حاول مرة أخرى لاحقًا";
     messageBox.style.color = "red";
   } else {
-    messageBox.textContent = "💰 تم إرسال رقمك، سنراجع التعليق ونقوم بشحن رصيدك قريبًا ✅";
+    messageBox.textContent = " شكرًا على تقييمك الجميل ! دعمك يُحفزنا لتقديم الأفضل دائمًا ✅";
     messageBox.style.color = "green";
     btn.disabled = true;
     fetchAverageRating();
@@ -216,6 +219,7 @@ async function submitRating() {
 
   btn.textContent = "إرسال التقييم";
 }
+
 
 
 async function fetchAverageRating() {
