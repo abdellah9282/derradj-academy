@@ -185,3 +185,22 @@ button[type="submit"]:hover {
     transform: translateY(0);
   }
 }
+/* 🎯 تحسين مظهر روابط التنقل (آراء الطلاب + حول المنصة) */
+.nav-link[href*="#student-feedback"],
+.nav-link[href*="#why-us"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400;             /* وزن مريح واحترافي */
+  font-size: 0.93rem;
+  color: #111111;               /* أسود مريح للعين */
+  text-decoration: none;        /* إزالة الخط السفلي */
+  transition: color 0.25s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* 💫 تأثير عند المرور */
+.nav-link[href*="#student-feedback"]:hover,
+.nav-link[href*="#why-us"]:hover {
+  color: #333333;               /* أسود أفتح قليلًا */
+  transform: translateY(-1px);  /* حركة خفيفة للأعلى */
+}

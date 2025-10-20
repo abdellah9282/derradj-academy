@@ -2476,3 +2476,36 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
   text-align: center;
   color: #6b7280;
 }
+/* 🎯 تحسين مظهر رابط "آراء الطلاب" */
+.nav-link[href="#student-feedback"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400;             /* وزن أخف وأجمل */
+  font-size: 0.93rem;
+  color: #111111;               /* أسود مريح للعين */
+  transition: color 0.25s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* 💫 تأثير عند المرور */
+.nav-link[href="#student-feedback"]:hover {
+  color: #333333;               /* أسود فاتح قليلاً */
+  transform: translateY(-1px);  /* حركة خفيفة للأعلى */
+}
+
+/* 🎯 تحسين مظهر رابط "نبذة عنا" */
+.nav-link[href="#why-us"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400;             /* وزن أخف وأنيق */
+  font-size: 0.93rem;
+  color: #111111;               /* أسود مريح للعين */
+  transition: color 0.25s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* 💫 تأثير عند المرور */
+.nav-link[href="#why-us"]:hover {
+  color: #333333;               /* أسود فاتح قليلاً */
+  transform: translateY(-1px);  /* حركة خفيفة للأعلى */
+}
