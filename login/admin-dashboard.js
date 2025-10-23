@@ -377,75 +377,105 @@ async function fetchTeachers() {
 fetchTeachers();
 
 
-// 📡 عرض المسجلين في البث المباشر (live_registrations)
-async function loadLiveRegistrations() {
-  const table = document.getElementById("liveRegistrationsTable");
-  if (!table) return;
+// 🎥 عرض المسجلين في جلسات Book Live Sessions (فقط الطلبات المعلقة)
+async function loadBookLiveSessions() {
+  const tableBody = document.getElementById("bookLiveSessionsBody");
+  if (!tableBody) return;
 
-  // تفريغ الجدول مؤقتًا أثناء التحميل
-  table.innerHTML = "<tr><td colspan='6'>⏳ جاري تحميل البيانات...</td></tr>";
+  
+  // 👇 تأخير بسيط حتى تُعرض الرسالة قبل بدء الجلب
+  await new Promise(resolve => setTimeout(resolve, 150));
 
+  // ✅ جلب فقط الطلبات التي stat = NULL
   const { data, error } = await supabase
-    .from("live_registrations")
+    .from("book_live_sessions")
     .select("*")
-    .is("status", null) // ✅ إظهار فقط الطلبات المعلقة
+    .is("stat", null)
     .order("id", { ascending: false });
 
   if (error) {
-    console.error("⚠️ خطأ في جلب المسجلين:", error.message);
-    table.innerHTML = `<tr><td colspan="6" style="color:red;">⚠️ فشل تحميل البيانات</td></tr>`;
+    console.error("⚠️ خطأ في جلب البيانات:", error.message);
+    tableBody.innerHTML = `<tr><td colspan="6" style="color:red;">⚠️ فشل تحميل البيانات</td></tr>`;
     return;
   }
 
-  // إذا لا توجد طلبات معلقة، نجعل الجدول فارغ بدون أي رسالة
+  // إذا لم توجد بيانات → اجعل الجدول فارغ تماماً
   if (!data || data.length === 0) {
-    table.innerHTML = "";
+    tableBody.innerHTML = "";
     return;
   }
 
-  // تعبئة البيانات
-  table.innerHTML = "";
+  // تفريغ الجدول وإعادة ملئه بالبيانات
+  tableBody.innerHTML = "";
   data.forEach((r) => {
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${r.full_name}</td>
-      <td>${r.contact}</td>
-      <td>${r.subject || "غير محدد"}</td>
-      <td><a href="${r.receipt_url}" target="_blank" style="color:#2563eb;">📎 عرض الوصل</a></td>
-      <td>${r.status === true ? "✅ مقبول" : r.status === false ? "❌ مرفوض" : "⏳ قيد المراجعة"}</td>
+      <td>${r.full_name || "غير محدد"}</td>
+      <td>${r.contact || "-"}</td>
+      <td>${r.subject || "-"}</td>
+      <td>${r.day || "-"}</td>
+      <td>⏳ قيد المراجعة</td>
       <td>
-        <button class="approveLive" data-id="${r.id}" style="margin-right:4px;">✅ قبول</button>
-        <button class="rejectLive" data-id="${r.id}" style="color:red;">❌ رفض</button>
+        <button class="approveSession" data-id="${r.id}" style="margin-right:4px;">✅ قبول</button>
+        <button class="rejectSession" data-id="${r.id}" style="color:red;">❌ رفض</button>
       </td>
     `;
-    table.appendChild(row);
+    tableBody.appendChild(row);
+
+    // التعامل مع أزرار القبول والرفض
+    const approveBtn = row.querySelector(".approveSession");
+    const rejectBtn = row.querySelector(".rejectSession");
+
+    approveBtn.addEventListener("click", () => confirmBeforeAction("accept", r.id, row));
+    rejectBtn.addEventListener("click", () => confirmBeforeAction("reject", r.id, row));
   });
-
-  // 🎯 التعامل مع أزرار القبول والرفض
-  document.querySelectorAll(".approveLive").forEach((btn) =>
-    btn.addEventListener("click", () => updateLiveStatus(btn.dataset.id, true))
-  );
-
-  document.querySelectorAll(".rejectLive").forEach((btn) =>
-    btn.addEventListener("click", () => updateLiveStatus(btn.dataset.id, false))
-  );
 }
 
-// ✅ تحديث حالة المسجل في البث
-async function updateLiveStatus(id, status) {
-  const { error } = await supabase
-    .from("live_registrations")
-    .update({ status })
-    .eq("id", id);
+// ⚠️ دالة التأكيد قبل تنفيذ العملية
+function confirmBeforeAction(action, id, rowElement) {
+  const actionText = action === "accept" ? "قبول" : "رفض";
+  const emoji = action === "accept" ? "✅" : "❌";
 
-  if (error) {
-    alert("⚠️ حدث خطأ أثناء التحديث");
-    console.error(error);
-  } else {
-    alert("✅ تم تحديث الحالة بنجاح");
-    loadLiveRegistrations(); // 🔄 إعادة تحميل الجدول بدون الطلب المقبول أو المرفوض
+  if (confirm(`${emoji} هل أنت متأكد أنك تريد ${actionText} هذا الطلب؟`)) {
+    if (action === "accept") {
+      updateBookSessionStatus(id, true, rowElement);
+    } else {
+      deleteBookSession(id, rowElement);
+    }
   }
 }
 
-// ⏱️ استدعاء الدالة عند تحميل الصفحة
-loadLiveRegistrations();
+// ✅ تحديث حالة الجلسة عند القبول (ثم إخفاء الصف)
+async function updateBookSessionStatus(id, status, rowElement) {
+  const { error } = await supabase
+    .from("book_live_sessions")
+    .update({ stat: status })
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    alert("⚠️ حدث خطأ أثناء التحديث");
+  } else {
+    // حذف الصف مباشرة من الجدول بعد القبول
+    rowElement.remove();
+  }
+}
+
+// 🗑️ حذف الجلسة عند الرفض
+async function deleteBookSession(id, rowElement) {
+  const { error } = await supabase
+    .from("book_live_sessions")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    alert("⚠️ حدث خطأ أثناء الحذف");
+  } else {
+    // إزالة الصف من الجدول مباشرة
+    rowElement.remove();
+  }
+}
+
+// ⏱️ تحميل الجلسات عند فتح الصفحة
+loadBookLiveSessions();

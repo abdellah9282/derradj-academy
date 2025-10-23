@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة الطالب | Derradj Academy</title>
+  <link rel="stylesheet" href="live-dashboard.css">
+  <link rel="icon" type="image/jpeg" href="../Logo.jpg" />
+</head>
+<body>
+
+  <div class="dashboard-container">
+    <h2>🎓 لوحة الطالب – البث المباشر</h2>
+    <p id="welcome"></p>
+
+    <div id="session-info" class="info"></div>
+
+    <div id="session-status"></div>
+
+    <div id="links-section"></div>
+
+    <button id="refresh" class="btn">🔄 تحديث الحالة</button>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // 🧩 إنشاء عميل Supabase
+  const supabase = window.supabase.createClient(
+    "https://sgcypxmnlyiwljuqvcup.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
+  );
+
+  // 🔐 التحقق من حالة تسجيل الدخول
+  const contact = localStorage.getItem("userContact");
+  const userToken = localStorage.getItem("userToken");
+
+  // 🚫 إذا لم يكن هناك مستخدم مسجل → إعادة التوجيه
+  if (!contact || !userToken) {
+    window.location.href = "../login/login.html";
+  }
+
+  // ✅ تحميل لوحة الطالب
+  async function loadDashboard() {
+    document.getElementById("welcome").textContent =
+      `👋 أهلاً ${localStorage.getItem("userName") || ""}`;
+
+    const { data, error } = await supabase
+      .from("book_live_sessions")
+      .select("*")
+      .eq("contact", contact)
+      .order("id", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    if (error || !data) {
+      document.getElementById("session-info").innerHTML =
+        "<p>❌ لم يتم العثور على أي حجز.</p>";
+      return;
+    }
+
+    // 🧾 عرض تفاصيل الحصة
+    document.getElementById("session-info").innerHTML = `
+      <b>📘 المادة:</b> ${data.subject || "-"} <br>
+      <b>⏱️ المدة:</b> ${data.duration || "غير محددة"} <br>
+      <b>💰 السعر:</b> ${data.price || 0} دج <br>
+      <b>📅 اليوم:</b> ${data.day || "سيتم تحديد اليوم لاحقًا"} <br>
+    `;
+
+    const statusEl = document.getElementById("session-status");
+    const linksEl = document.getElementById("links-section");
+    linksEl.innerHTML = "";
+
+    // ✅ حالة الحصة
+    if (data.stat === true) {
+      statusEl.innerHTML = `<span class="status confirmed">✅ تم تأكيد الحصة!</span>`;
+      linksEl.innerHTML += `
+        <a href="https://zoom.us" target="_blank" class="btn join">🎥 دخول البث المباشر</a>
+      `;
+    } else if (data.stat === false) {
+      statusEl.innerHTML = `<span class="status rejected">❌ تم رفض الحصة</span>`;
+    } else {
+      statusEl.innerHTML = `<span class="status waiting">⏳ في انتظار التأكيد</span>`;
+    }
+
+    // 📝 الملاحظات
+    if (data.note && data.note.trim() !== "") {
+      linksEl.innerHTML += `
+        <div class="student-note-box">
+          <b>📝 ملاحظاتك:</b>
+          <p>${data.note}</p>
+        </div>
+      `;
+    }
+
+    // 📄 الملف المرفق
+    if (data.exercise_file_url && data.exercise_file_url.trim() !== "") {
+      linksEl.innerHTML += `
+        <a href="${data.exercise_file_url}" target="_blank" class="file-link">
+          📄 عرض الملف المرفق
+        </a>
+      `;
+    }
+  }
+
+  // 🔁 زر تحديث الحالة
+  document.getElementById("refresh").addEventListener("click", loadDashboard);
+
+  // 🚪 زر تسجيل الخروج (مباشر)
+  const logoutBtn = document.createElement("button");
+  logoutBtn.textContent = "🚪 تسجيل الخروج";
+  logoutBtn.className = "btn logout";
+  logoutBtn.style.marginTop = "1.2rem";
+  logoutBtn.addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "../login/login.html";
+  });
+
+  // ➕ إضافة زر الخروج بعد التحميل
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector(".dashboard-container");
+    container.appendChild(logoutBtn);
+    loadDashboard();
+  });
+</script>
+
+
+</body>
+</html>

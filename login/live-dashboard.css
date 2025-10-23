@@ -1,0 +1,227 @@
+/* 🎨 تصميم لوحة الطالب للبث المباشر */
+body {
+  font-family: "Tajawal", sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  text-align: center;
+  padding: 2rem;
+  direction: rtl;
+  margin: 0;
+}
+
+.dashboard-container {
+  max-width: 750px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  transition: 0.3s ease;
+}
+
+.dashboard-container:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  color: #6d28d9;
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+#welcome {
+  font-size: 1.1rem;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.info {
+  text-align: right;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  border: 1px solid #e2e8f0;
+  word-wrap: break-word;
+}
+
+.status {
+  font-weight: bold;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 1rem 0;
+  font-size: 1.05rem;
+}
+
+.status.waiting {
+  background: #fef9c3;
+  color: #b45309;
+}
+
+.status.confirmed {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status.rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.btn {
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+  color: white;
+  border: none;
+  padding: 0.9rem 1.4rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #7e22ce, #9333ea);
+  transform: scale(1.02);
+}
+
+.btn.join {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 3px 8px rgba(16, 185, 129, 0.25);
+}
+
+.btn.join:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+}
+
+a.file-link {
+  display: block;
+  color: #2563eb;
+  font-weight: bold;
+  margin-top: 0.8rem;
+  text-decoration: none;
+  word-wrap: break-word;
+}
+
+a.file-link:hover {
+  text-decoration: underline;
+  color: #1e40af;
+}
+
+/* 📝 صندوق ملاحظات الطالب */
+.student-note-box {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin-top: 1rem;
+  text-align: right;
+  direction: rtl;
+  line-height: 1.7;
+  word-wrap: break-word;
+}
+
+.student-note-box b {
+  color: #1e40af;
+  font-size: 1.05rem;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.student-note-box p {
+  color: #374151;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* 🔒 زر تسجيل الخروج */
+/* 🔒 زر تسجيل الخروج */
+.btn.logout {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 3px 8px rgba(239, 68, 68, 0.25);
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: 0.3s;
+  display: inline-block;
+  margin-top: 1rem;
+  width: auto; /* ✅ عرض تلقائي على الحاسوب */
+}
+
+/* عند المرور */
+.btn.logout:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: scale(1.05);
+}
+
+/* 📱 في الهاتف يصبح الزر بعرض كامل */
+@media (max-width: 768px) {
+  .btn.logout {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.9rem 0;
+  }
+}
+
+.btn.logout:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+/* 📱 تحسين العرض في الهاتف */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  .dashboard-container {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+  }
+
+  .info {
+    font-size: 0.95rem;
+    padding: 0.9rem;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.9rem 0;
+  }
+
+  .student-note-box {
+    font-size: 0.95rem;
+  }
+}
+.info b {
+  color: #1e40af;
+}
+
+.info {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.info br + .info {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .info {
+    font-size: 0.95rem;
+  }
+}

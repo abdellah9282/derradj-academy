@@ -94,18 +94,76 @@ document.addEventListener("DOMContentLoaded", () => {
           password,
         });
 
-      if (authError || !authData?.user) {
-        // 2️⃣ فشل → نجرب النظام القديم
-        const fb = await fallbackTableLogin(contact, password);
-        if (!fb.ok) {
-          loginButton.textContent = "❌ Incorrect info";
-          setTimeout(() => {
-            loginButton.textContent = originalText;
-            loginButton.disabled = false;
-          }, 2000);
-        }
-        return;
-      }
+if (authError || !authData?.user) {
+  // 2️⃣ فشل → نجرب النظام القديم
+  const fb = await fallbackTableLogin(contact, password);
+
+  if (!fb.ok) {
+    console.log("🔎 Trying book_live_sessions as last resort...");
+
+    // 🔹 تحقق من الحجز في جدول book_live_sessions
+    const { data: bookRows, error: bookErr } = await supabase
+      .from("book_live_sessions")
+      .select("*")
+      .eq("contact", contact)
+      .eq("password", password)
+      .limit(1);
+
+    if (bookErr) {
+      console.error("⚠️ Error checking book_live_sessions:", bookErr);
+      loginButton.textContent = "⚠️ Server error";
+      setTimeout(() => {
+        loginButton.textContent = originalText;
+        loginButton.disabled = false;
+      }, 2000);
+      return;
+    }
+
+    if (!bookRows || bookRows.length === 0) {
+      // ❌ لا يوجد في أي نظام
+      loginButton.textContent = "❌ بيانات غير صحيحة";
+      setTimeout(() => {
+        loginButton.textContent = originalText;
+        loginButton.disabled = false;
+      }, 2000);
+      return;
+    }
+
+    // ✅ وُجد في جدول الحصص
+    const student = bookRows[0];
+    console.log("✅ Found in book_live_sessions:", student.full_name);
+
+    // حفظ البيانات محليًا
+    localStorage.setItem("userName", student.full_name);
+    localStorage.setItem("userContact", student.contact);
+    localStorage.setItem("userToken", "ok");
+    localStorage.setItem("source", "book_live_sessions");
+
+// 🔹 التحقق من حالة الحصة بدقة
+if (student.stat === true) {
+  loginButton.textContent = " تم تأكيد حصتك ✅";
+  setTimeout(() => {
+    window.location.href = "live-dashboard.html"; // ✅ صفحة البث المباشر
+  }, 1200);
+} else if (student.stat === false) {
+  loginButton.textContent = "❌ تم رفض الحصة";
+  setTimeout(() => {
+    window.location.href = "live-dashboard.html"; // ❌ صفحة مخصصة للرفض أو نفسها
+  }, 1500);
+} else {
+  loginButton.textContent = "⏳ في انتظار تأكيد الحصة";
+  setTimeout(() => {
+    window.location.href = "live-dashboard.html"; // ⏳ صفحة انتظار
+  }, 1500);
+}
+return;
+
+  }
+
+  // إذا نجحت fallbackTableLogin، نخرج هنا
+  return;
+}
+
 
       // ✅ نجاح Auth → نحضر البيانات من جدول registrations
       let { data: reg } = await supabase

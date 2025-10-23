@@ -161,12 +161,12 @@
       required
     >
       <option value="">اختر المادة</option>
-      <option value="math3">Math 3 (Analyse 3)</option>
-      <option value="ondes">Ondes et Vibrations</option>
-      <option value="electrotechnique">Électrotechnique Fondamentale 1</option>
-      <option value="electronique">Électronique Fondamentale 1</option>
-      <option value="informatique1">Informatique 1</option>
-      <option value="civil">الهندسة المدنية (سنة ثالثة بكالوريا)</option>
+      <option value="Math_3">Math 3 (Analyse 3)</option>
+      <option value="Ondes_et_Vibrations">Ondes et Vibrations</option>
+      <option value="Electrotechnique_Fondamentale_1">Électrotechnique Fondamentale 1</option>
+      <option value="Electronique_Fondamentale_1">Électronique Fondamentale 1</option>
+      <option value="Informatique_1">Informatique 1</option>
+      <option value="Civil">الهندسة المدنية (سنة ثالثة بكالوريا)</option>
     </select>
 
     <!-- سهم صغير مخصص -->
@@ -691,9 +691,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-document.addEventListener("DOMContentLoaded", async () => {
-  const { createClient } = supabase;
-  const supabaseClient = createClient(
+document.addEventListener("DOMContentLoaded", () => {
+  const supabaseClient = supabase.createClient(
     "https://sgcypxmnlyiwljuqvcup.supabase.co",
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
   );
@@ -701,57 +700,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   const form = document.querySelector(".signup-form");
   const statusMsg = document.getElementById("formStatus");
 
-  // ✅ العناصر داخل صندوق السعر
-  const dateParagraph = document.querySelector(".price-box p:nth-child(4)");
-
-  try {
-    // 🔹 اجلب عدد الحصص التي stat = true
-    const { data: booked, error } = await supabaseClient
-      .from("book_live_sessions")
-      .select("id")
-      .eq("stat", true);
-
-    if (error) throw error;
-
-    const bookedCount = booked.length;
-
-    // 🧠 تحديث المحتوى حسب عدد الحجوزات
-    if (bookedCount === 0) {
-      dateParagraph.innerHTML = "📅 الموعد المتاح: <strong>الجمعة</strong> على الساعة 19:00";
-    } else if (bookedCount === 1) {
-      dateParagraph.innerHTML = "📅 الموعد المتاح: <strong>السبت</strong> على الساعة 19:00";
-    } else if (bookedCount >= 2) {
-      // 🔒 تم حجز كل المواعيد
-      form.innerHTML = `
-        <div style="text-align:center; padding:2rem;">
-          <h2 style="color:#6d28d9;">⚠️ تم حجز جميع الحصص لهذا الأسبوع</h2>
-          <p style="color:#374151; font-size:1rem; margin-top:1rem;">
-            الرجاء الانتظار إلى غاية <strong>الأسبوع المقبل</strong> لفتح مواعيد جديدة للحجز.
-          </p>
-        </div>
-      `;
-      return;
-    }
-  } catch (err) {
-    console.error("خطأ أثناء جلب عدد الحصص:", err);
-  }
-
-  // ✅ تابع عملية التسجيل إن كان هناك وقت متاح
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    statusMsg.textContent = "⏳ جاري إرسال الطلب...";
+    statusMsg.textContent = "⏳ جاري التحقق من رقم الهاتف...";
     statusMsg.style.color = "#6d28d9";
 
+    // 🟢 نأخذ الرقم كما أدخله المستخدم بدون أي تعديل
     const fullName = document.getElementById("fullName").value.trim();
     const phone = document.getElementById("phone").value.trim();
     const password = document.getElementById("password").value.trim();
     const subject = document.getElementById("subject").value;
     const duration = document.getElementById("duration").value;
-    const price = 1800;
     const notes = document.getElementById("notes").value.trim();
-
     const paymentFile = document.getElementById("paymentProof").files[0];
     const exerciseFile = document.getElementById("exerciseFile").files[0];
+    const price = 2000;
 
     if (!paymentFile) {
       statusMsg.textContent = "❌ يرجى تحميل وصل الدفع قبل المتابعة.";
@@ -760,39 +723,55 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-      // 🔹 رفع وصل الدفع
-      const paymentFilePath = `payments/${Date.now()}_${paymentFile.name}`;
-      const { error: payError } = await supabaseClient.storage
-        .from("book_sessions")
-        .upload(paymentFilePath, paymentFile);
+      // ✅ تحقق من وجود نفس الرقم أو البريد مسبقاً في جدول registrations
+      const { data: existingUser, error: existErr } = await supabaseClient
+        .from("registrations")
+        .select("contact")
+        .eq("contact", phone)
+        .maybeSingle();
+
+      if (existErr) throw existErr;
+
+      if (existingUser) {
+        statusMsg.textContent =
+          "⚠️ رقم الهاتف هذا مسجل مسبقًا في النظام. يرجى تسجيل الدخول بدلًا من إنشاء حجز جديد.";
+        statusMsg.style.color = "#eab308";
+        return; // ❌ إيقاف العملية هنا
+      }
+
+      // ✅ رفع وصل الدفع
+      const paymentPath = `payments/${Date.now()}_${paymentFile.name}`;
+      const { error: payError } = await supabaseClient
+        .storage.from("book_sessions")
+        .upload(paymentPath, paymentFile);
       if (payError) throw payError;
 
-      const { data: payUrlData } = supabaseClient.storage
-        .from("book_sessions")
-        .getPublicUrl(paymentFilePath);
+      const { data: payUrlData } = supabaseClient
+        .storage.from("book_sessions")
+        .getPublicUrl(paymentPath);
       const paymentProofUrl = payUrlData.publicUrl;
 
-      // 🔹 رفع التمرين (اختياري)
+      // ✅ رفع ملف التمرين (إن وجد)
       let exerciseUrl = null;
       if (exerciseFile) {
         const exercisePath = `exercises/${Date.now()}_${exerciseFile.name}`;
-        const { error: exError } = await supabaseClient.storage
-          .from("book_sessions")
+        const { error: exError } = await supabaseClient
+          .storage.from("book_sessions")
           .upload(exercisePath, exerciseFile);
         if (exError) throw exError;
-        const { data: exUrlData } = supabaseClient.storage
-          .from("book_sessions")
+        const { data: exUrlData } = supabaseClient
+          .storage.from("book_sessions")
           .getPublicUrl(exercisePath);
         exerciseUrl = exUrlData.publicUrl;
       }
 
-      // 🧠 حفظ البيانات في الجدول
+      // ✅ إدخال بيانات الحجز
       const { error: dbError } = await supabaseClient
         .from("book_live_sessions")
         .insert([
           {
             full_name: fullName,
-            contact: phone,
+            contact: phone, // 👈 كما أدخله المستخدم تمامًا
             password: password,
             subject: subject,
             note: notes,
@@ -810,14 +789,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       statusMsg.textContent = "✅ تم حجز حصتك بنجاح! سنقوم بالتأكيد قريبًا.";
       statusMsg.style.color = "#16a34a";
       form.reset();
+
     } catch (err) {
-      console.error("❌ خطأ:", err);
-      statusMsg.textContent = "❌ حدث خطأ أثناء الإرسال. يرجى المحاولة مجددًا.";
+      console.error("❌ خطأ أثناء التسجيل:", err);
+      statusMsg.textContent = "❌ حدث خطأ أثناء العملية. يرجى المحاولة مجددًا.";
       statusMsg.style.color = "red";
     }
   });
 });
 </script>
+
 
 
 
