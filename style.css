@@ -2509,3 +2509,91 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
   color: #333333;               /* أسود فاتح قليلاً */
   transform: translateY(-1px);  /* حركة خفيفة للأعلى */
 }
+/* 🌟 الخلفية الشفافة */
+.live-popup-overlay {
+  display: none; /* تظهر عبر الجافاسكربت */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ✨ صندوق الإعلان */
+.live-popup-box {
+  background: #ffffff;
+  padding: 2rem 2.2rem;
+  border-radius: 16px;
+  max-width: 520px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(91, 33, 182, 0.25);
+  position: relative;
+  animation: popupShow 0.4s ease-out;
+}
+
+/* 🕶️ زر الإغلاق */
+.popup-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s ease;
+}
+.popup-close:hover {
+  color: #000;
+}
+
+/* 🧠 النصوص */
+.live-popup-box h2 {
+  color: #5b21b6;
+  margin-bottom: 0.8rem;
+}
+.live-popup-box p {
+  color: #1f2937;
+  line-height: 1.7;
+}
+
+/* 🔹 تفاصيل البث */
+.live-info {
+  background: #faf5ff;
+  border-radius: 10px;
+  border: 1px solid #e9d5ff;
+  padding: 1rem;
+  margin: 1.2rem 0;
+  text-align: right;
+  direction: rtl;
+  font-size: 1rem;
+}
+
+/* 🚀 زر الانضمام */
+.join-live-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 12px 22px;
+  margin-top: 0.8rem;
+  transition: all 0.3s ease;
+}
+.join-live-btn:hover {
+  background: linear-gradient(135deg, #5b21b6, #7c3aed);
+  transform: translateY(-2px);
+}
+
+/* 🎞️ الحركات */
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes popupShow {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

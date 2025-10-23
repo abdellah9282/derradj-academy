@@ -133,6 +133,24 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 
 
 
+<!-- 🎥 نافذة إعلان البث المباشر -->
+<div id="liveAnnouncement" class="live-popup-overlay">
+  <div class="live-popup-box">
+    <span class="popup-close" id="closeLivePopup">&times;</span>
+    <h2>Math 3 (Analyse 3)  بث مباشر لمادة </h2>
+<p dir="rtl" style="text-align: right;">
+  انضمّ إلى البروفيسور <strong>أمزيان </strong> في أول حصة مجانية لتبسيط مفاهيم <strong>Math 3 (Analyse 3)</strong>.
+</p>
+    <div class="live-info">
+      <p><strong>🗓️ الموعد:</strong> السبت 25 أكتوبر 2025 - الساعة 19:00 مساءً</p>
+      <p><strong>⏱️ المدة:</strong> 60–90 دقيقة</p>
+      <p><strong>💰 السعر:</strong> مجاني 🎉</p>
+    </div>
+
+    <a href="https://meet.google.com/egd-zbjy-vhy" target="_blank" class="join-live-btn">  شاهد البث المباشر من هنا
+</a>
+  </div>
+</div>
 
 
 <!-- 🎥 إعلان البث المباشر لمادة Analyse 3 (Math3)
@@ -1429,6 +1447,27 @@ if (days > 0) {
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("liveAnnouncement");
+  const closeBtn = document.getElementById("closeLivePopup");
+
+  // ✅ عرض الإعلان بعد 1.5 ثانية من دخول الصفحة
+  setTimeout(() => {
+    popup.style.display = "flex";
+  }, 1500);
+
+  // ❌ إغلاق عند الضغط على ×
+  closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+  });
+
+  // ❌ أو عند الضغط خارج الصندوق
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) popup.style.display = "none";
+  });
 });
 </script>
 

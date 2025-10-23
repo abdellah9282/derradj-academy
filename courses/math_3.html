@@ -122,6 +122,13 @@
       <div class="math3-detail"><span>⏱️ المدة:</span><strong>60 – 90 دقيقة</strong></div>
     </div>
   </div>
+  <!-- 🎥 زر الانتقال المباشر إلى البث -->
+<div class="math3-join-button">
+  <a href="https://meet.google.com/egd-zbjy-vhy" target="_blank" rel="noopener noreferrer" class="math3-btn-join">
+     شاهد البث المباشر من هنا
+  </a>
+</div>
+
 </section>
 
 <style>
@@ -801,17 +808,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutesLeft = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
+let timeText = "";
 
-    let timeText = "";
-    if (days > 0) {
-      if (days === 1) timeText += "يوم واحد ";
-      else if (days === 2) timeText += "يومان ";
-      else if (days >= 3 && days <= 10) timeText += `${days} أيام `;
-      else timeText += `${days} يومًا `;
-    }
-    if (hours > 0) timeText += `${hours} ساعة `;
-    if (minutesLeft > 0) timeText += `${minutesLeft} دقيقة `;
-    if (seconds >= 0) timeText += `${seconds} ث`;
+// 🗓️ الأيام
+if (days > 0) {
+  if (days === 1) timeText += "يوم واحد ";
+  else if (days === 2) timeText += "يومين ";
+  else if (days >= 3 && days <= 10) timeText += `${days} أيام `;
+  else timeText += `${days} يومًا `;
+}
+
+// 🕒 الساعات
+if (hours > 0) {
+  if (hours === 1) timeText += "ساعة واحدة ";
+  else if (hours === 2) timeText += "ساعتين ";
+  else if (hours >= 3 && hours <= 10) timeText += `${hours} ساعات `;
+  else timeText += `${hours} ساعة `;
+}
+
+// ⏱️ الدقائق
+if (minutesLeft > 0) {
+  if (minutesLeft === 1) timeText += "دقيقة واحدة ";
+  else if (minutesLeft === 2) timeText += "دقيقتين ";
+  else if (minutesLeft >= 3 && minutesLeft <= 10) timeText += `${minutesLeft} دقائق `;
+  else timeText += `${minutesLeft} دقيقة `;
+}
+
+// ⏳ الثواني
+if (seconds >= 0) {
+  if (seconds === 1) timeText += "ثانية واحدة";
+  else if (seconds === 2) timeText += "ثانيتين";
+  else if (seconds >= 3 && seconds <= 10) timeText += `${seconds} ثوانٍ`;
+  else timeText += `${seconds} ثانية`;
+}
 
     countdownEl.textContent = timeText.trim();
   }
