@@ -708,13 +708,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.querySelector(".signup-form");
   const statusMsg = document.getElementById("formStatus");
+  const submitBtn = form.querySelector("button[type='submit']"); // 🔹 زر "حجز الآن"
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    statusMsg.textContent = "⏳ جاري التحقق من رقم الهاتف...";
+
+    // 🟣 تغيير الزر فور الضغط
+    submitBtn.disabled = true;
+    const oldBtnText = submitBtn.textContent;
+    submitBtn.textContent = "⏳ جاري تسجيلك ...";
     statusMsg.style.color = "#6d28d9";
 
-    // 🟢 نأخذ الرقم كما أدخله المستخدم بدون أي تعديل
     const fullName = document.getElementById("fullName").value.trim();
     const phone = document.getElementById("phone").value.trim();
     const password = document.getElementById("password").value.trim();
@@ -728,25 +732,30 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!paymentFile) {
       statusMsg.textContent = "❌ يرجى تحميل وصل الدفع قبل المتابعة.";
       statusMsg.style.color = "red";
+      submitBtn.disabled = false;
+      submitBtn.textContent = oldBtnText;
       return;
     }
 
     try {
-      // ✅ تحقق من وجود نفس الرقم أو البريد مسبقاً في جدول registrations
-      const { data: existingUser, error: existErr } = await supabaseClient
-        .from("registrations")
-        .select("contact")
-        .eq("contact", phone)
-        .maybeSingle();
+// ✅ تحقق من وجود المستخدم مسبقاً في نفس الجدول
+const { data: existingUser, error: existErr } = await supabaseClient
+  .from("book_live_sessions")
+  .select("contact")
+  .eq("contact", phone)
+  .maybeSingle();
 
-      if (existErr) throw existErr;
+if (existErr) throw existErr;
 
-      if (existingUser) {
-        statusMsg.textContent =
-          "⚠️ رقم الهاتف هذا مسجل مسبقًا في النظام. يرجى تسجيل الدخول بدلًا من إنشاء حجز جديد.";
-        statusMsg.style.color = "#eab308";
-        return; // ❌ إيقاف العملية هنا
-      }
+if (existingUser) {
+  statusMsg.textContent =
+    "⚠️ رقم الهاتف هذا مسجل مسبقًا في النظام. يرجى تسجيل الدخول بدلًا من إنشاء حجز جديد.";
+  statusMsg.style.color = "#eab308";
+  submitBtn.disabled = false;
+  submitBtn.textContent = oldBtnText;
+  return;
+}
+
 
       // ✅ رفع وصل الدفع
       const paymentPath = `payments/${Date.now()}_${paymentFile.name}`;
@@ -760,7 +769,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .getPublicUrl(paymentPath);
       const paymentProofUrl = payUrlData.publicUrl;
 
-      // ✅ رفع ملف التمرين (إن وجد)
+      // ✅ رفع ملف التمرين (اختياري)
       let exerciseUrl = null;
       if (exerciseFile) {
         const exercisePath = `exercises/${Date.now()}_${exerciseFile.name}`;
@@ -774,13 +783,13 @@ document.addEventListener("DOMContentLoaded", () => {
         exerciseUrl = exUrlData.publicUrl;
       }
 
-      // ✅ إدخال بيانات الحجز
+      // ✅ إدخال البيانات في الجدول
       const { error: dbError } = await supabaseClient
         .from("book_live_sessions")
         .insert([
           {
             full_name: fullName,
-            contact: phone, // 👈 كما أدخله المستخدم تمامًا
+            contact: phone,
             password: password,
             subject: subject,
             note: notes,
@@ -795,14 +804,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (dbError) throw dbError;
 
-      statusMsg.textContent = "✅ تم حجز حصتك بنجاح! سنقوم بالتأكيد قريبًا.";
+      statusMsg.textContent = "✅ تم حجز حصتك بنجاح! سيتم تأكيدها قريبًا.";
       statusMsg.style.color = "#16a34a";
       form.reset();
+
+      // ✅ إعادة الزر لوضعه الطبيعي بعد النجاح
+      submitBtn.textContent = "✅ تم التسجيل بنجاح";
+      submitBtn.style.backgroundColor = "#16a34a";
+
+      // ⏩ التوجيه بعد ثانيتين
+      setTimeout(() => {
+        window.location.href = "my-courses.html";
+      }, 2000);
 
     } catch (err) {
       console.error("❌ خطأ أثناء التسجيل:", err);
       statusMsg.textContent = "❌ حدث خطأ أثناء العملية. يرجى المحاولة مجددًا.";
       statusMsg.style.color = "red";
+      submitBtn.disabled = false;
+      submitBtn.textContent = oldBtnText;
     }
   });
 });
