@@ -28,7 +28,8 @@ h1 {
 h2 {
   font-size: 1.7rem;
   font-weight: 600;
-  margin-top: 40px;
+  margin-top: 4px; /* تقليل المسافة */
+  margin-bottom: 10px;
 }
 
 /* 📋 تنسيق الجداول */
