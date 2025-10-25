@@ -133,24 +133,140 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 
 
 
-<!-- 🎥 نافذة إعلان البث المباشر -->
-<div id="liveAnnouncement" class="live-popup-overlay">
+<!-- 🎥 نافذة إعلان البث المباشر (بصياغة رسمية ومحفزة) -->
+<div id="liveAnnouncement" class="live-popup-overlay" dir="rtl">
   <div class="live-popup-box">
-    <span class="popup-close" id="closeLivePopup">&times;</span>
-    <h2>Math 3 (Analyse 3)  بث مباشر لمادة </h2>
-<p dir="rtl" style="text-align: right;">
-  انضمّ إلى البروفيسور <strong>أمزيان </strong> في أول حصة مجانية لتبسيط مفاهيم <strong>Math 3 (Analyse 3)</strong>.
-</p>
+    <button class="popup-close" id="closeLivePopup" aria-label="إغلاق النافذة">&times;</button>
+
+    <h2>🎥 بث مباشر حول مادة <strong>Math 3 (Analyse 3)</strong></h2>
+
+    <p>
+      ندعوكم لحضور <strong>الحصة الافتتاحية المجانية</strong> التي يقدمها الأستاذ <strong>أمزيان</strong>،
+      والمتخصصة في تبسيط وفهم أساسيات <strong>Math 3 (Analyse 3)</strong> بطريقة علمية وسلسة.
+    </p>
+
     <div class="live-info">
-      <p><strong>🗓️ الموعد:</strong> السبت 25 أكتوبر 2025 - الساعة 19:00 مساءً</p>
-      <p><strong>⏱️ المدة:</strong> 60–90 دقيقة</p>
-      <p><strong>💰 السعر:</strong> مجاني 🎉</p>
+      <p><strong>🗓️ التاريخ:</strong> <span id="session-date-text">السبت 25 أكتوبر 2025 - الساعة 19:00 مساءً</span></p>
+      <p><strong>⏱️ المدة:</strong> من 60 إلى 90 دقيقة</p>
+      <p><strong>💰 الرسوم:</strong> مجانية بالكامل 🎉</p>
+      <p><strong>⏳ يبدأ خلال:</strong> <span id="time-remaining">جارٍ الحساب...</span></p>
     </div>
 
-    <a href="https://meet.google.com/egd-zbjy-vhy" target="_blank" class="join-live-btn">  شاهد البث المباشر من هنا
-</a>
+    <a href="https://meet.google.com/egd-zbjy-vhy" target="_blank" class="join-live-btn">
+      🎬 انضم الآن إلى البث المباشر
+    </a>
   </div>
 </div>
+
+
+<style>
+/* ===== تصميم النافذة ===== */
+.live-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(3px);
+}
+
+.live-popup-box {
+  background: #ffffff;
+  color: #111827;
+  padding: 2rem 1.5rem;
+  max-width: 420px;
+  width: 90%;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.popup-close {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: #444;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.popup-close:hover { color: #e11d48; }
+
+.live-info {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: right;
+}
+.live-info p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+}
+
+.join-live-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  margin-top: 1.2rem;
+  transition: all 0.3s ease;
+}
+.join-live-btn:hover {
+  background: linear-gradient(135deg, #15803d, #16a34a);
+  transform: translateY(-2px);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("liveAnnouncement");
+  const closeBtn = document.getElementById("closeLivePopup");
+  const countdownEl = document.getElementById("time-remaining");
+  const sessionDate = new Date("2025-10-25T19:00:00");
+
+  // 🕕 عرض النافذة بعد ثانية
+  setTimeout(() => popup.style.display = "flex", 1000);
+
+  // ❌ إغلاق
+  closeBtn.addEventListener("click", () => popup.style.display = "none");
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) popup.style.display = "none";
+  });
+
+  // ⏳ عدّاد تنازلي حيّ
+  function updateCountdown() {
+    const now = new Date();
+    const diff = sessionDate - now;
+    if (diff <= 0) {
+      countdownEl.textContent = "🎥 بدأ البث الآن!";
+      countdownEl.style.color = "#16a34a";
+      return;
+    }
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    countdownEl.textContent = `${h} س ${m} د ${s} ث`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+});
+</script>
+
 
 
 <!-- 🎥 إعلان البث المباشر لمادة Analyse 3 (Math3)
