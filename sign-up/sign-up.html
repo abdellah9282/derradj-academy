@@ -103,25 +103,47 @@
     <form class="signup-form" action="submit-signup.php" method="POST" enctype="multipart/form-data">
       <h2>Create Your Account</h2>
 
-      <div class="form-group">
-        <label for="fullName">Full Name</label>
-        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
-      </div>
+<div class="form-group" dir="rtl">
+  <label for="fullName">الاسم واللقب</label>
+  <input
+    type="text"
+    id="fullName"
+    name="fullName"
+    placeholder="أدخل الاسم واللقب"
+    required
+    style="direction: ltr; text-align: left;"
+  />
+</div>
+
+
+<div class="form-group" dir="rtl">
+  <label for="contact">رقم الهاتف أو البريد الإلكتروني</label>
+  <input
+    type="text"
+    id="contact"
+    name="contact"
+    placeholder="أدخل رقم الهاتف أو البريد الإلكتروني"
+    required
+    style="direction: ltr; text-align: left;"
+  />
+</div>
+
+<div class="form-group" dir="rtl">
+  <label for="password">كلمة المرور</label>
+  <input
+    type="password"
+    id="password"
+    name="password"
+    placeholder="أنشئ كلمة مرور"
+    required
+    style="direction: ltr; text-align: left;"
+  />
+</div>
 
       <div class="form-group">
-        <label for="contact">Phone Number or Email</label>
-        <input type="text" id="contact" name="contact" placeholder="Phone or email" required />
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Create a password" required />
-      </div>
-
-      <div class="form-group">
-        <label>Select the modules you want to study</label>
+<label dir="rtl" style="display:block; margin-bottom:12px;">اختر المواد التي ترغب في دراستها</label>
         <div class="select-wrapper" style="display: flex; align-items: center; gap: 10px;">
-          <button type="button" class="toggle-courses-btn">Select Courses</button>
+    <button type="button" class="toggle-courses-btn" style="direction:rtl;">اختيار المواد</button>
           <div id="moduleError" class="error-text"></div>
  </div>
 
@@ -159,7 +181,7 @@
 
 <!-- ✅ عرض المواد المحددة -->
 <div class="selected-courses" id="selectedModulesBox" style="display: none;">
-  <h3>Selected Modules</h3>
+<h3 style="direction: rtl; text-align: right;">المواد المختارة</h3>
   <ul id="selectedModulesList"></ul>
 
 <!-- ✅ عرض التخفيض -->
@@ -183,21 +205,21 @@
 </div>
       </div>
       <div class="form-group">
-        <label for="paymentProof">Upload Payment Receipt (تحميل وصل الدفع)</label>
+<label for="paymentProof" dir="rtl">تحميل وصل الدفع</label>
         <input type="file" id="paymentProof" name="paymentProof" accept=".jpg,.jpeg,.png,.pdf,.heic,.webp,.jfif,.bmp" required />
       </div>
 
-      <button type="submit">Sign Up</button>
+      <button type="submit">التسجيل</button>
 <div id="formError" class="error-text" style="color:red; margin-top:10px; text-align:center;"></div>
 
-      <p class="form-footer-text">
-        Already have an account?
-        <a href="../login/login.html">Log in</a>
-      </p>
+     <p class="form-footer-text" dir="rtl">
+  هل لديك حساب بالفعل؟
+  <a href="../login/login.html">تسجيل الدخول</a>
+</p>
 
-<p class="form-footer-text">
-  Are you a teacher?
-  <a href="../sign-up/teacher-signup.html" class="highlight-link">Sign up here</a>
+<p class="form-footer-text" dir="rtl">
+  هل أنت أستاذ؟
+  <a href="../sign-up/teacher-signup.html" class="highlight-link">سجّل هنا</a>
 </p>
 
 
@@ -338,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!paymentFile) return showError("❌ يرجى رفع وصل الدفع");
 
     submitBtn.disabled = true;
-    submitBtn.textContent = "⏳ Creating account...";
+    submitBtn.textContent = "⏳... جارٍ إنشاء الحساب ";
 
     try {
       // تحقق من وجود المستخدم مسبقًا
