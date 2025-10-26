@@ -93,46 +93,49 @@
     </nav>
 </header>
 
-<!-- 🎥 إعلان بث Math 3 -->
+<!-- 🎓 إعلان دورة Math 3 الجديدة -->
 <section class="math3-live-banner" dir="rtl" id="math3-live-session">
   <div class="math3-live-container">
-    <span class="math3-live-badge">🎥 حصة جماعية مجانية</span>
+    <span class="math3-live-badge">📢 إعلان هام</span>
 
     <h2 class="math3-live-title">
-      انضم إلى أول حصة مجانية لمادة <span class="math3-highlight">Math 3 (Analyse 3)</span> مع البروفيسور أمزيان
+      قريبًا على <span class="math3-highlight">Derradj Academy</span> — انطلاق دورة <strong>Math 3 (Analyse 3)</strong> مع البروفيسور أمزيان
     </h2>
 
     <p class="math3-live-desc">
-      حصة مجانية يقدمها <strong>البروفيسور Ameziane, S.</strong> تهدف إلى ترسيخ المفاهيم الأساسية وتبسيط محتوى
-      <strong>Math 3</strong> بطريقة واضحة وتفاعلية، وتُقام هنا على المنصة لتضمن لك تجربة تعليمية مريحة ومتميزة.
+      بعد نجاح الحصة المباشرة المجانية التي أُقيمت هذا الأسبوع  نعلن لطلبتنا الأعزاء أننا نعمل حاليًا على
+      <strong>تحضير فيديوهات الدورة الكاملة</strong> و<strong>ملفات PDF منظمة وشاملة</strong> لجميع فصول مادة
+      <strong>Math 3 (Analyse 3)</strong>، وذلك بإشراف <strong>بروفيسور جامعي مختص</strong>.
     </p>
 
     <div class="math3-live-details">
-      <div class="math3-detail" id="math3-session-date">
-        <span>🗓️ تاريخ الحصة:</span>
-        <strong id="math3-session-date-text">السبت 25 أكتوبر 19:00</strong>
+      <div class="math3-detail">
+        <span>🎥 الفيديوهات:</span>
+        <strong style="color:#5b21b6;">قيد التحضير حاليًا</strong>
       </div>
-
-      <div class="math3-detail" id="math3-countdown">
-        <span>⏳ تبدأ الحصة بعد:</span>
-        <strong id="math3-time-remaining">—</strong>
+      <div class="math3-detail">
+        <span>📅 تاريخ الإطلاق المتوقع:</span>
+        <strong style="color:#5b21b6;">خلال هذا الأسبوع أو الأسبوع المقبل</strong>
       </div>
+      <div class="math3-detail">
+        <span>👨‍🏫 الأستاذ:</span>
+        <strong>البروفيسور أمزيان</strong>
+      </div>
+      <div class="math3-detail">
+        <span>📘 محتوى الدورة:</span>
+        <strong>فيديوهات + ملفات PDF + تمارين محلولة</strong>
+      </div>
+    </div>
 
-      <div class="math3-detail"><span>💰 السعر:</span><strong style="color:#16a34a;">مجانية 🎉</strong></div>
-      <div class="math3-detail"><span>⏱️ المدة:</span><strong>60 – 90 دقيقة</strong></div>
+    <div class="math3-join-button">
+      <a href="sign-up/sign-up.html" class="math3-btn-join">
+        🚀 اشترك الآن ليصلك إشعار عند إطلاق الدورة
+      </a>
     </div>
   </div>
-  <!-- 🎥 زر الانتقال المباشر إلى البث -->
-<div class="math3-join-button">
-  <a href="https://meet.google.com/egd-zbjy-vhy" target="_blank" rel="noopener noreferrer" class="math3-btn-join">
-     شاهد البث المباشر من هنا
-  </a>
-</div>
-
 </section>
 
 <style>
-/* 🎨 تصميم إعلان Math 3 */
 .math3-live-banner {
   background: linear-gradient(180deg, #faf5ff, #ffffff);
   border: 1px solid #e5e7eb;
@@ -162,12 +165,17 @@
   0%,100% { box-shadow: 0 0 8px rgba(109, 40, 217, 0.4); }
   50% { box-shadow: 0 0 18px rgba(139, 92, 246, 0.7); }
 }
-.math3-live-title { font-size: 1.8rem; color: #111827; font-weight: 700; margin: 0.8rem 0 1rem 0; }
-.math3-live-title .math3-highlight { color: #5b21b6; }
+.math3-live-title {
+  font-size: 1.8rem;
+  color: #111827;
+  font-weight: 700;
+  margin: 0.8rem 0 1rem 0;
+}
+.math3-highlight { color: #5b21b6; }
 .math3-live-desc {
   color: #374151;
   font-size: 1.08rem;
-  max-width: 680px;
+  max-width: 720px;
   margin: 0 auto 1.5rem auto;
   line-height: 1.9;
   text-align: center;
@@ -179,7 +187,7 @@
   gap: 15px;
   margin-bottom: 1.8rem;
 }
-.math3-live-details .math3-detail {
+.math3-live-detail, .math3-detail {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 10px;
@@ -189,41 +197,50 @@
   color: #1e293b;
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
-#math3-session-date strong,
-#math3-countdown strong {
-  color: #5b21b6;
-  font-weight: 700;
+.math3-btn-join {
+  display: inline-block;
+  background: linear-gradient(135deg, #5b21b6, #7c3aed);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+.math3-btn-join:hover {
+  background: linear-gradient(135deg, #4c1d95, #6d28d9);
+  transform: translateY(-2px);
 }
 </style>
 
-<!-- 🧠 قسم التعريف بالمادة والبروفيسور -->
+<!-- 🧠 قسم تعريف المادة بعد التحديث -->
 <section class="math3-about" dir="rtl">
   <div class="math3-about-container">
     <h2 class="math3-about-title">عن مادة <span>Math 3 (Analyse 3)</span></h2>
 
-<p class="math3-about-text">
-  تُعَدّ مادة <strong>Math 3 (Analyse 3)</strong> من الركائز الأساسية لجميع <strong>التخصّصات الجامعية العلمية</strong>،
-  إذ تُمكّنك من إتقان مفاهيم <strong>التحليل الرياضي المتقدّم</strong> مثل المشتقات، والتكاملات، والسلاسل العددية،
-  وتُنمّي لديك مهارات التفكير المنطقي والتحليل الدقيق التي تُعدّ ضرورية لفهم المواد العلمية في المراحل الجامعية المتقدّمة.
-</p>
-
+    <p class="math3-about-text">
+      تُعَدّ مادة <strong>Math 3 (Analyse 3)</strong> من أهم المواد في التخصصات العلمية الجامعية،
+      وتُعتبر الأساس في فهم مواد أخرى كالتحليل، الكهرباء، والإلكترونيك. الدورة الجديدة ستوفر لك
+      <strong>شرحًا مبسطًا خطوة بخطوة</strong> لجميع المفاهيم مع أمثلة عملية وتمارين تطبيقية.
+    </p>
 
     <p class="math3-about-text">
-      يقدم هذه المادة <strong>البروفيسور أمزيان</strong>، أستاذ جامعي ذو خبرة طويلة في تدريس التحليل الرياضي
-      بأسلوب بسيط وممتع، يدمج بين الفهم النظري والتطبيق العملي.
-      سيُشرف البروفيسور على <strong>بثوث مباشرة أسبوعية</strong> للإجابة على أسئلتكم ومناقشة أهم النقاط الصعبة.
+      نحن الآن في <strong>مرحلة تحضير الفيديوهات والدروس</strong> بالتعاون مع <strong>بروفيسور جامعي متخصص</strong>،
+      لتقديم تجربة تعليمية احترافية تشمل الفيديوهات عالية الجودة وملفات PDF مرتبة بعناية.
     </p>
 
     <div class="math3-features">
-  <h3>🎓 على ماذا ستحصل عند الاشتراك قريبًا :</h3>
-  <ul>
-    <li data-icon="🎥"><strong>فيديوهات مصوّرة</strong> لجميع الفصول بأعلى جودة.</li>
-    <li data-icon="🧾"><strong>ملخصات وملفات PDF</strong> تغطي أهم القواعد والنظريات.</li>
-    <li data-icon="🧮"><strong>تمارين محلولة خطوة بخطوة</strong> مع سلاسل <b>TD</b> وامتحانات سابقة.</li>
-    <li data-icon="💬"><strong>بث مباشر أسبوعي</strong> مع البروفيسور لمتابعة التقدم ومراجعة المفاهيم.</li>
-    <li data-icon="📘"><strong>تحميل مباشر للوثائق</strong> وملفات الحلول من داخل المنصة.</li>
-  </ul>
-</div>
+      <h3>🎓 قريبًا ستحصل على:</h3>
+      <ul>
+        <li data-icon="🎥"><strong>فيديوهات عالية الجودة</strong> تشرح جميع الفصول بالتفصيل.</li>
+        <li data-icon="🧾"><strong>ملفات PDF</strong> ملخصة ومنسقة لتسهيل المراجعة.</li>
+        <li data-icon="🧮"><strong>تمارين محلولة</strong> مع سلاسل <b>TD</b> وامتحانات سابقة.</li>
+        <li data-icon="💬"><strong>تفاعل مباشر</strong> مع البروفيسور في البثوث القادمة.</li>
+      </ul>
+    </div>
+  </div>
+
 
     <div class="math3-calltoaction">
       <p>🚀 قريبًا يمكنك <strong>الانضمام إلى الدورة الكاملة</strong> على منصة <b>Derradj Academy</b>
