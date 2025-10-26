@@ -195,7 +195,7 @@ window.addEventListener("load", () => {
 <!-- ★ Math 3 (Analyse 3) -->
 <a href="courses/math_3.html" style="text-decoration: none; color: inherit;">
   <div class="course-card" data-course-id="math_3">
-    <img src="Thumbnail/math_3/02.png" alt="Math 3 (Analyse 3)" class="course-img" />
+    <img src="Thumbnail/math_3/math3.png" alt="Math 3 (Analyse 3)" class="course-img" />
     <div class="course-content">
       <h3 class="course-title">Math 3 <span style="font-size:0.9em; color:#555;">(Analysis 3)</span></h3>
       <p class="instructor">Prof. Ameziane S</p>
@@ -1176,7 +1176,187 @@ const installBtn = document.querySelector(".install-btn");
   caches.keys().then(names => names.forEach(name => caches.delete(name)));
 }
 </script>
+<!-- 🎓 إعلان الباقة في الأعلى (تصميم احترافي) -->
+<div id="bundlePopup" class="bundle-popup">
+  <div class="bundle-content">
+    <button id="closePopup" class="close-btn">×</button>
 
+    <h3>🎓 الباقة الجامعية الشاملة من <span class="brand">Derradj Academy</span></h3>
+
+    <p>
+      استمتع بأفضل الدروس والمراجع الجامعية في <strong>5 مواد علمية مميزة</strong>
+      بسعر <span class="price-new">4999 دج</span>
+      بدلًا من <span class="price-old">6500 دج</span> 💰
+      <br>✨ لا تفوت عرضنا المحدود للطلبة المتميزين!
+    </p>
+
+    <ul>
+      <li>📘 Ondes et Vibrations</li>
+      <li>⚡ Électronique Fondamentale 1</li>
+      <li>🔌 Électrotechnique Fondamentale 1</li>
+      <li>📊 Probabilité et Statistique</li>
+      <li>💻 Informatique 3 (MATLAB)</li>
+    </ul>
+
+    <a href="#bundle-section" class="cta-btn">🌟 اكتشف تفاصيل الباقة</a>
+  </div>
+</div>
+
+<style>
+/* 💜 تنسيق النافذة بالكامل */
+.bundle-popup {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-40px);
+  opacity: 0;
+  transition: all 0.6s ease;
+  z-index: 99999;
+  width: 95%;
+  max-width: 680px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffffff 60%, #f9f5ff);
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.25);
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+  border-top: 4px solid #7c3aed;
+}
+
+/* 🧾 محتوى النافذة */
+.bundle-content {
+  position: relative;
+  padding: 20px 24px 26px 24px;
+}
+
+/* ❌ زر الإغلاق */
+.bundle-popup .close-btn {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  background: none;
+  border: none;
+  font-size: 1.8em;
+  color: #6b7280;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.bundle-popup .close-btn:hover {
+  color: #4f46e5;
+  transform: scale(1.1);
+}
+
+/* 🔹 العنوان */
+.bundle-content h3 {
+  color: #4f46e5;
+  font-weight: 700;
+  margin-bottom: 0.4em;
+  font-size: 1.45em;
+  line-height: 1.4;
+  text-align: right;
+}
+.bundle-content h3 .brand {
+  color: #7c3aed;
+}
+
+/* 📝 الفقرة */
+.bundle-content p {
+  color: #1e293b;
+  font-size: 1.05em;
+  line-height: 1.8;
+  margin-bottom: 1em;
+}
+.price-new {
+  color: #16a34a;
+  font-weight: bold;
+}
+.price-old {
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+/* 📚 قائمة المواد */
+.bundle-content ul {
+  list-style: none;
+  padding: 0.8em 1em;
+  background: #f8fafc;
+  border-radius: 12px;
+  margin-bottom: 1.3em;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  font-size: 0.97em;
+  line-height: 1.9;
+}
+.bundle-content ul li {
+  padding: 0.1em 0;
+}
+
+/* 🚀 زر الدعوة للفعل */
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.05em;
+  text-decoration: none;
+  padding: 10px 26px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+  transition: all 0.25s ease;
+}
+.cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(79, 70, 229, 0.35);
+}
+
+/* 📱 استجابة للجوال */
+@media (max-width: 520px) {
+  .bundle-content {
+    padding: 18px 16px;
+  }
+  .bundle-content h3 {
+    font-size: 1.25em;
+  }
+  .bundle-content p {
+    font-size: 0.95em;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("bundlePopup");
+  const closeBtn = document.getElementById("closePopup");
+
+  // 🪄 إظهار الإعلان بعد ثانية واحدة
+  setTimeout(() => {
+    popup.style.display = "block";
+    requestAnimationFrame(() => {
+      popup.style.opacity = "1";
+      popup.style.transform = "translateX(-50%) translateY(0)";
+    });
+  }, 1000);
+
+  // 🧩 دالة إخفاء سلسة
+  function hidePopup() {
+    popup.style.opacity = "0";
+    popup.style.transform = "translateX(-50%) translateY(-40px)";
+    setTimeout(() => (popup.style.display = "none"), 400);
+  }
+
+  // 🖱️ الإغلاق بالنقر على أي مكان أو زر ×
+  closeBtn.addEventListener("click", hidePopup);
+  popup.addEventListener("click", (e) => {
+    if (e.target.id === "bundlePopup" || e.target.tagName === "A") hidePopup();
+  });
+
+  // ⌨️ الإغلاق بزر Escape
+  window.addEventListener("keydown", e => { if (e.key === "Escape") hidePopup(); });
+
+  // ⏱️ إغلاق تلقائي بعد 10 ثوانٍ
+  setTimeout(hidePopup, 10000);
+});
+</script>
 
 
 </body>
