@@ -195,7 +195,7 @@ window.addEventListener("load", () => {
 <!-- ★ Math 3 (Analyse 3) -->
 <a href="courses/math_3.html" style="text-decoration: none; color: inherit;">
   <div class="course-card" data-course-id="math_3">
-    <img src="Thumbnail/math_3/math3.png" alt="Math 3 (Analyse 3)" class="course-img" />
+    <img src="Thumbnail/math_3/02.png" alt="Math 3 (Analyse 3)" class="course-img" />
     <div class="course-content">
       <h3 class="course-title">Math 3 <span style="font-size:0.9em; color:#555;">(Analysis 3)</span></h3>
       <p class="instructor">Prof. Ameziane S</p>
@@ -1177,6 +1177,93 @@ const installBtn = document.querySelector(".install-btn");
 }
 </script>
 
+<!-- 🎓 نافذة الباقة المنبثقة الاحترافية -->
+<div id="bundlePopup"
+     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6);
+            z-index:9999; justify-content:center; align-items:center; font-family:'Cairo', sans-serif;
+            transition:opacity 0.4s ease; opacity:0;">
+  <div style="background:#ffffff; padding:32px 28px; border-radius:18px; max-width:520px; width:90%;
+              text-align:center; box-shadow:0 8px 30px rgba(79,70,229,0.25);
+              transform:scale(0.9); transition:all 0.35s ease; position:relative;">
+
+    <!-- زر الإغلاق -->
+    <button id="closePopup"
+            style="position:absolute; top:10px; right:14px; background:none; border:none;
+                   font-size:1.8em; color:#6b7280; cursor:pointer; transition:0.2s;">
+      ×
+    </button>
+
+    <!-- عنوان -->
+    <h2 style="color:#4f46e5; font-size:1.6em; font-weight:700; margin-bottom:0.4em;">
+      🎓 باقة المواد العلمية المميزة
+    </h2>
+
+    <!-- وصف تشجيعي -->
+    <p style="color:#1e293b; font-size:1.05em; line-height:1.7; margin-bottom:1.2em;">
+      🚀 استعد للتميز مع <strong>Derradj Academy</strong> ووفّر وقتك وجهدك!
+      احصل على <b>5 مواد جامعية مميزة</b> في باقة واحدة بسعر <b style="color:#16a34a;">4999 دج فقط</b> بدلًا من <span style="text-decoration:line-through;">6500 دج</span> 💰
+      <br>💡 العرض محدود — لا تفوت الفرصة!
+    </p>
+
+    <!-- قائمة المواد -->
+    <ul style="text-align:right; direction:rtl; color:#1e293b; font-size:1em;
+               background:#f9fafb; border-radius:10px; padding:1rem 1.2rem;
+               line-height:1.8; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+      <li>📘 <strong>Ondes et Vibrations</strong></li>
+      <li>⚡ <strong>Électronique Fondamentale 1</strong></li>
+      <li>🔌 <strong>Électrotechnique Fondamentale 1</strong></li>
+      <li>📊 <strong>Probabilité et Statistique</strong></li>
+      <li>💻 <strong>Informatique 3 (MATLAB)</strong></li>
+    </ul>
+
+    <!-- زر الإجراء -->
+    <a href="#bundle-section"
+       style="display:inline-block; margin-top:1.5em; background:linear-gradient(135deg,#4f46e5,#7c3aed);
+              color:white; padding:12px 28px; border-radius:10px; font-weight:700; text-decoration:none;
+              font-size:1.05em; transition:all 0.25s ease;">
+      🌟 اكتشف الباقة الآن
+    </a>
+  </div>
+</div>
+
+<!-- ⚙️ سكربت التحكم في الإظهار والإغلاق -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("bundlePopup");
+  const closeBtn = document.getElementById("closePopup");
+
+  // تحقق إذا لم يرها المستخدم من قبل
+  if (!localStorage.getItem("seenBundlePopup")) {
+    setTimeout(() => {
+      popup.style.display = "flex";
+      requestAnimationFrame(() => {
+        popup.style.opacity = "1";
+        popup.querySelector("div").style.transform = "scale(1)";
+      });
+    }, 800); // تظهر بعد 0.8 ثانية
+
+    localStorage.setItem("seenBundlePopup", "true");
+  }
+
+  // إغلاق سلس
+  function hidePopup() {
+    popup.style.opacity = "0";
+    popup.querySelector("div").style.transform = "scale(0.9)";
+    setTimeout(() => (popup.style.display = "none"), 300);
+  }
+
+  closeBtn.addEventListener("click", hidePopup);
+
+  popup.addEventListener("click", (e) => {
+    if (e.target.id === "bundlePopup") hidePopup();
+  });
+
+  // أيضًا يمكن للمستخدم الإغلاق بزر Escape
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") hidePopup();
+  });
+});
+</script>
 
 
 </body>
