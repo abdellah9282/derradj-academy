@@ -2630,7 +2630,7 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
   to { transform: scale(1); opacity: 1; }
 }
 /* 🎯 تحسين مظهر رابط "شرح طريقة التسجيل" */
-.nav-link[href="how-to-register.html"],
+.nav-link[href="../how-to-register.html"],
 .nav-link[href="how-to-register.html"] {
   display: inline-flex;
   align-items: center;
@@ -2643,7 +2643,7 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
 }
 
 /* 💫 تأثير عند المرور */
-.nav-link[href="how-to-register.html"]:hover,
+.nav-link[href="../how-to-register.html"]:hover,
 .nav-link[href="how-to-register.html"]:hover {
   color: #333333;               /* أسود أفتح قليلاً عند hover */
   transform: translateY(-1px);  /* حركة خفيفة للأعلى لإحساس بالتفاعل */
