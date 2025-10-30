@@ -662,69 +662,81 @@ window.addEventListener("load", () => {
 </section>
 
 <section id="pay-examples" style="margin-top:2.5rem;">
+<style>
+/* تأثير حركة خفيفة للصور عند تحريك الماوس */
+.pay-examples-grid img,
+.pay-card img,
+.pay-img {
+  transition: transform 0.28s cubic-bezier(.4,1.6,.4,1), box-shadow 0.18s;
+}
+.pay-examples-grid img:hover,
+.pay-card img:hover,
+.pay-img:hover {
+  transform: scale(1.045);
+  box-shadow: 0 8px 32px rgba(76,29,149,0.13), 0 2px 8px rgba(30,41,59,0.10);
+  z-index: 2;
+}
+</style>
   <h2 style="text-align:center; color:#1e40af; margin-bottom:1rem;"> أمثلة عن وصل الدفع</h2>
 
-<p style="max-width: 640px; margin: 1rem auto 2rem auto; background: #ffffff; border: 1px solid #dee2e6; box-shadow: 0 1px 5px rgba(76, 29, 149, 0.05); border-radius: 10px; padding: 1rem 1.5rem; font-size: 1.05em; color: #1e293b; line-height: 1.7; text-align: right; direction: rtl;">
-هذه أمثلة توضيحية لطرق الدفع عبر <b>بريدي موب</b> و <b>بريد الجزائر</b> و<b>البطاقة الذهبية</b>.<br><br>
+<p style="max-width: 780px; margin: 0.25rem auto 1.5rem auto; background: #ffffff; border: 1px solid #dee2e6; box-shadow: 0 1px 5px rgba(76, 29, 149, 0.05); border-radius: 10px; padding: 0.9rem 1.2rem; font-size: 1.02em; color: #1e293b; line-height: 1.6; text-align: right; direction: rtl;">
+  هذه أمثلة توضيحية لطرق الدفع عبر <b>بريدي موب</b> و <b>بريد الجزائر</b> و <b>البطاقة الذهبية</b>.<br>
+  <span style="display:block; margin-top:6px; color:#475569; font-size:0.96em;">
+    📎 اضغط على الصورة لمعاينتها جيدًا.
+  </span>
 </p>
 
+  <!-- new responsive two-column layout -->
+  <div class="pay-examples-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:28px; align-items:start; max-width:1100px; margin:0 auto; padding:0 12px;">
 
-  <!-- عرض الجهتين جنبًا لجنب -->
-  <div class="pay-methods-list" style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
-<!-- بريدي موب (يمين) -->
-<div class="pay-card" style="background:#ffffff; border:1px solid #d6d9e7; border-radius:14px; padding:2rem 1.5rem 1.8rem 1.5rem; max-width:420px; width:100%; box-shadow:0 4px 12px rgba(76,29,149,0.1); font-size:1.05em; text-align:center; order:1; position:relative;">
+    <!-- BaridiMob column -->
+    <div class="example-column" style="display:flex; flex-direction:column; gap:18px;">
+      <div class="pay-card" style="background:#ffffff; border:1px solid #d6d9e7; border-radius:14px; padding:1.6rem; box-shadow:0 6px 18px rgba(16,24,40,0.04);">
+        <span class="badge">BaridiMob</span>
+        <h3 style="color:#1e40af; font-size:1.15rem; margin:12px 0 10px; font-weight:700; text-align:center;">📱 الدفع عبر بريدي موب</h3>
 
-  <!-- الشارة في الركن العلوي الأيمن -->
-      <span class="badge">BaridiMob</span>
-
-
-  <h3 style="color:#1e40af; font-size:1.3em; margin-bottom:1.8rem; font-weight:700;">
-    📱 الدفع عبر بريدي موب
-  </h3>
-  <!-- أول سطر فيه صورتين -->
-  <div style="display:flex; gap:25px; justify-content:center; margin-bottom:18px;">
-    <a href="payment/Baridimob01.pdf" target="_blank">
-      <img src="payment/Baridimob01.png" alt="وصل بريدي موب 1" style="width:150px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer;">
-    </a>
-    <a href="payment/Baridimob02.pdf" target="_blank">
-      <img src="payment/Baridimob02.png" alt="وصل بريدي موب 2" style="width:150px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer;">
-    </a>
+<div style="display:flex; gap:18px; justify-content:center; flex-wrap:wrap;">
+  <div style="flex:0 0 160px; max-width:160px; display:block;">
+    <img src="payment/Baridimob01.png" alt="وصل بريدي موب 1" style="width:100%; height:auto; border-radius:10px; border:1px solid #e6eef6; box-shadow:0 2px 8px rgba(2,6,23,0.04); cursor:pointer;">
   </div>
-
-  <!-- الصورة الثالثة -->
-  <div style="text-align:center;">
-    <a href="payment/Baridimob03.pdf" target="_blank">
-      <img src="payment/Baridimob03.png" alt="وصل بريدي موب 3" style="width:160px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer;">
-    </a>
+  <div style="flex:0 0 160px; max-width:160px; display:block;">
+    <img src="payment/Baridimob02.png" alt="وصل بريدي موب 2" style="width:100%; height:auto; border-radius:10px; border:1px solid #e6eef6; box-shadow:0 2px 8px rgba(2,6,23,0.04); cursor:pointer;">
+  </div>
+  <div style="flex:0 0 160px; max-width:160px; display:block;">
+    <img src="payment/Baridimob03.png" alt="وصل بريدي موب 3" style="width:100%; height:auto; border-radius:10px; border:1px solid #e6eef6; box-shadow:0 2px 8px rgba(2,6,23,0.04); cursor:pointer;">
   </div>
 </div>
 
-<div class="pay-card" style="background:#ffffff; border:1px solid #d6d9e7; border-radius:14px; padding:2rem 1.5rem 1.8rem 1.5rem; max-width:420px; width:100%; box-shadow:0 4px 12px rgba(76,29,149,0.1); font-size:1.05em; text-align:center; order:1; position:relative;">
+      </div>
+    </div>
 
-  <!-- الشارة في الركن العلوي الأيمن -->
-  <span class="badge">Edahabia</span>
+    <!-- Edahabia column -->
+    <div class="example-column" style="display:flex; flex-direction:column; gap:18px;">
+      <div class="pay-card" style="background:#ffffff; border:1px solid #d6d9e7; border-radius:14px; padding:1.6rem; box-shadow:0 6px 18px rgba(16,24,40,0.04);">
+        <span class="badge">Edahabia</span>
+        <h3 style="color:#1e40af; font-size:1.15rem; margin:12px 0 10px; font-weight:700; text-align:center;">💳 الدفع عبر البطاقة الذهبية</h3>
 
-  <h3 style="color:#1e40af; font-size:1.3em; margin-bottom:1.8rem; font-weight:700;">
-    💳 الدفع عبر البطاقة الذهبية
-  </h3>
+        <!-- two side-by-side thumbnails on wide screens, stacked on small -->
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:8px;">
+            <img src="payment/Dahabia/eddahabiya01.png" alt="وصل البطاقة الذهبية 1" style="width:100%; height:auto; border-radius:10px; border:1px solid #e6eef6; box-shadow:0 2px 8px rgba(2,6,23,0.04); cursor:pointer;">
+          </a>
+            <img src="payment/Dahabia/01dahabia.png" alt="وصل البطاقة الذهبية 2" style="width:100%; height:auto; border-radius:10px; border:1px solid #e6eef6; box-shadow:0 2px 8px rgba(2,6,23,0.04); cursor:pointer;">
+          </a>
+        </div>
 
-  <!-- كل صورة في سطر -->
-  <div style="display:flex; flex-direction:column; align-items:center; gap:16px; margin-bottom:18px;">
-    <a  target="_blank" style="width:100%; display:block;">
-      <img src="payment/eddahabiya01.png" alt="وصل البطاقة الذهبية 1" style="width:100%; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 3px 8px rgba(0,0,0,0.1); cursor:pointer;">
-    </a>
+        <!-- additional examples stacked -->
+        <div style="display:flex; flex-direction:column; gap:12px;">
+            <img src="payment/Dahabia/02dahabia.png" alt="وصل البطاقة الذهبية 3" style="width:100%; height:auto; border-radius:10px; border:1px solid #e6eef6; box-shadow:0 2px 8px rgba(2,6,23,0.04); cursor:pointer;">
+          </a>
+            <img src="payment/Dahabia/03dahabia.png" alt="وصل البطاقة الذهبية 4" style="width:100%; height:auto; border-radius:10px; border:1px solid #e6eef6; box-shadow:0 2px 8px rgba(2,6,23,0.04); cursor:pointer;">
+          </a>
+            <img src="payment/Dahabia/05.png" alt="وصل البطاقة الذهبية 5" style="width:100%; height:auto; border-radius:10px; border:1px solid #e6eef6; box-shadow:0 2px 8px rgba(2,6,23,0.04); cursor:pointer;">
+          </a>
+        </div>
 
-    <a  target="_blank" style="width:100%; display:block;">
-      <img src="payment/eddahabiya02.png" alt="وصل البطاقة الذهبية 2" style="width:100%; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 3px 8px rgba(0,0,0,0.1); cursor:pointer;">
-    </a>
+      </div>
+    </div>
 
-    <a  target="_blank" style="width:100%; display:block;">
-      <img src="payment/eddahabiya03.png" alt="وصل البطاقة الذهبية 3" style="width:100%; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 3px 8px rgba(0,0,0,0.1); cursor:pointer;">
-    </a>
-
-  </div>
-
-</div>
 
 <!-- بريد الجزائر (يسار) -->
 <div class="pay-card" style="background:#ffffff; border:1px solid #d6d9e7; border-radius:14px; padding:1.8rem 1.5rem; max-width:720px; width:100%; box-shadow:0 4px 12px rgba(76,29,149,0.1); font-size:1.05em; text-align:center; order:2; position:relative;">
@@ -734,30 +746,22 @@ window.addEventListener("load", () => {
 
   <div class="pay-grid">
     <div>
-      <a href="payment/800.pdf" target="_blank">
-        <img src="payment/800.png" alt="وصل 800 دج" class="pay-img">
-      </a>
+      <img src="payment/800.png" alt="وصل 800 دج" class="pay-img">
       <p style="margin-top:10px; font-weight:bold; color:#1e293b;">ثمانمائة دينار جزائري (800 دج)</p>
     </div>
 
     <div>
-      <a href="payment/1000.pdf" target="_blank">
-        <img src="payment/1000.png" alt="وصل 1000 دج" class="pay-img">
-      </a>
+      <img src="payment/1000.png" alt="وصل 1000 دج" class="pay-img">
       <p style="margin-top:10px; font-weight:bold; color:#1e293b;">ألف دينار جزائري (1000 دج)</p>
     </div>
 
     <div>
-      <a href="payment/1200.pdf" target="_blank">
-        <img src="payment/1200.png" alt="وصل 1200 دج" class="pay-img">
-      </a>
+      <img src="payment/1200.png" alt="وصل 1200 دج" class="pay-img">
       <p style="margin-top:10px; font-weight:bold; color:#1e293b;">ألف ومئتا دينار جزائري (1200 دج)</p>
     </div>
 
     <div>
-      <a href="payment/1500.pdf" target="_blank">
-        <img src="payment/1500.png" alt="وصل 1500 دج" class="pay-img">
-      </a>
+      <img src="payment/1500.png" alt="وصل 1500 دج" class="pay-img">
       <p style="margin-top:10px; font-weight:bold; color:#1e293b;">ألف وخمسمائة دينار جزائري (1500 دج)</p>
     </div>
   </div>
@@ -768,6 +772,252 @@ window.addEventListener("load", () => {
 
 
 </section>
+
+<!-- 🔍 Image Lightbox Modal for Payment Examples -->
+
+<style>
+#imgLightboxModal {
+  display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(30,41,59,0.92); align-items: center; justify-content: center; transition: background 0.2s;
+}
+#imgLightboxModal.active { display: flex; }
+#imgLightboxModal .lightbox-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); font-size: 2.1rem; color: #fff; background: linear-gradient(135deg,#6366f1,#4f46e5); border: none;
+  border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 10002; box-shadow: 0 2px 8px rgba(30,41,59,0.13); border: 2px solid #fff; transition: background 0.2s, box-shadow 0.2s;
+}
+#imgLightboxModal .lightbox-arrow:hover {
+  background: linear-gradient(135deg,#4f46e5,#6366f1); box-shadow: 0 4px 16px rgba(30,41,59,0.18);
+}
+#imgLightboxPrev { left: 24px; }
+#imgLightboxNext { right: 24px; }
+@media (max-width: 600px) {
+  #imgLightboxModal .lightbox-arrow {
+    top: unset; bottom: 18px; font-size: 1.4rem; width: 36px; height: 36px; border-width: 1.5px;
+    background: linear-gradient(135deg,#6366f1,#4f46e5); opacity: 0.93;
+  }
+  #imgLightboxPrev {
+    left: 28px !important;
+    right: unset !important;
+    bottom: 18px;
+    top: unset;
+  }
+  #imgLightboxNext {
+    right: 28px !important;
+    left: unset !important;
+    bottom: 18px;
+    top: unset;
+  }
+}
+#imgLightboxClose {
+  position: absolute; top: 32px; right: 48px; font-size: 2.5rem; color: #fff; cursor: pointer; font-weight: bold; z-index: 10001;
+  background: rgba(0,0,0,0.18); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  border: none; transition: background 0.2s;
+}
+#imgLightboxClose:hover { background: rgba(0,0,0,0.32); }
+#imgLightboxImg {
+  max-width: 96vw; max-height: 70vh; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  border: 4px solid #fff; background: #fff; display: block; margin: auto; transition: transform 0.2s;
+  cursor: pointer;
+}
+#imgLightboxDownload {
+  display: inline-flex; align-items: center; gap: 6px; background: #fff; color: #1e293b; border: none; border-radius: 8px;
+  font-size: 1.08rem; font-weight: 600; padding: 8px 18px; margin: 18px auto 0 auto; box-shadow: 0 2px 8px rgba(30,41,59,0.13);
+  cursor: pointer; transition: background 0.18s;
+}
+#imgLightboxDownload:hover { background: #f1f5f9; color: #4f46e5; }
+#imgLightboxCaption {
+  color: #fff; text-align: center; margin-top: 18px; font-size: 1.13rem; font-weight: 500; text-shadow: 0 2px 8px #222;
+  max-width: 90vw; margin-left: auto; margin-right: auto;
+}
+@media (max-width: 600px) {
+  #imgLightboxClose { top: 10px; right: 10px; font-size: 1.7rem; width: 34px; height: 34px; }
+  #imgLightboxPrev, #imgLightboxNext { top: 90%; left: 10%; right: 10%; font-size: 1.5rem; width: 32px; height: 32px; }
+  #imgLightboxImg { max-width: 99vw; max-height: 45vh; }
+  #imgLightboxDownload { font-size: 0.98rem; padding: 7px 12px; }
+  #imgLightboxCaption { font-size: 0.98rem; }
+}
+</style>
+<div id="imgLightboxModal">
+  <button id="imgLightboxClose" title="إغلاق">&times;</button>
+  <button class="lightbox-arrow" id="imgLightboxPrev" title="السابق" style="left:24px;">&#8592;</button>
+  <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
+    <img id="imgLightboxImg" src="" alt="معاينة الوصل" draggable="false" />
+    <button id="imgLightboxDownload" style="display:none;">
+      <span>تنزيل الصورة</span> <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="currentColor" d="M10 2a1 1 0 0 1 1 1v8.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4A1 1 0 1 1 6.293 9.293L8.5 11.586V3a1 1 0 0 1 1-1Zm-7 13a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Z"/></svg>
+    </button>
+    <div id="imgLightboxCaption"></div>
+  </div>
+  <button class="lightbox-arrow" id="imgLightboxNext" title="التالي" style="right:24px;">&#8594;</button>
+</div>
+<script>
+// Advanced Lightbox for payment images
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('imgLightboxModal');
+  const modalImg = document.getElementById('imgLightboxImg');
+  const closeBtn = document.getElementById('imgLightboxClose');
+  const prevBtn = document.getElementById('imgLightboxPrev');
+  const nextBtn = document.getElementById('imgLightboxNext');
+  const caption = document.getElementById('imgLightboxCaption');
+  const payExamples = document.getElementById('pay-examples');
+  if (!payExamples) return;
+  const imgs = Array.from(payExamples.querySelectorAll('img'));
+  const downloadBtn = document.getElementById('imgLightboxDownload');
+  let current = 0, scale = 1, originX = 0, originY = 0, startX = 0, startY = 0, isPanning = false;
+
+  function show(idx) {
+    if (idx < 0) idx = imgs.length - 1;
+    if (idx >= imgs.length) idx = 0;
+    current = idx;
+    modalImg.src = imgs[current].src;
+    modalImg.alt = imgs[current].alt || '';
+    caption.textContent = imgs[current].alt || '';
+    scale = 1; originX = 0; originY = 0;
+    modalImg.style.transform = 'scale(1)';
+    modalImg.style.cursor = 'pointer';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    // إعداد زر التنزيل
+    if (imgs[current].src) {
+      downloadBtn.style.display = 'inline-flex';
+      downloadBtn.setAttribute('data-img', imgs[current].src);
+      let filename = imgs[current].src.split('/').pop().split('?')[0];
+      downloadBtn.setAttribute('download', filename);
+    } else {
+      downloadBtn.style.display = 'none';
+    }
+  }
+  imgs.forEach((img, i) => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', function(e) {
+      show(i);
+    });
+  });
+  function closeModal() {
+    modal.classList.remove('active');
+    modalImg.src = '';
+    caption.textContent = '';
+    document.body.style.overflow = '';
+  }
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeModal();
+  });
+  prevBtn.addEventListener('click', function(e){ e.stopPropagation(); show(current-1); });
+  nextBtn.addEventListener('click', function(e){ e.stopPropagation(); show(current+1); });
+  document.addEventListener('keydown', function(e) {
+    if (!modal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') show(current-1);
+    if (e.key === 'ArrowRight') show(current+1);
+    if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '=')) { e.preventDefault(); zoom(1.2); }
+    if ((e.ctrlKey || e.metaKey) && (e.key === '-' || e.key === '_')) { e.preventDefault(); zoom(1/1.2); }
+  });
+  // Zoom with mouse wheel
+  modalImg.addEventListener('wheel', function(e) {
+    if (!modal.classList.contains('active')) return;
+    e.preventDefault();
+    let delta = e.deltaY < 0 ? 1.15 : 1/1.15;
+    zoom(delta, e.offsetX, e.offsetY);
+  });
+  // Pinch zoom for touch
+  let lastDist = null;
+  modalImg.addEventListener('touchstart', function(e) {
+    if (e.touches.length === 2) {
+      lastDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+    } else if (e.touches.length === 1) {
+      isPanning = true;
+      startX = e.touches[0].clientX - originX;
+      startY = e.touches[0].clientY - originY;
+    }
+  });
+  modalImg.addEventListener('touchmove', function(e) {
+    if (e.touches.length === 2 && lastDist !== null) {
+      let dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      zoom(dist / lastDist);
+      lastDist = dist;
+    } else if (e.touches.length === 1 && isPanning && scale > 1) {
+      originX = e.touches[0].clientX - startX;
+      originY = e.touches[0].clientY - startY;
+      updateTransform();
+    }
+  });
+  modalImg.addEventListener('touchend', function(e) {
+    if (e.touches.length < 2) lastDist = null;
+    if (e.touches.length === 0) isPanning = false;
+  });
+  // Pan with mouse
+  modalImg.addEventListener('mousedown', function(e) {
+    if (scale === 1) return;
+    isPanning = true;
+    startX = e.clientX - originX;
+    startY = e.clientY - originY;
+    modalImg.style.cursor = 'grabbing';
+  });
+  window.addEventListener('mousemove', function(e) {
+    if (!isPanning) return;
+    originX = e.clientX - startX;
+    originY = e.clientY - startY;
+    updateTransform();
+  });
+  window.addEventListener('mouseup', function(e) {
+    isPanning = false;
+    modalImg.style.cursor = scale > 1 ? 'grab' : 'zoom-in';
+  });
+  // Double click to zoom in/out
+  modalImg.addEventListener('dblclick', function(e) {
+    if (scale === 1) zoom(2, e.offsetX, e.offsetY);
+    else resetZoom();
+  });
+  // Swipe left/right for navigation (touch)
+  let touchStartX = 0;
+  modalImg.addEventListener('touchstart', function(e) {
+    if (e.touches.length === 1) touchStartX = e.touches[0].clientX;
+  });
+  modalImg.addEventListener('touchend', function(e) {
+    if (e.changedTouches.length === 1 && Math.abs(e.changedTouches[0].clientX - touchStartX) > 60) {
+      if (e.changedTouches[0].clientX < touchStartX) show(current+1);
+      else show(current-1);
+    }
+  });
+  // زر التنزيل
+  downloadBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const url = downloadBtn.getAttribute('data-img');
+    if (!url) return;
+    // تنزيل الصورة مباشرة
+    const a = document.createElement('a');
+    a.href = url;
+    let filename = url.split('/').pop().split('?')[0];
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>document.body.removeChild(a), 200);
+  });
+  function zoom(factor, ox, oy) {
+    let prev = scale;
+    scale = Math.max(1, Math.min(scale * factor, 6));
+    if (scale === 1) { originX = 0; originY = 0; }
+    else if (ox !== undefined && oy !== undefined) {
+      originX = (originX - ox) * (scale/prev) + ox;
+      originY = (originY - oy) * (scale/prev) + oy;
+    }
+    updateTransform();
+  }
+  function resetZoom() {
+    scale = 1; originX = 0; originY = 0; updateTransform();
+  }
+  function updateTransform() {
+    modalImg.style.transform = `scale(${scale}) translate(${originX/scale}px,${originY/scale}px)`;
+  }
+});
+</script>
 
 
 
@@ -868,7 +1118,7 @@ window.addEventListener("load", () => {
       <a href="/">الرئيسية</a>
     </li>
     </li>
-   <li><a href="how-to-register.html" class="nav-link"> شرح طريقة التسجيل</a>
+   <li><a href="how-to-register.html"> شرح طريقة التسجيل</a>
    </li>
     <li>
       <a href="#pay-methods-section">طرق الدفع</a>
