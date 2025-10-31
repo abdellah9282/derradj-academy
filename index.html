@@ -693,7 +693,28 @@ window.addEventListener("load", () => {
 
       <!-- خيارات الدفع -->
 <div class="payment-options">
-  <h4 style="margin-bottom: 10px; font-size:1.1em;"> : طرق الدفع</h4>
+<h4 style="
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+">
+ طرق الدفع
+  <span style="
+    font-size: 0.9em;
+    color: #6b7280;
+    font-weight: 500;
+    margin-right: 6px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  "
+  onmouseover="this.style.color='#4f46e5';"
+  onmouseout="this.style.color='#6b7280';">
+(اضغط للمعاينة 👇)
+  </span>
+</h4>
+
   <div class="payment-methods">
 <button class="pay-option" onclick="window.open('payment/5000.pdf', '_blank')">📱 بريدي موب</button>
 <button class="pay-option" onclick="window.open('http://pay.chargily.com/payment-links/01k6jwwyjvndyr4x2yvya8qs59', '_blank')">
