@@ -174,15 +174,18 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
   </p>
 
 <!-- السعر القديم -->
-<p style="
+<p class="price-box" style="
   font-size: 1.2rem;
   margin-top: 1rem;
   line-height: 1.9;
   text-align: center;
-  white-space: nowrap; /* ✅ يمنع الانقسام إلى عدة أسطر */
-  overflow-x: auto; /* ✅ في حال ضاق العرض يمكن تمرير السطر أفقيًا */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
 ">
-  <span style="
+  <span class="price-old" style="
     color: #d9d9d9;
     font-weight: 600;
     background: rgba(255,255,255,0.08);
@@ -190,7 +193,6 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
     border-radius: 8px;
     display: inline-block;
     box-shadow: 0 2px 6px rgba(255,255,255,0.05);
-    vertical-align: middle;
   ">
     قبل التخفيض
     <span style="
@@ -201,17 +203,35 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
       6500 دج
     </span>
   </span>
-  <span style="
+
+  <span class="price-label" style="
     opacity: 0.9;
     font-weight: 500;
-    margin-right: 6px;
-    white-space: nowrap;
-    display: inline-block;
-    vertical-align: middle;
   ">
     : السعر القديم
   </span>
 </p>
+
+<!-- ✅ تنسيق خاص بالهاتف فقط -->
+<style>
+  @media (max-width: 600px) {
+    .price-box {
+      flex-direction: column; /* 🔹 في الهاتف فقط تصبح عمودية */
+      gap: 4px;
+    }
+
+    .price-label {
+      order: 1; /* 🔹 السعر القديم أولاً */
+      color: #fffae5;
+      font-size: 1.05rem;
+    }
+
+    .price-old {
+      order: 2; /* 🔹 السعر قبل التخفيض تحته */
+      font-size: 1.05rem;
+    }
+  }
+</style>
 
 
   <!-- السعر الجديد + زر الاشتراك -->
