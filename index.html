@@ -163,9 +163,11 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
   </h2>
 
   <!-- وصف المواد -->
-  <p style="font-size:1.1rem; line-height:1.8; max-width:740px; margin:auto; font-weight:500;">
-  :  احصل على <strong>خمس مواد أساسية</strong> في باقة واحدة مميزة
-    <br>
+<p style="font-size:1.1rem; line-height:1.8; max-width:740px; margin:auto; font-weight:500;">
+  احصل على <strong>خمس مواد أساسية</strong> في باقة واحدة مميزة
+    — <span style="color:#fffae5; font-weight:600;">الاشتراك سنوي حتى نهاية السنة الدراسية</span>
+
+  <br>
     <strong>Ondes et Vibrations</strong> – <strong>Électronique Fondamentale 1</strong> –
     <strong>Électrotechnique Fondamentale 1</strong> – <strong>Probabilité et Statistique</strong> –
     <strong>Informatique 3</strong>
@@ -196,7 +198,14 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
         6500 دج
       </span>
     </span>
-    <span style="opacity: 0.9; font-weight: 500;">: السعر القديم</span>
+<span style="
+  opacity: 0.9;
+  font-weight: 500;
+  white-space: nowrap; /* 🔹 يمنع النزول إلى سطر جديد */
+  display: inline-block; /* يحافظ على الترتيب في نفس السطر */
+">
+  : السعر القديم
+</span>
   </p>
 
   <!-- السعر الجديد + زر الاشتراك -->
@@ -1192,7 +1201,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <p>
         <strong>Derradj Academy</strong> هي منصة تعليمية جزائرية رائدة أسسها
         <strong>عبد الله درّاج</strong>، وهو طالب جامعي في تخصص <b>الكهروتقني الصناعي (Électrotechnique Industrielle)</b>،
-        بالتعاون مع أساتذة جامعيين ذوي خبرة. تهدف المنصة إلى تمكين الطلبة الجزائريين من التعلم في المجالات العلمية والتقنية
+          تهدف المنصة إلى تمكين الطلبة الجزائريين من التعلم في المجالات العلمية والتقنية
         من خلال محتوى تعليمي عالي الجودة، مبسط ومطابق لمناهج الجامعات الجزائرية.
       </p>
 
@@ -1209,6 +1218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li>💳 طرق دفع سهلة عبر بريدي موب والبطاقة الذهبية</li>
         <li>🌍 فرصة تعلم متساوية لكل الطلبة في جميع أنحاء الوطن</li>
       </ul>
+
     </div>
   </section>
 </div>
