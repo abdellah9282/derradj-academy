@@ -24,12 +24,14 @@ function formatSubjectName(code) {
     'systeme_asservis': 'Systèmes Asservis',
     'theorie_du_signal': 'Théorie du Signal',
     'traitement_du_signal': 'Traitement du Signal',
-
-    // ✅ المواد الإضافية
     'etat_de_l_art': 'État de l’art',
     'machines_electriques': 'Machines Électriques',
     'commandes_machines_electriques': 'Commandes des Machines Électriques',
-    'mesures_electriques_et_electroniques': 'Mesures Électriques et Électroniques'
+    'mesures_electriques_et_electroniques': 'Mesures Électriques et Électroniques',
+
+    // ✅ أسماء الباقات
+    'bundle_second_year': 'باقة السنة الثانية (5 مواد)',
+    'bundle_third_year': 'باقة السنة الثالثة (4 مواد)',
   };
   return map[code] || code;
 }
@@ -41,30 +43,31 @@ const subjectPrices = {
   'electronique_fondamentale1': 1500,
   'theorie_du_champ_electromagnetique': 800,
   'informatique01': 1000,
-  'informatique02': 1000, // Pascal
-  'informatique03': 1000, // MATLAB
-  'electronique_de_puissance': 1500, // avancée
+  'informatique02': 1000,
+  'informatique03': 1000,
+  'electronique_de_puissance': 1500,
   'probabilite_et_statistique': 1000,
-  'logique': 1000, // Logique Combinatoire et Séquentielle
-  'methode': 1200, // Méthodes Numériques L2+M1
+  'logique': 1000,
+  'methode': 1200,
   'systeme_asservis': 1200,
   'reseaux_electrique': 1200,
   'theorie_du_signal': 800,
 
-  // ✅ مواد إضافية (احتفظت بها إن كنت تستعملها في النظام)
   'etat_de_l_art': 2500,
   'machines_electriques': 2500,
   'commandes_machines_electriques': 2500,
   'mesures_electriques_et_electroniques': 2500,
   'math_3': 2000,
 
+  // ✅ أسعار الباقات
+  'bundle_second_year': 4999,
+  'bundle_third_year': 3500,
+
   // ✅ مواد الأستاذ Sami Braci
   'math1': 2000,
   'physique1': 2000,
   'chimie1': 2000
 };
-
-
 
 // ✅ جلب مواد الأستاذ
 async function fetchTeacherModules() {
@@ -105,13 +108,13 @@ async function fetchTeacherModules() {
   return [];
 }
 
+// ✅ حساب الطلاب والباقات بمنطق الحد الأدنى
 async function countApprovedStudentsForSubjects(subjects, teacherContact) {
   if (!subjects || subjects.length === 0) return {};
 
   const counts = {};
   subjects.forEach(subj => counts[subj] = 0);
 
-  // ✅ جلب الطلاب الموافق عليهم فقط، و is_teacher = null
   const { data: students, error } = await supabase
     .from('registrations')
     .select('contact, modules')
@@ -124,9 +127,23 @@ async function countApprovedStudentsForSubjects(subjects, teacherContact) {
     return counts;
   }
 
-  // ✅ حساب الطلاب في كل مادة
+  // ✅ تعريف مواد الباقات
+  const bundleSecond = [
+    'ondes_et_vibrations',
+    'electrotechnique_fondamentale1',
+    'electronique_fondamentale1',
+    'informatique03',
+    'probabilite_et_statistique'
+  ];
+  const bundleThird = [
+    'theorie_du_champ',
+    'electronique_de_puissance',
+    'systeme_asservis',
+    'reseaux_electrique'
+  ];
+
+  // ✅ حساب عدد الطلاب في كل مادة
   for (const student of students || []) {
-    // ⛔️ تجاهل أي طالب يبدأ رقمه بـ 039333
     if (student.contact && student.contact.startsWith('039333')) continue;
 
     let modules = [];
@@ -141,18 +158,31 @@ async function countApprovedStudentsForSubjects(subjects, teacherContact) {
     }
 
     for (const subj of subjects) {
-      if (modules.includes(subj)) {
-        counts[subj]++;
-      }
+      if (modules.includes(subj)) counts[subj]++;
     }
+  }
+
+  // ✅ حساب الباقات بالحد الأدنى
+  const secondValues = bundleSecond.map(m => counts[m] || 0);
+  const thirdValues = bundleThird.map(m => counts[m] || 0);
+
+  const minSecond = Math.min(...secondValues);
+  const minThird = Math.min(...thirdValues);
+
+  if (minSecond > 0) {
+    counts['bundle_second_year'] = minSecond;
+    bundleSecond.forEach(m => counts[m] = Math.max(0, (counts[m] || 0) - minSecond));
+  }
+
+  if (minThird > 0) {
+    counts['bundle_third_year'] = minThird;
+    bundleThird.forEach(m => counts[m] = Math.max(0, (counts[m] || 0) - minThird));
   }
 
   return counts;
 }
 
-
-
-// ✅ تجميع بيانات اللوحة (مع شرط الأستاذ عبد الله)
+// ✅ تجميع بيانات اللوحة
 async function fetchDashboardData() {
   const teacherContact = localStorage.getItem('userContact');
   if (!teacherContact) {
@@ -164,53 +194,60 @@ async function fetchDashboardData() {
   if (!teacherModules) return;
 
   const studentCounts = await countApprovedStudentsForSubjects(teacherModules, teacherContact);
-
-  const sortedSubjects = [...teacherModules].sort((a, b) => (studentCounts[b] || 0) - (studentCounts[a] || 0));
-
   const list = document.getElementById('subjectsList');
   list.innerHTML = '';
 
-  // ✅ تحديد ما إذا كان الأستاذ هو عبد الله
   const isAbdellah = teacherContact === '0555491316';
 
+  // ✅ ترتيب الظهور: الباقات أولاً، ثم المواد حسب عدد الطلاب (من الأكبر إلى الأصغر)
+  const allSubjects = [
+    'bundle_second_year',
+    'bundle_third_year',
+    ...Object.keys(studentCounts).filter(s => s !== 'bundle_second_year' && s !== 'bundle_third_year')
+  ];
+
+  const sortedSubjects = allSubjects
+    .filter(s => subjectPrices[s]) // تجاهل المواد غير المعرفة
+    .sort((a, b) => {
+      // الباقات دائمًا أولاً
+      if (a.startsWith('bundle') && !b.startsWith('bundle')) return -1;
+      if (!a.startsWith('bundle') && b.startsWith('bundle')) return 1;
+      return (studentCounts[b] || 0) - (studentCounts[a] || 0);
+    });
+
+  // ✅ عرض النتائج
   sortedSubjects.forEach(subj => {
     const students = studentCounts[subj] || 0;
-    const unitPrice = subjectPrices[subj] || 2500;
+    if (students <= 0) return;
 
-    // ✅ إذا كان الأستاذ عبد الله → يأخذ السعر الكامل
-    // ✅ غيره → يأخذ نصف السعر
+    const unitPrice = subjectPrices[subj] || 2500;
     const teacherEarning = isAbdellah ? (unitPrice * students) : ((unitPrice / 2) * students);
 
     const li = document.createElement('li');
     li.style.display = 'flex';
     li.style.justifyContent = 'space-between';
     li.style.alignItems = 'center';
-
     li.innerHTML = `
       <span>${formatSubjectName(subj)} (Unit Price: ${unitPrice} DA)</span>
       <span>${students} student(s) | <span style="color:#16a34a;font-weight:700">${teacherEarning.toLocaleString()} DA</span></span>
     `;
-
     list.appendChild(li);
   });
 
-  // ✅ مجموع الطلاب
-  const totalStudents = Object.values(studentCounts).reduce((sum, val) => sum + val, 0);
+  // ✅ المجموعات النهائية
+  const totalStudents = Object.values(studentCounts).reduce((a, b) => a + b, 0);
   document.getElementById('studentCount').textContent = totalStudents;
 
-  // ✅ حساب الأرباح الكلية
-  let totalEarningsRaw = 0;
-  teacherModules.forEach(subj => {
-    const count = studentCounts[subj] || 0;
+  let totalEarnings = 0;
+  for (const subj in studentCounts) {
+    const count = studentCounts[subj];
     const price = subjectPrices[subj] || 2500;
-    totalEarningsRaw += isAbdellah ? (count * price) : (count * price / 2);
-  });
+    totalEarnings += isAbdellah ? count * price : (count * price / 2);
+  }
 
-  const totalEarnings = totalEarningsRaw;
   document.getElementById('totalEarnings').textContent = totalEarnings.toLocaleString();
   document.getElementById('totalEarnings').style.color = '#16a34a';
 }
-
 
 // ✅ تشغيل بعد تحميل الصفحة
 document.addEventListener('DOMContentLoaded', fetchDashboardData);
