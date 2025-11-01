@@ -2179,9 +2179,8 @@ body, html {
   transform: translateY(-2px) scale(1.03);
 }
 
-/* 🎁 شارة خصم */
+/* 🎁 شارة خصم افتراضية */
 .bundle-card::after {
-  content: " %23 خصم";
   position: absolute;
   top: -14px;
   left: 14px;
@@ -2193,6 +2192,16 @@ body, html {
   font-weight: bold;
   box-shadow: 0 2px 6px rgba(22,163,74,0.18);
   letter-spacing: 0.3px;
+}
+
+/* 🟣 الباقة الأولى – خصم 23% */
+.bundle-card:nth-child(1)::after {
+  content: "خصم %23";
+}
+
+/* 🟢 الباقة الثانية – خصم 26% */
+.bundle-card:nth-child(2)::after {
+  content: "خصم %26";
 }
 
 .payment-methods {
@@ -2647,4 +2656,62 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
 .nav-link[href="how-to-register.html"]:hover {
   color: #333333;               /* أسود أفتح قليلاً عند hover */
   transform: translateY(-1px);  /* حركة خفيفة للأعلى لإحساس بالتفاعل */
+}
+/* 🎓 تحسين تباعد البطاقات داخل قسم الباقات الخاصة */
+#bundle-section .bundles-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 80px; /* 👈 زيدها من 50 إلى 80px لتباعد أوضح بين البطاقتين */
+  margin-top: 30px; /* مسافة إضافية فوق البطاقات */
+  margin-bottom: 40px; /* ومسافة أسفلها */
+}
+
+/* 🎁 تصميم كل بطاقة */
+#bundle-section .bundle-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  width: 330px;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+#bundle-section .bundle-card:hover {
+  transform: translateY(-6px);
+}
+
+/* 🎁 شارة الخصم */
+#bundle-section .bundle-card::after {
+  position: absolute;
+  top: -14px;
+  left: 14px;
+  background: linear-gradient(90deg, #16a34a, #15803d);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(22,163,74,0.18);
+  letter-spacing: 0.3px;
+}
+
+#bundle-section .bundle-card:nth-child(1)::after {
+  content: "خصم %23";
+}
+
+#bundle-section .bundle-card:nth-child(2)::after {
+  content: "خصم %26";
+}
+
+/* 📱 تحسين العرض على الهاتف */
+@media (max-width: 768px) {
+  #bundle-section .bundles-container {
+    gap: 40px; /* تقليل التباعد قليلاً على الشاشات الصغيرة */
+  }
+
+  #bundle-section .bundle-card {
+    width: 90%;
+  }
 }

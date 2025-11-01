@@ -653,6 +653,28 @@ window.addEventListener("load", () => {
 
 
 
+<style>
+  .bundles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* 👈 هذه السطر هو الذي يضيف المسافة بين البطاقات */
+  }
+
+  .bundle-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 320px;
+    transition: transform 0.3s ease;
+  }
+
+  .bundle-card:hover {
+    transform: translateY(-5px);
+  }
+</style>
+
 <section id="bundle-section" class="special-bundles-section">
   <h2>باقة المواد الخاصة</h2>
 
@@ -661,75 +683,80 @@ window.addEventListener("load", () => {
     <!-- 🎓 بطاقة الباقة -->
     <div class="bundle-card">
       <h3>باقة المواد العلمية المميزة</h3>
-
-      <!-- 📚 المواد -->
-<ul class="bundle-courses" style="text-align: left; direction: ltr; padding-left: 0;">
-  <li style="position: relative; ">🎓 Ondes et Vibrations</li>
-  <li style="position: relative; ">🎓 Electronique Fondamentale 1</li>
-  <li style="position: relative; ">🎓 Electrotechnique Fondamentale 1</li>
-  <li style="position: relative; ">🎓 Probabilité et Statistique</li>
-  <li style="position: relative; ">🎓 Informatique 3</li>
-</ul>
-
-
-      <!-- 💰 السعر -->
+      <ul class="bundle-courses" style="text-align: left; direction: ltr; padding-left: 0;">
+        <li>🎓 Ondes et Vibrations</li>
+        <li>🎓 Electronique Fondamentale 1</li>
+        <li>🎓 Electrotechnique Fondamentale 1</li>
+        <li>🎓 Probabilité et Statistique</li>
+        <li>🎓 Informatique 3</li>
+      </ul>
       <div class="bundle-price">
         <span class="old-price"> دج 6500 </span>
         <span class="new-price">4999 دج فقط</span>
       </div>
-<div class="bundle-discount">
-  وفر <strong>1500 دج (23%)</strong>
-</div>
-
-      <!-- ✅ المزايا -->
+      <div class="bundle-discount">وفر <strong>1500 دج (23%)</strong></div>
       <ul class="bundle-benefits">
         <li>✔️ دروس فيديو لكل مادة</li>
         <li>✔️ دعم مباشر من الأستاذ</li>
         <li>✔️ بث مباشر عند الطلب</li>
         <li>✔️ دخول لجميع الدروس والاختبارات</li>
       </ul>
-
-      <!-- 🔘 زر الاشتراك -->
-
-      <!-- خيارات الدفع -->
-<div class="payment-options">
-<h4 style="
-  margin-bottom: 10px;
-  font-size: 1.1em;
-  font-weight: 700;
-  color: #333;
-  text-align: center;
-">
- طرق الدفع
-  <span style="
-    font-size: 0.9em;
-    color: #6b7280;
-    font-weight: 500;
-    margin-right: 6px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  "
-  onmouseover="this.style.color='#4f46e5';"
-  onmouseout="this.style.color='#6b7280';">
-(اضغط للمعاينة 👇)
-  </span>
-</h4>
-
-  <div class="payment-methods">
-<button class="pay-option" onclick="window.open('payment/5000.pdf', '_blank')">📱 بريدي موب</button>
-<button class="pay-option" onclick="window.open('http://pay.chargily.com/payment-links/01k6jwwyjvndyr4x2yvya8qs59', '_blank')">
-  💳 البطاقة الذهبية
-</button>
-    <button class="pay-option" onclick="window.open('payment/5000ccp.pdf', '_blank')">📮 بريد الجزائر</button>
-  </div>
-</div>
+      <div class="payment-options">
+        <h4 style="text-align:center;">طرق الدفع
+          <span style="font-size: 0.9em; color: #6b7280; font-weight: 500; margin-right: 6px; cursor: pointer;"
+            onmouseover="this.style.color='#4f46e5';" onmouseout="this.style.color='#6b7280';">(اضغط للمعاينة 👇)</span>
+        </h4>
+        <div class="payment-methods">
+          <button class="pay-option" onclick="window.open('payment/5000.pdf', '_blank')">📱 بريدي موب</button>
+          <button class="pay-option"
+            onclick="window.open('http://pay.chargily.com/payment-links/01k6jwwyjvndyr4x2yvya8qs59', '_blank')">💳
+            البطاقة الذهبية</button>
+          <button class="pay-option" onclick="window.open('payment/5000ccp.pdf', '_blank')">📮 بريد الجزائر</button>
+        </div>
+      </div>
       <a href="sign-up/sign-up.html" class="bundle-btn">اشترك في الباقة الآن</a>
-
     </div>
-    <!-- 🔁 يمكن إضافة باقات أخرى بنفس التنسيق هنا -->
+
+    <!-- 🎓 بطاقة السنة الثالثة -->
+    <div class="bundle-card">
+      <h3>باقة السنة الثالثة هندسة كهربائية</h3>
+      <ul class="bundle-courses" style="text-align: left; direction: ltr; padding-left: 0;">
+        <li>🎓 Systèmes Asservis</li>
+        <li>🎓 Réseaux Électrique</li>
+        <li>🎓 Électronique de Puissance</li>
+        <li>🎓 Théorie du Champ Électromagnétique</li>
+      </ul>
+      <div class="bundle-price">
+  <span class="old-price">دج 4700</span>
+  <span class="new-price">3500 دج فقط</span>
+</div>
+<div class="bundle-discount">وفر <strong>1200 دج (26%)</strong></div>
+
+      <ul class="bundle-benefits">
+        <li>✔️ دروس فيديو لكل مادة</li>
+        <li>✔️ دعم مباشر من الأستاذ</li>
+        <li>✔️ بث مباشر عند الطلب</li>
+        <li>✔️ دخول لجميع الدروس والاختبارات</li>
+      </ul>
+      <div class="payment-options">
+        <h4 style="text-align:center;">طرق الدفع
+          <span style="font-size: 0.9em; color: #6b7280; font-weight: 500; margin-right: 6px; cursor: pointer;"
+            onmouseover="this.style.color='#4f46e5';" onmouseout="this.style.color='#6b7280';">(اضغط للمعاينة 👇)</span>
+        </h4>
+        <div class="payment-methods">
+          <button class="pay-option" onclick="window.open('payment/3500.pdf', '_blank')">📱 بريدي موب</button>
+          <button class="pay-option"
+            onclick="window.open('http://pay.chargily.com/payment-links/01k8z8rzhjg9zmzv7369mr14v9', '_blank')">💳
+            البطاقة الذهبية</button>
+          <button class="pay-option" onclick="window.open('payment/3500CCP.pdf', '_blank')">📮 بريد الجزائر</button>
+        </div>
+      </div>
+      <a href="sign-up/sign-up.html" class="bundle-btn">اشترك في الباقة الآن</a>
+    </div>
 
   </div>
 </section>
+
 
 <!-- استبدل قسم الدفع القديم بهذا -->
 <section id="pay-methods-section">
