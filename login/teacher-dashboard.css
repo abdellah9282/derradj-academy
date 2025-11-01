@@ -1,4 +1,4 @@
-/* === Reset عام === */
+/* === RESET === */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -12,23 +12,24 @@ body {
   min-height: 100vh;
 }
 
-/* === HEADER (شريط علوي) === */
+/* === HEADER === */
 .main-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 12px 24px;
-  background: #ffffff;
+  padding: 12px 20px;
+  background: #fff;
   border-bottom: 1px solid #e5e7eb;
-  position: relative;
-  z-index: 10;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .left-section {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .logo {
@@ -37,20 +38,24 @@ body {
   color: #651fff;
   text-decoration: none;
 }
-
 .logo:hover {
   color: #4a00e0;
 }
 
+/* === Explore Dropdown === */
 .explore-dropdown {
   position: relative;
 }
-
 .explore-link {
   font-size: 1rem;
   cursor: pointer;
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+.explore-link:hover {
+  background: #f3f4f6;
 }
 
 .dropdown-menu,
@@ -63,48 +68,22 @@ body {
   border: 1px solid #e0e0e0;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
-  min-width: 220px;
+  min-width: 200px;
   z-index: 999;
 }
 
-.dropdown-menu {
-  top: 100%;
-  left: 0;
-}
-
-.submenu {
-  top: 0;
-  left: 100%;
-  margin-left: -1px;
-}
-
-.dropdown-menu li,
-.submenu li {
-  padding: 0;
-  margin: 0;
-}
-
-.dropdown-menu a,
-.submenu a {
+.explore-dropdown.active > .dropdown-menu {
   display: block;
-  padding: 10px 16px;
-  font-size: 14px;
-  color: #1f2937;
+}
+.dropdown-menu a {
+  display: block;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  color: #333;
   text-decoration: none;
-  transition: background 0.2s;
 }
-
-.dropdown-menu a:hover,
-.submenu a:hover {
-  background: #f5f5f5;
-}
-
-.has-submenu:hover > .submenu {
-  display: block;
-}
-
-.explore-dropdown:hover > .dropdown-menu {
-  display: block;
+.dropdown-menu a:hover {
+  background: #f3f4f6;
 }
 
 /* === Search Box === */
@@ -114,7 +93,6 @@ body {
   justify-content: center;
   margin: 10px 0;
 }
-
 .search-box input {
   width: 100%;
   max-width: 500px;
@@ -122,16 +100,15 @@ body {
   border: 1px solid #ccc;
   border-radius: 999px;
   font-size: 0.95rem;
-  transition: border 0.3s, box-shadow 0.3s;
+  transition: all 0.3s;
 }
-
 .search-box input:focus {
   border-color: #4f46e5;
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
   outline: none;
 }
 
-/* === Links & Buttons === */
+/* === Buttons and Links === */
 .right-links {
   display: flex;
   align-items: center;
@@ -146,7 +123,6 @@ body {
   text-decoration: none;
   transition: color 0.3s;
 }
-
 .right-links a:hover {
   color: #4f46e5;
 }
@@ -155,339 +131,185 @@ body {
   font-weight: bold;
   padding: 8px 16px;
   border-radius: 6px;
-  text-align: center;
-  white-space: nowrap;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
 }
-
 .login {
   background: #fff;
   color: #651fff;
   border: 1px solid #651fff;
 }
-
-.signup,
-#logoutBtn {
+.signup, #logoutBtn {
   background: #651fff;
   color: #fff;
   border: none;
 }
-
-.signup:hover,
-#logoutBtn:hover {
+.signup:hover, #logoutBtn:hover {
   background: #4a00e0;
   transform: translateY(-2px);
 }
 
-/* === Dashboard Content === */
+/* === Dashboard === */
 main.dashboard {
   max-width: 1000px;
-  margin: 2rem auto;
+  margin: 1.5rem auto;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
-/* === Statistics Cards === */
+/* === Cards === */
 .cards {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
-
 .card {
   flex: 1 1 30%;
   background: #e0e7ff;
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1.3rem;
   text-align: center;
-  transition: background 0.3s;
   box-shadow: inset 0 0 10px rgba(106, 13, 173, 0.1);
 }
-
-.card:hover {
-  background: #c7d2fe;
-}
-
 .card h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #4c1d95;
   margin-bottom: 0.5rem;
 }
-
 .value {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #6b21a8;
 }
 
-/* === Subjects Section === */
+/* === Subject List === */
 .teacher-subjects {
   max-width: 700px;
   margin: 0 auto;
 }
-
 .teacher-subjects h3 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #5b21b6;
   margin-bottom: 1rem;
   padding-bottom: 0.3rem;
   border-bottom: 2px solid #6b21a8;
 }
-
-.teacher-subjects ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
 .teacher-subjects li {
   background: #f9fafb;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
-  padding: 14px 18px;
-  margin-bottom: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-  transition: background 0.3s;
 }
-
 .teacher-subjects li:hover {
   background: #eef2ff;
 }
-
 .subject-name {
   font-weight: 600;
   color: #4f46e5;
-  font-size: 0.95rem;
 }
-
 .subject-stats {
   font-size: 0.9rem;
   color: #374151;
-  text-align: right;
 }
 
-.subject-stats span {
-  margin-left: 8px;
-}
-
-/* === Responsive Design === */
+/* === تحسين عرض الهاتف === */
 @media (max-width: 768px) {
-  .cards {
+  body {
+    font-size: 0.95rem;
+  }
+
+  .main-header {
     flex-direction: column;
+    align-items: stretch;
+    padding: 10px 16px;
   }
 
-  .card {
-    flex: 1 1 100%;
+  .left-section {
+    justify-content: space-between;
+    width: 100%;
   }
 
-  .teacher-subjects {
-    max-width: 100%;
+  .logo {
+    font-size: 1.3rem;
   }
 
   .search-box {
-    order: 3;
     width: 100%;
+    order: 3;
     margin-top: 10px;
+  }
+
+  .search-box input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
   }
 
   .right-links {
     order: 2;
     width: 100%;
     justify-content: center;
-    margin-top: 10px;
-  }
-}
-/* الحاوية العامة للقائمة */
-.explore-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* كلمة Explore بدون أي تنسيق */
-.explore-link {
-  cursor: pointer;
-  text-decoration: none;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font-size: 16px;
-  color: inherit;
-}
-
-/* القوائم المنسدلة */
-.dropdown-menu,
-.submenu {
-  position: absolute;
-  display: none;
-  list-style: none;
-  margin: 0;
-  padding: 4px 0;
-  background-color: white;
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  min-width: 180px;
-  z-index: 1000;
-}
-
-/* إظهار القائمة عند المرور */
-.explore-dropdown:hover > .dropdown-menu {
-  display: block;
-}
-
-.has-submenu {
-  position: relative;
-}
-
-.has-submenu:hover > .submenu {
-  display: block;
-  top: 0;
-  left: 100%;
-  margin-left: -1px; /* لتلاصق دقيق مع القائمة الأصلية */
-}
-.submenu {
-  border-radius: 8px;
-  white-space: nowrap;
-}
-
-
-/* تنسيق الروابط داخل القوائم */
-.dropdown-menu a,
-.submenu a {
-  display: block;
-  padding: 8px 14px;
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  white-space: nowrap;
-  transition: background-color 0.2s ease;
-}
-
-/* تأثير عند المرور على الروابط */
-.dropdown-menu a:hover,
-.submenu a:hover {
-  background-color: #f5f5f5;
-}
-
-
-.nav-link {
-  position: relative;
-  text-decoration: none;
-  color: var(--text-color);
-  padding: 5px;
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 0%;
-  background-color: var(--main-color);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-@media (max-width: 600px) {
-  .main-header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 12px;
-  }
-
-  .left-section {
-    width: 100%;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-
-  .search-box {
-    width: 100%;
-    margin: 10px 0;
-    justify-content: center;
-  }
-
-  .search-box input {
-    width: 100%;
-    max-width: 100%;
-    font-size: 0.9rem;
-  }
-
-  .right-links {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-top: 8px;
   }
 
-  .btn, .nav-link, .cart-icon {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-
-  .cards {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .card {
-    flex: 1 1 100%;
-    padding: 1.2rem;
-  }
-
-  .card h3 {
-    font-size: 1rem;
-  }
-
-  .value {
-    font-size: 2rem;
-  }
-
-  .teacher-subjects {
-    padding: 0 1rem;
-  }
-
-  .teacher-subjects h3 {
-    font-size: 1.1rem;
-  }
-
-  .teacher-subjects li {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 12px;
-  }
-
-  .subject-name {
-    font-size: 0.95rem;
-    margin-bottom: 4px;
-  }
-
-  .subject-stats {
-    font-size: 0.85rem;
-  }
-
-  .dropdown-menu,
-  .submenu {
+  /* Explore Dropdown: تُفتح بالضغط وليس hover */
+  .dropdown-menu, .submenu {
     position: static;
     width: 100%;
     box-shadow: none;
     border: none;
+    border-radius: 0;
+  }
+  .explore-dropdown:hover > .dropdown-menu {
+    display: none;
+  }
+  .explore-dropdown.active > .dropdown-menu {
+    display: block;
+  }
+  .dropdown-menu a {
+    font-size: 1rem;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
   }
 
-  .explore-dropdown:hover > .dropdown-menu {
-    display: block;
+  main.dashboard {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .cards {
+    flex-direction: column;
+  }
+
+  .card {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .teacher-subjects {
     width: 100%;
+    padding: 0 0.5rem;
+  }
+  .teacher-subjects li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 14px;
+  }
+  .subject-name {
+    font-size: 1rem;
+  }
+  .subject-stats {
+    font-size: 0.9rem;
   }
 }
