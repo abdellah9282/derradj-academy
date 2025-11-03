@@ -778,21 +778,18 @@
   transform: translateY(-1px);  /* حركة خفيفة للأعلى */
 }
 /* 🎯 تحسين مظهر رابط "شرح طريقة التسجيل" */
-.nav-link[href="../how-to-register.html"],
-.nav-link[href="how-to-register.html"] {
+.nav-link[href="../how-to-register.html"] {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-weight: 400;             /* وزن أنيق ومتناسق مع باقي الروابط */
+  font-weight: 400;             /* وزن أنيق ومتناسق */
   font-size: 0.93rem;
   color: #111111;               /* أسود مريح للعين */
-  text-decoration: none;        /* إزالة الخط السفلي */
   transition: color 0.25s ease-in-out, transform 0.2s ease-in-out;
 }
 
 /* 💫 تأثير عند المرور */
-.nav-link[href="../how-to-register.html"]:hover,
-.nav-link[href="how-to-register.html"]:hover {
-  color: #333333;               /* أسود أفتح قليلاً عند hover */
-  transform: translateY(-1px);  /* حركة خفيفة للأعلى لإحساس بالتفاعل */
+.nav-link[href="../how-to-register.html"]:hover {
+  color: #333333;               /* أسود فاتح قليلاً */
+  transform: translateY(-1px);  /* حركة خفيفة للأعلى */
 }
