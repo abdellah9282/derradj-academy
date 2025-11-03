@@ -1341,10 +1341,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <section class="student-comments-modern" id="student-feedback">
   <h2 class="comments-title">💬 آراء الطلاب</h2>
-  <div id="modern-comments-container" class="comments-grid">
-    <!-- التعليقات ستُضاف تلقائيًا عبر JavaScript -->
-  </div>
+  <div id="modern-comments-container" class="comments-grid"></div>
 </section>
+
 
 
 <footer class="main-footer" dir="rtl">
@@ -1563,7 +1562,6 @@ if (form) {
     .neq('comment', '')         // ✨ تجاهل التعليقات الفارغة
     .not('comment', 'is', null) // ✨ تجاهل null
     .order('created_at', { ascending: false })
-    .limit(6);
 
 
   if (error) {
@@ -1571,22 +1569,27 @@ if (form) {
     return;
   }
 
-  data.forEach(({ comment, full_name, module }) => {
-    const initial = full_name?.charAt(0)?.toUpperCase() || "?";
-    const shortComment = comment.length > 100 ? comment.slice(0, 100) + "..." : comment;
-    const moduleFormatted = module.replace(/_/g, " "); // ⚙️ إزالة الشرطة السفلية
+data.forEach(({ comment, full_name, module }) => {
+  const initial = full_name?.charAt(0)?.toUpperCase() || "?";
+  const shortComment = comment.length > 100 ? comment.slice(0, 100) + "..." : comment;
+  const moduleFormatted = module.replace(/_/g, " "); // ⚙️ إزالة الشرطة السفلية
 
-    const card = document.createElement("div");
-    card.className = "comment-card-modern";
-    card.innerHTML = `
-      <div class="comment-header">
-        <div class="comment-avatar">${initial}</div>
-        <div class="comment-name">${full_name} <span style="color:#6b7280;">(${moduleFormatted})</span></div>
-      </div>
-      <div class="comment-body">${shortComment}</div>
-    `;
-    container.appendChild(card);
-  });
+  // 🔹 اكتشاف اللغة (إذا كانت عربية → RTL)
+  const isArabic = /[\u0600-\u06FF]/.test(comment);
+  const direction = isArabic ? "rtl" : "ltr";
+
+  const card = document.createElement("div");
+  card.className = "comment-card-modern";
+  card.innerHTML = `
+    <div class="comment-header">
+      <div class="comment-avatar">${initial}</div>
+      <div class="comment-name">${full_name} <span style="color:#6b7280;">(${moduleFormatted})</span></div>
+    </div>
+    <div class="comment-body" dir="${direction}">${shortComment}</div>
+  `;
+  container.appendChild(card);
+});
+
 }
 
 fetchModernComments();

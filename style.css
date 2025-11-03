@@ -2731,3 +2731,212 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
   color: #333333;               /* أسود فاتح قليلاً */
   transform: translateY(-1px);  /* حركة خفيفة للأعلى */
 }
+/* 🎓 قسم آراء الطلاب */
+.student-comments-modern {
+  background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+  padding: 2.5rem 1rem;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* العنوان */
+.comments-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #4b0082;
+  font-size: 1.6rem;
+  font-weight: 700;
+  position: relative;
+  letter-spacing: 0.3px;
+}
+
+.comments-title::after {
+  content: "";
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 3px;
+  opacity: 0.85;
+}
+
+/* شبكة البطاقات */
+.comments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+/* بطاقة التعليق */
+.comment-card-modern {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.3rem 1.4rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.comment-card-modern:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.08);
+  border-color: #dcdafc;
+}
+
+/* رأس البطاقة */
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+/* الصورة الرمزية */
+.comment-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #7c3aed);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(99, 102, 241, 0.18);
+}
+
+/* اسم المستخدم */
+.comment-name {
+  font-weight: 700;
+  color: #111827;
+  font-size: 1rem;
+}
+
+/* وقت التعليق */
+.comment-time {
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+/* نص التعليق */
+.comment-body {
+  color: #374151;
+  line-height: 1.7;
+  margin-bottom: 0.7rem;
+  word-break: break-word;
+  text-align: start;
+    font-size: 1.05rem; /* ← التكبير البسيط هنا */
+
+}
+
+/* اتجاه اللغة */
+.comment-body[lang="ar"],
+.comment-body[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+.comment-body[lang="fr"],
+.comment-body[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* شريط تفاعلي بسيط */
+.comment-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 0.6rem;
+  margin-top: auto;
+}
+
+/* حركة لطيفة عند الظهور */
+.comment-card-modern {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.45s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* للهواتف */
+@media (max-width: 768px) {
+  .comments-title {
+    font-size: 1.4rem;
+  }
+  .comment-card-modern {
+    padding: 1.1rem;
+  }
+  .comment-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  .comment-body {
+    font-size: 0.94rem;
+  }
+}
+
+.comment-avatar {
+  width: 48px;                     /* حجم ثابت */
+  height: 48px;
+  min-width: 48px;                 /* يمنع الانكماش في flexbox */
+  min-height: 48px;
+  border-radius: 50%;              /* يجعلها دائرية دائمًا */
+  background: linear-gradient(135deg, #6366f1, #7c3aed);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(99, 102, 241, 0.18);
+  flex-shrink: 0;                  /* 🔥 يمنعها من الانكماش مهما كان الاسم */
+  overflow: hidden;                /* يمنع أي نص زائد من الخروج */
+  text-transform: uppercase;       /* يجعل الحرف دائماً كبير وواضح */
+}
+
+
+/* 🎯 تنسيق موحد لجميع روابط الـ nav-link */
+.nav-link[href*="index.html#student-feedback"],
+.nav-link[href*="index.html#why-us"],
+.nav-link[href*="how-to-register.html"],
+.nav-link[href*="../how-to-register.html"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400;             /* وزن أنيق ومتناسق */
+  font-size: 0.93rem;
+  color: #111111;               /* لون مريح للعين */
+  text-decoration: none;        /* إزالة الخط السفلي */
+  transition: color 0.25s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* 💫 تأثير عند المرور بالماوس */
+.nav-link[href*="index.html#student-feedback"]:hover,
+.nav-link[href*="index.html#why-us"]:hover,
+.nav-link[href*="how-to-register.html"]:hover,
+.nav-link[href*="../how-to-register.html"]:hover {
+  color: #333333;               /* لون أفتح قليلاً عند hover */
+  transform: translateY(-1px);  /* حركة خفيفة للأعلى */
+}
