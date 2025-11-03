@@ -60,7 +60,7 @@ const subjectPrices = {
   'math_3': 2000,
 
   // ✅ أسعار الباقات
-  'bundle_second_year': 4999,
+  'bundle_second_year': 5000,
   'bundle_third_year': 3500,
 
   // ✅ مواد الأستاذ Sami Braci
