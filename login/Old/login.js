@@ -77,32 +77,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 🧩 عند الضغط على "تسجيل الدخول"
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  loginButton.disabled = true;
-  loginButton.textContent = "Logging in...";
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    loginButton.disabled = true;
+    loginButton.textContent = "Logging in...";
 
-  const contact = document.getElementById("contact").value.trim();
-  const password = document.getElementById("password").value.trim();
+    const contact = document.getElementById("contact").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const emailForAuth = toAuthEmail(contact);
 
-  // 🟣 شرط خاص بالسكرتيرة (دخول مباشر بدون alert)
-  if (contact === "0776922882" && password === "rania829") {
-    localStorage.setItem("userContact", contact);
-    window.location.href = "secretary-dashboard/secretary-dashboard.html";
-    return; // 🛑 نوقف باقي الكود هنا
-  }
-
-
-  // بعد هذا السطر، يُكمل الكود الطبيعي لأي مستخدم آخر
-  const emailForAuth = toAuthEmail(contact);
-
-  try {
-    // 1️⃣ تسجيل الدخول عبر Supabase Auth
-    const { data: authData, error: authError } =
-      await supabase.auth.signInWithPassword({
-        email: emailForAuth,
-        password,
-      });
+    try {
+      // 1️⃣ تسجيل الدخول عبر Supabase Auth
+      const { data: authData, error: authError } =
+        await supabase.auth.signInWithPassword({
+          email: emailForAuth,
+          password,
+        });
 
 if (authError || !authData?.user) {
   // 2️⃣ فشل → نجرب النظام القديم
