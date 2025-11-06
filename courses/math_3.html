@@ -637,7 +637,17 @@
   <h2>هل لديك سؤال؟</h2>
   <form id="questionForm">
     <input type="text" name="name" id="name" placeholder="الاسم الكامل" required />
-    <input type="text" name="contact" id="contact" placeholder="البريد الإلكتروني أو رقم الهاتف" required />
+<input
+  type="tel"
+  name="contact"
+  id="contact"
+  placeholder="أدخل رقم الهاتف"
+  required
+  dir="rtl"
+  style="text-align: right;"
+  maxlength="14"
+  oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+/>
     <textarea name="message" id="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
     <button type="submit">إرسال</button>
     <p id="support-message" style="margin-top:1rem; color:green;"></p>
@@ -734,7 +744,7 @@ if (form) {
       supportMsg.textContent = "❌ خطأ: " + error.message; // لعرض السبب الحقيقي
       supportMsg.style.color = "red";
     } else {
-      supportMsg.textContent = "✅ تم إرسال رسالتك بنجاح، سيتم الرد عليك قريبًا.";
+      supportMsg.textContent = "✅ تم إرسال رسالتك بنجاح، سيتواصل معك فريقنا في أقرب وقت ممكن ";
       supportMsg.style.color = "green";
       form.reset();
     }
