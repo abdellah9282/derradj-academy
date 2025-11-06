@@ -230,12 +230,10 @@ async function loadNewRequests() {
 async function loadMessages() {
   const statusMessage = document.getElementById("statusMessage");
 
-const { data, error } = await supabase
-  .from("messages")
-  .select("*")
-  .is("viewed", null) // 👈 فقط الرسائل غير المشاهدة
-  .order("created_at", { ascending: false });
-
+  const { data, error } = await supabase
+    .from("messages")
+    .select("*")
+    .order("created_at", { ascending: false });
 
   const messagesTable = document.getElementById("messagesTable");
   messagesTable.innerHTML = "";
@@ -248,22 +246,20 @@ const { data, error } = await supabase
     return;
   }
 
-data.forEach(msg => {
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td>${msg.name}</td>
-    <td>${msg.email}</td>
-    <td>${msg.message || "N/A"}</td>
-    <td>${new Date(msg.created_at).toLocaleString()}</td>
-    <td>
-      <button onclick="markAsViewed(${msg.id})" style="margin-right:6px;">👁️ تمت المشاهدة</button>
-      <button onclick="copyToClipboard('${msg.email}')" style="margin-right:6px;">📋 Copy</button>
-      <button onclick="deleteMessage(${msg.id})" style="color:red;">🗑 Delete</button>
-    </td>
-  `;
-  messagesTable.appendChild(row);
-});
-
+  data.forEach(msg => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${msg.name}</td>
+      <td>${msg.email}</td>
+      <td>${msg.message || "N/A"}</td>
+      <td>${new Date(msg.created_at).toLocaleString()}</td>
+      <td>
+        <button onclick="copyToClipboard('${msg.email}')" style="margin-right: 6px;">📋 Copy</button>
+        <button onclick="deleteMessage(${msg.id})" style="color:red;">🗑 Delete</button>
+      </td>
+    `;
+    messagesTable.appendChild(row);
+  });
 }
 
 // ✅ دالة حذف الرسائل (مسجلة في window حتى تعمل مع onclick)
@@ -483,28 +479,3 @@ async function deleteBookSession(id, rowElement) {
 
 // ⏱️ تحميل الجلسات عند فتح الصفحة
 loadBookLiveSessions();
-// ✅ دالة تأكيد قراءة الرسالة
-window.markAsViewed = async function (id) {
-  const statusMessage = document.getElementById("statusMessage");
-
-  if (!confirm("👁️ هل تأكدت من قراءة هذه الرسالة؟")) return;
-
-  const { error } = await supabase
-    .from("messages")
-    .update({ viewed: true })
-    .eq("id", id);
-
-  if (error) {
-    console.error(error);
-    statusMessage.style.color = "red";
-    statusMessage.textContent = "❌ فشل في تحديث حالة الرسالة.";
-  } else {
-    statusMessage.style.color = "green";
-    statusMessage.textContent = "✅ تم تأكيد قراءة الرسالة.";
-    // إزالة الرسالة من الجدول مباشرة بعد التحديث
-    const row = document.querySelector(`button[onclick="markAsViewed(${id})"]`).closest("tr");
-    if (row) row.remove();
-  }
-
-  statusMessage.style.display = "block";
-};
