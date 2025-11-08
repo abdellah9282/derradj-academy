@@ -147,7 +147,7 @@ const { data: buyersData, count: buyersCount, error: buyersError } = await supab
     // حساب الأرباح
     const callEarnings = reviewedCount * 30; // 30 دج لكل مراجعة
     const buyEarnings = buyersCount * 200;   // 200 دج لكل شراء
-    const totalEarnings = callEarnings + buyEarnings;
+    const totalEarnings =  buyEarnings;
 
     // تحديث الصفحة
     updateStats({
