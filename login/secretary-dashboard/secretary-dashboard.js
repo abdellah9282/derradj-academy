@@ -43,15 +43,8 @@ async function loadMessages() {
   }
 
   renderMessages(data);
-
-  // ✅ بعد تحميل الرسائل بنجاح، أخفِ رسالة الحالة بعد ثانيتين
-  if (data && data.length > 0) {
-    setTimeout(() => hideStatus(), 2000);
-  } else {
-    hideStatus(); // لو مافيش بيانات أصلاً، نخفيها فوراً
-  }
+  hideStatus();
 }
-
 
 /* -------------------------------------------------------------------------- */
 /* 🧾 عرض الرسائل */
@@ -60,8 +53,8 @@ function renderMessages(messages) {
   messagesTable.innerHTML = "";
 
   if (!messages || messages.length === 0) {
-    messagesTable.innerHTML = `<tr><td colspan="5" style="text-align:center;">🎉 لا توجد رسائل جديدة</td></tr>`;
-    hideStatus();
+    messagesTable.innerHTML =
+      `<tr><td colspan="5" style="text-align:center;">🎉 لا توجد رسائل جديدة</td></tr>`;
     return;
   }
 
@@ -87,8 +80,8 @@ function renderMessages(messages) {
 /* ⚙️ إعداد الأزرار */
 /* -------------------------------------------------------------------------- */
 function initButtons() {
-  // ☎️ زر النسخ
-  document.querySelectorAll(".copyBtn").forEach(btn => {
+  // زر النسخ
+  document.querySelectorAll(".copyBtn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const phone = btn.dataset.phone;
       navigator.clipboard.writeText(phone);
@@ -96,12 +89,11 @@ function initButtons() {
     });
   });
 
-  // ✅ زر "تمت المراجعة"
-  document.querySelectorAll(".reviewBtn").forEach(btn => {
+  // زر المراجعة
+  document.querySelectorAll(".reviewBtn").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const id = btn.dataset.id;
-      const confirmAction = confirm("هل أنت متأكد أنك راجعت هذه الرسالة؟");
-      if (!confirmAction) return;
+      if (!confirm("هل أنت متأكد أنك راجعت هذه الرسالة؟")) return;
 
       const { error } = await supabase
         .from("messages")
@@ -117,87 +109,93 @@ function initButtons() {
 
       btn.closest("tr").remove();
       showStatus("✅ تم وضع الرسالة كمراجَعة.", "green", 2000);
-
-      // بعد المراجعة، حدث الإحصائيات
       await loadStats();
     });
   });
 }
 
 /* -------------------------------------------------------------------------- */
-/* 🧮 تحميل الإحصائيات */
+/* 🧮 تحميل الإحصائيات (الأرباح والمجموع) */
 /* -------------------------------------------------------------------------- */
 async function loadStats() {
   try {
-    // عدد الرسائل التي تمت مراجعتها (is_reviewed = TRUE)
-    const { count: reviewedCount, error: reviewedError } = await supabase
+    const { data, error } = await supabase
       .from("messages")
-      .select("*", { count: "exact", head: true })
-      .eq("is_reviewed", true);
-    if (reviewedError) throw reviewedError;
+      .select("name, email, confirmation, packfive, packthree, buy");
 
-    // عدد المشترين (buy = TRUE)
-const { data: buyersData, count: buyersCount, error: buyersError } = await supabase
-  .from("messages")
-  .select("name, email", { count: "exact" })
-  .eq("buy", true);
+    if (error) throw error;
 
-    if (buyersError) throw buyersError;
+    const buyersData = [];
+    let totalEarnings = 0;
 
-    // حساب الأرباح
-    const callEarnings = reviewedCount * 30; // 30 دج لكل مراجعة
-    const buyEarnings = buyersCount * 200;   // 200 دج لكل شراء
-    const totalEarnings =  buyEarnings;
+    // حساب المبلغ لكل شخص
+    for (const row of data) {
+      let personEarnings = 0;
+      if (row.confirmation === true) personEarnings += 100;
+      if (row.packfive === true) personEarnings += 500;
+      if (row.packthree === true) personEarnings += 300;
+      if (row.buy === true) personEarnings += 200;
 
-    // تحديث الصفحة
-    updateStats({
-      calls: reviewedCount,
-      callEarnings,
-      buyersCount,
-      buyEarnings,
-      totalEarnings,
-      buyersData
-    });
+      if (personEarnings > 0) {
+        totalEarnings += personEarnings;
+        buyersData.push({
+          name: row.name || "بدون اسم",
+          email: row.email || "غير متوفر",
+          amount: personEarnings,
+        });
+      }
+    }
+
+    updateStats({ buyersData, totalEarnings });
   } catch (err) {
     console.error("❌ خطأ أثناء حساب الإحصائيات:", err);
+    showStatus("حدث خطأ أثناء حساب الإحصائيات.", "red", 3000);
   }
 }
 
 /* -------------------------------------------------------------------------- */
-/* 🖥️ عرض الإحصائيات */
+/* 🖥️ عرض الأشخاص والمجموع في الأسفل */
 /* -------------------------------------------------------------------------- */
-function updateStats({ calls, callEarnings, buyersCount, buyEarnings, totalEarnings, buyersData }) {
-  const callsCount = document.getElementById("callsCount");
-  const callsCost = document.getElementById("callsCost");
-  const buyersTotalEl = document.getElementById("buyersTotal"); // العنصر الجديد في الهيدر
-  const buyersEarningsEl = document.getElementById("buyersEarnings"); // مجموع الأرباح الكلي
+function updateStats({ buyersData, totalEarnings }) {
+  const buyersEarningsEl = document.getElementById("buyersEarnings");
   const buyersList = document.getElementById("buyersList");
 
-  // 📞 عدد الاتصالات
-  if (callsCount) callsCount.textContent = calls;
-  // 💸 تكلفة الاتصالات
-  if (callsCost) callsCost.textContent = callEarnings + " دج";
-  // 🧍‍♀️ مجموع أرباح المشترين فقط (كل واحد 200 دج)
-  if (buyersTotalEl) buyersTotalEl.textContent = buyEarnings + " دج";
-  // 💰 الأرباح الكلية (اتصالات + مشتريات)
+  // تحديث المجموع في الهيدر
   if (buyersEarningsEl) buyersEarningsEl.textContent = totalEarnings + " دج";
 
-  // 👥 قائمة المشترين المقنعين (الاسم + الهاتف)
-  if (buyersList) {
-    buyersList.innerHTML = "";
-    buyersData.forEach(buyer => {
-      const li = document.createElement("li");
-      const name = buyer.name || "بدون اسم";
-      const phone = buyer.email || "غير متوفر";
-      li.innerHTML = `
-        <strong>${name}</strong>
-        <span style="color:#2563eb; font-weight:500;"> - ${phone}</span>
-      `;
-      buyersList.appendChild(li);
-    });
-  }
-}
+  // عرض قائمة الأشخاص
+  if (!buyersList) return;
+  buyersList.innerHTML = "";
 
+  if (buyersData.length === 0) {
+    buyersList.innerHTML = `<li style="text-align:center; color:#888;">لا يوجد أشخاص حصلوا على أرباح</li>`;
+    return;
+  }
+
+  buyersData.forEach((buyer) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong>${buyer.name}</strong>
+      <span style="color:#2563eb;"> - ${buyer.email}</span>
+      <span style="float:right; color:#16a34a;">+${buyer.amount} دج</span>
+    `;
+    buyersList.appendChild(li);
+  });
+
+  // المجموع الكلي في آخر القائمة
+  const totalLi = document.createElement("li");
+  totalLi.style.cssText = `
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    background: #f0fdf4;
+    border: 1px solid #a7f3d0;
+    padding: 10px;
+    border-radius: 8px;
+  `;
+  totalLi.innerHTML = `💰 <strong>المجموع الكلي:</strong> ${totalEarnings} دج`;
+  buyersList.appendChild(totalLi);
+}
 
 /* -------------------------------------------------------------------------- */
 /* 🔔 أدوات مساعدة */
@@ -208,7 +206,6 @@ function showStatus(text, color = "black", timeout = 0) {
   statusMessage.style.display = "block";
   if (timeout > 0) setTimeout(() => hideStatus(), timeout);
 }
-
 function hideStatus() {
   statusMessage.style.display = "none";
 }
