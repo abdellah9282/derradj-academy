@@ -1,196 +1,269 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ JS Loaded (New Auth + Classic UI)");
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-  const supabase = window.supabase.createClient(
-    "https://sgcypxmnlyiwljuqvcup.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
-  );
+// ✅ إنشاء عميل Supabase
+const supabase = createClient(
+  'https://sgcypxmnlyiwljuqvcup.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
+);
 
-  const form = document.querySelector(".signup-form");
-  const loginButton = form.querySelector('button[type="submit"]');
-  const originalText = loginButton.textContent;
+// ✅ خريطة أسماء المواد
+function formatSubjectName(code) {
+  const map = {
+    'ondes_et_vibrations': 'Ondes et Vibrations',
+    'electronique_fondamentale1': 'Électronique Fondamentale 1',
+    'electrotechnique_fondamentale1': 'Électrotechnique Fondamentale 1',
+    'electricite_industrielle': 'Électricité Industrielle',
+    'electronique_de_puissance': 'Électronique de Puissance',
+    'informatique01': 'Informatique 1',
+    'informatique02': 'Informatique 2 (Pascal)',
+    'informatique03': 'Informatique 3 (MATLAB)',
+    'logique': 'Logique Combinatoire et Séquentielle',
+    'methode': 'Méthodes Numériques L2+M1',
+    'probabilite_et_statistique': 'Probabilité et Statistique',
+    'reseaux_electrique': 'Réseaux Électriques',
+    'systeme_asservis': 'Systèmes Asservis',
+    'theorie_du_signal': 'Théorie du Signal',
+    'traitement_du_signal': 'Traitement du Signal',
+    'etat_de_l_art': 'État de l’art',
+    'machines_electriques': 'Machines Électriques',
+    'commandes_machines_electriques': 'Commandes des Machines Électriques',
+    'mesures_electriques_et_electroniques': 'Mesures Électriques et Électroniques',
 
-  // 🧩 توحيد البريد أو رقم الهاتف
-  const toAuthEmail = (contact) => {
-    let clean = contact.trim().toLowerCase();
-    clean = clean.replace(/[^0-9a-zA-Z@.]/g, "");
-    if (clean.startsWith("+213")) clean = "0" + clean.slice(4);
-    else if (clean.startsWith("213")) clean = "0" + clean.slice(3);
-    return clean.includes("@") ? clean : `${clean}@derradjacademy.com`;
+    'bundle_second_year': 'باقة السنة الثانية (5 مواد)',
+    'bundle_third_year': 'باقة السنة الثالثة (4 مواد)',
   };
+  return map[code] || code;
+}
 
-  // 🧩 تسجيل الدخول بالطريقة القديمة (fallback)
-  async function fallbackTableLogin(contact, password) {
-    console.log("🔎 Trying fallbackTableLogin for:", contact);
+// ✅ الأسعار
+const subjectPrices = {
+  'ondes_et_vibrations': 1500,
+  'electrotechnique_fondamentale1': 1500,
+  'electronique_fondamentale1': 1500,
+  'theorie_du_champ_electromagnetique': 800,
+  'informatique01': 1000,
+  'informatique02': 1000,
+  'informatique03': 1000,
+  'electronique_de_puissance': 1500,
+  'probabilite_et_statistique': 1000,
+  'logique': 1000,
+  'methode': 1200,
+  'systeme_asservis': 1200,
+  'reseaux_electrique': 1200,
+  'theorie_du_signal': 800,
 
-    const { data: rows, error } = await supabase
-      .from("registrations")
-      .select("*")
-      .eq("contact", contact);
+  'etat_de_l_art': 2500,
+  'machines_electriques': 2500,
+  'commandes_machines_electriques': 2500,
+  'mesures_electriques_et_electroniques': 2500,
+  'math_3': 2000,
 
-    if (error || !rows || rows.length === 0) {
-      console.warn("⚠️ User not found in fallbackTableLogin");
-      return { ok: false };
-    }
+  'bundle_second_year': 5000,
+  'bundle_third_year': 3500,
 
-    const data = rows.find((u) => u.password === password);
-    if (!data) {
-      console.warn("⚠️ Password mismatch");
-      return { ok: false };
-    }
+  'math1': 2000,
+  'physique1': 2000,
+  'chimie1': 2000
+};
 
-    console.log("✅ Fallback success:", data.full_name);
-
-    const sessionId = window.crypto?.randomUUID?.() || Date.now().toString();
-    const deviceId = window.crypto?.randomUUID?.() || "device-" + Date.now();
-
-    localStorage.setItem("sessionId", sessionId);
-    localStorage.setItem("deviceId", deviceId);
-    localStorage.setItem("userModules", JSON.stringify(data.modules));
-    localStorage.setItem("userName", data.full_name);
-    localStorage.setItem("userContact", data.contact);
-    localStorage.setItem("userToken", "ok");
-
-    if (data.is_teacher) {
-      localStorage.setItem("teacherSubjects", JSON.stringify(data.modules || []));
-    }
-
-    await supabase
-      .from("registrations")
-      .update({ session_id: sessionId, device_id: deviceId })
-      .eq("contact", data.contact);
-
-    // ✅ واجهة المستخدم
-    if (data.is_admin === true) {
-      loginButton.textContent = "✅ Welcome admin";
-      localStorage.setItem("isAdmin", "true");
-      window.location.href = "adin-dasbord.html";
-    } else if (data.is_teacher === true) {
-      loginButton.textContent = "✅ Welcome teacher";
-      window.location.href = "teacher-dashboard.html";
-    } else {
-      loginButton.textContent = "✅ Welcome student";
-      window.location.href = "dashboard.html";
-    }
-
-    return { ok: true };
+// ✅ جلب مواد الأستاذ
+async function fetchTeacherModules() {
+  const teacherContact = localStorage.getItem('userContact');
+  if (!teacherContact) {
+    document.getElementById('subjectsList').innerHTML = '<li>Please login first.</li>';
+    return null;
   }
 
-  // 🧩 عند الضغط على "تسجيل الدخول"
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    loginButton.disabled = true;
-    loginButton.textContent = "Logging in...";
+  const { data, error } = await supabase
+    .from('registrations')
+    .select('modules')
+    .eq('contact', teacherContact)
+    .eq('is_teacher', true)
+    .single();
 
-    const contact = document.getElementById("contact").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const emailForAuth = toAuthEmail(contact);
+  if (error) {
+    console.error('Error fetching teacher modules:', error);
+    document.getElementById('subjectsList').innerHTML = '<li>Error loading subjects.</li>';
+    return null;
+  }
 
+  if (!data.modules) {
+    document.getElementById('subjectsList').innerHTML = '<li>No subjects assigned.</li>';
+    return null;
+  }
+
+  if (typeof data.modules === 'string') {
     try {
-      // 1️⃣ تسجيل الدخول عبر Supabase Auth
-      const { data: authData, error: authError } =
-        await supabase.auth.signInWithPassword({
-          email: emailForAuth,
-          password,
-        });
-
-      if (authError || !authData?.user) {
-        // 2️⃣ فشل → نجرب النظام القديم
-        const fb = await fallbackTableLogin(contact, password);
-        if (!fb.ok) {
-          loginButton.textContent = "❌ Incorrect info";
-          setTimeout(() => {
-            loginButton.textContent = originalText;
-            loginButton.disabled = false;
-          }, 2000);
-        }
-        return;
-      }
-
-      // ✅ نجاح Auth → نحضر البيانات من جدول registrations
-      let { data: reg } = await supabase
-        .from("registrations")
-        .select("*")
-        .eq("user_id", authData.user.id)
-        .maybeSingle();
-
-      if (!reg) {
-        const { data: byContact } = await supabase
-          .from("registrations")
-          .select("*")
-          .or(`contact.eq.${contact},contact.eq.${emailForAuth}`)
-          .maybeSingle();
-        reg = byContact || reg;
-      }
-
-      if (!reg) {
-        alert("تم تسجيل الدخول، لكن لا توجد بياناتك في registrations. تواصل مع الدعم.");
-        loginButton.textContent = originalText;
-        loginButton.disabled = false;
-        return;
-      }
-
-      // ✅ حالات الموافقة والرفض
-      if (reg.is_admin === true) {
-        loginButton.textContent = "✅ Welcome admin";
-        localStorage.setItem("isAdmin", "true");
-        window.location.href = "adin-dasbord.html";
-        return;
-      }
-
-      if (reg.is_approved === null) {
-        loginButton.textContent = "⏳ في انتظار الموافقة";
-        setTimeout(() => {
-          loginButton.textContent = originalText;
-          loginButton.disabled = false;
-        }, 2500);
-        return;
-      }
-
-      if (reg.is_approved === false) {
-        loginButton.textContent = "❌ Rejected. Please register again.";
-        setTimeout(() => {
-          loginButton.textContent = originalText;
-          loginButton.disabled = false;
-        }, 2500);
-        return;
-      }
-
-      // ✅ الجلسة والمعلومات المحلية
-      const sessionId =
-        window.crypto?.randomUUID?.() ||
-        Date.now().toString() + Math.random().toString(36).substring(2);
-      const deviceId = window.crypto?.randomUUID?.() || "device-" + Date.now();
-
-      localStorage.setItem("sessionId", sessionId);
-      localStorage.setItem("deviceId", deviceId);
-      localStorage.setItem("userModules", JSON.stringify(reg.modules));
-      localStorage.setItem("userName", reg.full_name);
-      localStorage.setItem("userContact", reg.contact);
-      localStorage.setItem("userToken", "ok");
-
-      if (reg.is_teacher === true) {
-        localStorage.setItem("teacherSubjects", JSON.stringify(reg.modules || []));
-      }
-
-      await supabase
-        .from("registrations")
-        .update({ session_id: sessionId, device_id: deviceId })
-        .eq("contact", reg.contact);
-
-      // ✅ واجهة المستخدم عند النجاح
-      if (reg.is_teacher === true) {
-        loginButton.textContent = "✅ Welcome teacher";
-        window.location.href = "teacher-dashboard.html";
-      } else {
-        loginButton.textContent = "✅ Welcome student";
-        window.location.href = "dashboard.html";
-      }
-    } catch (err) {
-      console.error(err);
-      alert("❌ حدث خطأ أثناء تسجيل الدخول.");
-      loginButton.textContent = originalText;
-      loginButton.disabled = false;
+      return JSON.parse(data.modules);
+    } catch {
+      console.warn('Failed to parse modules JSON string');
+      return [];
     }
+  } else if (Array.isArray(data.modules)) {
+    return data.modules;
+  }
+  return [];
+}
+
+// ✅ تعريف الباقات
+const bundleSecond = [
+  'ondes_et_vibrations',
+  'electrotechnique_fondamentale1',
+  'electronique_fondamentale1',
+  'informatique03',
+  'probabilite_et_statistique'
+];
+const bundleThird = [
+  'theorie_du_champ',
+  'electronique_de_puissance',
+  'systeme_asservis',
+  'reseaux_electrique'
+];
+
+// ✅ دالة تجلب جميع الصفوف (تتجاوز حد 100)
+async function fetchAllApprovedStudents() {
+  const all = [];
+  let from = 0;
+  const limit = 100;
+  let done = false;
+
+  while (!done) {
+    const { data, error } = await supabase
+      .from('registrations')
+      .select('contact, modules')
+      .eq('is_approved', true)
+      .is('is_teacher', null)
+      .range(from, from + limit - 1);
+
+    if (error) {
+      console.error('Error fetching students batch:', error);
+      break;
+    }
+
+    if (data.length === 0) {
+      done = true;
+    } else {
+      all.push(...data);
+      from += limit;
+    }
+  }
+
+  return all;
+}
+
+// ✅ الدالة لحساب الأرباح لكل أستاذ
+async function calculateTeacherEarnings(subjects, teacherContact) {
+  if (!subjects || subjects.length === 0) return { counts: {}, total: 0 };
+
+  const students = await fetchAllApprovedStudents();
+
+  const counts = {};
+  let totalEarnings = 0;
+
+  for (const subj of subjects) counts[subj] = 0;
+
+  for (const student of students || []) {
+    if (!student.modules) continue;
+
+    let modules = [];
+    if (Array.isArray(student.modules)) {
+      modules = student.modules;
+    } else if (typeof student.modules === 'string') {
+      try {
+        modules = JSON.parse(student.modules);
+      } catch {
+        modules = [];
+      }
+    }
+
+    if (!modules || modules.length === 0) continue;
+
+    const hasSecondBundle = bundleSecond.every(m => modules.includes(m));
+    const hasThirdBundle = bundleThird.every(m => modules.includes(m));
+
+    if (hasSecondBundle) {
+      counts['bundle_second_year'] = (counts['bundle_second_year'] || 0) + 1;
+      totalEarnings += 5000;
+      continue;
+    }
+
+    if (hasThirdBundle) {
+      counts['bundle_third_year'] = (counts['bundle_third_year'] || 0) + 1;
+      totalEarnings += 3500;
+      continue;
+    }
+
+    for (const subj of subjects) {
+      if (modules.includes(subj)) {
+        counts[subj] = (counts[subj] || 0) + 1;
+        totalEarnings += subjectPrices[subj] || 0;
+      }
+    }
+  }
+
+  return { counts, total: totalEarnings };
+}
+
+// ✅ تجميع بيانات اللوحة
+async function fetchDashboardData() {
+  const teacherContact = localStorage.getItem('userContact');
+  if (!teacherContact) {
+    console.error('No teacher contact found in localStorage');
+    return;
+  }
+
+  const teacherModules = await fetchTeacherModules();
+  if (!teacherModules) return;
+
+  const { counts: studentCounts, total: totalEarningsRaw } =
+    await calculateTeacherEarnings(teacherModules, teacherContact);
+
+  const list = document.getElementById('subjectsList');
+  list.innerHTML = '';
+
+  const isAbdellah = teacherContact === '0555491316';
+
+  const allSubjects = [
+    'bundle_second_year',
+    'bundle_third_year',
+    ...Object.keys(studentCounts).filter(s => s !== 'bundle_second_year' && s !== 'bundle_third_year')
+  ];
+
+  const sortedSubjects = allSubjects
+    .filter(s => subjectPrices[s])
+    .sort((a, b) => {
+      if (a.startsWith('bundle') && !b.startsWith('bundle')) return -1;
+      if (!a.startsWith('bundle') && b.startsWith('bundle')) return 1;
+      return (studentCounts[b] || 0) - (studentCounts[a] || 0);
+    });
+
+  sortedSubjects.forEach(subj => {
+    const students = studentCounts[subj] || 0;
+    if (students <= 0) return;
+
+    const unitPrice = subjectPrices[subj] || 2500;
+    const teacherEarning = isAbdellah ? (unitPrice * students) : ((unitPrice / 2) * students);
+
+    const li = document.createElement('li');
+    li.style.display = 'flex';
+    li.style.justifyContent = 'space-between';
+    li.style.alignItems = 'center';
+    li.innerHTML = `
+      <span>${formatSubjectName(subj)} (Unit Price: ${unitPrice} DA)</span>
+      <span>${students} student(s) | <span style="color:#16a34a;font-weight:700">${teacherEarning.toLocaleString()} DA</span></span>
+    `;
+    list.appendChild(li);
   });
-});
+
+  const totalStudents = Object.values(studentCounts).reduce((a, b) => a + b, 0);
+  document.getElementById('studentCount').textContent = totalStudents;
+
+  const isAbdellahFactor = isAbdellah ? 1 : 0.5;
+  const totalEarnings = totalEarningsRaw * isAbdellahFactor;
+
+  document.getElementById('totalEarnings').textContent = totalEarnings.toLocaleString();
+  document.getElementById('totalEarnings').style.color = '#16a34a';
+}
+
+// ✅ تشغيل بعد تحميل الصفحة
+document.addEventListener('DOMContentLoaded', fetchDashboardData);
