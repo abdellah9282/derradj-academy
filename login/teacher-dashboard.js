@@ -151,6 +151,24 @@ async function fetchAllApprovedStudents() {
 
   return all;
 }
+function getTeacherUnitPrice(subject, teacherContact) {
+  const fullPriceSubjects = ['math1', 'physique1', 'chimie1', 'math2', 'physique2'];
+
+  // إذا كانت المادة من مواد 1300 دج
+  if (fullPriceSubjects.includes(subject)) {
+
+    if (teacherContact === '0552329993') {
+      // هذا الأستاذ يأخذ 1300 كاملة
+      return 1300;
+    } else {
+      // كل الأساتذة الآخرين يأخذون 700 دج فقط
+      return 700;
+    }
+  }
+
+  // باقي المواد تعود لنظامها العادي
+  return subjectPrices[subject] || 0;
+}
 
 // ✅ الدالة لحساب الأرباح لكل أستاذ
 async function calculateTeacherEarnings(subjects, teacherContact) {
@@ -206,7 +224,7 @@ if (teacherContact === '0555491316') {
     for (const subj of subjects) {
       if (modules.includes(subj)) {
         counts[subj] = (counts[subj] || 0) + 1;
-        totalEarnings += subjectPrices[subj] || 0;
+totalEarnings += getTeacherUnitPrice(subj, teacherContact);
       }
     }
   }
@@ -251,7 +269,7 @@ const allSubjects = [
     const students = studentCounts[subj] || 0;
     if (students <= 0) return;
 
-    const unitPrice = subjectPrices[subj] || 2500;
+const unitPrice = getTeacherUnitPrice(subj, teacherContact);
     const teacherEarning = isAbdellah ? (unitPrice * students) : ((unitPrice) * students);
 
     const li = document.createElement('li');
