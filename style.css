@@ -2948,3 +2948,15 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
   color: #333333;               /* لون أفتح قليلاً عند hover */
   transform: translateY(-1px);  /* حركة خفيفة للأعلى */
 }
+
+
+.launch-banner {
+  background: #fff4d6;        /* أصفر ذهبي ناعم بدل الأصفر الباهت */
+  color: #8a4b0d;             /* بني دافئ أعمق وأكثر وضوحاً */
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f5c542; /* حد ذهبي أوضح */
+  font-weight: 500;
+  direction: rtl;
+}

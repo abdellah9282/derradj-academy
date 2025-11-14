@@ -45,6 +45,38 @@ if (data.session_id !== sessionId || data.device_id !== deviceId) {
 })();
 
 const allCourses = {
+  math1: {
+    title: "Math 1 – Analyse 1",
+    instructor: "Sami Braci",
+    price: 2000,
+    image: "../Thumbnail/math1/01.jpg"
+  },
+  chimie1: {
+    title: "Chimie 1",
+    instructor: "Sami Braci",
+    price: 2000,
+    image: "../Thumbnail/chimie1/01.jpg"
+  },
+  physique1: {
+    title: "Physique 1",
+    instructor: "Sami Braci",
+    price: 2000,
+    image: "../Thumbnail/physique1/01.jpg"
+  },
+  physique2: {
+    title: "Physique 2",
+    instructor: "Sami Braci",
+    price: 2000,
+    image: "../Thumbnail/physique2/01.jpg"
+  },
+  math2: {
+    title: "Math 2 – Analyse 2",
+    instructor: "Sami Braci",
+    price: 2000,
+    image: "../Thumbnail/math2/01.jpg"
+  },
+
+
   ondes_et_vibrations: { title: "Ondes et Vibrations", instructor: "Abdellah Derradj", price: 1500, image: "../Thumbnail/ondes_et_vibrations/01.jpg" },
   electrotechnique_fondamentale1: { title: "Électrotechnique Fondamentale 1", instructor: "Abdellah Derradj", price: 1500, image: "../Thumbnail/elt_f_1/04.jpg" },
   electronique_fondamentale1: { title: "Électronique Fondamentale 1", instructor: "Abdellah Derradj", price: 1500, image: "../Thumbnail/electroniquef1/01.jpg" },
@@ -76,6 +108,12 @@ if (courseSelect && priceInput) {
 
 // روابط الصفحات الخاصة بكل مادة
 const courseLinks = {
+    math1: "../mycourses-board/math1.html",
+  chimie1: "../mycourses-board/chimie1.html",
+  physique1: "../mycourses-board/physique1.html",
+  physique2: "../mycourses-board/physique2.html",
+  math2: "../mycourses-board/math2.html",
+
   ondes_et_vibrations: "../mycourses-board/ondes_et_vibrations.html",
   electrotechnique_fondamentale1: "../mycourses-board/electrotechnique_fondamentale1.html",
   electronique_fondamentale1: "../mycourses-board/electronique_fondamentale1.html",

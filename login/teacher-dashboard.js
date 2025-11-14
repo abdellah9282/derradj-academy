@@ -60,10 +60,11 @@ const subjectPrices = {
   'math_3': 2000,
   'bundle_second_year': 5000,
   'bundle_third_year': 3500,
-  'math1': 2000,
-  'physique1': 2000,
-
-  'chimie1': 2000
+  'math1': 1300,
+  'physique1': 1300,
+  'chimie1': 1300,
+  'math2' : 1300,
+  'physique2': 1300
 };
 
 // ✅ جلب مواد الأستاذ
@@ -184,17 +185,23 @@ async function calculateTeacherEarnings(subjects, teacherContact) {
     const hasSecondBundle = bundleSecond.every(m => modules.includes(m));
     const hasThirdBundle = bundleThird.every(m => modules.includes(m));
 
-    if (hasSecondBundle) {
-      counts['bundle_second_year'] = (counts['bundle_second_year'] || 0) + 1;
-      totalEarnings += 5000;
-      continue;
-    }
+   // حساب الباقات فقط للأستاذ عبد الله
+if (teacherContact === '0555491316') {
 
-    if (hasThirdBundle) {
-      counts['bundle_third_year'] = (counts['bundle_third_year'] || 0) + 1;
-      totalEarnings += 3500;
-      continue;
-    }
+  if (hasSecondBundle) {
+    counts['bundle_second_year'] = (counts['bundle_second_year'] || 0) + 1;
+    totalEarnings += 5000;
+    continue;
+  }
+
+  if (hasThirdBundle) {
+    counts['bundle_third_year'] = (counts['bundle_third_year'] || 0) + 1;
+    totalEarnings += 3500;
+    continue;
+  }
+
+}
+
 
     for (const subj of subjects) {
       if (modules.includes(subj)) {
@@ -226,11 +233,11 @@ async function fetchDashboardData() {
 
   const isAbdellah = teacherContact === '0555491316';
 
-  const allSubjects = [
-    'bundle_second_year',
-    'bundle_third_year',
-    ...Object.keys(studentCounts).filter(s => s !== 'bundle_second_year' && s !== 'bundle_third_year')
-  ];
+const allSubjects = [
+  ...(isAbdellah ? ['bundle_second_year', 'bundle_third_year'] : []),
+  ...Object.keys(studentCounts).filter(s => !['bundle_second_year','bundle_third_year'].includes(s))
+];
+
 
   const sortedSubjects = allSubjects
     .filter(s => subjectPrices[s])
@@ -245,7 +252,7 @@ async function fetchDashboardData() {
     if (students <= 0) return;
 
     const unitPrice = subjectPrices[subj] || 2500;
-    const teacherEarning = isAbdellah ? (unitPrice * students) : ((unitPrice / 2) * students);
+    const teacherEarning = isAbdellah ? (unitPrice * students) : ((unitPrice) * students);
 
     const li = document.createElement('li');
     li.style.display = 'flex';
@@ -263,11 +270,37 @@ async function fetchDashboardData() {
     list.appendChild(li);
   });
 
-  const totalStudents = Object.values(studentCounts).reduce((a, b) => a + b, 0);
-  document.getElementById('studentCount').textContent = totalStudents;
+// حساب عدد الطلاب الحقيقيين بدون تكرار
+const students = await fetchAllApprovedStudents();
+const uniqueStudents = new Set();
 
-  const isAbdellahFactor = isAbdellah ? 1 : 0.5;
-  const totalEarnings = totalEarningsRaw * isAbdellahFactor;
+for (const student of students || []) {
+
+  // تجاهل 039333...
+  if (student.contact && student.contact.startsWith('039333')) continue;
+
+  let modules = [];
+
+  if (Array.isArray(student.modules)) {
+    modules = student.modules;
+  } else if (typeof student.modules === 'string') {
+    try {
+      modules = JSON.parse(student.modules);
+    } catch {
+      modules = student.modules.split(',');
+    }
+  }
+
+  // هل الطالب سجل في أي مادة يدرّسها الأستاذ؟
+  if (modules.some(m => teacherModules.includes(m))) {
+    uniqueStudents.add(student.contact);
+  }
+}
+
+document.getElementById('studentCount').textContent = uniqueStudents.size;
+
+const totalEarnings = totalEarningsRaw;
+
 
   document.getElementById('totalEarnings').textContent = totalEarnings.toLocaleString();
   document.getElementById('totalEarnings').style.color = '#16a34a';
@@ -283,7 +316,8 @@ studentsContainer.innerHTML = `
   <table dir="rtl" style="width:100%; border-collapse: collapse; margin-top:1rem;">
     <thead>
       <tr style="background:#eef2ff; color:#4c1d95; text-align:right;">
-        <th style="padding:10px; border-bottom:1px solid #ddd;">الاسم الكامل</th>
+      <th style="padding:10px; border-bottom:1px solid #ddd;">#</th>
+      <th style="padding:10px; border-bottom:1px solid #ddd;">الاسم الكامل</th>
         <th style="padding:10px; border-bottom:1px solid #ddd;">رقم الهاتف</th>
         <th style="padding:10px; border-bottom:1px solid #ddd;">المواد</th>
       </tr>
@@ -296,20 +330,38 @@ document.querySelector('main.dashboard').appendChild(studentsContainer);
 // ✅ جلب بيانات الطلاب كاملة
 const { data: allStudents, error: studentsError } = await supabase
   .from('registrations')
-  .select('full_name, contact, modules')
+  .select('full_name, contact, modules, serial_id')
   .eq('is_approved', true)
   .is('is_teacher', null)
-  .is('is_admin', null);
+  .is('is_admin', null)
+  .order('serial_id', { ascending: true });
+
 
 
 if (!studentsError && allStudents.length > 0) {
   const tbody = document.getElementById('studentsRows');
   tbody.innerHTML = '';
+let counter = 1;
 
-  allStudents.forEach(student => {
-    if (student.contact && student.contact.startsWith('039333')) return; // تجاهل حسابك
+allStudents.forEach(student => {
+  if (student.contact && student.contact.startsWith('039333')) return;
 
-let modulesList = [];
+  // ❌ إذا لم يكن الطالب مسجلاً في أي مادة من مواد الأستاذ → تجاهله
+  let modulesList = [];
+  if (Array.isArray(student.modules)) {
+    modulesList = student.modules;
+  } else if (typeof student.modules === 'string') {
+    try {
+      modulesList = JSON.parse(student.modules);
+    } catch {
+      modulesList = student.modules.split(',');
+    }
+  }
+
+  const hasTeacherModule = modulesList.some(m => teacherModules.includes(m));
+
+  if (!hasTeacherModule) return; // ⛔ تجاهل الطالب
+
 
 if (Array.isArray(student.modules)) {
   modulesList = student.modules;
@@ -336,14 +388,17 @@ const modulesText = modulesList
   .join(', ');
 
 
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td style="padding:10px; border-bottom:1px solid #eee;">${student.full_name || '-'}</td>
-      <td style="padding:10px; border-bottom:1px solid #eee;">${student.contact || '-'}</td>
-      <td dir="ltr" style="direction:ltr; text-align:left; padding:10px; border-bottom:1px solid #eee; color:#374151; white-space:normal;">${modulesText || '-'}</td>
+const row = document.createElement('tr');
+row.innerHTML = `
+  <td style="padding:10px; border-bottom:1px solid #eee;">${counter++}</td>
+  <td style="padding:10px; border-bottom:1px solid #eee;">${student.full_name || '-'}</td>
+  <td style="padding:10px; border-bottom:1px solid #eee;">${student.contact || '-'}</td>
+  <td dir="ltr" style="direction:ltr; text-align:left; padding:10px; border-bottom:1px solid #eee; color:#374151;">
+    ${modulesText || '-'}
+  </td>
+`;
+tbody.appendChild(row);
 
-    `;
-    tbody.appendChild(row);
   });
 }
 
