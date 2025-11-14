@@ -18,18 +18,7 @@
     }
   });
 
-  // 🔒 كشف فتح DevTools عبر الفروقات في الحجم
-  setInterval(() => {
-    if (
-      window.outerHeight - window.innerHeight > 160 ||
-      window.outerWidth - window.innerWidth > 160
-    ) {
-      document.body.innerHTML = `
-        <div style="text-align:center; margin-top:20vh; font-family:sans-serif; color:#b91c1c; font-size:1.6rem;">
-          🚨 تم اكتشاف أدوات المطور! الوصول ممنوع.
-        </div>`;
-    }
-  }, 1000);
+ 
 
   // 🔒 تعطيل أدوات النسخ والقص واللصق والسحب
   ["copy", "cut", "paste", "dragstart"].forEach(evt => {
