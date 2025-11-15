@@ -32,6 +32,8 @@ function formatSubjectName(code) {
     'mesures_electriques_et_electroniques': 'Mesures Électriques et Électroniques',
     'bundle_second_year': 'باقة السنة الثانية (5 مواد)',
     'bundle_third_year': 'باقة السنة الثالثة (4 مواد)',
+    'bundle_first_year': 'باقة السنة الأولى (3 مواد)',
+
   };
   return map[code] || code;
 }
@@ -64,6 +66,7 @@ const subjectPrices = {
   'physique1': 1300,
   'chimie1': 1300,
   'math2' : 1300,
+  'bundle_first_year': 5000,
   'physique2': 1300
 };
 
@@ -120,6 +123,11 @@ const bundleThird = [
   'systeme_asservis',
   'reseaux_electrique'
 ];
+const bundleFirst = [
+  'math1',
+  'chimie1',
+  'physique1'
+];
 
 // ✅ دالة لجلب كل الطلاب (تتجاوز حد 100)
 async function fetchAllApprovedStudents() {
@@ -154,9 +162,22 @@ async function fetchAllApprovedStudents() {
 function getTeacherUnitPrice(subject, teacherContact) {
   const fullPriceSubjects = ['math1', 'physique1', 'chimie1', 'math2', 'physique2'];
 
+  // 🧩 باقة السنة الأولى
+  if (subject === 'bundle_first_year') {
+    if (teacherContact === '0555491316') {
+      // حسابك أنت: حصة الأستاذ 1700 دج
+      return 1700;
+    }
+    if (teacherContact === '0552329993') {
+      // حساب الأستاذ الثاني: حصة الأستاذ 3300 دج
+      return 3300;
+    }
+    // باقي الأساتذة ما عندهمش الباقة
+    return 0;
+  }
+
   // إذا كانت المادة من مواد 1300 دج
   if (fullPriceSubjects.includes(subject)) {
-
     if (teacherContact === '0552329993') {
       // هذا الأستاذ يأخذ 1300 كاملة
       return 1300;
@@ -169,6 +190,8 @@ function getTeacherUnitPrice(subject, teacherContact) {
   // باقي المواد تعود لنظامها العادي
   return subjectPrices[subject] || 0;
 }
+
+
 
 // ✅ الدالة لحساب الأرباح لكل أستاذ
 async function calculateTeacherEarnings(subjects, teacherContact) {
@@ -200,25 +223,41 @@ async function calculateTeacherEarnings(subjects, teacherContact) {
 
     if (!modules || modules.length === 0) continue;
 
-    const hasSecondBundle = bundleSecond.every(m => modules.includes(m));
-    const hasThirdBundle = bundleThird.every(m => modules.includes(m));
+const hasSecondBundle = bundleSecond.every(m => modules.includes(m));
+const hasThirdBundle  = bundleThird.every(m => modules.includes(m));
+const hasFirstBundle  = bundleFirst.every(m => modules.includes(m));
 
-   // حساب الباقات فقط للأستاذ عبد الله
-if (teacherContact === '0555491316') {
+// ✅ حساب الباقات
+if (teacherContact === '0555491316' || teacherContact === '0552329993') {
 
-  if (hasSecondBundle) {
-    counts['bundle_second_year'] = (counts['bundle_second_year'] || 0) + 1;
-    totalEarnings += 5000;
-    continue;
+  // باقة السنة الأولى: مشتركة بين الأستاذين مع سعر مختلف
+  if (hasFirstBundle) {
+    const bundlePrice =
+      teacherContact === '0555491316'
+        ? 1700   // حسابك أنت
+        : 3300;  // حساب الأستاذ 0552329993
+
+    counts['bundle_first_year'] = (counts['bundle_first_year'] || 0) + 1;
+    totalEarnings += bundlePrice;
+    continue; // لا نحسب المواد منفردة في حالة الباقة
   }
 
-  if (hasThirdBundle) {
-    counts['bundle_third_year'] = (counts['bundle_third_year'] || 0) + 1;
-    totalEarnings += 3500;
-    continue;
-  }
+  // ✅ باقي الباقات (السنة الثانية والثالثة) تبقى خاصة بـ 0555491316 فقط
+  if (teacherContact === '0555491316') {
+    if (hasSecondBundle) {
+      counts['bundle_second_year'] = (counts['bundle_second_year'] || 0) + 1;
+      totalEarnings += 5000;
+      continue;
+    }
 
+    if (hasThirdBundle) {
+      counts['bundle_third_year'] = (counts['bundle_third_year'] || 0) + 1;
+      totalEarnings += 3500;
+      continue;
+    }
+  }
 }
+
 
 
     for (const subj of subjects) {
@@ -249,11 +288,21 @@ async function fetchDashboardData() {
   const list = document.getElementById('subjectsList');
   list.innerHTML = '';
 
-  const isAbdellah = teacherContact === '0555491316';
+const isAbdellah = teacherContact === '0555491316';
+const isFirstYearBundleTeacher =
+  teacherContact === '0555491316' || teacherContact === '0552329993';
 
 const allSubjects = [
+  // باقة السنة الأولى تظهر للأستاذين
+  ...(isFirstYearBundleTeacher ? ['bundle_first_year'] : []),
+
+  // باقة السنة الثانية والثالثة تظهر لعبد الله فقط
   ...(isAbdellah ? ['bundle_second_year', 'bundle_third_year'] : []),
-  ...Object.keys(studentCounts).filter(s => !['bundle_second_year','bundle_third_year'].includes(s))
+
+  // باقي المواد
+  ...Object.keys(studentCounts).filter(s =>
+    !['bundle_first_year', 'bundle_second_year', 'bundle_third_year'].includes(s)
+  )
 ];
 
 
