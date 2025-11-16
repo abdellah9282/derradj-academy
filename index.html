@@ -136,11 +136,197 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 <section class="categories-section">
   <h2 class="section-title">🎓 Derradj Academy – Learn Everywhere, Anytime</h2>
 
+
+
+
+<!--
 <p id="hero-subtitle">
 اشترك الآن وابدأ رحلتك نحو النجاح – الاشتراك سنوي ويستمر حتى نهاية السنة الجامعية.
 انضم إلى آلاف الطلاب الذين استفادوا من فيديوهاتنا وحققوا نتائج مبهرة،
  واستفد من محتوى مميز بأسعار منخفضة مقارنة بدروس الدعم الحضورية
 </p>
+-->
+
+
+<div class="promo-banner" style="
+  background: linear-gradient(135deg,#4f46e5,#7c3aed);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 22px rgba(79,70,229,0.3);
+  margin: 2rem auto;
+  max-width: 880px;
+  font-family: 'Cairo', sans-serif;
+  position: relative;
+  overflow: hidden;
+">
+  <div style="
+    position:absolute;
+    top:-40px; right:-40px;
+    width:120px; height:120px;
+    background: rgba(255,255,255,0.08);
+    border-radius:50%;
+  "></div>
+  <div style="
+    position:absolute;
+    bottom:-50px; left:-50px;
+    width:140px; height:140px;
+    background: rgba(255,255,255,0.06);
+    border-radius:50%;
+  "></div>
+
+  <h2 style="font-size:2rem; margin-bottom:0.6rem; font-weight:800; letter-spacing:0.5px;">
+     عرض باقة السنة الأولى جامعي
+  </h2>
+
+<p style="font-size:1.1rem; line-height:1.8; max-width:740px; margin:auto; font-weight:500;">
+  احصل على <strong>أربع مواد أساسية</strong> في باقة واحدة مميزة
+    — <span style="color:#fffae5; font-weight:600;">الاشتراك سنوي حتى نهاية السنة الدراسية</span>
+
+  <br>
+    <strong>Math 1</strong> – <strong>Physique 1</strong> –
+    <strong>Chimie 1</strong> – <strong>Informatique 1</strong>
+  </p>
+
+<p class="price-box" style="
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  line-height: 1.9;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+">
+  <span class="price-old" style="
+    color: #d9d9d9;
+    font-weight: 600;
+    background: rgba(255,255,255,0.08);
+    padding: 5px 14px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(255,255,255,0.05);
+  ">
+    قبل التخفيض
+    <span style="
+      text-decoration: line-through;
+      color: #d9d9d9;
+      margin: 0 4px;
+    ">
+      7500 دج
+    </span>
+  </span>
+
+  <span class="price-label" style="
+    opacity: 0.9;
+    font-weight: 500;
+  ">
+    : السعر القديم
+  </span>
+</p>
+
+<style>
+  @media (max-width: 600px) {
+    .price-box {
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .price-label {
+      order: 1;
+      color: #fffae5;
+      font-size: 1.05rem;
+    }
+
+    .price-old {
+      order: 2;
+      font-size: 1.05rem;
+    }
+  }
+</style>
+
+
+  <div style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 1.2rem;
+    text-align: center;
+  ">
+
+    <p style="
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+      padding: 6px 16px;
+      border-radius: 10px;
+      margin: 0;
+      flex-shrink: 0;
+    ">
+      الآن بـ <span style="font-size:1.55rem; color:#fffae5;">5500 دج فقط 🎉</span>
+    </p>
+
+    <a href="#bundle-section"
+      style="
+        display: inline-block;
+        background: #ffffff;
+        color: #4f46e5;
+        font-weight: 700;
+        padding: 12px 32px;
+        border-radius: 12px;
+        text-decoration: none;
+        box-shadow: 0 6px 14px rgba(79,70,229,0.3);
+        font-size: 1.05rem;
+        letter-spacing: 0.3px;
+        transition: all 0.3s ease-in-out;
+        flex-shrink: 0;
+      "
+      onmouseover="this.style.background='#ede9fe'; this.style.transform='translateY(-4px) scale(1.03)';"
+      onmouseout="this.style.background='#fff'; this.style.transform='translateY(0) scale(1)';">
+      اشترك الآن وابدأ رحلتك
+    </a>
+  </div>
+
+  <p style="
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #ffeb99;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-shadow: 0 0 4px rgba(0,0,0,0.25);
+  ">
+  </p>
+
+</div>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+      if (targetId && targetId.startsWith("#") && targetId.length > 1) {
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    });
+  });
+});
+</script>
+
 
 <!--
 <div class="promo-banner" style="
@@ -582,6 +768,9 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
 
 
 -->
+
+
+
 <div class="categories-scroll-container"
      style="overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
   <div class="categories-scroll"
@@ -1042,6 +1231,51 @@ window.addEventListener("load", () => {
   <h2>باقة المواد الخاصة</h2>
 
   <div class="bundles-container">
+
+    <!-- 🎓 بطاقة السنة الأولى -->
+<div class="bundle-card">
+  <h3>باقة السنة الأولى</h3>
+
+  <ul class="bundle-courses" style="text-align: left; direction: ltr; padding-left: 0;">
+    <li>🎓 Math 1 – Analyse 1</li>
+    <li>🎓 Physique 1</li>
+    <li>🎓 Chimie 1</li>
+    <li>🎓 Informatique 1</li>
+  </ul>
+
+  <div class="bundle-price">
+    <span class="old-price">دج 7000</span>
+    <span class="new-price">5500 دج فقط</span>
+  </div>
+
+  <div class="bundle-discount">
+    وفر <strong>1500 دج (21%)</strong>
+  </div>
+
+  <ul class="bundle-benefits">
+    <li>✔️ دروس فيديو لكل مادة</li>
+    <li>✔️ دعم مباشر من الأستاذ</li>
+    <li>✔️ بث مباشر عند الطلب</li>
+    <li>✔️ دخول لجميع الدروس والاختبارات</li>
+  </ul>
+
+  <div class="payment-options">
+    <h4 style="text-align:center;">طرق الدفع
+      <span style="font-size: 0.9em; color: #6b7280; font-weight: 500; margin-right: 6px; cursor: pointer;"
+            onmouseover="this.style.color='#4f46e5';"
+            onmouseout="this.style.color='#6b7280';">(اضغط للمعاينة 👇)</span>
+    </h4>
+
+    <div class="payment-methods">
+      <button class="pay-option" onclick="window.open('payment/5500baridi.pdf', '_blank')">📱 بريدي موب</button>
+      <button class="pay-option" onclick="window.open('http://pay.chargily.com/payment-links/01ka5c02zgfj030rzzkkbr6dv3', '_blank')">💳 البطاقة الذهبية</button>
+      <button class="pay-option" onclick="window.open('payment/5500.pdf', '_blank')">📮 بريد الجزائر</button>
+    </div>
+  </div>
+
+  <a href="sign-up/sign-up.html" class="bundle-btn">اشترك في الباقة الآن</a>
+</div>
+
 
     <!-- 🎓 بطاقة الباقة -->
     <div class="bundle-card">

@@ -128,6 +128,12 @@
 
 <!-- ✅ قائمة كاملة بالمواد مع الأسعار -->
 <div class="checkbox-group course-checkboxes" id="coursesList">
+ <label>
+  <input type="checkbox" name="courses[]" value="bundle_first_year" data-price="5500">
+  (5500 DA) باقة السنة الأولى – 4 مواد
+</label>
+
+
   <label>
 <input type="checkbox" name="courses[]" value="bundle_second_year" data-price="4999">(4999 DA) باقة السنة الثانية – 5 مواد   </label>
 
@@ -330,7 +336,11 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('input[name="courses[]"]:checked')
     )
       .map((cb) => cb.value)
-.filter((v) => v !== "bundle_second_year" && v !== "bundle_third_year");
+.filter((v) =>
+  v !== "bundle_first_year" &&
+  v !== "bundle_second_year" &&
+  v !== "bundle_third_year"
+);
 // ✅ عند اختيار باقة السنة الثانية: أرسل فقط المواد الخمس
 if (document.querySelector('input[value="bundle_second_year"]').checked) {
   modules.splice(0, modules.length,
@@ -349,6 +359,15 @@ if (document.querySelector('input[value="bundle_third_year"]').checked) {
     'electronique_de_puissance',
     'systeme_asservis',
     'reseaux_electrique'
+  );
+}
+// ✅ عند اختيار باقة السنة الأولى: Math1 + Physique1 + Chimie1 + Informatique1
+if (document.querySelector('input[value="bundle_first_year"]').checked) {
+  modules.splice(0, modules.length,
+    'math1',
+    'physique1',
+    'chimie1',
+    'informatique01'
   );
 }
 
@@ -473,6 +492,12 @@ document.addEventListener('DOMContentLoaded', () => {
   discountMsg.style.color = "#27ae60";
   discountMsg.style.fontWeight = "bold";
   totalPriceEl.insertAdjacentElement("afterend", discountMsg);
+const firstYearMaterials = [
+  'math1',
+  'physique1',
+  'chimie1',
+  'informatique01'
+];
 
   function updateDisplay() {
     selectedModulesList.innerHTML = "";
@@ -480,6 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hasBundleSecond = selectedCourses.some(c => c.value === 'bundle_second_year');
     const hasBundleThird = selectedCourses.some(c => c.value === 'bundle_third_year');
+    const hasBundleFirst = selectedCourses.some(c => c.value === 'bundle_first_year');
 
     selectedCourses.forEach(course => {
       total += parseInt(course.price) || 0;
@@ -512,18 +538,30 @@ document.addEventListener('DOMContentLoaded', () => {
       'electronique_de_puissance',
       'theorie_du_champ'
     ];
+const firstYearMaterials = [
+  'math1',
+  'physique1',
+  'chimie1',
+  'informatique01'
+];
 
-    let bundleMaterials = [];
-    if (hasBundleSecond) bundleMaterials = secondYearMaterials;
-    if (hasBundleThird) bundleMaterials = thirdYearMaterials;
+let bundleMaterials = [];
+if (hasBundleFirst) bundleMaterials = firstYearMaterials;
+if (hasBundleSecond) bundleMaterials = secondYearMaterials;
+if (hasBundleThird) bundleMaterials = thirdYearMaterials;
 
-    checkboxes.forEach(cb => {
-      if ((hasBundleSecond || hasBundleThird) && bundleMaterials.includes(cb.value)) {
-        cb.disabled = cb.value !== (hasBundleSecond ? 'bundle_second_year' : 'bundle_third_year');
-      } else {
-        cb.disabled = false;
-      }
-    });
+checkboxes.forEach(cb => {
+  if ((hasBundleFirst || hasBundleSecond || hasBundleThird) && bundleMaterials.includes(cb.value)) {
+    cb.disabled = cb.value !== (hasBundleFirst
+      ? 'bundle_first_year'
+      : hasBundleSecond
+      ? 'bundle_second_year'
+      : 'bundle_third_year');
+  } else {
+    cb.disabled = false;
+  }
+});
+
 
     // ✅ إخفاء التخفيض في حال وجود باقة
     const discountBox = document.getElementById("discount-msg-box");
@@ -604,6 +642,19 @@ document.addEventListener('DOMContentLoaded', () => {
           if (matCb && matCb.checked) matCb.checked = false;
         });
       }
+if (value === 'bundle_first_year' && cb.checked) {
+  firstYearMaterials.forEach(mat => {
+    const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
+    if (matCb && !matCb.checked) matCb.checked = true;
+  });
+}
+
+if (value === 'bundle_first_year' && !cb.checked) {
+  firstYearMaterials.forEach(mat => {
+    const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
+    if (matCb && matCb.checked) matCb.checked = false;
+  });
+}
 
       // ✅ تحديث قائمة المواد المختارة
       if (cb.checked) {
