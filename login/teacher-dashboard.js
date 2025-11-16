@@ -10,6 +10,7 @@ const supabase = createClient(
 function formatSubjectName(code) {
   const map = {
     'theorie_du_champ': 'Théorie du Champ Électromagnétique',
+'math3_sami_braci': 'Math 3 – Analyse 3 (Sami Braci)',
 
     'ondes_et_vibrations': 'Ondes et Vibrations',
     'electronique_fondamentale1': 'Électronique Fondamentale 1',
@@ -40,6 +41,7 @@ function formatSubjectName(code) {
 
 // ✅ الأسعار
 const subjectPrices = {
+  'math3_sami_braci': 2000,
   'ondes_et_vibrations': 1500,
   'electrotechnique_fondamentale1': 1500,
   'electronique_fondamentale1': 1500,
@@ -160,36 +162,31 @@ async function fetchAllApprovedStudents() {
   return all;
 }
 function getTeacherUnitPrice(subject, teacherContact) {
-  const fullPriceSubjects = ['math1', 'physique1', 'chimie1', 'math2', 'physique2'];
 
-  // 🧩 باقة السنة الأولى
-  if (subject === 'bundle_first_year') {
-    if (teacherContact === '0555491316') {
-      // حسابك أنت: حصة الأستاذ 1700 دج
-      return 1700;
-    }
-    if (teacherContact === '0552329993') {
-      // حساب الأستاذ الثاني: حصة الأستاذ 3300 دج
-      return 3300;
-    }
-    // باقي الأساتذة ما عندهمش الباقة
+  // 🟣 Math 3 – Sami Braci (تقسيم 1000 / 1000)
+  if (subject === 'math3_sami_braci') {
+    if (teacherContact === '0555491316') return 1000;
+    if (teacherContact === '0552329993') return 1000;
     return 0;
   }
 
-  // إذا كانت المادة من مواد 1300 دج
-  if (fullPriceSubjects.includes(subject)) {
-    if (teacherContact === '0552329993') {
-      // هذا الأستاذ يأخذ 1300 كاملة
-      return 1300;
-    } else {
-      // كل الأساتذة الآخرين يأخذون 700 دج فقط
-      return 700;
-    }
+  const fullPriceSubjects = ['math1', 'physique1', 'chimie1', 'math2', 'physique2'];
+
+  if (subject === 'bundle_first_year') {
+    if (teacherContact === '0555491316') return 1700;
+    if (teacherContact === '0552329993') return 3300;
+    return 0;
   }
 
-  // باقي المواد تعود لنظامها العادي
+  if (fullPriceSubjects.includes(subject)) {
+    if (teacherContact === '0552329993') return 1300;
+    return 700;
+  }
+
   return subjectPrices[subject] || 0;
 }
+
+
 
 
 
