@@ -80,7 +80,6 @@ function renderMessages(messages) {
 /* ⚙️ إعداد الأزرار */
 /* -------------------------------------------------------------------------- */
 function initButtons() {
-  // زر النسخ
   document.querySelectorAll(".copyBtn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const phone = btn.dataset.phone;
@@ -89,7 +88,6 @@ function initButtons() {
     });
   });
 
-  // زر المراجعة
   document.querySelectorAll(".reviewBtn").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const id = btn.dataset.id;
@@ -121,32 +119,57 @@ async function loadStats() {
   try {
     const { data, error } = await supabase
       .from("messages")
-      .select("name, email, confirmation, packfive, packthree, buy");
+      .select(`
+        name,
+        email,
+        orientation_200,
+        orientation_sami_100,
+        confirmation_100,
+        appels_20,
+        pack_three_modules_300,
+        year_one_200,
+        year_two_500,
+        year_three_300
+      `);
 
     if (error) throw error;
 
     const buyersData = [];
     let totalEarnings = 0;
 
-    // حساب المبلغ لكل شخص
     for (const row of data) {
       let personEarnings = 0;
-      if (row.confirmation === true) personEarnings += 100;
-      if (row.packfive === true) personEarnings += 500;
-      if (row.packthree === true) personEarnings += 300;
-      if (row.buy === true) personEarnings += 200;
+
+      // 🟦 حساب كل الأعمدة الديناميكية حسب السعر داخل اسم العمود
+      const pricingMap = {
+        orientation_200: 200,
+        orientation_sami_100: 100,
+        confirmation_100: 100,
+        appels_20: 20,
+        pack_three_modules_300: 300,
+        year_one_200: 200,
+        year_two_500: 500,
+        year_three_300: 300
+      };
+
+      for (const key in pricingMap) {
+        if (row[key] === true) {
+          personEarnings += pricingMap[key];
+        }
+      }
 
       if (personEarnings > 0) {
         totalEarnings += personEarnings;
         buyersData.push({
           name: row.name || "بدون اسم",
           email: row.email || "غير متوفر",
-          amount: personEarnings,
+          amount: personEarnings
         });
       }
     }
 
     updateStats({ buyersData, totalEarnings });
+
   } catch (err) {
     console.error("❌ خطأ أثناء حساب الإحصائيات:", err);
     showStatus("حدث خطأ أثناء حساب الإحصائيات.", "red", 3000);
@@ -160,10 +183,8 @@ function updateStats({ buyersData, totalEarnings }) {
   const buyersEarningsEl = document.getElementById("buyersEarnings");
   const buyersList = document.getElementById("buyersList");
 
-  // تحديث المجموع في الهيدر
   if (buyersEarningsEl) buyersEarningsEl.textContent = totalEarnings + " دج";
 
-  // عرض قائمة الأشخاص
   if (!buyersList) return;
   buyersList.innerHTML = "";
 
@@ -182,7 +203,6 @@ function updateStats({ buyersData, totalEarnings }) {
     buyersList.appendChild(li);
   });
 
-  // المجموع الكلي في آخر القائمة
   const totalLi = document.createElement("li");
   totalLi.style.cssText = `
     font-weight: bold;
