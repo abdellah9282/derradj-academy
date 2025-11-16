@@ -49,7 +49,7 @@ const allCourses = {
   title: "Math 3 – Analyse 3",
   instructor: "Sami Braci",
   price: 2000,
-  image: "../Thumbnail/math_3/02.jpg"
+  image: "../Thumbnail/math3/02.jpg"
 },
 
   math1: {
