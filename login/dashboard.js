@@ -45,6 +45,13 @@ if (data.session_id !== sessionId || data.device_id !== deviceId) {
 })();
 
 const allCourses = {
+  math3_sami_braci: {
+  title: "Math 3 – Analyse 3",
+  instructor: "Sami Braci",
+  price: 2000,
+  image: "../Thumbnail/math3_sami_braci/06.png"
+},
+
   math1: {
     title: "Math 1 – Analyse 1",
     instructor: "Sami Braci",
@@ -113,6 +120,7 @@ const courseLinks = {
   physique1: "../mycourses-board/physique1.html",
   physique2: "../mycourses-board/physique2.html",
   math2: "../mycourses-board/math2.html",
+  math3_sami_braci: "../mycourses-board/math3_sami_braci.html",
 
   ondes_et_vibrations: "../mycourses-board/ondes_et_vibrations.html",
   electrotechnique_fondamentale1: "../mycourses-board/electrotechnique_fondamentale1.html",
