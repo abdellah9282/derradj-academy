@@ -119,7 +119,7 @@ async function loadStats() {
   try {
     const { data, error } = await supabase
       .from("messages")
-      .select(`
+.select(`
         name,
         email,
         orientation_200,
@@ -129,8 +129,10 @@ async function loadStats() {
         pack_three_modules_300,
         year_one_200,
         year_two_500,
-        year_three_300
+        year_three_300,
+        extra_amount
       `);
+
 
     if (error) throw error;
 
@@ -157,6 +159,8 @@ async function loadStats() {
           personEarnings += pricingMap[key];
         }
       }
+// 🟧 إضافة المبلغ اليدوي
+personEarnings += row.extra_amount || 0;
 
       if (personEarnings > 0) {
         totalEarnings += personEarnings;
