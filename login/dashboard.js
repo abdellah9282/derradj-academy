@@ -51,6 +51,12 @@ const allCourses = {
   price: 2000,
   image: "../Thumbnail/math3/02.jpg"
 },
+chimie2: {
+  title: "Chimie 2",
+  instructor: "Sami Braci",
+  price: 2000,
+  image: "../Thumbnail/chimie2/01.jpg"
+},
 
   math1: {
     title: "Math 1 – Analyse 1",
@@ -115,7 +121,8 @@ if (courseSelect && priceInput) {
 
 // روابط الصفحات الخاصة بكل مادة
 const courseLinks = {
-    math1: "../mycourses-board/math1.html",
+  chimie2: "../mycourses-board/chimie2.html",
+  math1: "../mycourses-board/math1.html",
   chimie1: "../mycourses-board/chimie1.html",
   physique1: "../mycourses-board/physique1.html",
   physique2: "../mycourses-board/physique2.html",
