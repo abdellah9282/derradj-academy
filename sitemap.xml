@@ -103,4 +103,42 @@
     <priority>0.75</priority>
   </url>
 
+<!-- Samii Braci Courses (Not yet in sitemap) -->
+
+<url>
+  <loc>https://www.derradjacademy.com/courses/math1.html</loc>
+  <priority>0.75</priority>
+</url>
+
+<url>
+  <loc>https://www.derradjacademy.com/courses/math2.html</loc>
+  <priority>0.75</priority>
+</url>
+
+<url>
+  <loc>https://www.derradjacademy.com/courses/math3_sami_braci.html</loc>
+  <priority>0.75</priority>
+</url>
+
+<url>
+  <loc>https://www.derradjacademy.com/courses/chimie1.html</loc>
+  <priority>0.75</priority>
+</url>
+
+<url>
+  <loc>https://www.derradjacademy.com/courses/chimie2.html</loc>
+  <priority>0.75</priority>
+</url>
+
+<url>
+  <loc>https://www.derradjacademy.com/courses/physique1.html</loc>
+  <priority>0.75</priority>
+</url>
+
+<url>
+  <loc>https://www.derradjacademy.com/courses/physique2.html</loc>
+  <priority>0.75</priority>
+</url>
+
+
 </urlset>
