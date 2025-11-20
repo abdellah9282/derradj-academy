@@ -120,18 +120,20 @@ async function loadStats() {
     const { data, error } = await supabase
       .from("messages")
 .select(`
-        name,
-        email,
-        orientation_200,
-        orientation_sami_100,
-        confirmation_100,
-        appels_20,
-        pack_three_modules_300,
-        year_one_200,
-        year_two_500,
-        year_three_300,
-        extra_amount
-      `);
+  name,
+  email,
+  created_at,
+  orientation_200,
+  orientation_sami_100,
+  confirmation_100,
+  appels_20,
+  pack_three_modules_300,
+  year_one_200,
+  year_two_500,
+  year_three_300,
+  extra_amount
+`)
+;
 
 
     if (error) throw error;
@@ -164,11 +166,13 @@ personEarnings += row.extra_amount || 0;
 
       if (personEarnings > 0) {
         totalEarnings += personEarnings;
-        buyersData.push({
-          name: row.name || "بدون اسم",
-          email: row.email || "غير متوفر",
-          amount: personEarnings
-        });
+buyersData.push({
+  name: row.name || "بدون اسم",
+  email: row.email || "غير متوفر",
+  amount: personEarnings,
+  date: row.created_at   // ⭐ نضيف التاريخ
+});
+
       }
     }
 
@@ -187,7 +191,8 @@ function updateStats({ buyersData, totalEarnings }) {
   const buyersEarningsEl = document.getElementById("buyersEarnings");
   const buyersList = document.getElementById("buyersList");
 
-  if (buyersEarningsEl) buyersEarningsEl.textContent = totalEarnings + " دج";
+  if (buyersEarningsEl)buyersEarningsEl.textContent = `${totalEarnings} دج`;
+
 
   if (!buyersList) return;
   buyersList.innerHTML = "";
@@ -197,29 +202,59 @@ function updateStats({ buyersData, totalEarnings }) {
     return;
   }
 
-  buyersData.forEach((buyer) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <strong>${buyer.name}</strong>
-      <span style="color:#2563eb;"> - ${buyer.email}</span>
-      <span style="float:right; color:#16a34a;">+${buyer.amount} دج</span>
-    `;
-    buyersList.appendChild(li);
+  // ⭐⭐⭐ ترتيب حسب التاريخ من الأحدث للأقدم
+  buyersData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+buyersData.forEach((buyer) => {
+  const formattedDate = new Date(buyer.date).toLocaleString("fr-FR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
   });
 
-  const totalLi = document.createElement("li");
-  totalLi.style.cssText = `
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-    background: #f0fdf4;
-    border: 1px solid #a7f3d0;
-    padding: 10px;
-    border-radius: 8px;
+  const li = document.createElement("li");
+  li.innerHTML = `
+    <strong>${buyer.name}</strong>
+    <span style="color:#2563eb;"> - ${buyer.email}</span>
+    <span style="float:right; color:#16a34a;">+${buyer.amount} دج</span>
+    <div style="font-size:12px; color:#555; margin-top:4px;">🕒 ${formattedDate}</div>
   `;
-  totalLi.innerHTML = `💰 <strong>المجموع الكلي:</strong> ${totalEarnings} دج`;
-  buyersList.appendChild(totalLi);
+  buyersList.appendChild(li);
+});
+
+const totalLi = document.createElement("li");
+totalLi.style.cssText = `
+  margin-top: 14px;
+  background: #ecfdf5;
+  border: 2px solid #a7f3d0;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #065f46;
+
+  /* ⭐ أهم شيء لمنع النزول للسطر */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+`;
+
+totalLi.innerHTML = `
+  <span>💰</span>
+  <span style="color:#059669; font-weight:800;">${totalEarnings} دج</span>:
+    <span>المجموع الكلي </span>
+
+`;
+
+buyersList.appendChild(totalLi);
+
 }
+
 
 /* -------------------------------------------------------------------------- */
 /* 🔔 أدوات مساعدة */
