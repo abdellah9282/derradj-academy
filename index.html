@@ -65,6 +65,54 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 
 <body>
 
+<!-- 🔥 Top Notification Banner -->
+<div id="top-update-banner" style="
+  background: #d1f3ff;
+  border-bottom: 1px solid #b6e7f7;
+  color: #0b3c47;
+  padding: 12px 20px;
+  font-size: 1.05rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  font-weight: 600;
+  font-family: 'Cairo', sans-serif;
+">
+  <a href="courses/ondes_et_vibrations.html"
+    style="
+      background: #005a8d;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.25s;
+    "
+    onmouseover="this.style.background='#0079b8'"
+    onmouseout="this.style.background='#005a8d'">
+    ⇢ الذهاب إلى الدورة
+  </a>
+
+    <span style="color:#005a8d; font-weight:700;">Ondes et Vibrations – TD4</span>
+
+<span> تم إضافة فيديوهات جديدة لدورة  </span>
+
+
+  <!-- زر الإغلاق -->
+  <span id="close-banner" style="
+      margin-left: 10px;
+      cursor: pointer;
+      font-size: 1.4rem;
+      color:#00485f;
+      font-weight: bold;
+  ">&times;</span>
+</div>
+<script>
+  document.getElementById("close-banner").addEventListener("click", () => {
+    document.getElementById("top-update-banner").style.display = "none";
+  });
+</script>
 
   <!-- HEADER -->
 <header class="main-header">
