@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Derradj Academy – Learn Everywhere, Anytime</title>
-<meta name="description" content="Derradj Academy is a modern Algerian e-learning platform offering university students high-quality video lessons, interactive academic support, and organized study content — accessible anytime, anywhere.">
+<meta name="description" content="Derradj Academy هي منصة تعليم جزائرية تقدم دروسًا جامعية عالية الجودة في Math 1، Math 2، Math 3، Chimie 1، Chimie 2، Physique 1، و Physique 2، مع شرح مبسّط من الأستاذ Sami Braci وأفضل الأساتذة المتخصصين. تعلم بسهولة من فيديوهات منظمة، ملفات PDF، وبثوث مباشرة.">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="Derradj Academy – Learn Everywhere, Anytime">
-  <meta property="og:description" content="Join Derradj Academy to access professional university-level content, interactive sessions, and expert guidance anytime, anywhere.">
+  <meta property="og:description" content="تعلم مع Derradj Academy أهم المواد الجامعية: Math 1، Math 2، Math 3، Chimie 1، Chimie 2، Physique 1، Physique 2 مع الأستاذ Sami Braci. دروس فيديو عالية الجودة، ملفات PDF، وبث مباشر.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.derradjacademy.com">
   <meta property="og:image" content="https://www.derradjacademy.com/Logo.jpg">
@@ -19,7 +19,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Derradj Academy – Learn Everywhere, Anytime">
-  <meta name="twitter:description" content="Empowering Algerian university students with flexible learning, practical PDFs, and expert-led video lessons — wherever they are.">
+  <meta name="twitter:description" content="دروس جامعية عالية الجودة في Math و Chimie و Physique مع الأستاذ Sami Braci على Derradj Academy. تعلم بسهولة من فيديوهات واضحة وملفات PDF وبث مباشر.">
   <meta name="twitter:image" content="https://www.derradjacademy.com/Logo.jpg">
 
   <link rel="stylesheet" href="style.css" />
@@ -64,13 +64,55 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 </head>
 
 <body>
-  <!-- 🔔 إشعار إطلاق دروس الأستاذ سامي براسي -->
-<div class="launch-banner" dir="rtl">
-  📅 دروس الأستاذ <strong>سامي براسي</strong> قيد التحضير حاليًا.
-  سيتم إطلاق جميع الفيديوهات خلال
-  <strong>10 إلى 15 يومًا</strong> كأقصى تقدير.
-  يمكنك التسجيل من الآن، وستصلك كل الدروس تلقائيًا فور نشرها. ✅
+
+<!-- 🔥 Top Notification Banner -->
+<div id="top-update-banner" style="
+  background: #d1f3ff;
+  border-bottom: 1px solid #b6e7f7;
+  color: #0b3c47;
+  padding: 12px 20px;
+  font-size: 1.05rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  font-weight: 600;
+  font-family: 'Cairo', sans-serif;
+">
+  <a href="courses/ondes_et_vibrations.html"
+    style="
+      background: #005a8d;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.25s;
+    "
+    onmouseover="this.style.background='#0079b8'"
+    onmouseout="this.style.background='#005a8d'">
+    ⇢ الذهاب إلى الدورة
+  </a>
+
+    <span style="color:#005a8d; font-weight:700;">Ondes et Vibrations – TD4</span>
+
+<span> تم إضافة فيديوهات جديدة لدورة  </span>
+
+
+  <!-- زر الإغلاق -->
+  <span id="close-banner" style="
+      margin-left: 10px;
+      cursor: pointer;
+      font-size: 1.4rem;
+      color:#00485f;
+      font-weight: bold;
+  ">&times;</span>
 </div>
+<script>
+  document.getElementById("close-banner").addEventListener("click", () => {
+    document.getElementById("top-update-banner").style.display = "none";
+  });
+</script>
 
   <!-- HEADER -->
 <header class="main-header">
@@ -85,8 +127,10 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
        <li><a href="courses/math1.html">Math 1 – Analyse 1</a></li>
         <li><a href="courses/math2.html">Math 2 – Analyse 2</a></li>
         <li><a href="courses/chimie1.html">Chimie 1</a></li>
+        <li><a href="courses/chimie2.html">Chimie 2</a></li>
         <li><a href="courses/physique1.html">Physique 1</a></li>
         <li><a href="courses/physique2.html">Physique 2</a></li>
+        <li><a href="courses/math3_sami_braci.html">Math 3 – Analyse 3 (Sami Braci)</a></li>
         <li><a href="courses/ondes_et_vibrations.html">Ondes et Vibrations</a></li>
         <li><a href="courses/electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
         <li><a href="courses/electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
@@ -135,12 +179,505 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
  <!-- Categories Section -->
 <section class="categories-section">
   <h2 class="section-title">🎓 Derradj Academy – Learn Everywhere, Anytime</h2>
+
+
+
+
 <!--
 <p id="hero-subtitle">
 اشترك الآن وابدأ رحلتك نحو النجاح – الاشتراك سنوي ويستمر حتى نهاية السنة الجامعية.
 انضم إلى آلاف الطلاب الذين استفادوا من فيديوهاتنا وحققوا نتائج مبهرة،
  واستفد من محتوى مميز بأسعار منخفضة مقارنة بدروس الدعم الحضورية
-</p>  -->
+</p>
+-->
+
+<!-- ======= عرض باقة السنة الثانية — المواد على اليسار و العداد على اليمين (كود كامل) ======= -->
+<section id="bundle-l2-offer" class="l2-offer" dir="rtl" aria-label="عرض باقة السنة الثانية" data-offer-end="">
+  <!-- زخارف -->
+  <div class="l2-dot l2-dot-top"></div>
+  <div class="l2-dot l2-dot-bottom"></div>
+
+  <h2 class="l2-title">عرض باقة السنة الثانية — <span class="l2-title-muted">خصم محدود</span></h2>
+
+  <!-- مهم: جعل الـ grid يعمل من اليسار إلى اليمين حتى يظهر العمود النصي على اليسار -->
+  <div class="l2-grid">
+    <!-- العمود الأيسر: المواد (يظهر فعلاً على اليسار لأن .l2-grid direction:ltr) -->
+    <div class="l2-text" role="article">
+      <div class="l2-highlight" role="note" aria-live="polite">
+        <strong>مضافة الآن:</strong>
+        <span dir="ltr" class="ltr-inline l2-highlight-course" style="unicode-bidi:isolate; display:inline-block;">
+          Math 3 – Analyse 3 (Prof. Sami Braci)
+        </span>
+      </div>
+
+      <p class="l2-lead">
+        احصل على باقة مميزة تحتوي على المواد الأساسية للسنة الثانية — العرض صالح لمدة أسبوع فقط.
+      </p>
+
+      <!-- قائمة المواد (Math 3 أولاً) -->
+      <ul class="l2-bundle-list">
+        <li>🎓 <span dir="ltr" class="ltr-inline">Math 3 – Analyse 3</span> <small class="instructor">(Prof. Sami Braci)</small></li>
+        <li>🎓 Ondes et Vibrations</li>
+        <li>🎓 Électronique Fondamentale 1</li>
+        <li>🎓 Électrotechnique Fondamentale 1</li>
+        <li>🎓 Probabilité et Statistique</li>
+        <li>🎓 Informatique 3</li>
+      </ul>
+
+      <div class="l2-price-row">
+        <div class="l2-old">قبل التخفيض <span class="l2-strike">6500 دج</span></div>
+        <div class="l2-now" aria-live="polite">الآن بـ <strong>5000 دج</strong> 🎉</div>
+      </div>
+
+      <div class="l2-cta-row">
+        <a id="bundle-cta" class="l2-btn primary" href="#bundle-section" role="button">اشترك الآن وابدأ رحلتك</a>
+        <button id="one-week-only-btn" class="l2-btn outline" type="button" title="صالح لمدة أسبوع">⚡ صالح لمدة أسبوع</button>
+      </div>
+
+      <p class="l2-note">باقة السنة الثانية الآن محدثة بإضافة <strong>Math 3</strong> مع <strong>Prof. Sami Braci</strong>. لا تفوّت الفرصة!</p>
+    </div>
+
+    <!-- العمود الأيمن: العداد (سيظهر على اليمين في الديسكتوب) -->
+    <aside class="l2-countdown" aria-label="عداد انتهاء العرض" role="status" aria-live="polite">
+      <div class="l2-count-box">
+        <div class="l2-count-title">ينتهي العرض خلال</div>
+
+        <div class="l2-count" id="countdown-timer" dir="ltr" aria-hidden="false">
+          <div class="l2-cd-item">
+            <div class="l2-cd-number" id="cd-days">0</div>
+            <div class="l2-cd-label">أيام</div>
+          </div>
+
+          <div class="l2-sep">:</div>
+
+          <div class="l2-cd-item">
+            <div class="l2-cd-number" id="cd-hours">00</div>
+            <div class="l2-cd-label">س</div>
+          </div>
+
+          <div class="l2-sep">:</div>
+
+          <div class="l2-cd-item">
+            <div class="l2-cd-number" id="cd-mins">00</div>
+            <div class="l2-cd-label">د</div>
+          </div>
+
+          <div class="l2-sep">:</div>
+
+          <div class="l2-cd-item">
+            <div class="l2-cd-number" id="cd-secs">00</div>
+            <div class="l2-cd-label">ث</div>
+          </div>
+        </div>
+
+        <div id="expired-note" class="l2-expired" hidden>انتهى العرض</div>
+
+        <div class="l2-progress-wrap" aria-hidden="true">
+          <div id="progress-bar" class="l2-progress"></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ===== CSS مخصّص (تأكد من استبداله أو دمجه مع CSS القديم) ===== -->
+<style>
+  :root {
+    --bg1: #4f46e5;
+    --bg2: #7c3aed;
+    --accent: #fffae5;
+    --white: #fff;
+  }
+
+  .l2-offer {
+    max-width: 1000px;
+    margin: 2.2rem auto;
+    padding: 2rem;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Cairo', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    box-shadow: 0 14px 40px rgba(31, 23, 91, 0.12);
+  }
+
+  .l2-dot { position:absolute; border-radius:50%; background:rgba(255,255,255,0.06); filter: blur(0.3px); }
+  .l2-dot-top{ width:120px; height:120px; top:-36px; left:auto; right:-36px; }
+  .l2-dot-bottom{ width:180px; height:180px; bottom:-60px; left:-60px; right:auto; }
+
+  .l2-title { text-align:center; font-weight:900; font-size:1.9rem; margin:0 0 0.9rem; }
+  .l2-title-muted { font-weight:700; font-size:0.95rem; color: rgba(255,255,255,0.95); }
+
+  /* **الجديد**: نجعل الشبكة تعمل من اليسار -> اليمين حتى يكون العمود النصي على اليسار */
+  .l2-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px; /* نص — عداد */
+    gap: 26px;
+    align-items: center;
+    direction: ltr; /* <-- المفتاح: Force LTR for grid placement */
+  }
+
+  /* العمود النصي: نص عربي داخل حاوية LTR */
+  .l2-text { text-align:right; direction:rtl; } /* نص عربي صحيح داخل العمود */
+  .l2-highlight {
+    display:inline-block;
+    background: rgba(255,255,255,0.10);
+    padding:8px 14px;
+    border-radius:999px;
+    font-weight:800;
+    margin-bottom:10px;
+    color:#fff;
+    box-shadow: 0 6px 14px rgba(16, 24, 40, 0.06);
+    font-size:1rem;
+  }
+  .l2-highlight-course { color: var(--accent); margin-left:8px; font-weight:900; }
+
+  .l2-lead { margin:0 0 10px; font-size:1.04rem; line-height:1.75; font-weight:700; color:rgba(255,255,255,0.95); }
+
+  .l2-bundle-list { list-style:none; padding:0; margin:8px 0 0 0; font-weight:800; color: rgba(255,255,255,0.95); }
+  .l2-bundle-list li { margin:8px 0; }
+
+  .ltr-inline { direction:ltr; display:inline-block; unicode-bidi:isolate; white-space:nowrap; font-weight:900; }
+
+  .l2-price-row { display:flex; gap:14px; align-items:center; margin-top:14px; flex-wrap:wrap; justify-content:flex-start; }
+  .l2-old { background: rgba(255,255,255,0.06); padding:8px 12px; border-radius:10px; font-weight:800; color:rgba(255,255,255,0.88); }
+  .l2-strike { text-decoration:line-through; opacity:0.85; margin-left:8px; }
+
+  .l2-now { color: var(--accent); font-size:1.25rem; font-weight:900; }
+
+  .l2-cta-row { margin-top:16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .l2-btn { border-radius:10px; padding:10px 20px; cursor:pointer; text-decoration:none; display:inline-block; font-weight:900; border:0; }
+  .l2-btn.primary { background:#fff; color:var(--bg1); box-shadow: 0 10px 28px rgba(79,70,229,0.14); }
+  .l2-btn.primary:hover { transform: translateY(-3px); background:#f7f5ff; }
+  .l2-btn.outline { background: rgba(255,255,255,0.08); border:2px solid rgba(255,255,255,0.06); color:#fff; }
+
+  .l2-note { margin-top:12px; font-weight:800; color:rgba(255,255,255,0.9); }
+
+  /* العداد */
+  .l2-countdown { text-align:center; direction:rtl; }
+  .l2-count-box { background: rgba(255,255,255,0.04); padding:14px; border-radius:12px; border:1px solid rgba(255,255,255,0.06); }
+  .l2-count-title { color:var(--accent); font-weight:900; margin-bottom:12px; }
+  .l2-count { display:flex; gap:10px; align-items:center; justify-content:center; direction:ltr; flex-wrap:nowrap; }
+
+  .l2-cd-item { text-align:center; min-width:56px; }
+  .l2-cd-number { background:#fff; color:var(--bg1); font-weight:900; padding:10px 12px; border-radius:10px; min-width:54px; font-size:1.05rem; }
+  .l2-cd-label { margin-top:6px; color:var(--accent); font-weight:800; font-size:0.95rem; }
+
+  .l2-sep { color:var(--accent); font-weight:900; font-size:1.35rem; }
+
+  .l2-expired { margin-top:10px; color:#ffe4e6; font-weight:900; }
+
+  .l2-progress-wrap { margin-top:12px; background: rgba(255,255,255,0.08); border-radius:10px; height:10px; overflow:hidden; }
+  .l2-progress { height:100%; width:100%; transform-origin:left; transform:scaleX(1); background:linear-gradient(90deg,#fff,#fffae5); transition:transform 0.4s linear; }
+
+  /* Responsive */
+  @media (max-width: 920px){
+    .l2-grid { grid-template-columns: 1fr 300px; gap:18px; }
+    .l2-title { font-size:1.6rem; }
+  }
+  @media (max-width: 680px){
+    /* على الهاتف: تكديس عمودي — النص أولاً ثم العداد */
+    .l2-grid { grid-template-columns: 1fr; direction: ltr; }
+    .l2-countdown { order:2; margin-top:12px; }
+    .l2-text { order:1; }
+    .l2-title { font-size:1.35rem; }
+    .l2-lead { font-size:0.98rem; }
+    .l2-cd-number { min-width:48px; padding:8px 10px; font-size:0.98rem; }
+    .l2-highlight { width:100%; text-align:center; }
+    .l2-bundle-list { text-align:right; }
+  }
+  @media (max-width:420px){
+    .l2-offer { padding:12px; border-radius:12px; }
+    .l2-title { font-size:1.2rem; }
+    .ltr-inline { white-space:normal; font-weight:800; }
+    .l2-btn { padding:10px 12px; font-size:0.95rem; }
+  }
+</style>
+
+<!-- ===== JS العداد (كما في السابق) ===== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const banner = document.getElementById('bundle-l2-offer');
+  if (!banner) return;
+
+  const attrEnd = banner.getAttribute('data-offer-end')?.trim();
+  const STORAGE_KEY = 'bundleL2_offer_end_final';
+
+  let endDate;
+  if (attrEnd) {
+    endDate = new Date(attrEnd);
+  } else {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      endDate = new Date(saved);
+    } else {
+      endDate = new Date();
+      endDate.setDate(endDate.getDate() + 7);
+      localStorage.setItem(STORAGE_KEY, endDate.toISOString());
+    }
+  }
+
+  const cdDays = document.getElementById('cd-days');
+  const cdHours = document.getElementById('cd-hours');
+  const cdMins = document.getElementById('cd-mins');
+  const cdSecs = document.getElementById('cd-secs');
+  const expiredNote = document.getElementById('expired-note');
+  const cta = document.getElementById('bundle-cta');
+  const progressBar = document.getElementById('progress-bar');
+  const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+  let startDate = new Date(endDate.getTime() - WEEK_MS);
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function update() {
+    const now = new Date();
+    let diff = endDate - now;
+
+    if (diff <= 0) {
+      cdDays.textContent = '00';
+      cdHours.textContent = '00';
+      cdMins.textContent = '00';
+      cdSecs.textContent = '00';
+      expiredNote.hidden = false;
+      if (cta) {
+        cta.textContent = 'انتهى العرض';
+        cta.style.pointerEvents = 'none';
+        cta.style.opacity = '0.7';
+      }
+      if (progressBar) progressBar.style.transform = 'scaleX(0)';
+      clearInterval(timer);
+      return;
+    }
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    diff -= days * (1000*60*60*24);
+    const hours = Math.floor(diff / (1000*60*60));
+    diff -= hours * (1000*60*60);
+    const minutes = Math.floor(diff / (1000*60));
+    diff -= minutes * (1000*60);
+    const seconds = Math.floor(diff / 1000);
+
+    cdDays.textContent = days;
+    cdHours.textContent = pad(hours);
+    cdMins.textContent = pad(minutes);
+    cdSecs.textContent = pad(seconds);
+
+    const total = endDate - startDate;
+    const elapsed = now - startDate;
+    let ratio = Math.max(0, Math.min(1, elapsed / total));
+    if (progressBar) {
+      progressBar.style.transform = 'scaleX(' + (1 - ratio) + ')';
+      if (1 - ratio < 0.25) progressBar.style.background = 'linear-gradient(90deg,#ff9a9e,#ffeb99)';
+      else progressBar.style.background = 'linear-gradient(90deg,#fff,#fffae5)';
+    }
+  }
+
+  update();
+  const timer = setInterval(update, 1000);
+
+  // زر الاختبار
+  const trialBtn = document.getElementById('one-week-only-btn');
+  if (trialBtn) {
+    trialBtn.addEventListener('click', function(){
+      const newEnd = new Date();
+      newEnd.setDate(newEnd.getDate() + 7);
+      localStorage.setItem(STORAGE_KEY, newEnd.toISOString());
+      location.reload();
+    });
+  }
+
+  // ضمان ظهور LTR بشكل سليم
+  document.querySelectorAll('.ltr-inline').forEach(el => {
+    el.style.display = el.style.display || 'inline-block';
+    el.style.unicodeBidi = 'isolate';
+  });
+});
+</script>
+
+
+<!--
+
+<div class="promo-banner" style="
+  background: linear-gradient(135deg,#4f46e5,#7c3aed);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 22px rgba(79,70,229,0.3);
+  margin: 2rem auto;
+  max-width: 880px;
+  font-family: 'Cairo', sans-serif;
+  position: relative;
+  overflow: hidden;
+">
+  <div style="
+    position:absolute;
+    top:-40px; right:-40px;
+    width:120px; height:120px;
+    background: rgba(255,255,255,0.08);
+    border-radius:50%;
+  "></div>
+  <div style="
+    position:absolute;
+    bottom:-50px; left:-50px;
+    width:140px; height:140px;
+    background: rgba(255,255,255,0.06);
+    border-radius:50%;
+  "></div>
+
+  <h2 style="font-size:2rem; margin-bottom:0.6rem; font-weight:800; letter-spacing:0.5px;">
+     عرض باقة السنة الأولى جامعي
+  </h2>
+
+<p style="font-size:1.1rem; line-height:1.8; max-width:740px; margin:auto; font-weight:500;">
+  احصل على <strong>أربع مواد أساسية</strong> في باقة واحدة مميزة
+    — <span style="color:#fffae5; font-weight:600;">الاشتراك سنوي حتى نهاية السنة الدراسية</span>
+
+  <br>
+    <strong>Math 1</strong> – <strong>Physique 1</strong> –
+    <strong>Chimie 1</strong> – <strong>Informatique 1</strong>
+  </p>
+
+<p class="price-box" style="
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  line-height: 1.9;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+">
+  <span class="price-old" style="
+    color: #d9d9d9;
+    font-weight: 600;
+    background: rgba(255,255,255,0.08);
+    padding: 5px 14px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(255,255,255,0.05);
+  ">
+    قبل التخفيض
+    <span style="
+      text-decoration: line-through;
+      color: #d9d9d9;
+      margin: 0 4px;
+    ">
+      7500 دج
+    </span>
+  </span>
+
+  <span class="price-label" style="
+    opacity: 0.9;
+    font-weight: 500;
+  ">
+    : السعر القديم
+  </span>
+</p>
+
+<style>
+  @media (max-width: 600px) {
+    .price-box {
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .price-label {
+      order: 1;
+      color: #fffae5;
+      font-size: 1.05rem;
+    }
+
+    .price-old {
+      order: 2;
+      font-size: 1.05rem;
+    }
+  }
+</style>
+
+
+  <div style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 1.2rem;
+    text-align: center;
+  ">
+
+    <p style="
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+      padding: 6px 16px;
+      border-radius: 10px;
+      margin: 0;
+      flex-shrink: 0;
+    ">
+      الآن بـ <span style="font-size:1.55rem; color:#fffae5;">5500 دج فقط 🎉</span>
+    </p>
+
+    <a href="#bundle-section"
+      style="
+        display: inline-block;
+        background: #ffffff;
+        color: #4f46e5;
+        font-weight: 700;
+        padding: 12px 32px;
+        border-radius: 12px;
+        text-decoration: none;
+        box-shadow: 0 6px 14px rgba(79,70,229,0.3);
+        font-size: 1.05rem;
+        letter-spacing: 0.3px;
+        transition: all 0.3s ease-in-out;
+        flex-shrink: 0;
+      "
+      onmouseover="this.style.background='#ede9fe'; this.style.transform='translateY(-4px) scale(1.03)';"
+      onmouseout="this.style.background='#fff'; this.style.transform='translateY(0) scale(1)';">
+      اشترك الآن وابدأ رحلتك
+    </a>
+  </div>
+
+  <p style="
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #ffeb99;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-shadow: 0 0 4px rgba(0,0,0,0.25);
+  ">
+  </p>
+
+</div>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+      if (targetId && targetId.startsWith("#") && targetId.length > 1) {
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    });
+  });
+});
+</script>
+
+-->
 
 <!--
 <div class="promo-banner" style="
@@ -324,6 +861,13 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
  -->
+
+
+
+
+
+
+ <!--
 </div>
 
 <div class="promo-banner" style="
@@ -573,19 +1117,25 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
   });
 </script>
 
+
+-->
+
+
+
 <div class="categories-scroll-container"
      style="overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
   <div class="categories-scroll"
        style="display: flex; flex-direction: row-reverse; justify-content: center; gap: 12px; min-width: max-content;">
 <!-- ...existing code... -->
-<button class="category highlight" aria-label="باقة السنة الثانية جامعي">
-  🎓 دروس أكاديمية بجودة عالية
-</button>
-<!-- ...existing code... -->
-<button class="category">📅 الاشتراك سنوي حتى نهاية السنة الدراسية</button>
-<button class="category">💳 دفع بالبطاقة الذهبية، بريدي موب، أو بريد الجزائر</button>
-<button class="category">💬 دعم فني دائم 24/7</button>
-<button class="category">🎓 آلاف الطلاب يثقون بنا</button>
+<button class="category highlight">🎓 أفضل محتوى جامعي بسعر مناسب</button>
+
+<button class="category">📅 اشتراك سنوي بدون قيود</button>
+
+<button class="category">💳 دفع سريع وآمن</button>
+
+<button class="category">💬 دعم فوري 24/7</button>
+
+<button class="category">🏆 استثمار بسيط… نتيجة كبيرة</button>
 </div>
 </div>
 
@@ -626,11 +1176,11 @@ window.addEventListener("load", () => {
 
 
 
-    <!-- Course Cards with scroll buttons -->
-    <div class="course-scroll-container" style="position: relative;">
+<!-- 📘 السنة الأولى -->
+<h2 class="category-title">السنة الأولى – L1</h2>
 
-
-      <div class="course-cards">
+<div class="course-scroll-container">
+  <div class="course-cards">
 
 <!-- ★ Math 1 – Analyse 1 -->
 <a href="courses/math1.html" style="text-decoration: none; color: inherit;">
@@ -683,6 +1233,42 @@ window.addEventListener("load", () => {
   </div>
 </a>
 
+<!-- ★ Informatique 1 -->
+<a href="courses/informatique01.html" style="text-decoration: none; color: inherit;">
+  <div class="course-card" data-course-id="informatique01">
+    <img src="Thumbnail/informatique1/01.jpg" alt="Informatique 1" class="course-img" />
+    <div class="course-content">
+      <h3 class="course-title">Informatique 1 <span style="font-size:0.9em; color:#555;">(Computer Science 1)</span></h3>
+      <p class="instructor">Abdellah Derradj</p>
+      <div class="rating">
+        <span class="rating-value">...</span>
+        <span class="stars">★ ★ ★ ★ ★</span>
+        <span class="reviews">(....)</span>
+      </div>
+      <div class="price">1000 DA</div>
+    </div>
+  </div>
+</a>
+
+
+<!-- ★ Chimie 2 -->
+<a href="courses/chimie2.html" style="text-decoration: none; color: inherit;">
+  <div class="course-card" data-course-id="chimie2">
+    <img src="Thumbnail/chimie2/06.png" alt="Chimie 2" class="course-img" />
+    <div class="course-content">
+      <h3 class="course-title">Chimie 2 <span style="font-size:0.9em; color:#555;">(Chemistry 2)</span></h3>
+      <p class="instructor">Professeur Sami Braci</p>
+      <div class="rating">
+        <span class="rating-value">4.9</span>
+        <span class="stars">★ ★ ★ ★ ★</span>
+        <span class="reviews">(860)</span>
+      </div>
+      <div class="price">2000 DA</div>
+    </div>
+  </div>
+</a>
+
+
 <!-- ★ Physique 2 -->
 <a href="courses/physique2.html" style="text-decoration: none; color: inherit;">
   <div class="course-card" data-course-id="physique2">
@@ -717,6 +1303,30 @@ window.addEventListener("load", () => {
   </div>
 </a>
 
+<!-- ★ Informatique 2 Pascal -->
+<a href="courses/informatique02.html" style="text-decoration: none; color: inherit;">
+  <div class="course-card" data-course-id="informatique02">
+    <img src="Thumbnail/Informatique2/02.jpg" alt="Informatique 2" class="course-img" />
+    <div class="course-content">
+      <h3 class="course-title">Informatique 2 (Pascal) <span style="font-size:0.9em; color:#555;">(Computer Science 2)</span></h3>
+      <p class="instructor">Abdellah Derradj</p>
+      <div class="rating">
+        <span class="rating-value">...</span>
+        <span class="stars">★ ★ ★ ★ ★</span>
+        <span class="reviews">(....)</span>
+      </div>
+      <div class="price">1000 DA</div>
+    </div>
+  </div>
+</a>
+
+  </div></div>
+<!-- 📗 السنة الثانية -->
+<h2 class="category-title"> السنة الثانية – L2</h2>
+
+<div class="course-scroll-container">
+  <div class="course-cards">
+
 <!-- ★ Math 3 (Analyse 3) -->
 <a href="courses/math_3.html" style="text-decoration: none; color: inherit;">
   <div class="course-card" data-course-id="math_3">
@@ -735,6 +1345,29 @@ window.addEventListener("load", () => {
 </a>
 
 
+<!-- ★ Math 3 – Analyse 3 (Sami Braci) -->
+<a href="courses/math3_sami_braci.html" style="text-decoration: none; color: inherit;">
+  <div class="course-card" data-course-id="math3_sami_braci">
+    <img src="Thumbnail/math3/06.png" alt="Math 3 – Analyse 3" class="course-img" />
+
+    <div class="course-content">
+      <h3 class="course-title">
+        Math 3 – Analyse 3
+        <span style="font-size:0.9em; color:#555;">(Analyse 3)</span>
+      </h3>
+
+      <p class="instructor">Professeur Sami Braci</p>
+
+      <div class="rating">
+        <span class="rating-value">5.0</span>
+        <span class="stars">★ ★ ★ ★ ★</span>
+        <span class="reviews">(1k)</span>
+      </div>
+
+      <div class="price">2000 DA</div>
+    </div>
+  </div>
+</a>
 
 
 <!-- ★ Ondes Et Vibrations -->
@@ -789,39 +1422,7 @@ window.addEventListener("load", () => {
 </a>
 
 
-<!-- ★ Théorie du Champ Électromagnétique L3 -->
-<a href="courses/theorie_du_champ.html" style="text-decoration: none; color: inherit;">
-  <div class="course-card" data-course-id="theorie_champ">
-    <img src="Thumbnail/theorie_champ/03.jpg" alt="Théorie du Champ Électromagnétique L3" class="course-img" />
-    <div class="course-content">
-      <h3 class="course-title">Théorie du Champ Électromagnétique</h3>
-      <p class="instructor">Abdellah Derradj</p>
-      <div class="rating">
-        <span class="rating-value">...</span>
-        <span class="stars">★ ★ ★ ★ ★</span>
-        <span class="reviews">(....)</span>
-      </div>
-      <div class="price">800 DA</div>
-    </div>
-  </div>
-</a>
 
-<!-- ★ Informatique 1 -->
-<a href="courses/informatique01.html" style="text-decoration: none; color: inherit;">
-  <div class="course-card" data-course-id="informatique01">
-    <img src="Thumbnail/informatique1/01.jpg" alt="Informatique 1" class="course-img" />
-    <div class="course-content">
-      <h3 class="course-title">Informatique 1 <span style="font-size:0.9em; color:#555;">(Computer Science 1)</span></h3>
-      <p class="instructor">Abdellah Derradj</p>
-      <div class="rating">
-        <span class="rating-value">...</span>
-        <span class="stars">★ ★ ★ ★ ★</span>
-        <span class="reviews">(....)</span>
-      </div>
-      <div class="price">1000 DA</div>
-    </div>
-  </div>
-</a>
 
 <!-- ★ Informatique 3 MATLAB -->
 <a href="courses/informatique03.html" style="text-decoration: none; color: inherit;">
@@ -857,6 +1458,41 @@ window.addEventListener("load", () => {
   </div>
 </a>
 
+<!-- ★ Théorie du Signal -->
+<a href="courses/theorie_du_signal.html" style="text-decoration: none; color: inherit;">
+  <div class="course-card" data-course-id="theorie_du_signal">
+    <img src="Thumbnail/theorie_de_signal/02.jpg" alt="Théorie du Signal" class="course-img" />
+    <div class="course-content">
+      <h3 class="course-title">Théorie du Signal <span style="font-size:0.9em; color:#555;">(Signal Theory / Signal Processing)</span></h3>
+      <p class="instructor">Abdellah Derradj</p>
+      <div class="rating">
+        <span class="rating-value">...</span>
+        <span class="stars">★ ★ ★ ★ ★</span>
+        <span class="reviews">(....)</span>
+      </div>
+      <div class="price">800 DA</div>
+    </div>
+  </div>
+</a>
+
+<!-- ★ Logique Combinatoire et Séquentielle -->
+<a href="courses/logique.html" style="text-decoration: none; color: inherit;">
+  <div class="course-card" data-course-id="logique_combinatoire_et_sequentielle">
+    <img src="Thumbnail/logique/08.jpg" alt="Logique Combinatoire et Séquentielle" class="course-img" />
+    <div class="course-content">
+      <h3 class="course-title">Logique Combinatoire et Séquentielle <span style="font-size:0.9em; color:#555;">(Combinatorial & Sequential Logic)</span></h3>
+      <p class="instructor">Abdellah Derradj</p>
+      <div class="rating">
+        <span class="rating-value">...</span>
+        <span class="stars">★ ★ ★ ★ ★</span>
+        <span class="reviews">(....)</span>
+      </div>
+      <div class="price">1000 DA</div>
+    </div>
+  </div>
+</a>
+
+
 <!-- ★ Méthodes Numériques L2+M1 -->
 <a href="courses/methode.html" style="text-decoration: none; color: inherit;">
   <div class="course-card" data-course-id="methodes_numeriques">
@@ -873,6 +1509,14 @@ window.addEventListener("load", () => {
     </div>
   </div>
 </a>
+
+  </div></div>
+
+  <!-- 📙 السنة الثالثة GE -->
+<h2 class="category-title"> السنة الثالثة – هندسة كهربائية (L3 GE)</h2>
+
+<div class="course-scroll-container">
+  <div class="course-cards">
 
 <!-- ★ Systèmes Asservis -->
 <a href="courses/systeme_asservis.html" style="text-decoration: none; color: inherit;">
@@ -908,12 +1552,12 @@ window.addEventListener("load", () => {
   </div>
 </a>
 
-<!-- ★ Théorie du Signal -->
-<a href="courses/theorie_du_signal.html" style="text-decoration: none; color: inherit;">
-  <div class="course-card" data-course-id="theorie_du_signal">
-    <img src="Thumbnail/theorie_de_signal/02.jpg" alt="Théorie du Signal" class="course-img" />
+<!-- ★ Théorie du Champ Électromagnétique L3 -->
+<a href="courses/theorie_du_champ.html" style="text-decoration: none; color: inherit;">
+  <div class="course-card" data-course-id="theorie_champ">
+    <img src="Thumbnail/theorie_champ/03.jpg" alt="Théorie du Champ Électromagnétique L3" class="course-img" />
     <div class="course-content">
-      <h3 class="course-title">Théorie du Signal <span style="font-size:0.9em; color:#555;">(Signal Theory / Signal Processing)</span></h3>
+      <h3 class="course-title">Théorie du Champ Électromagnétique</h3>
       <p class="instructor">Abdellah Derradj</p>
       <div class="rating">
         <span class="rating-value">...</span>
@@ -925,22 +1569,8 @@ window.addEventListener("load", () => {
   </div>
 </a>
 
-<!-- ★ Informatique 2 Pascal -->
-<a href="courses/informatique02.html" style="text-decoration: none; color: inherit;">
-  <div class="course-card" data-course-id="informatique02">
-    <img src="Thumbnail/Informatique2/02.jpg" alt="Informatique 2" class="course-img" />
-    <div class="course-content">
-      <h3 class="course-title">Informatique 2 (Pascal) <span style="font-size:0.9em; color:#555;">(Computer Science 2)</span></h3>
-      <p class="instructor">Abdellah Derradj</p>
-      <div class="rating">
-        <span class="rating-value">...</span>
-        <span class="stars">★ ★ ★ ★ ★</span>
-        <span class="reviews">(....)</span>
-      </div>
-      <div class="price">1000 DA</div>
-    </div>
-  </div>
-</a>
+
+
 
 <!-- ★ Electronique de Puissance -->
 <a href="courses/electronique_de_puissance.html" style="text-decoration: none; color: inherit;">
@@ -959,24 +1589,8 @@ window.addEventListener("load", () => {
   </div>
 </a>
 
-<!-- ★ Logique Combinatoire et Séquentielle -->
-<a href="courses/logique.html" style="text-decoration: none; color: inherit;">
-  <div class="course-card" data-course-id="logique_combinatoire_et_sequentielle">
-    <img src="Thumbnail/logique/08.jpg" alt="Logique Combinatoire et Séquentielle" class="course-img" />
-    <div class="course-content">
-      <h3 class="course-title">Logique Combinatoire et Séquentielle <span style="font-size:0.9em; color:#555;">(Combinatorial & Sequential Logic)</span></h3>
-      <p class="instructor">Abdellah Derradj</p>
-      <div class="rating">
-        <span class="rating-value">...</span>
-        <span class="stars">★ ★ ★ ★ ★</span>
-        <span class="reviews">(....)</span>
-      </div>
-      <div class="price">1000 DA</div>
-    </div>
-  </div>
-</a>
 
-
+  </div></div>
 
 
   </section>
@@ -1010,6 +1624,51 @@ window.addEventListener("load", () => {
   <h2>باقة المواد الخاصة</h2>
 
   <div class="bundles-container">
+
+    <!-- 🎓 بطاقة السنة الأولى -->
+<div class="bundle-card">
+  <h3>باقة السنة الأولى</h3>
+
+  <ul class="bundle-courses" style="text-align: left; direction: ltr; padding-left: 0;">
+    <li>🎓 Math 1 – Analyse 1</li>
+    <li>🎓 Physique 1</li>
+    <li>🎓 Chimie 1</li>
+    <li>🎓 Informatique 1</li>
+  </ul>
+
+  <div class="bundle-price">
+    <span class="old-price">دج 7000</span>
+    <span class="new-price">5500 دج فقط</span>
+  </div>
+
+  <div class="bundle-discount">
+    وفر <strong>1500 دج (21%)</strong>
+  </div>
+
+  <ul class="bundle-benefits">
+    <li>✔️ دروس فيديو لكل مادة</li>
+    <li>✔️ دعم مباشر من الأستاذ</li>
+    <li>✔️ بث مباشر عند الطلب</li>
+    <li>✔️ دخول لجميع الدروس والاختبارات</li>
+  </ul>
+
+  <div class="payment-options">
+    <h4 style="text-align:center;">طرق الدفع
+      <span style="font-size: 0.9em; color: #6b7280; font-weight: 500; margin-right: 6px; cursor: pointer;"
+            onmouseover="this.style.color='#4f46e5';"
+            onmouseout="this.style.color='#6b7280';">(اضغط للمعاينة 👇)</span>
+    </h4>
+
+    <div class="payment-methods">
+      <button class="pay-option" onclick="window.open('payment/5500baridi.pdf', '_blank')">📱 بريدي موب</button>
+      <button class="pay-option" onclick="window.open('http://pay.chargily.com/payment-links/01ka5c02zgfj030rzzkkbr6dv3', '_blank')">💳 البطاقة الذهبية</button>
+      <button class="pay-option" onclick="window.open('payment/5500.pdf', '_blank')">📮 بريد الجزائر</button>
+    </div>
+  </div>
+
+  <a href="sign-up/sign-up.html" class="bundle-btn">اشترك في الباقة الآن</a>
+</div>
+
 
     <!-- 🎓 بطاقة الباقة -->
     <div class="bundle-card">
