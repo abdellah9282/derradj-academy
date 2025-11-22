@@ -5,9 +5,20 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
 );
 // ✅ منع الدخول لغير الأدمن
-if (localStorage.getItem("isAdmin") !== "true") {
-  window.location.href = "../index.html"; // 🔄 تحويل للصفحة الرئيسية
-}
+(async () => {
+  const { data } = await supabase.auth.getUser();
+
+  if (!data?.user) {
+    window.location.href = "../login/login.html";
+    return;
+  }
+
+  if (data.user.email !== "derradjacademy@gmail.com") {
+    window.location.href = "../index.html";
+    return;
+  }
+})();
+
 
 async function loadRegistrations() {
   const { data, error } = await supabase

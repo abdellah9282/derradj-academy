@@ -64,20 +64,32 @@
     <div class="explore-dropdown">
       <a href="#" class="explore-link">Explore</a>
       <ul class="dropdown-menu">
-  <li><a href="../courses/ondes_et_vibrations.html">Ondes et Vibrations</a></li>
-  <li><a href="../courses/electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
-  <li><a href="../courses/electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
-  <li><a href="../courses/theorie_du_champ.html">Théorie du Champ Électromagnétique</a></li>
-  <li><a href="../courses/electronique_de_puissance.html">Électronique de Puissance</a></li>
-  <li><a href="../courses/informatique01.html">Informatique 1</a></li>
-  <li><a href="../courses/informatique02.html">Informatique 2</a></li>
-  <li><a href="../courses/informatique03.html">Informatique 3</a></li>
-  <li><a href="../courses/logique.html">Logique Combinatoire et Séquentielle</a></li>
-  <li><a href="../courses/methode.html">Méthodes Numériques (L2 + M1)</a></li>
-  <li><a href="../courses/probabilite_et_statistique.html">Probabilité et Statistique</a></li>
-  <li><a href="../courses/réseaux_electrique.html">Réseaux Électrique</a></li>
-  <li><a href="../courses/systeme_asservis.html">Systèmes Asservis</a></li>
-  <li><a href="../courses/theorie_du_signal.html">Théorie du Signal</a></li>
+<li><a href="../courses/math1.html">Math 1 – Analyse 1</a></li>
+<li><a href="../courses/math2.html">Math 2 – Analyse 2</a></li>
+<li><a href="../courses/chimie1.html">Chimie 1</a></li>
+<li><a href="../courses/chimie2.html">Chimie 2</a></li>
+<li><a href="../courses/physique1.html">Physique 1</a></li>
+<li><a href="../courses/physique2.html">Physique 2</a></li>
+<li><a href="../courses/math3_sami_braci.html">Math 3 – Analyse 3 (Sami Braci)</a></li>
+
+<li><a href="../courses/ondes_et_vibrations.html">Ondes et Vibrations</a></li>
+<li><a href="../courses/electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
+<li><a href="../courses/electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
+<li><a href="../courses/theorie_du_champ.html">Théorie du Champ Électromagnétique</a></li>
+<li><a href="../courses/electronique_de_puissance.html">Électronique de Puissance</a></li>
+
+<li><a href="../courses/informatique01.html">Informatique 1</a></li>
+<li><a href="../courses/informatique02.html">Informatique 2</a></li>
+<li><a href="../courses/informatique03.html">Informatique 3</a></li>
+
+<li><a href="../courses/logique.html">Logique Combinatoire et Séquentielle</a></li>
+<li><a href="../courses/methode.html">Méthodes Numériques (L2 + M1)</a></li>
+<li><a href="../courses/probabilite_et_statistique.html">Probabilité et Statistique</a></li>
+
+<li><a href="../courses/réseaux_electrique.html">Réseaux Électrique</a></li>
+<li><a href="../courses/systeme_asservis.html">Systèmes Asservis</a></li>
+<li><a href="../courses/theorie_du_signal.html">Théorie du Signal</a></li>
+
       </ul>
     </div>
   </div>
@@ -111,6 +123,12 @@
       <div class="form-group">
         <label for="contact">Phone Number or Email</label>
         <input type="text" id="contact" name="contact" placeholder="Phone or email" required />
+       <div id="contactError"
+     style="color:red; margin-top:5px; font-size:0.9rem;
+            direction: rtl; unicode-bidi: bidi-override; text-align: right;">
+</div>
+
+
       </div>
 
       <div class="form-group">
@@ -128,9 +146,30 @@
 
 <!-- ✅ قائمة كاملة بالمواد مع الأسعار -->
 <div class="checkbox-group course-checkboxes" id="coursesList">
+ <label>
+  <input type="checkbox" name="courses[]" value="bundle_first_year" data-price="5500">
+  (5500 DA) باقة السنة الأولى – 4 مواد
+</label>
+
+
   <label>
 <input type="checkbox" name="courses[]" value="bundle_second_year" data-price="4999">(4999 DA) باقة السنة الثانية – 5 مواد   </label>
-  <label><input type="checkbox" name="courses[]" value="ondes_et_vibrations" data-price="1500"> Ondes et Vibrations (1500 DA)</label>
+
+<label>
+  <input type="checkbox" name="courses[]" value="bundle_third_year" data-price="3500">
+  (3500 DA) باقة السنة الثالثة – 4 مواد
+</label>
+
+<label><input type="checkbox" name="courses[]" value="math1" data-price="2000"> Math 1 – Analyse 1 (2000 DA)</label>
+<label><input type="checkbox" name="courses[]" value="chimie1" data-price="2000"> Chimie 1 (2000 DA)</label>
+<label><input type="checkbox" name="courses[]" value="physique1" data-price="2000"> Physique 1 (2000 DA)</label>
+<label><input type="checkbox" name="courses[]" value="chimie2" data-price="2000"> Chimie 2 (2000 DA)</label>
+<label><input type="checkbox" name="courses[]" value="physique2" data-price="2000"> Physique 2 (2000 DA)</label>
+<label><input type="checkbox" name="courses[]" value="math2" data-price="2000"> Math 2 – Analyse 2 (2000 DA)</label>
+<label><input type="checkbox" name="courses[]" value="math3_sami_braci" data-price="2000"> Math 3 – Analyse 3 (2000 DA)</label>
+
+
+<label><input type="checkbox" name="courses[]" value="ondes_et_vibrations" data-price="1500"> Ondes et Vibrations (1500 DA)</label>
   <label><input type="checkbox" name="courses[]" value="electrotechnique_fondamentale1" data-price="1500"> Électrotechnique Fondamentale 1 (1500 DA)</label>
   <label><input type="checkbox" name="courses[]" value="electronique_fondamentale1" data-price="1500"> Électronique Fondamentale 1 (1500 DA)</label>
   <label><input type="checkbox" name="courses[]" value="theorie_du_champ" data-price="800">Théorie du Champ Électromagnétique (800 DA)</label>
@@ -144,14 +183,7 @@
   <label><input type="checkbox" name="courses[]" value="systeme_asservis" data-price="1200"> Systèmes Asservis (1200 DA)</label>
   <label><input type="checkbox" name="courses[]" value="reseaux_electrique" data-price="1200"> Réseaux Électriques (1200 DA)</label>
   <label><input type="checkbox" name="courses[]" value="theorie_du_signal" data-price="800"> Théorie du Signal (800 DA)</label>
-<!--   <label><input type="checkbox" name="courses[]" value="etat_de_l_art" data-price="----"> État de l’art (---- DA)</label>
-  <label><input type="checkbox" name="courses[]" value="machines_electriques" data-price="----"> Machines Électriques (---- DA)</label>
-  <label><input type="checkbox" name="courses[]" value="commandes_machines_electriques" data-price="----"> Commandes des Machines Électriques (---- DA)</label>
-  <label><input type="checkbox" name="courses[]" value="mesures_electriques_et_electroniques" data-price="----"> Mesures Électriques et Électroniques (---- DA)</label>
-  <label><input type="checkbox" name="courses[]" value="math1" data-price="----"> Math 1 (---- DA)</label>
-  <label><input type="checkbox" name="courses[]" value="physique1" data-price="----"> Physique 1 (---- DA)</label>
-  <label><input type="checkbox" name="courses[]" value="chimie1" data-price="----"> Chimie 1 (---- DA)</label>
--->
+
 </div>
 
 
@@ -231,7 +263,7 @@
       <h3>تواصل معنا</h3>
 <p>
   <strong>📞</strong>
-  <a href="tel:+213555491316" dir="ltr">+213 555 49 13 16</a>
+<a href="tel:+213776922882" dir="ltr">0776 92 28 82</a>
 </p>
       <p><strong>📧</strong> <a href="mailto:derradjacademy@gmail.com">derradjacademy@gmail.com
 </a></p>
@@ -269,6 +301,138 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+ // -----------------------------
+// 🔒 VALIDATION FOR PHONE / EMAIL
+// -----------------------------
+
+const contactInput = document.getElementById("contact");
+const contactError = document.getElementById("contactError");
+
+// أثناء الكتابة
+contactInput.addEventListener("input", () => {
+  let value = contactInput.value;
+
+  // مسح رسالة البريد فقط أثناء الكتابة
+  contactError.textContent = "";
+
+  // ============================
+  // 📧 البريد الإلكتروني
+  // ============================
+  if (/^[a-zA-Z]/.test(value) || value.includes("@")) {
+
+    // الحد الأقصى 40 حرفًا
+    if (value.length > 40) {
+      contactError.textContent = "❌ البريد الإلكتروني لا يجب أن يتجاوز 40 حرفًا";
+      contactInput.value = value.slice(0, 40);
+    }
+    return;
+  }
+
+  // ============================
+  // 📱 الهاتف — منطقك الأصلي 100%
+  // ============================
+
+  // إزالة أي حرف غير رقم
+  value = value.replace(/\D/g, "");
+
+  // القاعدة 1: أول رقم يجب أن يكون 0
+  if (value.length === 1) {
+    if (value !== "0") {
+      contactInput.value = "";
+      contactError.textContent = "❌ رقم الهاتف يجب أن يبدأ بـ 0";
+      return;
+    }
+  }
+
+  // القاعدة 2: ثاني رقم يجب أن يكون 5 أو 6 أو 7
+  if (value.length === 2) {
+    if (!["5", "6", "7"].includes(value[1])) {
+      contactInput.value = "0";
+      contactError.textContent = "❌ بعد 0 يجب أن يكون الرقم 5 أو 6 أو 7";
+      return;
+    }
+  }
+
+  // القاعدة 3: منع أكثر من 10 أرقام (رقم جزائري)
+  if (value.length > 10) {
+    value = value.slice(0, 10);
+  }
+
+  contactInput.value = value;
+});
+
+
+// -----------------------------
+// ✨ SHOW PHONE OR EMAIL ERROR ONLY ON BLUR
+// -----------------------------
+contactInput.addEventListener("blur", () => {
+  const value = contactInput.value.trim();
+
+  // إذا فارغ → لا خطأ
+  if (value === "") {
+    contactError.textContent = "";
+    return;
+  }
+
+  // ==========================
+  // 📱 الهاتف
+  // ==========================
+  if (/^\d/.test(value)) {
+    // إذا كتب 0 أو 05 أو 06 أو 07 فقط ثم خرج → خطأ
+    if (value.length < 10) {
+      contactError.textContent = "❌ رقم الهاتف الجزائري يجب أن يكون 10 أرقام";
+    } else {
+      contactError.textContent = "";
+    }
+    return;
+  }
+
+  // ==========================
+  // 📧 البريد الإلكتروني
+  // ==========================
+  if (!value.includes("@")) {
+    contactError.innerHTML =
+      '❌ البريد يجب أن يحتوي على <span dir="ltr" style="display:inline-block">@</span>';
+  }
+});
+
+
+// -----------------------------
+// 🔍 VALIDATION BEFORE SUBMIT
+// -----------------------------
+form.addEventListener("submit", (e) => {
+  const value = contactInput.value.trim();
+
+  // == بريد إلكتروني ==
+  if (/^[a-zA-Z]/.test(value) || value.includes("@")) {
+
+    if (!value.includes("@")) {
+      e.preventDefault();
+      contactError.innerHTML =
+        '❌ البريد يجب أن يحتوي على <span dir="ltr" style="display:inline-block">@</span>';
+      return;
+    }
+
+    if (value.length > 40) {
+      e.preventDefault();
+      contactError.textContent = "❌ البريد الإلكتروني لا يجب أن يتجاوز 40 حرفًا";
+      return;
+    }
+
+    return;
+  }
+
+  // == رقم هاتف ==
+  if (value.length !== 10) {
+    e.preventDefault();
+    contactError.textContent = "❌ رقم الهاتف الجزائري يجب أن يكون 10 أرقام";
+    return;
+  }
+});
+
+
+
   const { createClient } = supabase;
   const supabaseClient = createClient(
     "https://sgcypxmnlyiwljuqvcup.supabase.co",
@@ -323,7 +487,40 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('input[name="courses[]"]:checked')
     )
       .map((cb) => cb.value)
-      .filter((v) => v !== "bundle_second_year");
+.filter((v) =>
+  v !== "bundle_first_year" &&
+  v !== "bundle_second_year" &&
+  v !== "bundle_third_year"
+);
+// ✅ عند اختيار باقة السنة الثانية: أرسل فقط المواد الخمس
+if (document.querySelector('input[value="bundle_second_year"]').checked) {
+  modules.splice(0, modules.length,
+    'ondes_et_vibrations',
+    'electrotechnique_fondamentale1',
+    'electronique_fondamentale1',
+    'informatique03',
+    'probabilite_et_statistique'
+  );
+}
+
+// ✅ عند اختيار باقة السنة الثالثة: أرسل فقط المواد الأربع بدون الكلمة "bundle_third_year"
+if (document.querySelector('input[value="bundle_third_year"]').checked) {
+  modules.splice(0, modules.length,
+    'theorie_du_champ',
+    'electronique_de_puissance',
+    'systeme_asservis',
+    'reseaux_electrique'
+  );
+}
+// ✅ عند اختيار باقة السنة الأولى: Math1 + Physique1 + Chimie1 + Informatique1
+if (document.querySelector('input[value="bundle_first_year"]').checked) {
+  modules.splice(0, modules.length,
+    'math1',
+    'physique1',
+    'chimie1',
+    'informatique01'
+  );
+}
 
     const submitBtn = form.querySelector('button[type="submit"]');
 
@@ -430,7 +627,6 @@ const { data: fileData, error: fileError } = await supabaseClient.storage
 });
 </script>
 
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const coursesList = document.getElementById('coursesList');
@@ -438,7 +634,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const selectedModulesBox = document.getElementById('selectedModulesBox');
   const totalPriceEl = document.getElementById('total-price');
   const checkboxes = document.querySelectorAll('input[name="courses[]"]');
-
   let selectedCourses = [];
 
   // ✅ عنصر لرسالة التخفيض
@@ -448,63 +643,96 @@ document.addEventListener('DOMContentLoaded', () => {
   discountMsg.style.color = "#27ae60";
   discountMsg.style.fontWeight = "bold";
   totalPriceEl.insertAdjacentElement("afterend", discountMsg);
+const firstYearMaterials = [
+  'math1',
+  'physique1',
+  'chimie1',
+  'informatique01'
+];
 
   function updateDisplay() {
-  selectedModulesList.innerHTML = "";
-  let total = 0;
+    selectedModulesList.innerHTML = "";
+    let total = 0;
 
-  const hasBundle5000 = selectedCourses.some(c => c.value === 'bundle_second_year');
+    const hasBundleSecond = selectedCourses.some(c => c.value === 'bundle_second_year');
+    const hasBundleThird = selectedCourses.some(c => c.value === 'bundle_third_year');
+    const hasBundleFirst = selectedCourses.some(c => c.value === 'bundle_first_year');
 
-  selectedCourses.forEach(course => {
-    total += parseInt(course.price) || 0;
-    const li = document.createElement('li');
-    li.textContent = course.label + " ";
-
-    const removeBtn = document.createElement('button');
-    removeBtn.type = 'button';
-    removeBtn.textContent = 'Remove';
-
-    removeBtn.addEventListener('click', () => {
-      selectedCourses = selectedCourses.filter(c => c.value !== course.value);
-      const checkbox = coursesList.querySelector(`input[type="checkbox"][value="${course.value}"]`);
-      if (checkbox) checkbox.checked = false;
-      updateDisplay();
+    selectedCourses.forEach(course => {
+      total += parseInt(course.price) || 0;
+      const li = document.createElement('li');
+      li.textContent = course.label + " ";
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.textContent = 'Remove';
+      removeBtn.addEventListener('click', () => {
+        selectedCourses = selectedCourses.filter(c => c.value !== course.value);
+        const checkbox = coursesList.querySelector(`input[type="checkbox"][value="${course.value}"]`);
+        if (checkbox) checkbox.checked = false;
+        updateDisplay();
+      });
+      li.appendChild(removeBtn);
+      selectedModulesList.appendChild(li);
     });
 
-    li.appendChild(removeBtn);
-    selectedModulesList.appendChild(li);
-  });
+    // تعطيل المواد الفردية إذا اختيرت باقة
+    const secondYearMaterials = [
+      'ondes_et_vibrations',
+      'electrotechnique_fondamentale1',
+      'electronique_fondamentale1',
+      'informatique03',
+      'probabilite_et_statistique'
+    ];
+    const thirdYearMaterials = [
+      'systeme_asservis',
+      'reseaux_electrique',
+      'electronique_de_puissance',
+      'theorie_du_champ'
+    ];
+const firstYearMaterials = [
+  'math1',
+  'physique1',
+  'chimie1',
+  'informatique01'
+];
 
-  // تعطيل المواد الفردية إذا اختيرت الباقة
-  const bundleMaterials = ['ondes_et_vibrations', 'electrotechnique_fondamentale1', 'electronique_fondamentale1', 'informatique03', 'probabilite_et_statistique'];
-  checkboxes.forEach(cb => {
-    if (hasBundle5000 && bundleMaterials.includes(cb.value)) {
-      cb.disabled = cb.value !== 'bundle_second_year';
+let bundleMaterials = [];
+if (hasBundleFirst) bundleMaterials = firstYearMaterials;
+if (hasBundleSecond) bundleMaterials = secondYearMaterials;
+if (hasBundleThird) bundleMaterials = thirdYearMaterials;
+
+checkboxes.forEach(cb => {
+  if ((hasBundleFirst || hasBundleSecond || hasBundleThird) && bundleMaterials.includes(cb.value)) {
+    cb.disabled = cb.value !== (hasBundleFirst
+      ? 'bundle_first_year'
+      : hasBundleSecond
+      ? 'bundle_second_year'
+      : 'bundle_third_year');
+  } else {
+    cb.disabled = false;
+  }
+});
+
+
+    // ✅ إخفاء التخفيض في حال وجود باقة
+    const discountBox = document.getElementById("discount-msg-box");
+    if (hasBundleSecond || hasBundleThird) {
+      discountBox.style.display = "none";
     } else {
-      cb.disabled = false;
+      discountBox.style.display = "block";
     }
-  });
 
-  // ✅ إخفاء عرض التخفيض إذا كانت الباقة
-  const discountBox = document.getElementById("discount-msg-box");
-  if (hasBundle5000) {
-    discountBox.style.display = "none";
-  } else {
-    discountBox.style.display = "block";
+    // ✅ تطبيق التخفيض العادي
+    if (!hasBundleSecond && !hasBundleThird && selectedCourses.length >= 3) {
+      total -= 1000;
+      discountMsg.textContent = "🎉 تم تطبيق التخفيض: 1000 دج";
+    } else {
+      discountMsg.textContent = "";
+    }
+
+    totalPriceEl.textContent = "السعر الإجمالي: " + total + " دج";
+    selectedModulesBox.style.display = selectedCourses.length > 0 ? "block" : "none";
   }
-
-  // ✅ تطبيق التخفيض على المواد الفردية
-  if (!hasBundle5000 && selectedCourses.length >= 3) {
-    total -= 1000;
-    discountMsg.textContent = "🎉 تم تطبيق التخفيض: 1000 دج";
-  } else {
-    discountMsg.textContent = "";
-  }
-
-  totalPriceEl.textContent = "السعر الإجمالي: " + total + " دج";
-  selectedModulesBox.style.display = selectedCourses.length > 0 ? "block" : "none";
-}
-
 
   checkboxes.forEach(cb => {
     cb.addEventListener('change', () => {
@@ -512,7 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const label = cb.closest('label')?.textContent.trim() || value;
       const price = cb.dataset.price || 0;
 
-      // ✅ عند اختيار الباقة، اختر المواد الخمس تلقائيًا
+      // ✅ عند اختيار باقة السنة الثانية
       if (value === 'bundle_second_year' && cb.checked) {
         const bundleMaterials = [
           'ondes_et_vibrations',
@@ -523,13 +751,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
         bundleMaterials.forEach(mat => {
           const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
-          if (matCb && !matCb.checked) {
-            matCb.checked = true;
-          }
+          if (matCb && !matCb.checked) matCb.checked = true;
         });
       }
-
-      // ✅ عند إلغاء الباقة، ألغ تحديد المواد الخمس
       if (value === 'bundle_second_year' && !cb.checked) {
         const bundleMaterials = [
           'ondes_et_vibrations',
@@ -540,12 +764,50 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
         bundleMaterials.forEach(mat => {
           const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
-          if (matCb && matCb.checked) {
-            matCb.checked = false;
-          }
+          if (matCb && matCb.checked) matCb.checked = false;
         });
       }
 
+      // ✅ عند اختيار باقة السنة الثالثة
+      if (value === 'bundle_third_year' && cb.checked) {
+        const thirdYearMaterials = [
+          'systeme_asservis',
+          'reseaux_electrique',
+          'electronique_de_puissance',
+          'theorie_du_champ'
+        ];
+        thirdYearMaterials.forEach(mat => {
+          const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
+          if (matCb && !matCb.checked) matCb.checked = true;
+        });
+      }
+      if (value === 'bundle_third_year' && !cb.checked) {
+        const thirdYearMaterials = [
+          'systeme_asservis',
+          'reseaux_electrique',
+          'electronique_de_puissance',
+          'theorie_du_champ'
+        ];
+        thirdYearMaterials.forEach(mat => {
+          const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
+          if (matCb && matCb.checked) matCb.checked = false;
+        });
+      }
+if (value === 'bundle_first_year' && cb.checked) {
+  firstYearMaterials.forEach(mat => {
+    const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
+    if (matCb && !matCb.checked) matCb.checked = true;
+  });
+}
+
+if (value === 'bundle_first_year' && !cb.checked) {
+  firstYearMaterials.forEach(mat => {
+    const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
+    if (matCb && matCb.checked) matCb.checked = false;
+  });
+}
+
+      // ✅ تحديث قائمة المواد المختارة
       if (cb.checked) {
         if (!selectedCourses.some(c => c.value === value)) {
           selectedCourses.push({ value, label, price });
@@ -557,7 +819,6 @@ document.addEventListener('DOMContentLoaded', () => {
       updateDisplay();
     });
   });
-
 
   updateDisplay();
 });
