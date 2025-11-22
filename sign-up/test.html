@@ -381,7 +381,7 @@ contactInput.addEventListener("blur", () => {
   if (/^\d/.test(value)) {
     // إذا كتب 0 أو 05 أو 06 أو 07 فقط ثم خرج → خطأ
     if (value.length < 10) {
-      contactError.textContent = "❌ رقم الهاتف الجزائري يجب أن يكون 10 أرقام";
+      contactError.textContent = "❌ رقم الهاتف الجزائري يجب أن يكون 01 أرقام";
     } else {
       contactError.textContent = "";
     }

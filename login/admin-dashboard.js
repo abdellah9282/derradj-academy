@@ -4,20 +4,45 @@ const supabase = createClient(
   "https://sgcypxmnlyiwljuqvcup.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
 );
-// ✅ منع الدخول لغير الأدمن
-(async () => {
-  const { data } = await supabase.auth.getUser();
 
-  if (!data?.user) {
+(async () => {
+  // جلب المستخدم الحالي عبر Supabase Auth
+  const { data: authData, error: authError } = await supabase.auth.getUser();
+
+  // لا يوجد جلسة → طرد
+  if (authError || !authData?.user) {
+    console.warn("❌ لا يوجد مستخدم مسجل دخولاً.");
     window.location.href = "../login/login.html";
     return;
   }
 
-  if (data.user.email !== "derradjacademy@gmail.com") {
+  const userId = authData.user.id;
+
+  // البحث في جدول registrations عن is_admin = true
+  const { data: adminRecord, error: adminError } = await supabase
+    .from("registrations")
+    .select("id, full_name, is_admin")
+    .eq("user_id", userId)
+    .eq("is_admin", true)
+    .maybeSingle();
+
+  if (adminError) {
+    console.error("❌ خطأ في التحقق من صلاحيات الأدمن:", adminError);
     window.location.href = "../index.html";
     return;
   }
+
+  // إذا لم نجد أدمن → طرد
+  if (!adminRecord) {
+    console.warn("🚫 المستخدم ليس أدمن!");
+    window.location.href = "../index.html";
+    return;
+  }
+
+  // إذا وصل هنا → المستخدم أدمن فعلاً
+  console.log("🔥 تم التحقق بنجاح. الأدمن:", adminRecord.full_name);
 })();
+
 
 
 async function loadRegistrations() {
