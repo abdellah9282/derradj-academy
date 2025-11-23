@@ -169,12 +169,13 @@ async function loadNewRequests() {
     return;
   }
 
-  if (!data || data.length === 0) {
-    statusMessage.style.color = "orange";
-    statusMessage.textContent = "⚠️ No new requests found.";
-    statusMessage.style.display = "block";
-    return;
-  }
+if (!data || data.length === 0) {
+  statusMessage.style.color = "#3b82f6"; // أزرق جميل
+  statusMessage.textContent = "لا توجد طلبات جديدة حاليا";
+  statusMessage.style.display = "block";
+  return;
+}
+
 
   data.forEach(req => {
     const statusText = req.is_approved === true
