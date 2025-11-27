@@ -104,7 +104,8 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
     <p style="font-size: 1.15rem; color:#1e293b; line-height: 1.7; margin-top: 0;">
       يسعدنا إعلامكم بأن منصة
       <strong>Derradj Academy</strong>
-      تجاوزت <strong>100 مشترك</strong> بفضلكم.
+      تجاوزت
+حاجز <strong style="color:#4f46e5;">100 مشترك</strong> بفضل الله ثم بفضلكم.
 
       نشكركم على دعمكم وثقتكم في المحتوى الذي نقدمه،
       ونسعى دائمًا لتقديم الأفضل لكم.
@@ -2426,6 +2427,31 @@ const installBtn = document.querySelector(".install-btn");
 }
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // إذا ظهر الإعلان من قبل في نفس الزيارة لا نعرضه
+  if (!sessionStorage.getItem("popupShown")) {
+    document.getElementById("popup-overlay").style.display = "flex";
+    sessionStorage.setItem("popupShown", "true");
+  }
+
+  const overlay = document.getElementById("popup-overlay");
+  const closeBtn = document.getElementById("popup-close");
+
+  // عند الضغط على X
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+  });
+
+  // عند الضغط خارج الصندوق
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      overlay.style.display = "none";
+    }
+  });
+});
+</script>
 
 </body>
 </html>
