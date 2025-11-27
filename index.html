@@ -64,6 +64,64 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 </head>
 
 <body>
+<!-- 🎉 Popup 100 Subscribers -->
+<div id="popup-overlay" style="
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+">
+  <div id="popup-box" style="
+    background: #ffffff;
+    width: 90%;
+    max-width: 420px;
+    padding: 20px 24px;
+    border-radius: 14px;
+    text-align: center;
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+    position: relative;
+    animation: fadeIn 0.35s ease;
+  ">
+    <!-- زر الإغلاق -->
+    <span id="popup-close" style="
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: #444;
+      font-weight: bold;
+    ">&times;</span>
+
+    <h2 style="font-size: 1.5rem; color:#4f46e5; margin-bottom: 10px;">
+      🎉 شكرا لثقتكم!
+    </h2>
+
+    <p style="font-size: 1.15rem; color:#1e293b; line-height: 1.7; margin-top: 0;">
+      يسعدنا إعلامكم بأن منصة
+      <strong>Derradj Academy</strong>
+      تجاوزت <strong>100 مشترك</strong> بفضلكم.
+
+      نشكركم على دعمكم وثقتكم في المحتوى الذي نقدمه،
+      ونسعى دائمًا لتقديم الأفضل لكم.
+    </p>
+
+    <p style="margin-top: 12px; color:#6b7280; font-size: 0.95rem;">
+      وجودكم معنا هو مصدر نجاح هذه المنصة 🙏
+    </p>
+  </div>
+</div>
+
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
 
 <!-- 🔥 Top Notification Banner -->
 <div id="top-update-banner" style="
