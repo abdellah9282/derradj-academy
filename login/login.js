@@ -85,6 +85,29 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+
+      // ⭐ 2️⃣ حساب الأستاذ Bouzida (بعد نجاح Auth فقط)
+if (contact === "pr.bouzida") {
+  const sessionId =
+    window.crypto?.randomUUID?.() ||
+    Date.now().toString() + Math.random().toString(36).substring(2);
+
+  const deviceId = window.crypto?.randomUUID?.() || "device-" + Date.now();
+
+  localStorage.setItem("sessionId", sessionId);
+  localStorage.setItem("deviceId", deviceId);
+  localStorage.setItem("userContact", contact);
+  localStorage.setItem("userRole", "bouzida");
+  localStorage.setItem("userToken", "ok");
+
+  loginButton.textContent = "👨‍🏫 Welcome Professor Bouzida";
+
+  window.location.href = "bouzida-dashboard/bouzida-home.html";
+  return;
+}
+
+
+
       // 3️⃣ جلب بيانات المستخدم من جدول registrations (حسب user_id من Auth)
       const { data: reg, error: regError } = await supabase
         .from("registrations")

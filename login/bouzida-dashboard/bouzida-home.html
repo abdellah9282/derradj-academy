@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Professor Bouzida – Dashboard</title>
+
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="bouzida-home.css" />
+  <link rel="icon" type="image/jpeg" href="../../Logo.jpg">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="#" class="logo"><span class="purple">D</span>erradj Academy</a>
+  <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+</header>
+
+<!-- WELCOME -->
+<div class="welcome-box">
+  👋 مرحبًا <strong>الأستاذ Bouzida</strong>
+  <br>هذه صفحتك الخاصة — يمكنك إدارتها من أي جهاز وفي نفس الوقت.
+</div>
+
+<!-- VIDEOS -->
+<div class="videos-grid">
+
+<div class="video-card" onclick="playThisVideo(this, 'ZSx1h1U719E')">
+  <img src="../../Thumbnail/ondes_et_vibrations/td2_Exo401.png" alt="Exercice 04 – TD2">
+  <div class="info">
+    <h4>Exercice 04 – TD2 : Systèmes Amortis (1 DDL) en arabe</h4>
+  </div>
+</div>
+
+<div class="video-card" onclick="playThisVideo(this, 'FMH0uIAn-SQ')">
+  <img src="../../Thumbnail/ondes_et_vibrations/td4_Exo1.png" alt="EP02 Exercice 01 – Oscillations forcées">
+  <div class="info">
+    <h4>EP02 Exercice 01 – Oscillations forcées systèmes amorties (1 DDL) en arabe</h4>
+  </div>
+</div>
+
+
+</div>
+
+<script src="bouzida-home.js"></script>
+</body>
+</html>
