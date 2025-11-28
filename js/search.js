@@ -13,11 +13,6 @@ const courses = [
   { title: "Systemes Asservis", link: "/courses/systeme_asservis.html" },
   { title: "Theorie du signal", link: "/courses/theorie_du_signal.html" },
     { title: "Théorie du Champ Électromagnétique", link: "/courses/theorie_du_champ.html" },
-{ title: "Math 1 – Analyse 1", link: "/courses/math1.html" },
-{ title: "Math 2 – Analyse 2", link: "/courses/math2.html" },
-{ title: "Chimie 1", link: "/courses/chimie1.html" },
-{ title: "Physique 1", link: "/courses/physique1.html" },
-{ title: "Physique 2", link: "/courses/physique2.html" },
 
 ];
 
