@@ -351,15 +351,6 @@ if (document.querySelector('input[value="bundle_third_year"]').checked) {
     'reseaux_electrique'
   );
 }
-// ✅ عند اختيار باقة السنة الأولى: Math1 + Physique1 + Chimie1 + Informatique1
-if (document.querySelector('input[value="bundle_first_year"]').checked) {
-  modules.splice(0, modules.length,
-    'math1',
-    'physique1',
-    'chimie1',
-    'informatique01'
-  );
-}
 
     const submitBtn = form.querySelector('button[type="submit"]');
 
@@ -482,12 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
   discountMsg.style.color = "#27ae60";
   discountMsg.style.fontWeight = "bold";
   totalPriceEl.insertAdjacentElement("afterend", discountMsg);
-const firstYearMaterials = [
-  'math1',
-  'physique1',
-  'chimie1',
-  'informatique01'
-];
+
 
   function updateDisplay() {
     selectedModulesList.innerHTML = "";
@@ -528,15 +514,9 @@ const firstYearMaterials = [
       'electronique_de_puissance',
       'theorie_du_champ'
     ];
-const firstYearMaterials = [
-  'math1',
-  'physique1',
-  'chimie1',
-  'informatique01'
-];
+
 
 let bundleMaterials = [];
-if (hasBundleFirst) bundleMaterials = firstYearMaterials;
 if (hasBundleSecond) bundleMaterials = secondYearMaterials;
 if (hasBundleThird) bundleMaterials = thirdYearMaterials;
 
@@ -632,19 +612,7 @@ checkboxes.forEach(cb => {
           if (matCb && matCb.checked) matCb.checked = false;
         });
       }
-if (value === 'bundle_first_year' && cb.checked) {
-  firstYearMaterials.forEach(mat => {
-    const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
-    if (matCb && !matCb.checked) matCb.checked = true;
-  });
-}
 
-if (value === 'bundle_first_year' && !cb.checked) {
-  firstYearMaterials.forEach(mat => {
-    const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
-    if (matCb && matCb.checked) matCb.checked = false;
-  });
-}
 
       // ✅ تحديث قائمة المواد المختارة
       if (cb.checked) {
