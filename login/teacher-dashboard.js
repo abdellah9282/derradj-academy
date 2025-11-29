@@ -11,6 +11,7 @@ function formatSubjectName(code) {
   const map = {
     'theorie_du_champ': 'Théorie du Champ Électromagnétique',
 'math3_sami_braci': 'Math 3 – Analyse 3 (Sami Braci)',
+'math3_analyse3': 'Math 3 – Analyse 3',
 
     'ondes_et_vibrations': 'Ondes et Vibrations',
     'electronique_fondamentale1': 'Électronique Fondamentale 1',
@@ -41,6 +42,7 @@ function formatSubjectName(code) {
 
 // ✅ الأسعار
 const subjectPrices = {
+  'math3_analyse3': 1200,
   'math3_sami_braci': 2000,
   'ondes_et_vibrations': 1500,
   'electrotechnique_fondamentale1': 1500,
