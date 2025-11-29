@@ -49,7 +49,7 @@ const allCourses = {
   title: "Math 3 – Analyse 3",
   instructor: "Sami Braci",
   price: 2000,
-  image: "../Thumbnail/math3/02.jpg"
+  image: "../Thumbnail/math_3/02.jpg"
 },
 chimie2: {
   title: "Chimie 2",
@@ -89,6 +89,12 @@ chimie2: {
     image: "../Thumbnail/math2/01.jpg"
   },
 
+math3_analyse3: {
+  title: "Math 3 – Analyse 3",
+  instructor: "Abdellah Derradj",
+  price: 1200,
+  image: "../Thumbnail/math3/01.jpg"
+},
 
   ondes_et_vibrations: { title: "Ondes et Vibrations", instructor: "Abdellah Derradj", price: 1500, image: "../Thumbnail/ondes_et_vibrations/01.jpg" },
   electrotechnique_fondamentale1: { title: "Électrotechnique Fondamentale 1", instructor: "Abdellah Derradj", price: 1500, image: "../Thumbnail/elt_f_1/04.jpg" },
@@ -121,6 +127,8 @@ if (courseSelect && priceInput) {
 
 // روابط الصفحات الخاصة بكل مادة
 const courseLinks = {
+  math3_analyse3: "../mycourses-board/math3_analyse3.html",
+
   chimie2: "../mycourses-board/chimie2.html",
   math1: "../mycourses-board/math1.html",
   chimie1: "../mycourses-board/chimie1.html",
