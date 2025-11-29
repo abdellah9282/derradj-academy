@@ -2698,7 +2698,7 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
 }
 /* باقة السنة الأولى */
 #bundle-section .bundle-card:nth-child(1)::after {
-  content: "خصم %21";
+  content: "خصم %35";
 }
 
 /* باقة المواد العلمية المميزة */

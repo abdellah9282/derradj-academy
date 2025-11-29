@@ -131,7 +131,7 @@
 
 
   <label>
-<input type="checkbox" name="courses[]" value="bundle_second_year" data-price="4999">(4999 DA) باقة السنة الثانية – 5 مواد   </label>
+<input type="checkbox" name="courses[]" value="bundle_second_year" data-price="4999">(4999 DA) باقة السنة الثانية – 6 مواد   </label>
 
 <label>
   <input type="checkbox" name="courses[]" value="bundle_third_year" data-price="3500">
@@ -139,8 +139,12 @@
 </label>
 
 
+<label>
+  <input type="checkbox" name="courses[]" value="math3_analyse3" data-price="1200">
+  Math 3 – Analyse 3 (1200 DA)
+</label>
 
-<label><input type="checkbox" name="courses[]" value="ondes_et_vibrations" data-price="1500"> Ondes et Vibrations (1500 DA)</label>
+ <label><input type="checkbox" name="courses[]" value="ondes_et_vibrations" data-price="1500"> Ondes et Vibrations (1500 DA)</label>
   <label><input type="checkbox" name="courses[]" value="electrotechnique_fondamentale1" data-price="1500"> Électrotechnique Fondamentale 1 (1500 DA)</label>
   <label><input type="checkbox" name="courses[]" value="electronique_fondamentale1" data-price="1500"> Électronique Fondamentale 1 (1500 DA)</label>
   <label><input type="checkbox" name="courses[]" value="theorie_du_champ" data-price="800">Théorie du Champ Électromagnétique (800 DA)</label>
@@ -332,15 +336,18 @@ document.addEventListener("DOMContentLoaded", () => {
   v !== "bundle_third_year"
 );
 // ✅ عند اختيار باقة السنة الثانية: أرسل فقط المواد الخمس
+// عند اختيار باقة السنة الثانية: أرسل المواد الست
 if (document.querySelector('input[value="bundle_second_year"]').checked) {
   modules.splice(0, modules.length,
     'ondes_et_vibrations',
     'electrotechnique_fondamentale1',
     'electronique_fondamentale1',
     'informatique03',
-    'probabilite_et_statistique'
+    'probabilite_et_statistique',
+    'math3_analyse3'
   );
 }
+
 
 // ✅ عند اختيار باقة السنة الثالثة: أرسل فقط المواد الأربع بدون الكلمة "bundle_third_year"
 if (document.querySelector('input[value="bundle_third_year"]').checked) {
@@ -501,13 +508,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // تعطيل المواد الفردية إذا اختيرت باقة
-    const secondYearMaterials = [
-      'ondes_et_vibrations',
-      'electrotechnique_fondamentale1',
-      'electronique_fondamentale1',
-      'informatique03',
-      'probabilite_et_statistique'
-    ];
+const secondYearMaterials = [
+  'ondes_et_vibrations',
+  'electrotechnique_fondamentale1',
+  'electronique_fondamentale1',
+  'informatique03',
+  'probabilite_et_statistique',
+  'math3_analyse3'
+];
+
     const thirdYearMaterials = [
       'systeme_asservis',
       'reseaux_electrique',
@@ -561,13 +570,15 @@ checkboxes.forEach(cb => {
 
       // ✅ عند اختيار باقة السنة الثانية
       if (value === 'bundle_second_year' && cb.checked) {
-        const bundleMaterials = [
-          'ondes_et_vibrations',
-          'electrotechnique_fondamentale1',
-          'electronique_fondamentale1',
-          'informatique03',
-          'probabilite_et_statistique'
-        ];
+  const bundleMaterials = [
+  'ondes_et_vibrations',
+  'electrotechnique_fondamentale1',
+  'electronique_fondamentale1',
+  'informatique03',
+  'probabilite_et_statistique',
+  'math3_analyse3'
+];
+
         bundleMaterials.forEach(mat => {
           const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
           if (matCb && !matCb.checked) matCb.checked = true;
