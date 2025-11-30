@@ -534,68 +534,18 @@
 
 </main>
 
+<!-- 🟣 بطاقة التقييم المنبثقة -->
 <div id="rating-popup" class="rating-popup">
   <div class="popup-content">
     <span id="close-popup" class="close-btn">&times;</span>
-
-    <h3 style="color:#6d28d9; margin-bottom:10px;">📞 تواصل مع الأستاذ</h3>
-
-    <p style="font-size:1.1rem; line-height:1.7; direction:rtl; text-align:right;">
-      يرجى الاتصال بالأستاذ <strong>سامي براسي</strong> عبر هذا الرقم :
-      <br><br>
-
-      <!-- رقم الهاتف بصيغة LTR -->
-      <a href="tel:0552329993"
-         style="font-size:1.3rem; font-weight:bold; color:#7c3aed; text-decoration:none;">
-        <span dir="ltr" style="display:inline-block;">
-          0552 32 99 93
-        </span>
-      </a>
-
-      <!-- زر النسخ -->
-      <button id="copy-number-btn"
-              style="
-                margin-right:10px;
-                padding:6px 12px;
-                background:#7c3aed;
-                color:white;
-                border:none;
-                border-radius:6px;
-                cursor:pointer;
-                font-size:0.9rem;
-                transition:0.2s;
-              ">
-        📋 نسخ الرقم
-      </button>
-
-      <br><br>
-      ليقوم بإضافتك إلى <strong>الزوم على التلغرام مجانا</strong>.
-      <br><br>
-      ✔ وأخبره أن <strong>الأستاذ دراج</strong> هو من أرسلك.
+    <h3>⭐ تقييمك يهمنا</h3>
+    <p>
+      لم تقم بعد بتقييم هذه الدورة. اضغط أدناه لتقييمها
     </p>
-
-    <button id="close-popup-btn">حسناً</button>
+    <button id="go-to-rating">قيّم الآن</button>
   </div>
 </div>
 
-<script>
-  // زر إغلاق
-  document.getElementById("close-popup-btn").onclick = function () {
-    document.getElementById("rating-popup").style.display = "none";
-  };
-
-  // زر نسخ الرقم
-  document.getElementById("copy-number-btn").onclick = function () {
-    const number = "0552329993";
-    navigator.clipboard.writeText(number);
-    this.textContent = "✔ تم النسخ";
-    this.style.background = "#16a34a";
-    setTimeout(() => {
-      this.textContent = "📋 نسخ الرقم";
-      this.style.background = "#7c3aed";
-    }, 1500);
-  };
-</script>
 
 <style>
 .rating-popup {
