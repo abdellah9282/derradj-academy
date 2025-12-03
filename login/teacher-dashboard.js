@@ -270,6 +270,184 @@ totalEarnings += getTeacherUnitPrice(subj, teacherContact);
   return { counts, total: totalEarnings };
 }
 
+// ====== Helpers: last-30-days income aggregation and charting ======
+function getLastNDates(n) {
+  const dates = [];
+  const today = new Date();
+  for (let i = n - 1; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(today.getDate() - i);
+    dates.push(d);
+  }
+  return dates;
+}
+
+function formatDateKey(d) {
+  return d.toISOString().slice(0, 10);
+}
+
+function formatDayMonth(d) {
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  return `${dd}/${mm}`;
+}
+
+function daysForRangeOption(option) {
+  if (!option) return 30;
+  if (option === 'all') return 'all';
+  const n = Number(option);
+  if (isNaN(n) || n <= 0) return 30;
+  return n;
+}
+
+async function fetchIncomeForRange(rangeOption, teacherContact, teacherModules) {
+  let days = daysForRangeOption(rangeOption);
+  // cap max days for 'all' to 365 to keep chart reasonable
+  if (days === 'all') days = 365;
+
+  const dates = getLastNDates(days);
+  const labels = dates.map(d => formatDayMonth(d));
+  const map = {};
+  dates.forEach(d => (map[formatDateKey(d)] = 0));
+
+  const start = new Date();
+  start.setDate(start.getDate() - (days - 1));
+  const startISO = start.toISOString();
+
+  // 1) payments table (preferred)
+  try {
+    const { data: payments, error: payError } = await supabase
+      .from('payments')
+      .select('amount,created_at,teacher_contact,modules')
+      .gte('created_at', startISO);
+
+    if (!payError && payments && payments.length > 0) {
+      for (const p of payments) {
+        if (p.teacher_contact && teacherContact && p.teacher_contact !== teacherContact) continue;
+        if (p.modules && Array.isArray(p.modules) && teacherModules && teacherModules.length) {
+          const relevant = p.modules.some(m => teacherModules.includes(m));
+          if (!relevant) continue;
+        }
+        const key = p.created_at ? p.created_at.slice(0, 10) : null;
+        if (key && map[key] !== undefined) map[key] += Number(p.amount || 0);
+      }
+      return { labels, amounts: Object.keys(map).map(k => map[k]) };
+    }
+  } catch (e) {
+    console.warn('Payments query failed, falling back to registrations:', e);
+  }
+
+  // 2) fallback to registrations
+  try {
+    const { data: regs, error: regsError } = await supabase
+      .from('registrations')
+      .select('modules,created_at,contact')
+      .gte('created_at', startISO)
+      .eq('is_approved', true)
+      .is('is_teacher', null);
+
+    if (!regsError && regs && regs.length > 0) {
+      for (const r of regs) {
+        if (r.contact && r.contact.startsWith('039333')) continue;
+        let modules = [];
+        if (Array.isArray(r.modules)) modules = r.modules;
+        else if (typeof r.modules === 'string') {
+          try { modules = JSON.parse(r.modules); } catch { modules = r.modules.split(','); }
+        }
+        const common = modules.filter(m => teacherModules.includes(m));
+        if (!common || common.length === 0) continue;
+
+        // Apply bundle detection logic (same as calculateTeacherEarnings)
+        let amount = 0;
+        const hasSecondBundle = bundleSecond.every(m => modules.includes(m));
+        const hasThirdBundle = bundleThird.every(m => modules.includes(m));
+        const hasFirstBundle = bundleFirst.every(m => modules.includes(m));
+
+        if (teacherContact === '0555491316' || teacherContact === '0552329993') {
+          if (hasFirstBundle) {
+            // First year bundle pricing
+            amount = (teacherContact === '0555491316') ? 1700 : 3300;
+          } else if (teacherContact === '0555491316') {
+            // Second and third bundles only for 0555491316
+            if (hasSecondBundle) {
+              amount = 5000;
+            } else if (hasThirdBundle) {
+              amount = 3500;
+            } else {
+              // Individual module pricing
+              for (const m of common) amount += getTeacherUnitPrice(m, teacherContact) || 0;
+            }
+          } else {
+            // Other teachers: individual pricing
+            for (const m of common) amount += getTeacherUnitPrice(m, teacherContact) || 0;
+          }
+        } else {
+          // Other teachers: individual pricing
+          for (const m of common) amount += getTeacherUnitPrice(m, teacherContact) || 0;
+        }
+
+        const key = r.created_at ? r.created_at.slice(0, 10) : null;
+        if (key && map[key] !== undefined) map[key] += amount;
+      }
+    }
+  } catch (e) {
+    console.warn('Registrations fallback failed:', e);
+  }
+
+  return { labels, amounts: Object.keys(map).map(k => map[k]) };
+}
+
+function renderIncomeChart(labels, amounts) {
+  try {
+    const ctx = document.getElementById('incomeChart');
+    if (!ctx) return;
+
+    // destroy previous instance if exists
+    const existing = window._incomeChartInstance;
+    if (existing) {
+      try { existing.destroy(); } catch {}
+      window._incomeChartInstance = null;
+    }
+
+    const config = {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          label: 'الدخل (دج)',
+          data: amounts,
+          backgroundColor: 'rgba(76,29,145,0.8)',
+          borderColor: 'rgba(76,29,145,1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            ticks: {
+              autoSkip: false,
+              maxRotation: 45,
+              minRotation: 0
+            }
+          },
+          y: { beginAtZero: true }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => ctx.formattedValue + ' دج' } }
+        }
+      }
+    };
+
+    // create chart
+    window._incomeChartInstance = new Chart(document.getElementById('incomeChart').getContext('2d'), config);
+  } catch (e) {
+    console.error('Failed to render chart:', e);
+  }
+}
+
 // ✅ تجميع بيانات اللوحة
 async function fetchDashboardData() {
   const teacherContact = localStorage.getItem('userContact');
@@ -370,6 +548,37 @@ const totalEarnings = totalEarningsRaw;
 
   document.getElementById('totalEarnings').textContent = totalEarnings.toLocaleString();
   document.getElementById('totalEarnings').style.color = '#16a34a';
+
+  // expose current teacher info for the selector handler
+  window._currentTeacherContact = teacherContact;
+  window._currentTeacherModules = teacherModules;
+
+  // Render chart based on current selector (default is 30)
+  try {
+    const select = document.getElementById('incomeRangeSelect');
+    const option = select ? select.value : '30';
+    const { labels, amounts } = await fetchIncomeForRange(option, teacherContact, teacherModules);
+    renderIncomeChart(labels, amounts);
+  } catch (e) {
+    console.warn('Could not render income chart:', e);
+  }
+
+  // listen for range changes
+  const rangeSelect = document.getElementById('incomeRangeSelect');
+  if (rangeSelect && !rangeSelect._listenerAttached) {
+    rangeSelect.addEventListener('change', async (evt) => {
+      try {
+        const val = evt.target.value;
+        const tc = window._currentTeacherContact;
+        const tm = window._currentTeacherModules || [];
+        const { labels, amounts } = await fetchIncomeForRange(val, tc, tm);
+        renderIncomeChart(labels, amounts);
+      } catch (err) {
+        console.error('Range change failed:', err);
+      }
+    });
+    rangeSelect._listenerAttached = true;
+  }
 
 
 // ✅ عرض قائمة الطلاب المسجلين في الأسفل
@@ -536,6 +745,4 @@ responsiveStyle.textContent = `
   }
 `;
 document.head.appendChild(responsiveStyle);
-
-
-document.head.appendChild(style);
+// (removed accidental append of undefined `style` variable)
