@@ -1,47 +1,52 @@
-// استيراد Supabase
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-const supabase = createClient(
-  "https://sgcypxmnlyiwljuqvcup.supabase.co",
+const supabase = window.supabase.createClient(  "https://sgcypxmnlyiwljuqvcup.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
 );
 
-// التحقق من session_id و device_id في بداية الصفحة + الخروج الفوري إذا تغيرت الجلسة من متصفح آخر
+// خَفْض تشديد التحقق من الجلسة/الجهاز: السماح بالوصول حتى لو تغير الجهاز
+// نقوم بالتحقق فقط إن كانت القيم الأساسية مفقودة (نرحّل للّـتسجيل)،
+// وإلا نسمح بالوصول مع تمييز الحالة عبر `sessionMismatch` في localStorage
 (async () => {
   const sessionId = localStorage.getItem("sessionId");
   const deviceId = localStorage.getItem("deviceId");
   const contact = localStorage.getItem("userContact");
 
   if (!sessionId || !deviceId || !contact) {
+    // إن لم تتوافر المعطيات الأساسية نرجع إلى صفحة الدخول كما سابقاً
     localStorage.clear();
     window.location.href = "/login/login.html";
     return;
   }
 
-  const { data, error } = await supabase
-    .from("registrations")
-    .select("session_id, device_id")
-    .eq("contact", contact)
-    .single();
+  try {
+    const { data, error } = await supabase
+      .from("registrations")
+      .select("session_id, device_id")
+      .eq("contact", contact)
+      .single();
 
-  if (error || !data) {
-    console.error("❌ فشل في جلب session/device:", error);
-    localStorage.clear();
-    window.location.href = "/login/login.html";
-    return;
+    if (error || !data) {
+      // لا نمنع المستخدم من الوصول إن فشلنا بجلب المعطيات من الخادم
+      console.warn("❗ تعذّر جلب بيانات الجلسة من الخادم. السماح بالوصول مؤقتًا:", error);
+      localStorage.setItem("sessionMismatch", "unknown");
+      localStorage.setItem("userToken", "ok");
+      return;
+    }
+
+    if (data.session_id !== sessionId || data.device_id !== deviceId) {
+      // بدلاً من مسح التخزين أو إعادة التوجيه، نعلم أن هناك اختلافًا ونسمح بالوصول
+      console.warn("⚠️ اختلاف في session/device — السماح بالوصول لكن وسم الحالة.");
+      localStorage.setItem("sessionMismatch", "true");
+      localStorage.setItem("userToken", "ok");
+    } else {
+      console.log("✅ الجلسة والجهاز مطابقان.");
+      localStorage.setItem("userToken", "ok");
+    }
+  } catch (err) {
+    console.error("❌ خطأ أثناء التحقق من الجلسة:", err);
+    localStorage.setItem("sessionMismatch", "unknown");
+    localStorage.setItem("userToken", "ok");
   }
-
-if (data.session_id !== sessionId || data.device_id !== deviceId) {
-  console.warn("🚫 تم تسجيل الدخول من جهاز آخر أو تم إنهاء الجلسة. سيتم تسجيل خروجك الآن.");
-  setTimeout(() => {
-    localStorage.clear();
-    window.location.href = "/login/login.html";
-  }, 5000); // 2000 مللي ثانية = 2 ثوانٍ
-} else {
-  console.log("✅ الجلسة والجهاز مطابقين.");
-  localStorage.setItem("userToken", "ok");
-}
-
 })();
 
 const allCourses = {
@@ -114,7 +119,6 @@ math3_analyse3: {
   bundle_second_year: { title: "باقة السنة الثانية – 5 مواد", instructor: "Abdellah Derradj", price: 4999 }
 };
 
-
 // روابط الصفحات الخاصة بكل مادة
 const courseLinks = {
   math3_analyse3: "../mycourses-board/math3_analyse3.html",
@@ -147,80 +151,77 @@ const courseLinks = {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const userName = localStorage.getItem("userName");
-  const contact = localStorage.getItem("userContact"); // جلب رقم المستخدم الحقيقي من التخزين المحلي
+  const contact = localStorage.getItem("userContact");
 
   if (!userName || !contact) {
     window.location.href = "/login/login.html";
     return;
   }
 
-  // جلب المواد من قاعدة البيانات بدلاً من localStorage فقط
+  // نحاول جلب المواد من قاعدة البيانات، وإن فشلنا نستخدم localStorage كبديل
   let userModules = [];
   try {
-    const { data: userData, error } = await supabase
+    const { data: row, error } = await supabase
       .from("registrations")
       .select("modules")
       .eq("contact", contact)
       .single();
 
-    if (error) {
-      console.error("❌ خطأ في جلب المواد من قاعدة البيانات:", error);
-      // محاولة جلب من localStorage كبديل
-      const userModulesRaw = localStorage.getItem("userModules");
-      if (userModulesRaw) {
-        userModules = JSON.parse(userModulesRaw);
-      }
-    } else if (userData && userData.modules) {
-      userModules = Array.isArray(userData.modules) ? userData.modules : [];
-      // تحديث localStorage أيضاً
+    if (!error && row && Array.isArray(row.modules)) {
+      userModules = row.modules;
       localStorage.setItem("userModules", JSON.stringify(userModules));
+    } else {
+      const raw = localStorage.getItem("userModules");
+      if (raw) {
+        try { userModules = JSON.parse(raw); } catch (e) { userModules = []; }
+      }
     }
   } catch (err) {
-    console.error("❌ خطأ غير متوقع:", err);
-    const userModulesRaw = localStorage.getItem("userModules");
-    if (userModulesRaw) {
-      userModules = JSON.parse(userModulesRaw);
+    console.error("خطأ عند جلب المواد من الخادم:", err);
+    const raw = localStorage.getItem("userModules");
+    if (raw) {
+      try { userModules = JSON.parse(raw); } catch (e) { userModules = []; }
     }
   }
 
-const container = document.getElementById("dashboard-courses-container");
+  const container = document.getElementById("dashboard-courses-container");
+  if (!container) return;
 
   if (!Array.isArray(userModules) || userModules.length === 0) {
     container.innerHTML = "<p style='text-align: center; color:red;'>❌ No registered courses found.</p>";
   } else {
-    // عرض الدورات المسجلة
     const fragment = document.createDocumentFragment();
-userModules.forEach((moduleKey) => {
-  const course = allCourses[moduleKey];
-  const card = document.createElement("div");
-  card.className = "course-card";
-  card.innerHTML = `
-    <img src="${course.image}" alt="${course.title}" class="course-img" />
-    <div class="course-content">
-      <h3 class="course-title">${course.title}</h3>
-      <p class="instructor">${course.instructor}</p>
-      <div class="rating">
-        <span class="rating-value" id="rating-${moduleKey}">...</span>
-        <span class="stars">★ ★ ★ ★ ★</span>
-        <span class="reviews" id="reviews-${moduleKey}">(...)</span>
-      </div>
-      <a href="${courseLinks[moduleKey] || '#'}" class="course-btn">اضغط هنا لمشاهدة الدورة</a>
-    </div>
-  `;
-  fragment.appendChild(card);
+    userModules.forEach((moduleKey) => {
+      const course = allCourses[moduleKey];
+      if (!course) return; // تفادي الأخطاء عند مفتاح غير معروف
+      const card = document.createElement("div");
+      card.className = "course-card";
+      card.innerHTML = `
+        <img src="${course.image}" alt="${course.title}" class="course-img" />
+        <div class="course-content">
+          <h3 class="course-title">${course.title}</h3>
+          <p class="instructor">${course.instructor}</p>
+          <div class="rating">
+            <span class="rating-value" id="rating-${moduleKey}">...</span>
+            <span class="stars">★ ★ ★ ★ ★</span>
+            <span class="reviews" id="reviews-${moduleKey}">(...)</span>
+          </div>
+          <a href="${courseLinks[moduleKey] || '#'}" class="course-btn">اضغط هنا لمشاهدة الدورة</a>
+        </div>
+      `;
+      fragment.appendChild(card);
 
-  // ✅ بعدها: استدعِ تقييمات الدورة
-  fetchRatings(moduleKey).then(({ average, count }) => {
-    const ratingEl = document.getElementById(`rating-${moduleKey}`);
-    const reviewsEl = document.getElementById(`reviews-${moduleKey}`);
-    if (ratingEl) ratingEl.textContent = average;
-    if (reviewsEl) reviewsEl.textContent = `(${count.toLocaleString()})`;
-  });
-});
-container.appendChild(fragment);
+      fetchRatings(moduleKey).then(({ average, count }) => {
+        const ratingEl = document.getElementById(`rating-${moduleKey}`);
+        const reviewsEl = document.getElementById(`reviews-${moduleKey}`);
+        if (ratingEl) ratingEl.textContent = average;
+        if (reviewsEl) reviewsEl.textContent = `(${count.toLocaleString()})`;
+      });
+    });
+    container.appendChild(fragment);
   }
 
-  // ✅ تعبئة قائمة الدورات المتبقية
+  // تعبئة قائمة الدورات المتبقية
   const courseSelect = document.getElementById("courseSelect");
   if (courseSelect) {
     courseSelect.innerHTML = '<option value="">Select a New Course</option>';
@@ -233,6 +234,7 @@ container.appendChild(fragment);
       }
     });
   }
+
 
   // تسجيل الخروج
   window.logout = function () {
@@ -418,39 +420,8 @@ if (purchaseForm) {
       }
     });
 }});
-// التحقق من session_id في بداية الصفحة
-(async () => {
-  const sessionId = localStorage.getItem("sessionId");
-  const contact = localStorage.getItem("userContact");
-
-  if (!sessionId || !contact) {
-    localStorage.clear();
-    window.location.href = "/login/login.html";
-    return;
-  }
-
-  const { data, error } = await supabase
-    .from("registrations")
-    .select("session_id")
-    .eq("contact", contact)
-    .single();
-
-  if (error) {
-    console.error("Error fetching session_id:", error);
-    localStorage.clear();
-    window.location.href = "/login/login.html";
-    return;
-  }
-
-  if (!data || data.session_id !== sessionId) {
-    console.warn("🚫 session_id غير متطابق. سيتم تحويلك إلى تسجيل الدخول.");
-    localStorage.clear();
-    window.location.href = "../../login/login.html";
-  } else {
-    console.log("✅ الجلسة صالحة.");
-    localStorage.setItem("userToken", "ok");
-  }
-})();
+// ملاحظة: تم حذف التحقق المكرر من session_id هنا لأننا نعالج التحقق
+// في بداية الملف مع سلوك مخفف يتيح عرض الدورات حتى عند اختلاف الجهاز.
 
 async function handlePendingRequest(contact, submitBtn, messageDiv) {
   const pendingRequest = localStorage.getItem("pendingRequest");
