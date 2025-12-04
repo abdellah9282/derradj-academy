@@ -418,11 +418,11 @@ function renderIncomeChart(labels, amounts, dates) {
     const screenWidth = Math.min(window.innerWidth, 980);
     const pxPerLabel = isMobile ? 40 : 55; // pixels per label
     const canvasWidth = Math.max(screenWidth, labels.length * pxPerLabel);
-    
+
     // Set canvas dimensions
     ctx.style.width = canvasWidth + 'px';
     ctx.style.height = '220px';
-    
+
     // Adjust rotation based on number of labels
     let maxRotation = 0;
     if (labels.length > 20) {

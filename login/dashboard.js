@@ -155,17 +155,44 @@ const courseLinks = {
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const userName = localStorage.getItem("userName");
-  const userModulesRaw = localStorage.getItem("userModules");
   const contact = localStorage.getItem("userContact"); // جلب رقم المستخدم الحقيقي من التخزين المحلي
 
-  if (!userName || !userModulesRaw || !contact) {
+  if (!userName || !contact) {
     window.location.href = "/login/login.html";
     return;
   }
 
-  const userModules = JSON.parse(userModulesRaw);
+  // جلب المواد من قاعدة البيانات بدلاً من localStorage فقط
+  let userModules = [];
+  try {
+    const { data: userData, error } = await supabase
+      .from("registrations")
+      .select("modules")
+      .eq("contact", contact)
+      .single();
+
+    if (error) {
+      console.error("❌ خطأ في جلب المواد من قاعدة البيانات:", error);
+      // محاولة جلب من localStorage كبديل
+      const userModulesRaw = localStorage.getItem("userModules");
+      if (userModulesRaw) {
+        userModules = JSON.parse(userModulesRaw);
+      }
+    } else if (userData && userData.modules) {
+      userModules = Array.isArray(userData.modules) ? userData.modules : [];
+      // تحديث localStorage أيضاً
+      localStorage.setItem("userModules", JSON.stringify(userModules));
+    }
+  } catch (err) {
+    console.error("❌ خطأ غير متوقع:", err);
+    const userModulesRaw = localStorage.getItem("userModules");
+    if (userModulesRaw) {
+      userModules = JSON.parse(userModulesRaw);
+    }
+  }
+
 const container = document.getElementById("dashboard-courses-container");
 
   if (!Array.isArray(userModules) || userModules.length === 0) {
