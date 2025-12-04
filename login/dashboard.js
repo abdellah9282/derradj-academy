@@ -6,42 +6,50 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
 );
 
-// التحقق من session_id و device_id في بداية الصفحة + الخروج الفوري إذا تغيرت الجلسة من متصفح آخر
+// التحقق من session_id و device_id في بداية الصفحة
+// تم تعديل السلوك: لا نجري مسح التخزين أو إعادة التوجيه الفوري عند اختلاف الجهاز
+// بل نسمح بالوصول مؤقتًا ونضع علامة تحذيرية في التخزين المحلي لعرض رسالة للمستخدم إن رغبت
 (async () => {
   const sessionId = localStorage.getItem("sessionId");
   const deviceId = localStorage.getItem("deviceId");
   const contact = localStorage.getItem("userContact");
 
   if (!sessionId || !deviceId || !contact) {
+    // بيانات الجلسة الأساسية مفقودة: لا يمكن المتابعة
     localStorage.clear();
     window.location.href = "/login/login.html";
     return;
   }
 
-  const { data, error } = await supabase
-    .from("registrations")
-    .select("session_id, device_id")
-    .eq("contact", contact)
-    .single();
+  try {
+    const { data, error } = await supabase
+      .from("registrations")
+      .select("session_id, device_id")
+      .eq("contact", contact)
+      .single();
 
-  if (error || !data) {
-    console.error("❌ فشل في جلب session/device:", error);
-    localStorage.clear();
-    window.location.href = "/login/login.html";
-    return;
+    if (error || !data) {
+      // لا نمنع المستخدم من الوصول إن تعذر جلب البيانات من الخادم
+      console.warn("❗ تعذر جلب session/device من الخادم، سيتم السماح بالوصول مؤقتًا:", error);
+      localStorage.setItem("sessionMismatch", "unknown");
+      localStorage.setItem("userToken", "ok");
+      return;
+    }
+
+    if (data.session_id !== sessionId || data.device_id !== deviceId) {
+      // بدلاً من مسح التخزين وإعادة التوجيه، نحتفظ بالمستخدم مدخلاً لكن نعلّمه بوجود اختلاف
+      console.warn("⚠️ تم اكتشاف تغيير جهاز/جلسة. سيتم السماح بالوصول ولكن يُنصح بتسجيل الدخول مرة أخرى.");
+      localStorage.setItem("sessionMismatch", "true");
+      localStorage.setItem("userToken", "ok");
+    } else {
+      console.log("✅ الجلسة والجهاز مطابقين.");
+      localStorage.setItem("userToken", "ok");
+    }
+  } catch (err) {
+    console.error("❌ خطأ أثناء التحقق من الجلسة:", err);
+    localStorage.setItem("sessionMismatch", "unknown");
+    localStorage.setItem("userToken", "ok");
   }
-
-if (data.session_id !== sessionId || data.device_id !== deviceId) {
-  console.warn("🚫 تم تسجيل الدخول من جهاز آخر أو تم إنهاء الجلسة. سيتم تسجيل خروجك الآن.");
-  setTimeout(() => {
-    localStorage.clear();
-    window.location.href = "/login/login.html";
-  }, 5000); // 2000 مللي ثانية = 2 ثوانٍ
-} else {
-  console.log("✅ الجلسة والجهاز مطابقين.");
-  localStorage.setItem("userToken", "ok");
-}
-
 })();
 
 const allCourses = {
@@ -428,7 +436,7 @@ if (purchaseForm) {
       }
     });
 }});
-// التحقق من session_id في بداية الصفحة
+// التحقق من session_id في بداية الصفحة (نسخة مخففة)
 (async () => {
   const sessionId = localStorage.getItem("sessionId");
   const contact = localStorage.getItem("userContact");
@@ -439,25 +447,31 @@ if (purchaseForm) {
     return;
   }
 
-  const { data, error } = await supabase
-    .from("registrations")
-    .select("session_id")
-    .eq("contact", contact)
-    .single();
+  try {
+    const { data, error } = await supabase
+      .from("registrations")
+      .select("session_id")
+      .eq("contact", contact)
+      .single();
 
-  if (error) {
-    console.error("Error fetching session_id:", error);
-    localStorage.clear();
-    window.location.href = "/login/login.html";
-    return;
-  }
+    if (error || !data) {
+      console.warn("❗ تعذر جلب session_id من الخادم. السماح بالوصول مؤقتًا:", error);
+      localStorage.setItem("sessionMismatch", "unknown");
+      localStorage.setItem("userToken", "ok");
+      return;
+    }
 
-  if (!data || data.session_id !== sessionId) {
-    console.warn("🚫 session_id غير متطابق. سيتم تحويلك إلى تسجيل الدخول.");
-    localStorage.clear();
-    window.location.href = "../../login/login.html";
-  } else {
-    console.log("✅ الجلسة صالحة.");
+    if (!data || data.session_id !== sessionId) {
+      console.warn("⚠️ session_id غير متطابق. لن يتم تسجيل الخروج تلقائيًا، ولكن يُنصح بتسجيل الدخول مرة أخرى.");
+      localStorage.setItem("sessionMismatch", "true");
+      localStorage.setItem("userToken", "ok");
+    } else {
+      console.log("✅ الجلسة صالحة.");
+      localStorage.setItem("userToken", "ok");
+    }
+  } catch (err) {
+    console.error("❌ خطأ أثناء التحقق من session_id:", err);
+    localStorage.setItem("sessionMismatch", "unknown");
     localStorage.setItem("userToken", "ok");
   }
 })();
