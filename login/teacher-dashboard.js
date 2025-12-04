@@ -331,7 +331,9 @@ async function fetchIncomeForRange(rangeOption, teacherContact, teacherModules) 
         const key = p.created_at ? p.created_at.slice(0, 10) : null;
         if (key && map[key] !== undefined) map[key] += Number(p.amount || 0);
       }
-      return { labels, amounts: Object.keys(map).map(k => map[k]) };
+      // Keep order synchronized: iterate through dates in order, not map keys
+      const amounts = dates.map(d => map[formatDateKey(d)] || 0);
+      return { labels, amounts, dates };
     }
   } catch (e) {
     console.warn('Payments query failed, falling back to registrations:', e);
@@ -394,10 +396,12 @@ async function fetchIncomeForRange(rangeOption, teacherContact, teacherModules) 
     console.warn('Registrations fallback failed:', e);
   }
 
-  return { labels, amounts: Object.keys(map).map(k => map[k]) };
+  // Keep order synchronized: iterate through dates in order, not map keys
+  const amounts = dates.map(d => map[formatDateKey(d)] || 0);
+  return { labels, amounts, dates };
 }
 
-function renderIncomeChart(labels, amounts) {
+function renderIncomeChart(labels, amounts, dates) {
   try {
     const ctx = document.getElementById('incomeChart');
     if (!ctx) return;
@@ -409,6 +413,26 @@ function renderIncomeChart(labels, amounts) {
       window._incomeChartInstance = null;
     }
 
+    // Adjust canvas width to fit all labels without skipping
+    const isMobile = window.innerWidth < 768;
+    const screenWidth = Math.min(window.innerWidth, 980);
+    const pxPerLabel = isMobile ? 40 : 55; // pixels per label
+    const canvasWidth = Math.max(screenWidth, labels.length * pxPerLabel);
+    
+    // Set canvas dimensions
+    ctx.style.width = canvasWidth + 'px';
+    ctx.style.height = '220px';
+    
+    // Adjust rotation based on number of labels
+    let maxRotation = 0;
+    if (labels.length > 20) {
+      maxRotation = isMobile ? 75 : 45;
+    } else if (labels.length > 10) {
+      maxRotation = isMobile ? 60 : 30;
+    } else {
+      maxRotation = 0;
+    }
+
     const config = {
       type: 'bar',
       data: {
@@ -418,7 +442,9 @@ function renderIncomeChart(labels, amounts) {
           data: amounts,
           backgroundColor: 'rgba(76,29,145,0.8)',
           borderColor: 'rgba(76,29,145,1)',
-          borderWidth: 1
+          borderWidth: 1,
+          barPercentage: 0.85,
+          categoryPercentage: 0.8
         }]
       },
       options: {
@@ -428,15 +454,30 @@ function renderIncomeChart(labels, amounts) {
           x: {
             ticks: {
               autoSkip: false,
-              maxRotation: 45,
-              minRotation: 0
+              maxRotation: maxRotation,
+              minRotation: 0,
+              font: { size: isMobile ? 9 : 10 }
             }
           },
           y: { beginAtZero: true }
         },
         plugins: {
           legend: { display: false },
-          tooltip: { callbacks: { label: ctx => ctx.formattedValue + ' دج' } }
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.formattedValue + ' دج',
+              title: ctx => {
+                // Show full date in tooltip (DD/MM format)
+                if (dates && dates[ctx[0].dataIndex]) {
+                  const d = dates[ctx[0].dataIndex];
+                  const dd = String(d.getDate()).padStart(2, '0');
+                  const mm = String(d.getMonth() + 1).padStart(2, '0');
+                  return `${dd}/${mm}`;
+                }
+                return ctx[0].label;
+              }
+            }
+          }
         }
       }
     };
@@ -543,11 +584,34 @@ for (const student of students || []) {
 
 document.getElementById('studentCount').textContent = uniqueStudents.size;
 
-const totalEarnings = totalEarningsRaw;
+// Check if this is Sami Braci (0552329993) - reset his earnings to 0 but keep history
+const isSamiBraci = teacherContact === '0552329993';
+let totalEarnings = isSamiBraci ? 0 : totalEarningsRaw;
+const previousEarnings = isSamiBraci ? totalEarningsRaw : null;
 
-
-  document.getElementById('totalEarnings').textContent = totalEarnings.toLocaleString();
+document.getElementById('totalEarnings').textContent = totalEarnings.toLocaleString();
   document.getElementById('totalEarnings').style.color = '#16a34a';
+
+  // If Sami Braci, show previous earnings below the card
+  if (isSamiBraci && previousEarnings > 0) {
+    const earningsCard = document.querySelector('[aria-labelledby="total-earnings-title"]');
+    if (earningsCard) {
+      const prevEarningsDiv = document.createElement('div');
+      prevEarningsDiv.style.cssText = `
+        margin-top: 8px;
+        padding: 8px 12px;
+        background: #f3f0ff;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        color: #666;
+        text-align: center;
+        border-left: 3px solid #a78bfa;
+      `;
+      prevEarningsDiv.dir = 'rtl';
+      prevEarningsDiv.innerHTML = `الأرباح السابقة: <span style="font-weight:700; color:#7c3aed;">${previousEarnings.toLocaleString()} دج</span>`;
+      earningsCard.appendChild(prevEarningsDiv);
+    }
+  }
 
   // expose current teacher info for the selector handler
   window._currentTeacherContact = teacherContact;
@@ -557,8 +621,8 @@ const totalEarnings = totalEarningsRaw;
   try {
     const select = document.getElementById('incomeRangeSelect');
     const option = select ? select.value : '30';
-    const { labels, amounts } = await fetchIncomeForRange(option, teacherContact, teacherModules);
-    renderIncomeChart(labels, amounts);
+    const { labels, amounts, dates } = await fetchIncomeForRange(option, teacherContact, teacherModules);
+    renderIncomeChart(labels, amounts, dates);
   } catch (e) {
     console.warn('Could not render income chart:', e);
   }
@@ -571,8 +635,8 @@ const totalEarnings = totalEarningsRaw;
         const val = evt.target.value;
         const tc = window._currentTeacherContact;
         const tm = window._currentTeacherModules || [];
-        const { labels, amounts } = await fetchIncomeForRange(val, tc, tm);
-        renderIncomeChart(labels, amounts);
+        const { labels, amounts, dates } = await fetchIncomeForRange(val, tc, tm);
+        renderIncomeChart(labels, amounts, dates);
       } catch (err) {
         console.error('Range change failed:', err);
       }
