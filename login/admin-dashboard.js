@@ -1,4 +1,11 @@
 
+// ✅ استخدام UMD فقط - بدون ESM import
+// التأكد من أن Supabase محمل من CDN قبل هذا الملف
+if (!window.supabase) {
+  console.error("❌ Supabase لم يتم تحميله. تأكد من وجود CDN script في HTML");
+  throw new Error("Supabase library not loaded");
+}
+
 const supabase = window.supabase.createClient(
   "https://sgcypxmnlyiwljuqvcup.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
