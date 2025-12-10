@@ -1,4 +1,4 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 /* -------------------------------------------------------------------------- */
 /* 🔹 إنشاء اتصال آمن مع قاعدة البيانات Supabase */
@@ -8,6 +8,7 @@ const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 
 /* -------------------------------------------------------------------------- */
 /* ✅ السماح فقط لرقم محدد بالدخول */
