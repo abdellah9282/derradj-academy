@@ -1935,128 +1935,110 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <script type="module">
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-  const supabase = createClient(
-    'https://sgcypxmnlyiwljuqvcup.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
-  );
-// ✅ دالة عرض التقييمات
+const supabase = createClient(
+  'https://sgcypxmnlyiwljuqvcup.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
+);
+
+/* =====================================================
+   ✅ 1. جلب وعرض التقييمات — مضبوط 100%
+===================================================== */
 async function fetchAndDisplayRatings() {
-  const cards = document.querySelectorAll('.course-card');
+  try {
+    const cards = document.querySelectorAll('.course-card');
+    if (!cards.length) return;
 
-  for (const card of cards) {
-    const moduleId = card.getAttribute('data-course-id');
-    if (!moduleId) continue;
+    for (const card of cards) {
+      const moduleId = card.getAttribute('data-course-id');
+      if (!moduleId) continue;
 
-    const { data, error } = await supabase
-      .from('course_ratings')
-      .select('rating')
-      .eq('module', moduleId);
+      const { data, error } = await supabase
+        .from('course_ratings')
+        .select('rating')
+        .eq('module', moduleId);
 
-    if (error) {
-      console.error(`❌ خطأ في جلب تقييمات: ${moduleId}`, error.message);
-      continue;
-    }
+      if (error) continue;
 
-    const ratingEl = card.querySelector('.rating-value');
-    const reviewsEl = card.querySelector('.reviews');
-    const starsEl = card.querySelector('.stars');
+      const ratingEl = card.querySelector('.rating-value');
+      const reviewsEl = card.querySelector('.reviews');
+      const starsEl = card.querySelector('.stars');
 
-    // 🟣 حالة عدم وجود أي تقييم
-    if (!data || data.length === 0) {
-      if (ratingEl) ratingEl.textContent = '—'; // أو "0.0"
-      if (reviewsEl) reviewsEl.textContent = '(كن أول من يقيّم هذه الدورة)';
+      if (!data || data.length === 0) {
+        if (ratingEl) ratingEl.textContent = '—';
+        if (reviewsEl) reviewsEl.textContent = '(كن أول من يقيّم هذه الدورة)';
+        if (starsEl) {
+          starsEl.innerHTML = `
+            <span style="color:#d1d5db;">★</span>
+            <span style="color:#d1d5db;">★</span>
+            <span style="color:#d1d5db;">★</span>
+            <span style="color:#d1d5db;">★</span>
+            <span style="color:#d1d5db;">★</span>
+          `;
+        }
+        continue;
+      }
+
+      const ratings = data.map(r => Number(r.rating));
+      const avg = ratings.reduce((a, b) => a + b, 0) / ratings.length;
+      const average = avg.toFixed(1);
+
+      if (ratingEl) ratingEl.textContent = average;
+      if (reviewsEl) reviewsEl.textContent = `(${ratings.length})`;
+
       if (starsEl) {
-        starsEl.innerHTML = `
-          <span style="color:#d1d5db;">★</span>
-          <span style="color:#d1d5db;">★</span>
-          <span style="color:#d1d5db;">★</span>
-          <span style="color:#d1d5db;">★</span>
-          <span style="color:#d1d5db;">★</span>
-        `;
+        let starsHTML = "";
+        const full = Math.floor(avg);
+        const half = avg - full >= 0.5 ? 1 : 0;
+        const empty = 5 - full - half;
+
+        for (let i = 0; i < full; i++) starsHTML += `<span style="color:#f59e0b;">★</span>`;
+        if (half)
+          starsHTML += `
+            <span style="display:inline-block; position:relative; width:1em; color:#d1d5db;">
+              ★
+              <span style="position:absolute; top:0; left:0; width:50%; overflow:hidden; color:#f59e0b;">★</span>
+            </span>
+          `;
+        for (let i = 0; i < empty; i++) starsHTML += `<span style="color:#d1d5db;">★</span>`;
+
+        starsEl.innerHTML = starsHTML;
       }
-      continue;
     }
-
-    // 🟢 حساب المعدل
-    const ratings = data.map(entry => Number(entry.rating));
-    const avg = ratings.reduce((sum, r) => sum + r, 0) / ratings.length;
-    const average = avg.toFixed(1);
-
-    if (ratingEl) ratingEl.textContent = average;
-    if (reviewsEl) reviewsEl.textContent = `(${ratings.length})`;
-
-    // 🔹 إنشاء النجوم حسب المعدل
-    if (starsEl) {
-      const fullStars = Math.floor(avg); // عدد النجوم الممتلئة
-      const halfStar = (avg - fullStars >= 0.5) ? 1 : 0; // نصف نجمة إذا وجد
-      const emptyStars = 5 - fullStars - halfStar;
-
-      let starsHTML = '';
-
-      // ⭐ نجمات ممتلئة
-      for (let i = 0; i < fullStars; i++) {
-        starsHTML += `<span style="color:#f59e0b;">★</span>`;
-      }
-
-      // ✴ نصف نجمة
-      if (halfStar) {
-        starsHTML += `
-          <span style="display:inline-block; position:relative; width:1em; color:#d1d5db;">
-            ★
-            <span style="
-              position:absolute;
-              top:0; left:0;
-              width:50%;
-              overflow:hidden;
-              color:#f59e0b;
-            ">★</span>
-          </span>
-        `;
-      }
-
-      // ☆ نجمات فارغة
-      for (let i = 0; i < emptyStars; i++) {
-        starsHTML += `<span style="color:#d1d5db;">★</span>`;
-      }
-
-      starsEl.innerHTML = starsHTML;
-    }
+  } catch (err) {
+    console.error("Ratings Error:", err);
   }
 }
 
-
-// تشغيل الدالة بعد تحميل الصفحة
-document.addEventListener("DOMContentLoaded", fetchAndDisplayRatings);
-
-// ✅ إرسال نموذج السؤال
+/* =====================================================
+   ✅ 2. إرسال نموذج الدعم — مضبوط
+===================================================== */
 const form = document.getElementById('questionForm');
+
 if (form) {
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const name = document.getElementById('name').value.trim();
-    const contact = document.getElementById('contact').value.trim(); // <-- ممكن يكون رقم أو إيميل
+    const contact = document.getElementById('contact').value.trim();
     const message = document.getElementById('message').value.trim();
+
     const submitBtn = form.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.textContent;
     const supportMsg = document.getElementById('support-message');
 
     submitBtn.disabled = true;
     submitBtn.textContent = "جاري الإرسال...";
     supportMsg.textContent = "";
-    supportMsg.style.color = "green";
 
     if (!name || !contact || !message) {
       supportMsg.textContent = "❌ الرجاء ملء جميع الحقول.";
       supportMsg.style.color = "red";
       submitBtn.disabled = false;
-      submitBtn.textContent = originalBtnText;
+      submitBtn.textContent = "إرسال";
       return;
     }
 
-    // ✅ التحقق إذا كان بريد إلكتروني أو رقم هاتف
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[0-9]{8,15}$/;
 
@@ -2064,75 +2046,79 @@ if (form) {
       supportMsg.textContent = "❌ الرجاء إدخال بريد إلكتروني صحيح أو رقم هاتف صالح.";
       supportMsg.style.color = "red";
       submitBtn.disabled = false;
-      submitBtn.textContent = originalBtnText;
+      submitBtn.textContent = "إرسال";
       return;
     }
 
-    // ✅ نحفظ المدخل (سواء رقم أو إيميل) داخل عمود email
     const { error } = await supabase
       .from('messages')
       .insert([{ name, email: contact, message }]);
 
     if (error) {
-      supportMsg.textContent = "❌ خطأ: " + error.message; // لعرض السبب الحقيقي
+      supportMsg.textContent = "❌ خطأ: " + error.message;
       supportMsg.style.color = "red";
     } else {
-      supportMsg.textContent = "✅ تم إرسال رسالتك بنجاح، سيتواصل معك فريقنا في أقرب وقت ممكن ";
+      supportMsg.textContent = "✅ تم إرسال رسالتك بنجاح.";
       supportMsg.style.color = "green";
       form.reset();
     }
 
     submitBtn.disabled = false;
-    submitBtn.textContent = originalBtnText;
+    submitBtn.textContent = "إرسال";
   });
 }
 
+/* =====================================================
+   ✅ 3. تحميل التعليقات الحديثة بدون مشاكل
+===================================================== */
+async function fetchModernComments() {
+  try {
+    const container = document.getElementById("modern-comments-container");
+    if (!container) return;
 
-  async function fetchModernComments() {
-  const container = document.getElementById("modern-comments-container");
-  if (!container) return;
+    const { data, error } = await supabase
+      .from('course_ratings')
+      .select('comment, full_name, module')
+      .neq('comment', '')
+      .not('comment', 'is', null)
+      .order('created_at', { ascending: false });
 
-  const { data, error } = await supabase
-    .from('course_ratings')
-    .select('comment, full_name, module')
-    .neq('comment', '')         // ✨ تجاهل التعليقات الفارغة
-    .not('comment', 'is', null) // ✨ تجاهل null
-    .order('created_at', { ascending: false })
+    if (error || !data) return;
 
+    for (const { comment, full_name, module } of data) {
+      const initial = full_name?.charAt(0)?.toUpperCase() || "?";
+      const shortComment = comment.length > 100 ? comment.slice(0, 100) + "..." : comment;
+      const moduleFormatted = module.replace(/_/g, " ");
+      const isArabic = /[\u0600-\u06FF]/.test(comment);
+      const direction = isArabic ? "rtl" : "ltr";
 
-  if (error) {
-    container.innerHTML = "<p>⚠️ Unable to load comments.</p>";
-    return;
+      const card = document.createElement("div");
+      card.className = "comment-card-modern";
+
+      card.innerHTML = `
+        <div class="comment-header">
+          <div class="comment-avatar">${initial}</div>
+          <div class="comment-name">${full_name} <span style="color:#6b7280;">(${moduleFormatted})</span></div>
+        </div>
+        <div class="comment-body" dir="${direction}">${shortComment}</div>
+      `;
+
+      container.appendChild(card);
+    }
+  } catch (err) {
+    console.error("Comments Error:", err);
   }
-
-data.forEach(({ comment, full_name, module }) => {
-  const initial = full_name?.charAt(0)?.toUpperCase() || "?";
-  const shortComment = comment.length > 100 ? comment.slice(0, 100) + "..." : comment;
-  const moduleFormatted = module.replace(/_/g, " "); // ⚙️ إزالة الشرطة السفلية
-
-  // 🔹 اكتشاف اللغة (إذا كانت عربية → RTL)
-  const isArabic = /[\u0600-\u06FF]/.test(comment);
-  const direction = isArabic ? "rtl" : "ltr";
-
-  const card = document.createElement("div");
-  card.className = "comment-card-modern";
-  card.innerHTML = `
-    <div class="comment-header">
-      <div class="comment-avatar">${initial}</div>
-      <div class="comment-name">${full_name} <span style="color:#6b7280;">(${moduleFormatted})</span></div>
-    </div>
-    <div class="comment-body" dir="${direction}">${shortComment}</div>
-  `;
-  container.appendChild(card);
-});
-
 }
 
-fetchModernComments();
-
-
-
+/* =====================================================
+   ⛔ تشغيل الدوال بعد تحميل الصفحة بالكامل (حل مشكلة التعليقات)
+===================================================== */
+window.addEventListener("load", () => {
+  fetchAndDisplayRatings();
+  fetchModernComments();
+});
 </script>
+
 
 
 
