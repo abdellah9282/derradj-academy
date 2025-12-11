@@ -1935,7 +1935,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <script type="module">
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
   const supabase = createClient(
     'https://sgcypxmnlyiwljuqvcup.supabase.co',
@@ -2091,43 +2091,23 @@ if (form) {
   async function fetchModernComments() {
   const container = document.getElementById("modern-comments-container");
   if (!container) return;
-  container.innerHTML = "<p>⏳ جاري تحميل التعليقات...</p>";
 
-  // حاول جلب التعليقات مرتبة حسب created_at أولًا
-  let { data, error } = await supabase
-    .from('course_ratings')
-    .select('id, comment, full_name, module, created_at')
-    .neq('comment', '')
-    .not('comment', 'is', null)
-    .order('created_at', { ascending: false });
+const { data, error } = await supabase
+  .from('course_ratings')
+  .select('comment, full_name, module, created_at')
+  .not('comment', 'is', null)
+  .neq('comment', 'EMPTY')   // 🔥 تجاهل كلمة EMPTY
+  .neq('comment', '')        // تجاهل التعليق الفارغ الحقيقي
+  .order('created_at', { ascending: false });
 
-  console.log('fetchModernComments -> primary fetch error:', error);
-  console.log('fetchModernComments -> primary data count:', data && data.length);
 
-  // إذا فشل الطلب أو لم يعد بيانات (أحيانًا created_at قد تكون null)، حاول فرز حسب id كاحتياط
-  if (error || !data || data.length === 0) {
-    const { data: fallback, error: fbErr } = await supabase
-      .from('course_ratings')
-      .select('id, comment, full_name, module, created_at')
-      .neq('comment', '')
-      .not('comment', 'is', null)
-      .order('id', { ascending: false })
-      .limit(50);
 
-    console.log('fetchModernComments -> fallback error:', fbErr);
-    console.log('fetchModernComments -> fallback data count:', fallback && fallback.length);
-
-    if (fbErr) {
-      container.innerHTML = "<p>⚠️ حدث خطأ أثناء تحميل التعليقات.</p>";
-      return;
-    }
-
-    data = fallback || [];
+  if (error) {
+    container.innerHTML = "<p>⚠️ Unable to load comments.</p>";
+    return;
   }
 
-  container.innerHTML = ""; // إفراغ الرسالة واستقبال التعليقات
-
-  data.forEach(({ comment, full_name, module }) => {
+data.forEach(({ comment, full_name, module }) => {
   const initial = full_name?.charAt(0)?.toUpperCase() || "?";
   const shortComment = comment.length > 100 ? comment.slice(0, 100) + "..." : comment;
   const moduleFormatted = module.replace(/_/g, " "); // ⚙️ إزالة الشرطة السفلية
@@ -2150,10 +2130,6 @@ if (form) {
 
 }
 
-// اجعل الدالة متاحة عالمياً حتى تتمكن سكربتات أخرى من استدعائها بعد الإدراج
-window.fetchModernComments = fetchModernComments;
-
-// جلب التعليقات عند تحميل الصفحة
 fetchModernComments();
 
 
