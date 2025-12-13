@@ -824,6 +824,31 @@ responsiveStyle.textContent = `
       padding: 8px;
       border-radius: 8px;
     }
+
+    /* Make the range selector and total wrap nicely on small screens */
+    .range-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    #incomeRangeSelect {
+      flex: 0 0 auto;
+      order: 1;
+    }
+
+    #incomeRangeTotal {
+      order: 2;
+      flex: 1 1 100%; /* take full width below the select */
+      text-align: right;
+      margin-top: 6px;
+      font-size: 0.95rem;
+      min-width: 0;
+      color: #16a34a;
+      font-weight: 700;
+    }
   }
 `;
 document.head.appendChild(responsiveStyle);
