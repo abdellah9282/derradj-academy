@@ -627,6 +627,13 @@ document.getElementById('totalEarnings').textContent = totalEarnings.toLocaleStr
     const option = select ? select.value : '30';
     const { labels, amounts, dates } = await fetchIncomeForRange(option, teacherContact, teacherModules);
     renderIncomeChart(labels, amounts, dates);
+    try {
+      const totalForRange = (amounts || []).reduce((s, v) => s + Number(v || 0), 0);
+      const el = document.getElementById('incomeRangeTotal');
+      if (el) el.textContent = totalForRange.toLocaleString() + ' دج';
+    } catch (e) {
+      console.warn('Failed to update range total:', e);
+    }
   } catch (e) {
     console.warn('Could not render income chart:', e);
   }
@@ -641,6 +648,13 @@ document.getElementById('totalEarnings').textContent = totalEarnings.toLocaleStr
         const tm = window._currentTeacherModules || [];
         const { labels, amounts, dates } = await fetchIncomeForRange(val, tc, tm);
         renderIncomeChart(labels, amounts, dates);
+        try {
+          const totalForRange = (amounts || []).reduce((s, v) => s + Number(v || 0), 0);
+          const el = document.getElementById('incomeRangeTotal');
+          if (el) el.textContent = totalForRange.toLocaleString() + ' دج';
+        } catch (e) {
+          console.warn('Failed to update range total after change:', e);
+        }
       } catch (err) {
         console.error('Range change failed:', err);
       }
