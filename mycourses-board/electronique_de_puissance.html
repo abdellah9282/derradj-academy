@@ -609,62 +609,50 @@ document.addEventListener('contextmenu', function (e) {
 })();
 </script>
 
+
+
 <script type="module">
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.5";
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
 const supabase = createClient(
   "https://sgcypxmnlyiwljuqvcup.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM",
-  {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-      detectSessionInUrl: false
-    }
-  }
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
 );
 
-// 🟣 اسم المادة (يجب أن يطابق ما هو مخزَّن في عمود modules)
+// 🟣 اسم المادة (يجب أن يكون مطابق لما تخزنه في JSONB عمود modules)
 const moduleName = "electronique_de_puissance";
 
 (async () => {
   const contact = localStorage.getItem("userContact");
-
   if (!contact) {
-    console.warn("🚫 لا يوجد userContact في localStorage");
+    localStorage.clear();
     window.location.href = "../login/login.html";
     return;
   }
 
-  // ✅ جلب صلاحيات الطالب
+  // ✅ اجلب modules الخاصة بالطالب
   const { data, error } = await supabase
     .from("registrations")
     .select("modules")
     .eq("contact", contact)
-    .maybeSingle();
+    .single();
 
-  // ⚠️ خطأ مؤقت (شبكة / RLS) → لا Logout عدواني
-  if (error) {
-    console.warn("⚠️ خطأ مؤقت أثناء جلب الصلاحيات:", error);
-    return;
-  }
-
-  // ❌ لا توجد بيانات → إعادة توجيه فقط
-  if (!data || !Array.isArray(data.modules)) {
-    console.warn("🚫 لا توجد صلاحيات مخزنة لهذا المستخدم");
+  if (error || !data) {
+    console.warn("🚫 لم يتم العثور على المستخدم أو خطأ في جلب البيانات.");
+    localStorage.clear();
     window.location.href = "../login/login.html";
     return;
   }
 
-  // ❌ لا يملك المادة
-  if (!data.modules.includes(moduleName)) {
-    console.warn(`🚫 المستخدم لا يملك صلاحية مادة: ${moduleName}`);
+  const modules = data.modules || [];
+  if (!modules.includes(moduleName)) {
+    console.warn(`🚫 الطالب لا يملك صلاحية لهذه المادة: ${moduleName}`);
+    localStorage.clear();
     window.location.href = "../login/login.html";
     return;
   }
 
-  // ✅ مسموح
-  console.log(`✅ صلاحية الوصول مؤكدة لمادة: ${moduleName}`);
+  console.log(`✅ الطالب يملك صلاحية الوصول إلى ${moduleName}`);
 })();
 </script>
 
