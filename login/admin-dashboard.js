@@ -122,11 +122,6 @@ async function updateStatus(id, isApproved) {
       throw new Error("Invalid data: ID or approval status is missing or incorrect.");
     }
 
-    // تحديث حالة الطلب في جدول Pending Requests
-    const { error: updateError } = await supabase
-      .from("registrations") // تأكد من أن الجدول هو "registrations"
-      .update({ is_approved: isApproved }) // تحديث is_approved إلى true أو false
-      .eq("id", id); // استخدام id لتحديد السجل
 
     if (updateError) {
       console.error("Update Error:", updateError);
@@ -218,29 +213,70 @@ if (!data || data.length === 0) {
       loadingMessage.style.display = "block";
       statusMessage.style.display = "none";
 
-      try {
-        // تحديث حالة الطلب في جدول new_requests
-        const { error: requestError } = await supabase
-          .from("new_requests")
-          .update({ is_approved: true })
-          .eq("id", id);
+try {
+  // 1️⃣ جلب الطلب
+  const { data: req, error: reqError } = await supabase
+    .from("new_requests")
+    .select("user_contact, new_modules")
+    .eq("id", id)
+    .single();
 
-        if (requestError) {
-          throw new Error("Failed to update request status.");
-        }
+  if (reqError || !req) {
+    throw new Error("❌ فشل جلب بيانات الطلب");
+  }
 
-        statusMessage.style.color = "green";
-        statusMessage.textContent = "✅ Request approved successfully.";
-        statusMessage.style.display = "block";
-        loadNewRequests(); // إعادة تحميل الطلبات لإخفاء الطلب الذي تمت مراجعته
-      } catch (error) {
-        console.error(error);
-        statusMessage.style.color = "red";
-        statusMessage.textContent = "❌ Failed to approve request.";
-        statusMessage.style.display = "block";
-      } finally {
-        loadingMessage.style.display = "none";
-      }
+  // 2️⃣ جلب مواد الطالب الحالية
+  const { data: reg, error: regError } = await supabase
+    .from("registrations")
+    .select("modules")
+    .eq("contact", req.user_contact)
+    .single();
+
+  if (regError || !reg) {
+    throw new Error("❌ الطالب غير موجود في registrations");
+  }
+
+  // 3️⃣ دمج المواد بدون تكرار
+  const currentModules = Array.isArray(reg.modules) ? reg.modules : [];
+  const updatedModules = Array.from(
+    new Set([...currentModules, ...req.new_modules])
+  );
+
+  // 4️⃣ تحديث جدول registrations
+  const { error: updateRegError } = await supabase
+    .from("registrations")
+    .update({ modules: updatedModules })
+    .eq("contact", req.user_contact);
+
+  if (updateRegError) {
+    throw new Error("❌ فشل تحديث مواد الطالب");
+  }
+
+  // 5️⃣ تحديث حالة الطلب
+  const { error: approveError } = await supabase
+    .from("new_requests")
+    .update({ is_approved: true })
+    .eq("id", id);
+
+  if (approveError) {
+    throw new Error("❌ فشل تحديث حالة الطلب");
+  }
+
+  statusMessage.style.color = "green";
+  statusMessage.textContent = "✅ تمت الموافقة وإضافة المادة بنجاح";
+  statusMessage.style.display = "block";
+
+  loadNewRequests();
+
+} catch (error) {
+  console.error(error);
+  statusMessage.style.color = "red";
+  statusMessage.textContent = error.message;
+  statusMessage.style.display = "block";
+} finally {
+  loadingMessage.style.display = "none";
+}
+
     });
   });
 

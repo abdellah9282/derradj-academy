@@ -303,6 +303,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   }
+// 💰 إظهار سعر المادة عند اختيارها
+const priceInput = document.getElementById("coursePrice");
+
+if (courseSelect && priceInput) {
+  courseSelect.addEventListener("change", () => {
+    const selectedKey = courseSelect.value;
+
+    if (!selectedKey || !allCourses[selectedKey]) {
+      priceInput.value = "";
+      priceInput.placeholder = "—";
+      return;
+    }
+
+    const price = allCourses[selectedKey].price;
+    priceInput.value = `${price} DA`;
+  });
+}
 
 
   // تسجيل الخروج
