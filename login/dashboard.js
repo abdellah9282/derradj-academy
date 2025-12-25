@@ -2,19 +2,19 @@
 const supabase = window.supabase.createClient(  "https://sgcypxmnlyiwljuqvcup.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
 );
+// ================================
+// 🔐 SESSION GUARD (LAST LOGIN WINS)
+// ================================
 
-// خَفْض تشديد التحقق من الجلسة/الجهاز: السماح بالوصول حتى لو تغير الجهاز
-// نقوم بالتحقق فقط إن كانت القيم الأساسية مفقودة (نرحّل للّـتسجيل)،
-// وإلا نسمح بالوصول مع تمييز الحالة عبر `sessionMismatch` في localStorage
-(async () => {
+async function enforceLatestSession() {
+  const contact   = localStorage.getItem("userContact");
   const sessionId = localStorage.getItem("sessionId");
-  const deviceId = localStorage.getItem("deviceId");
-  const contact = localStorage.getItem("userContact");
+  const deviceId  = localStorage.getItem("deviceId");
 
-  if (!sessionId || !deviceId || !contact) {
-    // إن لم تتوافر المعطيات الأساسية نرجع إلى صفحة الدخول كما سابقاً
+  // ❌ جلسة غير صالحة
+  if (!contact || !sessionId || !deviceId) {
     localStorage.clear();
-    window.location.href = "/login/login.html";
+    window.location.replace("/login/login.html");
     return;
   }
 
@@ -26,28 +26,81 @@ const supabase = window.supabase.createClient(  "https://sgcypxmnlyiwljuqvcup.su
       .single();
 
     if (error || !data) {
-      // لا نمنع المستخدم من الوصول إن فشلنا بجلب المعطيات من الخادم
-      console.warn("❗ تعذّر جلب بيانات الجلسة من الخادم. السماح بالوصول مؤقتًا:", error);
-      localStorage.setItem("sessionMismatch", "unknown");
-      localStorage.setItem("userToken", "ok");
+      localStorage.clear();
+      window.location.replace("/login/login.html");
       return;
     }
 
-    if (data.session_id !== sessionId || data.device_id !== deviceId) {
-      // بدلاً من مسح التخزين أو إعادة التوجيه، نعلم أن هناك اختلافًا ونسمح بالوصول
-      console.warn("⚠️ اختلاف في session/device — السماح بالوصول لكن وسم الحالة.");
-      localStorage.setItem("sessionMismatch", "true");
-      localStorage.setItem("userToken", "ok");
-    } else {
-      console.log("✅ الجلسة والجهاز مطابقان.");
-      localStorage.setItem("userToken", "ok");
+    // ❌ هناك تسجيل دخول أحدث
+    if (
+      data.session_id !== sessionId ||
+      data.device_id  !== deviceId
+    ) {
+      localStorage.clear();
+      window.location.replace("/login/session_conflict.html");
     }
+
   } catch (err) {
-    console.error("❌ خطأ أثناء التحقق من الجلسة:", err);
-    localStorage.setItem("sessionMismatch", "unknown");
-    localStorage.setItem("userToken", "ok");
+    console.error("❌ Session guard error:", err);
+    localStorage.clear();
+    window.location.replace("/login/login.html");
   }
-})();
+}
+// تشغيل فوري
+enforceLatestSession();
+
+// فحص دوري (يطرد الجلسة القديمة خلال ثواني)
+setInterval(enforceLatestSession, 8000);
+
+// UUID
+function uuid() {
+  return crypto.randomUUID();
+}
+
+// جهاز ثابت
+function getOrCreateDeviceId() {
+  let id = localStorage.getItem("deviceId");
+  if (!id) {
+    id = uuid();
+    localStorage.setItem("deviceId", id);
+  }
+  return id;
+}
+
+// جلسة جديدة دائمًا
+function createNewSessionId() {
+  const id = uuid();
+  localStorage.setItem("sessionId", id);
+  return id;
+}
+
+// ✅ هذا هو المهم
+export async function loginAndClaimSession(contact, fullName) {
+  const deviceId = getOrCreateDeviceId();
+  const sessionId = createNewSessionId();
+
+  localStorage.setItem("userContact", contact);
+  localStorage.setItem("userName", fullName);
+
+  // 🔥 آخر دخول يربح
+  const { error } = await supabase
+    .from("registrations")
+    .update({
+      session_id: sessionId,
+      device_id: deviceId
+    })
+    .eq("contact", contact);
+
+  if (error) {
+    console.error(error);
+    localStorage.clear();
+    alert("❌ فشل تسجيل الدخول");
+    return;
+  }
+
+  // ✅ نجاح
+  window.location.href = "/login/dashboard.html";
+}
 
 const allCourses = {
   math3_sami_braci: {

@@ -9,7 +9,105 @@ const supabase = createClient(
   'https://sgcypxmnlyiwljuqvcup.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
 );
+// ================================
+// 🔐 SESSION GUARD (LAST LOGIN WINS)
+// ================================
 
+async function enforceLatestSession() {
+  const contact   = localStorage.getItem("userContact");
+  const sessionId = localStorage.getItem("sessionId");
+  const deviceId  = localStorage.getItem("deviceId");
+
+  // ❌ جلسة غير صالحة
+  if (!contact || !sessionId || !deviceId) {
+    localStorage.clear();
+    window.location.replace("/login/login.html");
+    return;
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from("registrations")
+      .select("session_id, device_id")
+      .eq("contact", contact)
+      .single();
+
+    if (error || !data) {
+      localStorage.clear();
+      window.location.replace("/login/login.html");
+      return;
+    }
+
+    // ❌ هناك تسجيل دخول أحدث
+    if (
+      data.session_id !== sessionId ||
+      data.device_id  !== deviceId
+    ) {
+      localStorage.clear();
+      window.location.replace("/login/session_conflict.html");
+    }
+
+  } catch (err) {
+    console.error("❌ Session guard error:", err);
+    localStorage.clear();
+    window.location.replace("/login/login.html");
+  }
+}
+// تشغيل فوري
+enforceLatestSession();
+
+// فحص دوري (يطرد الجلسة القديمة خلال ثواني)
+setInterval(enforceLatestSession, 8000);
+
+// UUID
+function uuid() {
+  return crypto.randomUUID();
+}
+
+// جهاز ثابت
+function getOrCreateDeviceId() {
+  let id = localStorage.getItem("deviceId");
+  if (!id) {
+    id = uuid();
+    localStorage.setItem("deviceId", id);
+  }
+  return id;
+}
+
+// جلسة جديدة دائمًا
+function createNewSessionId() {
+  const id = uuid();
+  localStorage.setItem("sessionId", id);
+  return id;
+}
+
+// ✅ هذا هو المهم
+export async function loginAndClaimSession(contact, fullName) {
+  const deviceId = getOrCreateDeviceId();
+  const sessionId = createNewSessionId();
+
+  localStorage.setItem("userContact", contact);
+  localStorage.setItem("userName", fullName);
+
+  // 🔥 آخر دخول يربح
+  const { error } = await supabase
+    .from("registrations")
+    .update({
+      session_id: sessionId,
+      device_id: deviceId
+    })
+    .eq("contact", contact);
+
+  if (error) {
+    console.error(error);
+    localStorage.clear();
+    alert("❌ فشل تسجيل الدخول");
+    return;
+  }
+
+  // ✅ نجاح
+  window.location.href = "/login/dashboard.html";
+}
 // ================================
 // DOM ELEMENTS
 // ================================
