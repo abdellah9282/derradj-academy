@@ -62,6 +62,12 @@ chimie2: {
   price: 2000,
   image: "../Thumbnail/chimie2/01.jpg"
 },
+machine_electrique: {
+  title: "Machine Électrique",
+  instructor: "Abdellah Derradj",
+  price: 1200,
+  image: "../Thumbnail/machine_electrique/08.jpg"
+},
 
   math1: {
     title: "Math 1 – Analyse 1",
@@ -122,6 +128,7 @@ math3_analyse3: {
 // روابط الصفحات الخاصة بكل مادة
 const courseLinks = {
   math3_analyse3: "../mycourses-board/math3_analyse3.html",
+machine_electrique: "../mycourses-board/machine_electrique.html",
 
   chimie2: "../mycourses-board/chimie2.html",
   math1: "../mycourses-board/math1.html",
