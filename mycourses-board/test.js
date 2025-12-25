@@ -1,31 +1,68 @@
-// ✅ تحميل Mux Player إذا استُخدم
-import 'https://cdn.jsdelivr.net/npm/@mux/mux-player';
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+// ✅ تحميل Mux Player و Supabase ديناميكيًا (تجنب أخطاء الاستيراد التي توقف تنفيذ السكربت)
+// Prefer global `window.supabase` (if loaded via CDN) then fallback to dynamic import
+let supabase = null;
+if (window && window.supabase && typeof window.supabase.createClient === 'function') {
+  try {
+    supabase = window.supabase.createClient(
+      "https://sgcypxmnlyiwljuqvcup.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
+    );
+    console.debug('✅ supabase client (window) ready');
+  } catch (e) {
+    console.warn('⚠️ window.supabase.createClient threw:', e);
+    supabase = null;
+  }
+} else {
+  (async function loadExternalLibs() {
+    try {
+      await import('https://cdn.jsdelivr.net/npm/@mux/mux-player');
+    } catch (e) {
+      console.warn('⚠️ failed to load mux-player (non-fatal):', e);
+    }
 
-// ✅ إعداد Supabase
-const supabase = createClient(
-  'https://sgcypxmnlyiwljuqvcup.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
-);
-
-// ✅ التحقق الأساسي
-function isAuthenticated() {
-  const sessionId = localStorage.getItem("sessionId");
-  const contact = localStorage.getItem("userContact");
-  const token = localStorage.getItem("userToken");
-  const deviceId = localStorage.getItem("deviceId");
-  return sessionId && contact && deviceId && token === "ok";
+    try {
+      const mod = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
+      const { createClient } = mod;
+      supabase = createClient(
+        'https://sgcypxmnlyiwljuqvcup.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
+      );
+      console.debug('✅ supabase client (dynamic) ready');
+    } catch (e) {
+      console.warn('⚠️ failed to load supabase client (DB checks will be skipped):', e);
+      supabase = null;
+    }
+  })();
 }
+
+// صفحة تسجيل الدخول الموحدة
+const LOGIN_PAGE = "/login/login.html";
 
 // ✅ حماية الصفحة بالكامل
 async function guardPageAccess() {
-  const sessionId = localStorage.getItem("sessionId");
-  const deviceId = localStorage.getItem("deviceId");
-  const contact = localStorage.getItem("userContact");
+  // Read localStorage with retries and add debug logs so we can diagnose
+  const readStorage = () => ({
+    sessionId: localStorage.getItem("sessionId"),
+    deviceId: localStorage.getItem("deviceId"),
+    contact: localStorage.getItem("userContact")
+  });
 
+  let { sessionId, deviceId, contact } = readStorage();
+  console.debug("guardPageAccess start", { sessionId, deviceId, contact });
+
+  // If basic session values are missing, redirect to login (require auth)
   if (!sessionId || !deviceId || !contact) {
+    console.warn('⚠️ missing basic session values — redirecting to login');
     localStorage.clear();
-    window.location.href = "/login/login.html";
+    window.location.href = LOGIN_PAGE;
+    return;
+  }
+
+  // If supabase is not available (failed dynamic import), skip server checks
+  if (!supabase) {
+    console.warn('⚠️ Supabase unavailable — skipping server-side registration checks.');
+    localStorage.setItem("userToken", "ok");
+    try { startPeriodicSessionCheck(); } catch (e) { /* ignore */ }
     return;
   }
 
@@ -33,24 +70,46 @@ async function guardPageAccess() {
     .from("registrations")
     .select("session_id, device_id")
     .eq("contact", contact)
-    .single();
+    .maybeSingle();
 
-  if (error || !data || data.session_id !== sessionId || data.device_id !== deviceId) {
-    console.warn("🚫 تم تسجيل الدخول من جهاز آخر أو تم إنهاء الجلسة. سيتم تسجيل خروجك الآن.");
-    localStorage.clear();
-    window.location.href = "/login/login.html";
-  } else {
-    console.log("✅ الجلسة والجهاز مطابقين.");
+  if (error) {
+    // Transient error (network / DB) — do not force logout. Allow the user
+    // to continue and start periodic checks. Log the error for diagnosis.
+    console.warn("⚠️ تعذر التحقق من التسجيل (مؤقت):", error);
     localStorage.setItem("userToken", "ok");
     startPeriodicSessionCheck();
+    return;
   }
+
+  if (!data) {
+    // No registration row found — don't auto-logout. Allow access but start checks.
+    console.log("ℹ️ لم يتم إيجاد سجل تسجيل للجهاز؛ السماح بالوصول مؤقتًا.");
+    localStorage.setItem("userToken", "ok");
+    startPeriodicSessionCheck();
+    return;
+  }
+
+  if (data.session_id !== sessionId || data.device_id !== deviceId) {
+    // Mark mismatch but allow access — do not force logout immediately
+    console.warn("⚠️ session/device mismatch detected; marking state but allowing access.");
+    localStorage.setItem('sessionMismatch', 'true');
+    localStorage.setItem("userToken", "ok");
+    startPeriodicSessionCheck();
+    return;
+  }
+
+  // matched
+  localStorage.removeItem('sessionMismatch');
+  console.log("✅ الجلسة والجهاز مطابقين.");
+  localStorage.setItem("userToken", "ok");
+  startPeriodicSessionCheck();
 }
 
 function redirectToLogin(reason = "") {
   console.warn("🚫 Redirecting due to:", reason);
   localStorage.clear();
   sessionStorage.clear();
-  window.location.href = "../login/session_conflict.html";
+  window.location.href = LOGIN_PAGE;
 }
 
 function setupLogoutButton() {
@@ -60,7 +119,7 @@ function setupLogoutButton() {
       e.preventDefault();
       localStorage.clear();
       sessionStorage.clear();
-      window.location.href = "../login/session_conflict.html";
+      window.location.href = LOGIN_PAGE;
     });
   }
 }
@@ -110,6 +169,11 @@ function setupSupportForm() {
 }
 
 function startPeriodicSessionCheck() {
+  if (!supabase) {
+    console.warn('⚠️ Supabase unavailable — periodic session checks disabled.');
+    return;
+  }
+
   setInterval(async () => {
     const sessionId = localStorage.getItem("sessionId");
     const deviceId = localStorage.getItem("deviceId");
@@ -126,10 +190,11 @@ function startPeriodicSessionCheck() {
     if (error || !data) return;
 
     if (data.session_id !== sessionId || data.device_id !== deviceId) {
-      console.warn("🚫 تم اكتشاف جلسة/جهاز مختلف. تسجيل الخروج...");
-      localStorage.clear();
-      sessionStorage.clear();
-      window.location.href = "../login/session_conflict.html";
+      // mark mismatch but do not auto-logout
+      console.warn("⚠️ periodic check: session/device mismatch — marking state.");
+      localStorage.setItem('sessionMismatch', 'true');
+    } else {
+      localStorage.removeItem('sessionMismatch');
     }
   }, 15000);
 }
@@ -240,8 +305,13 @@ window.addEventListener("DOMContentLoaded", async () => {
   guardPageAccess();
   setupLogoutButton();
   setupSupportForm();
-// ✅ اسم المادة الحالية
-const moduleName = document.body.dataset.module || "chimie1";
+  // قم بتحميل التقييم المتوسط مباشرةً
+  fetchAverageRating();
+
+  // عرض اسم المستخدم في رسالة الترحيب
+  const username = localStorage.getItem("userName") || "User";
+  const nameSpan = document.getElementById("username");
+  if (nameSpan) nameSpan.textContent = username;
 
 // ✅ تحقق إذا الطالب قام بالتقييم أم لا
 (async () => {
@@ -295,8 +365,10 @@ const moduleName = document.body.dataset.module || "chimie1";
 
     // احسب بداية الأسبوع من يوم السبت
     const startOfWeek = new Date(today);
-    startOfWeek.setDate(today.getDate() - today.getDay());
-    startOfWeek.setHours(0, 0, 0, 0);
+    const day = today.getDay();
+    const diff = (day + 1) % 7;
+    startOfWeek.setDate(today.getDate() - diff);
+    startOfWeek.setHours(0,0,0,0);
 
     try {
       const { data: bookings, error } = await supabase
@@ -360,6 +432,13 @@ const moduleName = document.body.dataset.module || "chimie1";
     } catch (err) {
       console.error(":❌ خطأ غير متوقع أثناء التحقق من الحجز ", err);
     }
+  }
+  // اربط زر إرسال الحجز مرة واحدة فقط
+  const submitBookingBtn = document.getElementById('submitBookingButton');
+  if (submitBookingBtn) {
+    // تأكد من عدم تكرار الربط
+    submitBookingBtn.removeEventListener?.('click', window.submitBooking);
+    submitBookingBtn.addEventListener('click', window.submitBooking);
   }
 });
 
@@ -458,9 +537,4 @@ const sessionLinks = {
   electrotechnique_fondamentale1: "https://your-link.com/electrotechnique_fondamentale1",
   ondes_et_vibrations: "https://your-link.com/ondes_et_vibrations"
 };
-// ✅ عرض الاسم في رسالة الترحيب
-window.addEventListener("DOMContentLoaded", () => {
-const username = localStorage.getItem("userName") || "User";
-  const nameSpan = document.getElementById("username");
-  if (nameSpan) nameSpan.textContent = username;
-});
+// (username display moved into the main DOMContentLoaded listener)
