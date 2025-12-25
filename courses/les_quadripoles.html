@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Les Quadripoles | Derradj Academy</title>
+  <meta name="description" content="Cours, exercices corrigés et vidéos explicatives sur les Quadripoles (rbaexiates thneayet almunafeth) : théorie des deux ports, paramètres Z, Y, ABCD, applications pratiques." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Pr. Abdellah Derradj" />
+  <meta name="keywords" content="Quadripoles, Deux ports, Rbaexiates, Paramètres Z, Paramètres Y, ABCD, Électronique, Théorie des circuits, Cours électronique, Exercices corrigés, Derradj Academy, Université algérienne" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.derradjacademy.com/courses/les_quadripoles.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Les Quadripoles | Derradj Academy" />
+  <meta property="og:description" content="Accédez à des vidéos pédagogiques, documents PDF et exercices corrigés sur les Quadripoles : théorie des deux ports, paramètres de transmission, applications pratiques." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.derradjacademy.com/courses/les_quadripoles.html" />
+  <meta property="og:image" content="https://www.derradjacademy.com/Logo.jpg" />
+  <meta property="og:site_name" content="Derradj Academy" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Les Quadripoles | Derradj Academy" />
+  <meta name="twitter:description" content="Vidéos, fiches PDF, TDs corrigés et soutien académique sur les Quadripoles : théorie des deux ports, paramètres et applications." />
+  <meta name="twitter:image" content="https://www.derradjacademy.com/Logo.jpg" />
+
+
+
+  <!-- Feuilles de style & scripts -->
+  <link rel="stylesheet" href="course-card-content.css" />
+  <link rel="stylesheet" href="../style.css" />
+  <script src="/js/search.js" defer></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="../Logo.jpg" />
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XDHSVTPG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F5XDHSVTPG');
+</script>
+
+</head>
+
+
+<body>
+<!-- HEADER -->
+<header class="main-header">
+  <div class="left-section">
+    <a href="../index.html" class="logo">
+      <span class="purple">D</span>erradj Academy
+    </a>
+
+    <div class="explore-dropdown">
+      <a href="#" class="explore-link">Explore</a>
+      <ul class="dropdown-menu">
+         <li><a href="ondes_et_vibrations.html">Ondes et Vibrations</a></li>
+        <li><a href="electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
+        <li><a href="electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
+        <li><a href="theorie_du_champ.html">Théorie du Champ Électromagnétique</a></li>
+        <li><a href="electronique_de_puissance.html">Électronique de Puissance</a></li>
+        <li><a href="informatique01.html">Informatique 1</a></li>
+        <li><a href="informatique02.html">Informatique 2</a></li>
+        <li><a href="informatique03.html">Informatique 3</a></li>
+        <li><a href="logique.html">Logique Combinatoire et Séquentielle</a></li>
+        <li><a href="methode.html">Méthodes Numériques (L2 + M1)</a></li>
+        <li><a href="probabilite_et_statistique.html">Probabilité et Statistique</a></li>
+        <li><a href="réseaux_electrique.html">Réseaux Électrique</a></li>
+        <li><a href="systeme_asservis.html">Systèmes Asservis</a></li>
+        <li><a href="theorie_du_signal.html">Théorie du Signal</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="search-box">
+    <input type="text" placeholder="Search for anything" id="searchInput" />
+    <ul class="suggestions" id="suggestionsList"></ul>
+  </div>
+
+    <nav class="right-links">
+<a href="../index.html#student-feedback" class="nav-link">💬 آراء الطلاب</a>
+<a href="../index.html#why-us" class="nav-link">حول المنصة</a>
+
+      <a href="../how-to-register.html" class="nav-link">📝 شرح طريقة التسجيل</a>
+      <a href="../login/login.html" class="btn login">Log in</a>
+      <a href="../sign-up/sign-up.html" class="btn signup">Sign up</a>
+      <a href="../index.html#support" class="support-icon" title="الدعم الفني">💬</a>
+    </nav>
+</header>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="course-content">
+    <div class="course-header-box">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+  <h1 class="course-title">Les Quadripoles</h1>
+
+  <a href="http://pay.chargily.com/payment-links/01kdag60e6a7v5kt53679rjz3w" target="_blank" class="btn-green-shiny">
+ 💳 الدفع بالبطاقة الذهبية
+</a>
+
+<style>
+.btn-green-shiny {
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%); /* أخضر زمردي أنيق */
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 10px;  /* زوايا أكثر نعومة */
+  padding: 0.5rem 1.4rem;
+  margin: 0.6rem 0;
+  border: none;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+
+  /* تأثير لمعة خفيفة */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+  transition: all 0.3s ease;
+}
+
+.btn-green-shiny::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-25deg);
+}
+
+.btn-green-shiny:hover::before {
+  animation: shine 0.8s ease forwards;
+}
+
+@keyframes shine {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+
+/* تأثير المرور */
+.btn-green-shiny:hover {
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.5);
+}
+
+/* عند الضغط */
+.btn-green-shiny:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+</style>
+
+  <span style="
+    background: linear-gradient(90deg,#7c3aed 60%,#7f57f7 100%);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 0.4rem 1.2rem;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 8px #7c3aed22;
+    border: 2px solid #a78bfa;
+    letter-spacing: 1px;
+    display: inline-block;
+    ">
+     سعر الدورة: <span style="font-size:1.2em;">1000 دج</span>
+  </span>
+
+
+
+
+</div>
+      <div class="instructor-details">
+      <p class="instructor-name"><strong>Teacher :</strong> Abdellah Derradj</p>
+<p class="instructor-bio" dir="rtl" style="text-align: right;">
+ جميع <strong>الفيديوهات مشروحة باللغة العربية</strong> بأسلوب مبسّط وواضح، لتفهم بسهولة مهما كانت لغة دراستك — فرنسية أو إنجليزية.</p>
+      </div>
+      <div class="live-announcement">
+  <span class="live-icon">📩</span>
+  <span><strong>  Contact us on
+      <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" class="instagram-link">
+        Instagram
+      </a>
+    </strong> — for questions</span>
+  <span class="live-badge">
+    <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" style="color: inherit; text-decoration: underline;">
+      INSTAGRAM
+    </a>
+  </span>
+</div>
+<style>
+  .instagram-link {
+    color: #d62976; /* لون إنستغرام الأساسي */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+
+  .instagram-link:hover {
+    color: #962fbf; /* لون أغمق عند المرور */
+    text-decoration: underline;
+    transform: scale(1.05);
+  }
+
+  .live-badge a {
+    text-decoration: none;
+  }
+</style>
+    </div>
+
+    <!-- Course Columns -->
+    <div class="course-columns">
+      <!-- Left Column: Video Lessons -->
+      <div class="column-left">
+   <h2 class="section-title">Leçons Vidéo</h2>
+
+<div class="playlist-container">
+
+  <a href="../../login/login.html" class="playlist-link">
+    <div class="playlist-item locked">
+      <img src="../Thumbnail/les_quadripoles/01.jpg" alt="Vidéo 1" class="playlist-thumbnail">
+      <div class="playlist-info">
+        <h4>EP01 Les Quadripôles : Matrices Impédances شرح باللغة العربية</h4>
+        <p class="playlist-status">🔒 Locked</p>
+      </div>
+      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
+    </div>
+  </a>
+
+  <a href="../../login/login.html" class="playlist-link">
+    <div class="playlist-item locked">
+      <img src="../Thumbnail/les_quadripoles/02.jpg" alt="Vidéo 2" class="playlist-thumbnail">
+      <div class="playlist-info">
+        <h4>EP02 Le Quadripôle : Matrices Impédances Schéma Équivalent شرح باللغة العربية</h4>
+        <p class="playlist-status">🔒 Locked</p>
+      </div>
+      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
+    </div>
+  </a>
+
+  <a href="../../login/login.html" class="playlist-link">
+    <div class="playlist-item locked">
+      <img src="../Thumbnail/les_quadripoles/03.jpg" alt="Vidéo 3" class="playlist-thumbnail">
+      <div class="playlist-info">
+        <h4>EP03 Les Quadripôles : Matrices Impédances (Exercice) شرح باللغة العربية</h4>
+        <p class="playlist-status">🔒 Locked</p>
+      </div>
+      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
+    </div>
+  </a>
+
+  <a href="../../login/login.html" class="playlist-link">
+    <div class="playlist-item locked">
+      <img src="../Thumbnail/les_quadripoles/04.jpg" alt="Vidéo 4" class="playlist-thumbnail">
+      <div class="playlist-info">
+        <h4>EP04 Le Quadripôle : La Matrice Admittance شرح باللغة العربية</h4>
+        <p class="playlist-status">🔒 Locked</p>
+      </div>
+      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
+    </div>
+  </a>
+
+  <a href="../../login/login.html" class="playlist-link">
+    <div class="playlist-item locked">
+      <img src="../Thumbnail/les_quadripoles/05.jpg" alt="Vidéo 5" class="playlist-thumbnail">
+      <div class="playlist-info">
+        <h4>EP05 Le Quadripôle : Exercice sur la Matrice Admittance شرح باللغة العربية</h4>
+        <p class="playlist-status">🔒 Locked</p>
+      </div>
+      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
+    </div>
+  </a>
+
+  <a href="../../login/login.html" class="playlist-link">
+    <div class="playlist-item locked">
+      <img src="../Thumbnail/les_quadripoles/06.jpg" alt="Vidéo 6" class="playlist-thumbnail">
+      <div class="playlist-info">
+        <h4>EP06 Le Quadripôle : La Matrice Transfert شرح باللغة العربية</h4>
+        <p class="playlist-status">🔒 Locked</p>
+      </div>
+      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
+    </div>
+  </a>
+
+  <a href="../../login/login.html" class="playlist-link">
+    <div class="playlist-item locked">
+      <img src="../Thumbnail/les_quadripoles/07.jpg" alt="Vidéo 7" class="playlist-thumbnail">
+      <div class="playlist-info">
+        <h4>EP07 Le Quadripôle : Exercice sur La Matrice Transfert شرح باللغة العربية</h4>
+        <p class="playlist-status">🔒 Locked</p>
+      </div>
+      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
+    </div>
+  </a>
+
+  <a href="../../login/login.html" class="playlist-link">
+    <div class="playlist-item locked">
+      <img src="../Thumbnail/les_quadripoles/08.jpg" alt="Vidéo 8" class="playlist-thumbnail">
+      <div class="playlist-info">
+        <h4>EP08 Association en Série avec le Quadripôle شرح باللغة العربية</h4>
+        <p class="playlist-status">🔒 Locked</p>
+      </div>
+      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
+    </div>
+  </a>
+
+  <a href="../../login/login.html" class="playlist-link">
+    <div class="playlist-item locked">
+      <img src="../Thumbnail/les_quadripoles/09.jpg" alt="Vidéo 9" class="playlist-thumbnail">
+      <div class="playlist-info">
+        <h4>EP09 L'Association en Parallèle avec le Quadripôle شرح باللغة العربية</h4>
+        <p class="playlist-status">🔒 Locked</p>
+      </div>
+      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
+    </div>
+  </a>
+
+  <a href="../../login/login.html" class="playlist-link">
+    <div class="playlist-item locked">
+      <img src="../Thumbnail/les_quadripoles/10.jpg" alt="Vidéo 10" class="playlist-thumbnail">
+      <div class="playlist-info">
+        <h4>EP10 L'Association en Cascade avec le Quadripôle شرح باللغة العربية</h4>
+        <p class="playlist-status">🔒 Locked</p>
+      </div>
+      <div class="hover-bar">🔒 Veuillez <span>vous inscrire</span></div>
+    </div>
+  </a>
+
+</div>
+
+
+
+
+</main>
+
+<!-- استبدل قسم الدفع القديم بهذا -->
+<section id="pay-methods-section">
+  <h2>طرق الدفع</h2>
+
+  <p style="max-width: 640px; margin: 1rem auto 2rem auto; background: #ffffff; border: 1px solid #dee2e6; box-shadow: 0 1px 5px rgba(76, 29, 149, 0.05); border-radius: 10px; padding: 1rem 1.5rem; font-size: 1.05em; color: #1e293b; line-height: 1.7; text-align: right; direction: rtl;">
+    لدفع ثمن الدورة، يُرجى إرسال المبلغ عبر <b>بريدي موب</b> أو <b>بريد الجزائر</b>، ثم تصوير وصل الدفع (لقطة شاشة أو صورة)، وأخيرًا الانتقال إلى
+    <a href="../../sign-up/sign-up.html" style="color:#1e293b; font-weight:bold;">صفحة التسجيل</a>
+    لتعبئة بياناتك وإرفاق صورة الوصل.
+  </p>
+
+  <div class="pay-methods-list">
+    <!-- BaridiMob -->
+    <div class="pay-card">
+      <span class="badge">BaridiMob</span>
+      <h3 style="color: #1e40af; font-size: 1.3em; margin-bottom: 1rem; text-align: center; font-weight: 700;">(BaridiMob)  الدفع عبر بريدي موب</h3>
+      <p style="text-align:right; direction: rtl;">
+        يرجى تحويل مبلغ الدورة عبر تطبيق <b style="direction: ltr; display: inline-block; margin: 0 4px;">BaridiMob</b> إلى الحساب التالي:
+      </p>
+<ul style="direction: rtl; text-align: right; padding: 0; margin: 0; list-style: none; max-width: 360px;">
+  <li class="baridi-rip" style="display: flex; align-items: center; gap: 0.4em; background: #f8fafc; border: 1px solid #e0e7ef; border-radius: 10px; padding: 1rem 1.2rem;">
+    <span class="baridi-rip-value" style="font-size: 1.1em; color: #1e293b; font-family: 'Segoe UI', monospace; letter-spacing: 1px; font-weight: bold;">
+      00799999002580233574
+    </span>
+    <span class="baridi-rip-label" style="font-weight: bold; color: #1e40af; font-size: 1.13em; min-width: 48px;">
+      RIP :
+    </span>
+  </li>
+</ul>
+
+    </div>
+
+    <!-- Algérie Poste Card -->
+    <div class="pay-card" style="background: #ffffff; border: 1px solid #d6d9e7; border-radius: 14px; padding: 1.8rem 1.5rem; max-width: 720px; min-width: 340px; width: 100%; box-shadow: 0 4px 12px rgba(76, 29, 149, 0.1); margin: 0 auto; font-size: 1.1em; position: relative;">
+      <span class="badge" style="background: #14b8a6; color: #fff; padding: 4px 10px; font-size: 0.9em; border-radius: 7px; font-weight: bold; position: absolute; top: -14px; right: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">Algérie Poste</span>
+      <h3 style="color: #1e40af; font-size: 1.3em; margin-bottom: 1rem; text-align: center; font-weight: 700;">(CCP) الدفع عبر بريد الجزائر</h3>
+      <p style="text-align:right; direction: rtl;">
+        يرجى تحويل مبلغ الدورة عبر <b style="direction: ltr; display: inline-block; margin: 0 4px;">مركز بريد الجزائر</b> من خلال ملء الاستمارة الورقية إلى الحساب التالي:
+      </p>
+      <div class="poste-data" style="display: grid; grid-template-columns: 130px 1fr; gap: 12px 18px; font-size: 1.15rem; line-height: 2; color: #1e293b; background-color: #f9fafb; padding: 1.4rem; border-radius: 10px; border: 1px solid #e2e8f0; max-width: 520px; width: 100%; margin: 1.2rem auto 0 auto;">
+        <span style="font-weight: bold; color: #1e40af;">Clé :</span>
+        <span style="font-weight: bold; color: #1e293b;">74</span>
+        <span style="font-weight: bold; color: #1e40af;">Compte :</span>
+        <span>
+          <span id="ccp-poste" style="font-weight: bold; color: #1e293b;">0025802335</span>
+        </span>
+        <span style="font-weight: bold; color: #1e40af;">Nom :</span>
+        <span style="font-weight: bold; color: #1e293b;">DERRADJ</span>
+        <span style="font-weight: bold; color: #1e40af;">Prénom :</span>
+        <span style="font-weight: bold; color: #1e293b;">ABDELLAH</span>
+        <span style="font-weight: bold; color: #1e40af;">Adresse :</span>
+        <span style="font-weight: bold; color: #1e293b;">BOUIRA</span>
+        <span style="font-weight: bold; color: #1e40af;">RIP :</span>
+        <span>
+          <span class="rip-value" id="rip-poste" style="font-weight: bold; color: #1e293b;">007 99999 0025802335 74</span>
+        </span>
+      </div>
+      <div class="poste-note" style="margin-top: 1rem; text-align: center; background: #ecfdf5; color: #065f46; font-weight: 500; padding: 0.6rem 0.5rem; border-radius: 6px; font-size: 0.95em;">
+        أرسل المبلغ إلى الحساب البريدي أعلاه ثم احتفظ بصورة الوصل لإرفاقها في التسجيل
+      </div>
+    </div>
+    <div style="margin-top:1rem; font-size:0.97em; color:#1e293b; text-align:center; background:#f1f5f9; border-radius:6px; padding:0.5em 0;">
+      <b>ملاحظة:</b> لن يتم تفعيل حسابك إلا بعد التحقق من وصل الدفع
+    </div>
+  </div>
+</section>
+
+<section id="pay-examples" style="margin-top:2.5rem;">
+  <h2 style="text-align:center; color:#1e40af; margin-bottom:1rem;"> أمثلة عن وصل الدفع</h2>
+
+  <p style="max-width: 640px; margin: 1rem auto 2rem auto; background: #ffffff; border: 1px solid #dee2e6; box-shadow: 0 1px 5px rgba(76, 29, 149, 0.05); border-radius: 10px; padding: 1rem 1.5rem; font-size: 1.05em; color: #1e293b; line-height: 1.7; text-align: right; direction: rtl;">
+    هذه أمثلة توضيحية لطرق الدفع عبر <b>بريدي موب</b> و <b>بريد الجزائر</b>.
+    اضغط على أي صورة لمعاينتها بشكل أوضح (PDF).
+  </p>
+
+  <!-- عرض الجهتين -->
+  <div class="pay-methods-list" style="
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+       gap: 30px;
+       justify-content: center;
+       align-items: start;
+  ">
+    <!-- بريدي موب -->
+    <div class="pay-card" style="background:#ffffff; border:1px solid #d6d9e7; border-radius:14px; padding:2rem 1.5rem 1.8rem 1.5rem; box-shadow:0 4px 12px rgba(76,29,149,0.1); font-size:1.05em; text-align:center; position:relative;">
+
+      <!-- الشارة -->
+      <span class="badge">BaridiMob</span>
+
+      <h3 style="color:#1e40af; font-size:1.3em; margin-bottom:1.8rem; font-weight:700;">
+        📱 الدفع عبر بريدي موب
+      </h3>
+
+<!-- أول سطر فيه صورتين -->
+<div style="display:flex; justify-content:center; margin-bottom:18px; flex-wrap:wrap; column-gap:60px;">
+  <a href="../payment/Baridimob01.pdf" target="_blank">
+    <img src="../payment/Baridimob01.png" alt="وصل بريدي موب 1"
+         style="width:150px; border-radius:12px; border:1px solid #e2e8f0;
+                box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer;">
+  </a>
+  <a href="../payment/Baridimob1000.pdf" target="_blank">
+    <img src="../payment/Baridimob1000.png" alt="وصل بريدي موب 2"
+         style="width:150px; border-radius:12px; border:1px solid #e2e8f0;
+                box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer;">
+  </a>
+</div>
+
+
+      <!-- الصورة الثالثة -->
+      <div style="text-align:center;">
+        <a href="../payment/Baridimob03.pdf" target="_blank">
+          <img src="../payment/Baridimob03.png" alt="وصل بريدي موب 3" style="width:160px; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer;">
+        </a>
+      </div>
+    </div>
+
+<!-- بريد الجزائر -->
+<div class="pay-card" style="background:#ffffff; border:1px solid #d6d9e7; border-radius:14px; padding:2rem 1.5rem 1.8rem 1.5rem; max-width:420px; width:100%; box-shadow:0 4px 12px rgba(76,29,149,0.1); font-size:1.05em; text-align:center; position:relative;">
+  <span class="badge" style="background: #14b8a6; color: #fff; padding: 4px 10px; font-size: 0.9em; border-radius: 7px; font-weight: bold; position: absolute; top: -14px; right: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">Algérie Poste</span>
+
+  <h3 style="color:#1e40af; font-size:1.3em; margin-bottom:1.8rem; font-weight:700;">📮 مثال الدفع عبر بريد الجزائر</h3>
+
+  <div class="pay-grid" style="display:flex; justify-content:center;">
+    <div style="width:100%;">
+<a href="../payment/1000.pdf" target="_blank" style="display:block; width:100%;">
+  <img src="../payment/1000.png" alt="وصل 1500 دج" class="poste-img"
+       style="width:100%; height:auto; border-radius:12px; border:1px solid #e2e8f0;
+              box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer;">
+</a>
+
+<style>
+/* 🟢 في الهاتف (عرض أقل من 768px) */
+@media (max-width: 768px) {
+  .poste-img {
+    max-width: 280px;  /* تصغير في الهاتف */
+    margin: auto;      /* إبقائها في الوسط */
+    display: block;
+  }
+}
+</style>
+
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+<section class="contact-form" id="support">
+  <h2>هل لديك سؤال؟</h2>
+  <form id="questionForm">
+    <input type="text" name="name" id="name" placeholder="الاسم الكامل" required />
+<input
+  type="tel"
+  name="contact"
+  id="contact"
+  placeholder="أدخل رقم الهاتف"
+  required
+  dir="rtl"
+  style="text-align: right;"
+  maxlength="14"
+  oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+/>
+    <textarea name="message" id="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+    <button type="submit">إرسال</button>
+    <p id="support-message" style="margin-top:1rem; color:green;"></p>
+  </form>
+</section>
+
+
+<footer class="main-footer">
+  <div class="footer-content">
+    <div class="footer-section about">
+      <h3>عن المنصة</h3>
+      <p>منصة تعليمية تقدم دورات مميزة للطلبة الجامعيين مع شروحات مبسطة وملفات PDF وبث مباشر.</p>
+    </div>
+
+    <div class="footer-section links">
+      <h3>روابط سريعة</h3>
+      <ul>
+        <li><a href="../index.html">الرئيسية</a></li>
+        <li><a href="../how-to-register.html" > شرح طريقة التسجيل</a>  </li>
+       <li><a href="../index.html#pay-methods-section">طرق الدفع</a></li>
+        <li><a href="../sign-up/sign-up.html">إنشاء حساب</a></li>
+        <li><a href="../terms.html" target="_blank" rel="noopener noreferrer">الشروط والأحكام</a></li>
+      </ul>
+    </div>
+
+
+    <!-- تواصل معنا -->
+    <div class="footer-section contact">
+      <h3>تواصل معنا</h3>
+<p>
+  <strong>📞</strong>
+<a href="tel:+213776922882" dir="ltr">0776 92 28 82</a>
+</p>
+      <p><strong>📧</strong> <a href="mailto:derradjacademy@gmail.com">derradjacademy@gmail.com
+</a></p>
+      <p><strong>📍</strong> الجزائر، الجزائر العاصمة</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>جميع الحقوق محفوظة &copy; 2025 - Derradj Academy</p>
+  </div>
+</footer>
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+  const supabase = createClient(
+    'https://sgcypxmnlyiwljuqvcup.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
+  );
+
+  // ✅ إرسال نموذج السؤال
+const form = document.getElementById('questionForm');
+if (form) {
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const contact = document.getElementById('contact').value.trim(); // <-- ممكن يكون رقم أو إيميل
+    const message = document.getElementById('message').value.trim();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    const supportMsg = document.getElementById('support-message');
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "جاري الإرسال...";
+    supportMsg.textContent = "";
+    supportMsg.style.color = "green";
+
+    if (!name || !contact || !message) {
+      supportMsg.textContent = "❌ الرجاء ملء جميع الحقول.";
+      supportMsg.style.color = "red";
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+      return;
+    }
+
+    // ✅ التحقق إذا كان بريد إلكتروني أو رقم هاتف
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{8,15}$/;
+
+    if (!emailRegex.test(contact) && !phoneRegex.test(contact)) {
+      supportMsg.textContent = "❌ الرجاء إدخال بريد إلكتروني صحيح أو رقم هاتف صالح.";
+      supportMsg.style.color = "red";
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+      return;
+    }
+
+    // ✅ نحفظ المدخل (سواء رقم أو إيميل) داخل عمود email
+    const { error } = await supabase
+      .from('messages')
+      .insert([{ name, email: contact, message }]);
+
+    if (error) {
+      supportMsg.textContent = "❌ خطأ: " + error.message; // لعرض السبب الحقيقي
+      supportMsg.style.color = "red";
+    } else {
+      supportMsg.textContent = "✅ تم إرسال رسالتك بنجاح، سيتواصل معك فريقنا في أقرب وقت ممكن ";
+      supportMsg.style.color = "green";
+      form.reset();
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
+  });
+}
+</script>
+
+<script src="../js/protect.js"></script>
+<script>
+(function () {
+  // 🔗 غيّر الرابط إلى صفحة الطرد/التحذير التي تريدها
+  const TARGET_URL = "../index.html";
+
+  function leave() {
+    // replace يمنع الرجوع بزر الرجوع إلى الصفحة السابقة
+    window.location.replace(TARGET_URL);
+  }
+
+  // 📱 التحقق إذا الجهاز موبايل
+  function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  }
+
+  // 🚫 فقط على الكمبيوتر (ماوس)
+  if (!isMobileDevice()) {
+    // 1) التقاط ضغطة الزر الأيمن (contextmenu)
+    function onContextMenu(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      leave();
+    }
+    window.addEventListener("contextmenu", onContextMenu, { capture: true });
+
+    // 2) احتياط: التقاط زر الماوس الأيمن مباشرة
+    window.addEventListener("mousedown", function (e) {
+      if (e.button === 2) {
+        e.preventDefault();
+        e.stopPropagation();
+        leave();
+      }
+    }, { capture: true });
+  }
+})();
+</script>
+
+</body>
+</html>

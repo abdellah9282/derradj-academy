@@ -122,6 +122,14 @@ machine_electrique: {
   image: "../Thumbnail/machine_electrique/08.jpg"
 },
 
+les_quadripoles: {
+  title: "Les Quadripôles",
+  instructor: "Abdellah Derradj",
+  price: 1000,
+  image: "../Thumbnail/les_quadripoles/01.jpg"
+},
+
+
   math1: {
     title: "Math 1 – Analyse 1",
     instructor: "Sami Braci",
@@ -182,6 +190,7 @@ math3_analyse3: {
 const courseLinks = {
   math3_analyse3: "../mycourses-board/math3_analyse3.html",
 machine_electrique: "../mycourses-board/machine_electrique.html",
+les_quadripoles: "../mycourses-board/les_quadripoles.html",
 
   chimie2: "../mycourses-board/chimie2.html",
   math1: "../mycourses-board/math1.html",
