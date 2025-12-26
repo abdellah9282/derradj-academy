@@ -54,22 +54,10 @@ async function enforceLatestSession() {
   }
 }
 // تشغيل فوري
-// ================================
-// SESSION GUARD (SAFE VERSION)
-// ================================
+enforceLatestSession();
 
-if (
-  localStorage.getItem("userContact") &&
-  !location.pathname.includes("/login")
-) {
-  enforceLatestSession();
-
-  setInterval(() => {
-    if (!document.hidden) {
-      enforceLatestSession();
-    }
-  }, 30000);
-}
+// فحص دوري (يطرد الجلسة القديمة خلال ثواني)
+setInterval(enforceLatestSession, 8000);
 
 // UUID
 function uuid() {
