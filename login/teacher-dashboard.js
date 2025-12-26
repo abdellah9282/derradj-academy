@@ -75,7 +75,9 @@ const subjectPrices = {
   'chimie1': 1300,
   'math2' : 1300,
   'bundle_first_year': 5000,
-  'physique2': 1300
+  'physique2': 1300,
+  'les_quadripoles': 1000,
+  'machine_electrique': 1200
 };
 
 // ✅ جلب مواد الأستاذ
