@@ -17,6 +17,8 @@ function formatSubjectName(code) {
 'math3_sami_braci': 'Math 3 – Analyse 3 (Sami Braci)',
 'math3_analyse3': 'Math 3 – Analyse 3',
 
+    'les_quadripoles': 'Les Quadripôles',
+    'machine_electrique': 'Machine Électrique',
     'ondes_et_vibrations': 'Ondes et Vibrations',
     'electronique_fondamentale1': 'Électronique Fondamentale 1',
     'electrotechnique_fondamentale1': 'Électrotechnique Fondamentale 1',
