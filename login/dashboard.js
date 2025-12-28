@@ -103,6 +103,15 @@ export async function loginAndClaimSession(contact, fullName) {
 }
 
 const allCourses = {
+
+  etat_de_lart: {
+  title: "État de l’art",
+  instructor: "Ameziane Sadek",
+  price: 800,
+  image: "../Thumbnail/etat_de_lart/1.png"
+},
+
+
   math3_sami_braci: {
   title: "Math 3 – Analyse 3",
   instructor: "Sami Braci",
@@ -188,6 +197,9 @@ math3_analyse3: {
 
 // روابط الصفحات الخاصة بكل مادة
 const courseLinks = {
+etat_de_lart: "../mycourses-board/etat_de_lart.html",
+
+
   math3_analyse3: "../mycourses-board/math3_analyse3.html",
 machine_electrique: "../mycourses-board/machine_electrique.html",
 les_quadripoles: "../mycourses-board/les_quadripoles.html",
