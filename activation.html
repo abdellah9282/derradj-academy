@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تفعيل ChatGPT Plus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f766e, #14b8a6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    .form-container {
+      background: #ffffff;
+      width: 100%;
+      max-width: 420px;
+      padding: 28px 26px;
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #0f766e;
+      text-align: center;
+    }
+
+    .desc {
+      font-size: 14.5px;
+      color: #374151;
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #374151;
+    }
+
+    input {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 14.5px;
+      margin-bottom: 14px;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    input:focus {
+      border-color: #14b8a6;
+    }
+
+    .info-box {
+      background: #f0fdf4;
+      border: 1px dashed #34d399;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      color: #065f46;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #0f766e, #14b8a6);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(20,184,166,0.4);
+    }
+
+    .success {
+      display: none;
+      margin-top: 16px;
+      font-size: 14.5px;
+      color: #065f46;
+      background: #ecfdf5;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="form-container">
+    <h2>🚀 تفعيل ChatGPT Plus</h2>
+
+    <p class="desc">
+      يرجى إدخال معلوماتك بدقة، سيتم التفعيل على البريد الإلكتروني الذي تختاره.
+    </p>
+
+    <div class="info-box">
+      📧 التفعيل يتم على إيميلك الشخصي <br>
+      🧪 إمكانية التجربة قبل الدفع
+    </div>
+
+    <form id="activationForm">
+      <label>الاسم</label>
+      <input type="text" required>
+
+      <label>اللقب</label>
+      <input type="text" required>
+
+      <label>رقم الهاتف</label>
+      <input type="tel" required placeholder="مثال: 0550xxxxxx">
+
+      <label>البريد الإلكتروني (إيميل التفعيل)</label>
+      <input type="email" required placeholder="example@email.com">
+
+      <button type="submit">📩 إرسال طلب التفعيل</button>
+    </form>
+
+    <div id="successMsg" class="success">
+      ✅ تم إرسال معلوماتك بنجاح <br>
+      سيتم التواصل معك قريبًا لإتمام التفعيل
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("activationForm");
+    const successMsg = document.getElementById("successMsg");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      form.style.display = "none";
+      successMsg.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>

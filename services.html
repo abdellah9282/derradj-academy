@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>حجز حصة تعليمية مباشرة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- خط عربي احترافي -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #f4f7fb, #eef2f7);
+      color: #333;
+    }
+
+    .container {
+      max-width: 620px;
+      margin: auto;
+      background: #ffffff;
+      padding: 40px 35px;
+      border-radius: 18px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    /* ===== Header ===== */
+    .header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 26px;
+      color: #0d6efd;
+    }
+
+    .header p {
+      margin-top: 8px;
+      font-size: 15px;
+      color: #6c757d;
+    }
+
+    /* ===== Form ===== */
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 22px;
+      border-radius: 12px;
+      border: 1px solid #dcdcdc;
+      font-size: 14px;
+      transition: border 0.2s, box-shadow 0.2s;
+      background: #fff;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 3px rgba(13,110,253,0.15);
+    }
+
+    /* ===== Price Box ===== */
+    .price-box {
+      background: linear-gradient(135deg, #eef3ff, #f9fbff);
+      border: 1px solid #d6e4ff;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 26px;
+      text-align: center;
+    }
+
+    .price-box .amount {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0d6efd;
+    }
+
+    .price-box .duration {
+      font-size: 14px;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    /* ===== File Upload ===== */
+    .file-note {
+      font-size: 12px;
+      color: #6c757d;
+      margin-top: -14px;
+      margin-bottom: 22px;
+    }
+
+    /* ===== Button ===== */
+    button {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #0d6efd, #0a58ca);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(13,110,253,0.35);
+    }
+
+    /* ===== Payment Info ===== */
+    .payment-info {
+      margin-top: 35px;
+      padding: 22px;
+      background: #f8f9fa;
+      border-radius: 14px;
+      font-size: 14px;
+    }
+
+    .payment-info h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .payment-info ul {
+      padding-right: 20px;
+      margin: 0;
+    }
+
+    .payment-info li {
+      margin-bottom: 8px;
+    }
+
+    .payment-note {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <h1>📘 حجز حصة تعليمية مباشرة</h1>
+      <p>شرح مخصص • تطبيق عملي • تواصل مباشر</p>
+    </div>
+
+    <form>
+
+      <label>الاسم الكامل</label>
+      <input type="text" placeholder="مثال: محمد بن أحمد" required>
+
+      <label>رقم الهاتف</label>
+      <input type="tel" placeholder="05xxxxxxxx" required>
+
+      <label>اختر الخدمة</label>
+      <select required>
+        <option value="">— اختر الخدمة —</option>
+        <option>Diviseur de courant</option>
+        <option>Diviseur de tension</option>
+        <option>Calcul de courant</option>
+        <option>Calcul d'impédance</option>
+        <option>Système triphasé</option>
+        <option>Résumé Electrotechnique Fondamentale 1</option>
+        <option>Exercices sur la puissance (active, réactive, apparente)</option>
+      </select>
+
+      <div class="price-box">
+        <div class="amount">500 دج</div>
+        <div class="duration">حصة مدتها ساعة كاملة</div>
+      </div>
+
+      <label>إثبات الدفع (صورة الوصل)</label>
+      <input type="file" accept="image/*" required>
+      <div class="file-note">يرجى رفع صورة واضحة للوصل</div>
+
+      <button type="submit">إرسال طلب الحجز</button>
+    </form>
+
+    <div class="payment-info">
+      <h3>💳 كيفية إرسال المبلغ</h3>
+      <ul>
+        <li>📱 الدفع عبر BaridiMob / CCP</li>
+        <li>🏦 تحويل بريدي أو بنكي</li>
+      </ul>
+      <div class="payment-note">
+        بعد إتمام الدفع، يرجى رفع صورة الوصل ثم إرسال الطلب.
+        سيتم التواصل معك لتأكيد موعد الحصة.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

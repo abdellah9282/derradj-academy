@@ -3070,3 +3070,120 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
     font-size: 1.4rem;
   }
 }
+  .live-dot {
+    width: 14px;
+    height: 14px;
+    background: #ff2d2d;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 rgba(255,45,45,0.7);
+    animation: livePulse 1.2s infinite;
+  }
+
+  @keyframes livePulse {
+    0% {
+      transform: scale(0.9);
+      box-shadow: 0 0 0 0 rgba(255,45,45,0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 8px rgba(255,45,45,0);
+    }
+    100% {
+      transform: scale(0.9);
+      box-shadow: 0 0 0 0 rgba(255,45,45,0);
+    }
+  }
+/* تحسين العرض في الهاتف */
+@media (max-width: 600px) {
+
+  .promo-banner {
+    padding: 1.6rem 1.2rem !important;
+    border-radius: 16px;
+  }
+
+  .promo-banner h2 {
+    font-size: 1.45rem !important;
+    line-height: 1.4;
+    flex-direction: column; /* 🔹 العنوان + النقطة تحت بعض */
+    gap: 6px;
+  }
+
+  .live-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .promo-banner p {
+    font-size: 0.95rem !important;
+    line-height: 1.75;
+  }
+
+  .promo-banner a {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 20px !important;
+    font-size: 1rem !important;
+  }
+
+  .promo-banner span {
+    font-size: 0.9rem !important;
+  }
+}
+/* ===== Scoped Live Badge (Courses Only) ===== */
+
+/* غلاف الصورة داخل كرت الكورس فقط */
+.course-card .course-img-wrapper {
+  position: relative;
+}
+
+/* شارة البث */
+.course-card .live-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 3;
+  backdrop-filter: blur(4px);
+}
+
+/* النقطة الوامضة */
+.course-card .live-dot {
+  width: 9px;
+  height: 9px;
+  background: #ff2d2d;
+  border-radius: 50%;
+  animation: livePulse 1.2s infinite;
+}
+
+/* حركة الوميض */
+@keyframes livePulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+}
+
+/* تحسين للهاتف */
+@media (max-width: 600px) {
+  .course-card .live-badge {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+  }
+}

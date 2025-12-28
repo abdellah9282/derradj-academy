@@ -2698,7 +2698,7 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
 }
 /* باقة السنة الأولى */
 #bundle-section .bundle-card:nth-child(1)::after {
-  content: "خصم %21";
+  content: "خصم %48";
 }
 
 /* باقة المواد العلمية المميزة */
@@ -2965,4 +2965,108 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
   border-bottom: 1px solid #f5c542; /* حد ذهبي أوضح */
   font-weight: 500;
   direction: rtl;
+}
+ .course-section {
+    background: #faf7ff;
+    padding: 25px 20px;
+    border-radius: 14px;
+    margin: 40px 0;
+    border: 1px solid #e8ddff;
+  }
+
+  .category-title {
+    margin-bottom: 20px;
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: #4c2ec7;
+    text-align: right;
+  }
+
+  .course-scroll-container {
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .course-cards {
+    display: flex;
+    gap: 20px;
+  }
+
+  .category-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  background: linear-gradient(to right, #eef0ff, #f9f7ff);
+  padding: 14px 22px;
+  border-radius: 14px;
+
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #2b2165;
+
+  border: 1px solid #dad4ff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+
+  margin: 35px 0 25px;
+  width: fit-content;
+
+  direction: rtl;
+}
+
+.category-title::before {
+  content: "📘";   /* ← لكل سنة نغير الإيموجي فقط */
+  font-size: 1.8rem;
+}
+.category-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  background: #f4f2ff;
+  padding: 12px 20px;
+  border-radius: 12px;
+
+  font-size: 1.45rem;          /* ⬅ أصغر وأجمل */
+  font-weight: 500;             /* ⬅ خفيف وأنيق بدل Bold */
+  color: #2d2670;
+
+  border: 1px solid #ddd7ff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+
+  margin: 35px 0 25px;
+  width: fit-content;
+  direction: rtl;
+}
+
+.category-title::before {
+  content: "📘";
+  font-size: 1.4rem;
+}
+@media (max-width: 480px) {
+  #top-update-banner {
+    flex-direction: column-reverse !important; /* 🔥 يعالج عكس الترتيب */
+    text-align: center;
+    gap: 8px;
+    padding: 15px 10px;
+    font-size: 0.92rem;
+  }
+
+  #top-update-banner a {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+  }
+
+  #top-update-banner span {
+    display: block;
+    line-height: 1.5;
+  }
+
+  #close-banner {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 1.4rem;
+  }
 }
