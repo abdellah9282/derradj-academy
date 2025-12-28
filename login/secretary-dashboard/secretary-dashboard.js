@@ -9,6 +9,17 @@ const SUPABASE_ANON_KEY =
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+function getCalledStudents() {
+  return JSON.parse(localStorage.getItem('called_students') || '[]');
+}
+
+function saveCalledStudent(phone) {
+  const list = getCalledStudents();
+  if (!list.includes(phone)) {
+    list.push(phone);
+    localStorage.setItem('called_students', JSON.stringify(list));
+  }
+}
 
 /* -------------------------------------------------------------------------- */
 /* ✅ السماح فقط لرقم محدد بالدخول */
@@ -269,6 +280,152 @@ function showStatus(text, color = "black", timeout = 0) {
 function hideStatus() {
   statusMessage.style.display = "none";
 }
+/* -------------------------------------------------------------------------- */
+/* 📞 طلبة Machine Electrique و Math 3 (من جدول registrations) */
+/* -------------------------------------------------------------------------- */
+
+async function loadMachineAndMath3Students() {
+  const { data, error } = await supabase
+    .from('registrations')
+    .select('full_name, contact, modules, created_at')
+    .eq('is_approved', true)
+    .is('is_teacher', null)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('❌ خطأ في تحميل الطلبة:', error);
+    showStatus('❌ فشل تحميل طلبة المواد.', 'red', 3000);
+    return;
+  }
+
+  renderMachineAndMath3Students(data);
+}
+const calledSet = new Set(getCalledStudents());
+
+function renderMachineAndMath3Students(students) {
+  const tableBody = document.querySelector('#studentsTable tbody');
+  if (!tableBody) return;
+
+  tableBody.innerHTML = '';
+
+  let hasAny = false;
+
+  students.forEach(student => {
+    if (!student.modules) return;
+
+    // تجاهل أرقام النظام
+    if (student.contact && student.contact.startsWith('039333')) return;
+
+    let modules = [];
+    if (Array.isArray(student.modules)) {
+      modules = student.modules;
+    } else if (typeof student.modules === 'string') {
+      try {
+        modules = JSON.parse(student.modules);
+      } catch {
+        modules = student.modules.split(',');
+      }
+    }
+
+    const hasMachine = modules.includes('machine_electrique');
+    const hasMath3 =
+      modules.includes('math3_analyse3') ||
+      modules.includes('math3_sami_braci') ||
+      modules.includes('math_3');
+
+    if (!hasMachine && !hasMath3) return;
+
+    hasAny = true;
+
+    const moduleNames = [];
+    if (hasMachine) moduleNames.push('Machine Électrique');
+    if (hasMath3) moduleNames.push('Math 3');
+
+    const tr = document.createElement('tr');
+ tr.innerHTML = `
+  <td class="student-name">${student.full_name || 'غير معروف'}</td>
+  <td class="student-phone">${student.contact || '-'}</td>
+  <td class="student-module">${moduleNames.join(' , ')}</td>
+  <td>
+    <button class="copyBtn" data-phone="${student.contact}" type="button">
+      📋 نسخ
+    </button>
+    <button class="callBtn" data-phone="${student.contact}" type="button">
+      📞 تم الاتصال
+    </button>
+  </td>
+`;
+
+/* ✅⭐ هنا الحل ⭐✅ */
+if (student.contact && calledSet.has(String(student.contact).trim())) {
+  tr.classList.add('called');
+
+  const callBtn = tr.querySelector('.callBtn');
+  if (callBtn) {
+    callBtn.textContent = '✅ تم الاتصال';
+    callBtn.disabled = true;
+  }
+}
+
+tableBody.appendChild(tr);
+
+  });
+
+  if (!hasAny) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="4" style="text-align:center;color:#777;">
+          لا يوجد طلبة مسجلين في Machine Électrique أو Math 3
+        </td>
+      </tr>
+    `;
+  }
+
+  // زر النسخ
+  document.querySelectorAll('.copyBtn').forEach(btn => {
+    btn.onclick = () => {
+      navigator.clipboard.writeText(btn.dataset.phone);
+      showStatus('📞 تم نسخ رقم الهاتف', 'green', 1500);
+    };
+  });
+}
+let selectedRow = null;
+let selectedPhone = null;
+
+document.addEventListener('click', (e) => {
+  if (!e.target.classList.contains('callBtn')) return;
+
+  selectedRow = e.target.closest('tr');
+  selectedPhone = selectedRow.querySelector('.student-phone')?.textContent;
+
+  document.getElementById('callModal').style.display = 'flex';
+});
+
+document.getElementById('confirmCall').onclick = () => {
+  if (!selectedRow || !selectedPhone) return;
+
+  saveCalledStudent(selectedPhone);
+
+  selectedRow.style.opacity = '0.4';
+  selectedRow.style.textDecoration = 'line-through';
+
+  const btn = selectedRow.querySelector('.callBtn');
+  if (btn) {
+    btn.textContent = '✅ تم الاتصال';
+    btn.disabled = true;
+  }
+
+  closeModal();
+};
+
+document.getElementById('cancelCall').onclick = closeModal;
+
+function closeModal() {
+  document.getElementById('callModal').style.display = 'none';
+  selectedRow = null;
+  selectedPhone = null;
+}
+
 
 /* -------------------------------------------------------------------------- */
 /* 🚀 عند التحميل */
@@ -276,4 +433,6 @@ function hideStatus() {
 window.addEventListener("DOMContentLoaded", async () => {
   await loadMessages();
   await loadStats();
+ await loadMachineAndMath3Students(); // ✅ إضافة
+
 });
