@@ -857,17 +857,22 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
   const popup = document.getElementById("bundlePopup");
   if (!popup) return;
 
-  const STORAGE_KEY = "bundlePopupLastShown";
+  const STORAGE_KEY = "bundlePopupLastClosed";
   const HALF_DAY_MS = 12 * 60 * 60 * 1000; // 12 ساعة
   const isMobile = window.innerWidth <= 768;
   const DELAY = isMobile ? 3000 : 2000;
 
   function shouldShowPopup() {
-    const lastShown = localStorage.getItem(STORAGE_KEY);
-    if (!lastShown) return true;
+    try {
+      const lastClosed = localStorage.getItem(STORAGE_KEY);
+      if (!lastClosed) return true;
 
-    const now = Date.now();
-    return now - Number(lastShown) >= HALF_DAY_MS;
+      const now = Date.now();
+      return now - parseInt(lastClosed, 10) >= HALF_DAY_MS;
+    } catch (e) {
+      // في حالة المتصفحات التي تمنع localStorage
+      return true;
+    }
   }
 
   function showBundlePopup() {
@@ -875,15 +880,18 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
 
     popup.style.display = "flex";
     popup.setAttribute("aria-hidden", "false");
-    localStorage.setItem(STORAGE_KEY, Date.now().toString());
   }
 
   window.closeBundlePopup = function () {
     popup.style.display = "none";
     popup.setAttribute("aria-hidden", "true");
+
+    try {
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
+    } catch (e) {}
   };
 
-  // ⏳ العرض عند الدخول فقط
+  // ⏳ يظهر عند الدخول فقط
   window.addEventListener("load", () => {
     setTimeout(showBundlePopup, DELAY);
   });
@@ -901,9 +909,9 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
       window.closeBundlePopup();
     }
   });
-
 })();
 </script>
+
 
 
 
