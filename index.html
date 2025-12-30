@@ -857,21 +857,16 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
   const popup = document.getElementById("bundlePopup");
   if (!popup) return;
 
-  const STORAGE_KEY = "bundlePopupLastClosed";
-  const HALF_DAY_MS = 12 * 60 * 60 * 1000; // 12 ساعة
+  const STORAGE_KEY = "bundlePopupShownOnce";
   const isMobile = window.innerWidth <= 768;
   const DELAY = isMobile ? 3000 : 2000;
 
   function shouldShowPopup() {
     try {
-      const lastClosed = localStorage.getItem(STORAGE_KEY);
-      if (!lastClosed) return true;
-
-      const now = Date.now();
-      return now - parseInt(lastClosed, 10) >= HALF_DAY_MS;
+      return !localStorage.getItem(STORAGE_KEY);
     } catch (e) {
-      // في حالة المتصفحات التي تمنع localStorage
-      return true;
+      // في حالة منع localStorage نعرضه مرة واحدة في الجلسة
+      return !window.__popupShown;
     }
   }
 
@@ -880,18 +875,20 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
 
     popup.style.display = "flex";
     popup.setAttribute("aria-hidden", "false");
+
+    try {
+      localStorage.setItem(STORAGE_KEY, "true");
+    } catch (e) {
+      window.__popupShown = true;
+    }
   }
 
   window.closeBundlePopup = function () {
     popup.style.display = "none";
     popup.setAttribute("aria-hidden", "true");
-
-    try {
-      localStorage.setItem(STORAGE_KEY, Date.now().toString());
-    } catch (e) {}
   };
 
-  // ⏳ يظهر عند الدخول فقط
+  // ⏳ يظهر مرة واحدة فقط عند أول دخول
   window.addEventListener("load", () => {
     setTimeout(showBundlePopup, DELAY);
   });
