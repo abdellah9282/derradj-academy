@@ -580,5 +580,154 @@ const moduleName = "machine_electrique";
 </script>
 
 
+
+
+<!-- 🔴 Live Session Popup -->
+<div id="livePopup" class="live-popup" onclick="overlayClose(event)">
+  <div class="live-popup-box">
+
+    <!-- زر الإغلاق -->
+    <button class="popup-close" type="button" onclick="closeLivePopup(event)">×</button>
+
+    <h3>🔴 بث مباشر – Machine Électrique</h3>
+
+    <p class="popup-text">
+      بث مباشر تفاعلي مع
+      <strong>البروفيسور الجامعي أمزيان صادق</strong><br>
+      <strong>لحل امتحانات سابقة</strong>
+      والتحضير الجيد للامتحان
+    </p>
+
+    <p class="popup-details">
+      📅 الأحد 04 جانفي 2026<br>
+      ⏰ 13:30 → 15:30
+    </p>
+
+    <a
+      href="https://meet.google.com/XXXX-XXXX-XXX"
+      target="_blank"
+      class="popup-btn"
+      onclick="closeLivePopup(event)"
+    >
+      الذهاب إلى البث (Google Meet)
+    </a>
+
+  </div>
+</div>
+
+<style>
+.live-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.live-popup-box {
+  position: relative;
+  background: #ffffff;
+  color: #1f2937;
+  padding: 1.8rem 1.6rem;
+  border-radius: 14px;
+  max-width: 380px;
+  width: 90%;
+  text-align: center;
+  font-family: 'Cairo', sans-serif;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+  animation: fadeUp 0.4s ease;
+}
+
+.live-popup-box h3 {
+  color: #7c3aed;
+  margin-bottom: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.popup-text {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin-bottom: 0.9rem;
+}
+
+.popup-details {
+  font-size: 0.95rem;
+  background: #f5f3ff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.popup-btn {
+  display: inline-block;
+  background: #7c3aed;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.popup-btn:hover {
+  background: #6d28d9;
+}
+
+.popup-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.popup-close:hover {
+  color: #111827;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("livePopup");
+
+  // يظهر مرة واحدة فقط في كل Session
+  if (!sessionStorage.getItem("livePopupSeen_machine")) {
+    popup.style.display = "flex";
+  }
+});
+
+function closeLivePopup(e) {
+  if (e) e.stopPropagation();
+  const popup = document.getElementById("livePopup");
+  popup.style.display = "none";
+  sessionStorage.setItem("livePopupSeen_machine", "true");
+}
+
+// إغلاق عند الضغط خارج البطاقة
+function overlayClose(e) {
+  if (e.target.id === "livePopup") {
+    closeLivePopup();
+  }
+}
+</script>
+
 </body>
 </html>
