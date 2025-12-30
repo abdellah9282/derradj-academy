@@ -821,6 +821,77 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
 
 
 -->
+<!-- 🔥 POP UP عرض تخفيض باقة السنة الثانية -->
+<div id="bundlePopup" class="bundle-popup-overlay">
+  <div class="bundle-popup-card">
+
+    <!-- زر الإغلاق -->
+    <button class="bundle-popup-close" onclick="closeBundlePopup()">×</button>
+
+    <h2>🎉 عرض خاص لفترة محدودة</h2>
+
+    <p class="bundle-popup-text">
+      باقة <strong>السنة الثانية جامعي</strong><br>
+      متوفرة الآن بسعر مخفّض
+    </p>
+
+    <div class="bundle-popup-price">
+<span class="old"><span class="cur">دج</span><span class="num">7700</span></span>
+<span class="new"><span class="cur">دج</span><span class="num">3990</span></span>
+
+    </div>
+
+    <p class="bundle-popup-note">
+      ⏰ العرض ساري لفترة الامتحانات فقط
+    </p>
+
+    <a href="#bundle-section" class="bundle-popup-btn" onclick="closeBundlePopup()">
+      🔥 مشاهدة تفاصيل الباقة
+    </a>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  const popup = document.getElementById("bundlePopup");
+  if (!popup) return;
+
+  const isMobile = window.innerWidth <= 768;
+  const DELAY = isMobile ? 3000 : 2000; // ⏱ تأخير ذكي
+
+  function showBundlePopup() {
+    popup.style.display = "flex";
+    popup.setAttribute("aria-hidden", "false");
+  }
+
+  window.closeBundlePopup = function () {
+    popup.style.display = "none";
+    popup.setAttribute("aria-hidden", "true");
+  };
+
+  // ⏳ يظهر في كل زيارة بعد التحميل
+  window.addEventListener("load", () => {
+    setTimeout(showBundlePopup, DELAY);
+  });
+
+  // ⌨️ إغلاق بزر ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      window.closeBundlePopup();
+    }
+  });
+
+  // 🖱 إغلاق عند الضغط خارج البطاقة
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      window.closeBundlePopup();
+    }
+  });
+})();
+</script>
+
+
 
 <div class="promo-banner" style="
   background: linear-gradient(135deg,#4f46e5,#7c3aed);
@@ -1457,7 +1528,7 @@ window.addEventListener("load", () => {
 
   <div class="bundle-price">
     <span class="old-price">دج 7700</span>
-    <span class="new-price">3999 دج فقط</span>
+    <span class="new-price">3990 دج فقط</span>
   </div>
 
   <div class="bundle-discount">
@@ -1501,7 +1572,7 @@ window.addEventListener("load", () => {
       </button>
       <button
         class="pay-option"
-        onclick="window.open('http://pay.chargily.com/payment-links/01kdfnn2getfrkmk9qjp1v9rd1', '_blank')">
+        onclick="window.open('http://pay.chargily.com/payment-links/01kdqbvgjb222hnw76mgee5mg1', '_blank')">
         💳 البطاقة الذهبية
       </button>
       <button class="pay-option" onclick="window.open('payment/4000.pdf', '_blank')">

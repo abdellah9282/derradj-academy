@@ -3187,3 +3187,118 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
     padding: 5px 8px;
   }
 }
+.bundle-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 41, 59, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.bundle-popup-card {
+  background: #ffffff;
+  max-width: 420px;
+  width: 90%;
+  border-radius: 18px;
+  padding: 28px 22px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+  animation: popupScale 0.35s ease;
+}
+
+@keyframes popupScale {
+  from { transform: scale(0.85); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.bundle-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #64748b;
+}
+
+.bundle-popup-card h2 {
+  color: #4f46e5;
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+}
+
+.bundle-popup-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #1e293b;
+}
+
+.bundle-popup-price {
+  margin: 18px 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+}
+
+.bundle-popup-price .old {
+  text-decoration: line-through;
+  color: #9ca3af;
+  font-size: 1.1rem;
+}
+
+.bundle-popup-price .new {
+  background: linear-gradient(135deg,#4f46e5,#7c3aed);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.bundle-popup-note {
+  font-size: 0.95rem;
+  color: #92400e;
+  background: #fff7ed;
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.bundle-popup-btn {
+  display: inline-block;
+  background: #4f46e5;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.25s;
+}
+
+.bundle-popup-btn:hover {
+  background: #4338ca;
+}
+/* اجعل ترتيب العملة يسار الرقم حتى داخل RTL */
+.bundle-popup-price .old,
+.bundle-popup-price .new {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+/* ستايل العملة */
+.bundle-popup-price .cur {
+  font-weight: 800;
+}
+
+/* ستايل الرقم القديم مع الشطب */
+.bundle-popup-price .old .num {
+  text-decoration: line-through;
+}
