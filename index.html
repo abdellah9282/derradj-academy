@@ -857,12 +857,25 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
   const popup = document.getElementById("bundlePopup");
   if (!popup) return;
 
+  const STORAGE_KEY = "bundlePopupLastShown";
+  const HALF_DAY_MS = 12 * 60 * 60 * 1000; // 12 ساعة
   const isMobile = window.innerWidth <= 768;
-  const DELAY = isMobile ? 3000 : 2000; // ⏱ تأخير ذكي
+  const DELAY = isMobile ? 3000 : 2000;
+
+  function shouldShowPopup() {
+    const lastShown = localStorage.getItem(STORAGE_KEY);
+    if (!lastShown) return true;
+
+    const now = Date.now();
+    return now - Number(lastShown) >= HALF_DAY_MS;
+  }
 
   function showBundlePopup() {
+    if (!shouldShowPopup()) return;
+
     popup.style.display = "flex";
     popup.setAttribute("aria-hidden", "false");
+    localStorage.setItem(STORAGE_KEY, Date.now().toString());
   }
 
   window.closeBundlePopup = function () {
@@ -870,7 +883,7 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
     popup.setAttribute("aria-hidden", "true");
   };
 
-  // ⏳ يظهر في كل زيارة بعد التحميل
+  // ⏳ العرض عند الدخول فقط
   window.addEventListener("load", () => {
     setTimeout(showBundlePopup, DELAY);
   });
@@ -888,8 +901,10 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
       window.closeBundlePopup();
     }
   });
+
 })();
 </script>
+
 
 
 
