@@ -371,7 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 -->
 
- <!--
+
 
 <div class="promo-banner" style="
   background: linear-gradient(135deg,#4f46e5,#7c3aed);
@@ -565,7 +565,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
--->
+
 
 
 
@@ -821,225 +821,7 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
 
 
 -->
-<!-- 🔥 POP UP عرض تخفيض باقة السنة الثانية -->
-<div id="bundlePopup" class="bundle-popup-overlay">
-  <div class="bundle-popup-card">
 
-    <!-- زر الإغلاق -->
-    <button class="bundle-popup-close" onclick="closeBundlePopup()">×</button>
-
-    <h2>🎉 عرض خاص لفترة محدودة</h2>
-
-    <p class="bundle-popup-text">
-      باقة <strong>السنة الثانية جامعي</strong><br>
-      متوفرة الآن بسعر مخفّض
-    </p>
-
-    <div class="bundle-popup-price">
-<span class="old"><span class="cur">دج</span><span class="num">7700</span></span>
-<span class="new"><span class="cur">دج</span><span class="num">3990</span></span>
-
-    </div>
-
-    <p class="bundle-popup-note">
-      ⏰ العرض ساري لفترة الامتحانات فقط
-    </p>
-
-    <a href="#bundle-section" class="bundle-popup-btn" onclick="closeBundlePopup()">
-      🔥 مشاهدة تفاصيل الباقة
-    </a>
-
-  </div>
-</div>
-
-<script>
-(function () {
-  const popup = document.getElementById("bundlePopup");
-  if (!popup) return;
-
-  const STORAGE_KEY = "bundlePopupShownOnce";
-  const isMobile = window.innerWidth <= 768;
-  const DELAY = isMobile ? 3000 : 2000;
-
-  function shouldShowPopup() {
-    try {
-      return !localStorage.getItem(STORAGE_KEY);
-    } catch (e) {
-      // في حالة منع localStorage نعرضه مرة واحدة في الجلسة
-      return !window.__popupShown;
-    }
-  }
-
-  function showBundlePopup() {
-    if (!shouldShowPopup()) return;
-
-    popup.style.display = "flex";
-    popup.setAttribute("aria-hidden", "false");
-
-    try {
-      localStorage.setItem(STORAGE_KEY, "true");
-    } catch (e) {
-      window.__popupShown = true;
-    }
-  }
-
-  window.closeBundlePopup = function () {
-    popup.style.display = "none";
-    popup.setAttribute("aria-hidden", "true");
-  };
-
-  // ⏳ يظهر مرة واحدة فقط عند أول دخول
-  window.addEventListener("load", () => {
-    setTimeout(showBundlePopup, DELAY);
-  });
-
-  // ⌨️ إغلاق بزر ESC
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      window.closeBundlePopup();
-    }
-  });
-
-  // 🖱 إغلاق عند الضغط خارج البطاقة
-  popup.addEventListener("click", (e) => {
-    if (e.target === popup) {
-      window.closeBundlePopup();
-    }
-  });
-})();
-</script>
-
-
-
-
-
-<div class="promo-banner" style="
-  background: linear-gradient(135deg,#4f46e5,#7c3aed);
-  color: #fff;
-  text-align: center;
-  padding: 2rem 1.5rem;
-  border-radius: 18px;
-  box-shadow: 0 6px 22px rgba(79,70,229,0.3);
-  margin: 2rem auto;
-  max-width: 880px;
-  font-family: 'Cairo', sans-serif;
-  position: relative;
-  overflow: hidden;
-">
-
-  <!-- ديكور -->
-  <div style="
-    position:absolute;
-    top:-40px; right:-40px;
-    width:120px; height:120px;
-    background: rgba(255,255,255,0.08);
-    border-radius:50%;
-  "></div>
-  <div style="
-    position:absolute;
-    bottom:-50px; left:-50px;
-    width:140px; height:140px;
-    background: rgba(255,255,255,0.06);
-    border-radius:50%;
-  "></div>
-
-<h2 style="
-  font-size:2rem;
-  margin-bottom:0.6rem;
-  font-weight:800;
-  letter-spacing:0.5px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-">
-  بث مباشر للتحضير للامتحان
-  <span class="live-dot"></span>
-</h2>
-
-
-  <!-- الوصف -->
-  <p style="
-    font-size:1.1rem;
-    line-height:1.85;
-    max-width:740px;
-    margin:auto;
-    font-weight:500;
-  ">
-    سيتم تنظيم <strong>بث مباشر تفاعلي</strong> مخصص لـ
-    <strong>حل مواضيع امتحان سابقة</strong>
-    و<strong>التحضير المنهجي للامتحان</strong>
-    في مواد جامعية مختارة
-  </p>
-
-  <!-- البروفيسور -->
-  <p style="
-    margin-top: 1rem;
-    font-size: 1.05rem;
-    color: #fffae5;
-    font-weight: 700;
-    background: rgba(0,0,0,0.22);
-    display: inline-block;
-    padding: 8px 18px;
-    border-radius: 12px;
-  " dir="rtl">
-    👨‍🏫 بإشراف البروفيسور الجامعي
-    <span dir="ltr" style="color:#ffffff; font-weight:800;">
-      Ameziane&nbsp;Sadek
-    </span>
-  </p>
-
-  <!-- المواد -->
-  <p style="
-    margin-top: 1.2rem;
-    font-size: 1.05rem;
-    line-height: 2;
-  " dir="rtl">
-    📘 <strong dir="ltr">État de l’art</strong> — السبت 03/01/2026<br>
-    ⚙️ <strong dir="ltr">Machines électriques (Master)</strong> — الأحد 04/01/2026<br>
-    📐 <strong dir="ltr">Math 3 – Analyse 3</strong> — الاثنين 05/01/2026<br>
-    ⏰ من <strong>13:30</strong> إلى <strong>15:30</strong>
-  </p>
-
-  <!-- CTA -->
-  <div style="
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 18px;
-    margin-top: 1.4rem;
-    text-align: center;
-  ">
-    <a href="sign-up/sign-up.html"
-      style="
-        display: inline-block;
-        background: #ffffff;
-        color: #4f46e5;
-        font-weight: 800;
-        padding: 13px 34px;
-        border-radius: 14px;
-        text-decoration: none;
-        box-shadow: 0 6px 14px rgba(79,70,229,0.3);
-        font-size: 1.05rem;
-        letter-spacing: 0.3px;
-        transition: all 0.3s ease-in-out;
-      "
-      onmouseover="this.style.background='#ede9fe'; this.style.transform='translateY(-4px) scale(1.03)';"
-      onmouseout="this.style.background='#fff'; this.style.transform='translateY(0) scale(1)';">
-      اشترك الآن وابدأ التحضير 🎓
-    </a>
-
-    <span style="
-      font-size: 0.95rem;
-      color: #fffae5;
-      font-weight: 700;
-    ">
-      🔒 البث مخصص للمشتركين
-    </span>
-  </div>
-
-</div>
 
 
 <div class="categories-scroll-container"
@@ -1121,56 +903,15 @@ window.addEventListener("load", () => {
 </a>
 -->
 
-<!-- ★ Math 3 – Analyse 3 -->
-<a href="courses/math3_analyse3.html" style="text-decoration: none; color: inherit;">
-  <div class="course-card" data-course-id="math3_analyse3">
 
-    <!-- غلاف الصورة -->
-    <div class="course-img-wrapper">
-      <img src="Thumbnail/math3/02.jpg" alt="Math 3 – Analyse 3" class="course-img" />
-
-      <!-- Live badge -->
-      <div class="live-badge">
-        <span class="live-dot"></span>
-        بث مباشر يوم الاثنين 05/01/2026
-      </div>
-    </div>
-
-    <div class="course-content">
-      <h3 class="course-title">
-        Math 3 – Analyse 3
-      </h3>
-
-      <p class="instructor">Abdellah Derradj</p>
-
-      <div class="rating">
-        <span class="rating-value">...</span>
-        <span class="stars">★ ★ ★ ★ ★</span>
-        <span class="reviews">(....)</span>
-      </div>
-
-      <div class="price">1200 DA</div>
-    </div>
-  </div>
-</a>
 <!-- ★ Machine Électrique -->
 <a href="courses/machine_electrique.html" style="text-decoration: none; color: inherit;">
   <div class="course-card" data-course-id="machine_electrique">
-
-    <!-- غلاف الصورة -->
-    <div class="course-img-wrapper">
-      <img src="Thumbnail/machine_electrique/08.jpg" alt="Machine Électrique" class="course-img" />
-
-      <!-- Live badge -->
-      <div class="live-badge">
-        <span class="live-dot"></span>
-        بث مباشر يوم الأحد 04/01/2026
-      </div>
-    </div>
-
+    <img src="Thumbnail/machine_electrique/08.jpg" alt="Machine Électrique" class="course-img" />
     <div class="course-content">
       <h3 class="course-title">
         Machine Électrique
+        <span style="font-size:0.9em; color:#555;"></span>
       </h3>
 
       <p class="instructor">Abdellah Derradj</p>
@@ -1187,31 +928,17 @@ window.addEventListener("load", () => {
 </a>
 
 
-
-
-
-
-<!-- ★ État de l’art -->
-<a href="courses/etat_de_lart.html" style="text-decoration: none; color: inherit;">
-  <div class="course-card" data-course-id="etat_de_lart">
-
-    <!-- غلاف الصورة -->
-    <div class="course-img-wrapper">
-      <img src="Thumbnail/etat_de_lart/1.png" alt="État de l’art" class="course-img" />
-
-      <!-- Live badge -->
-      <div class="live-badge">
-        <span class="live-dot"></span>
-        بث مباشر يوم السبت 03/01/2026
-      </div>
-    </div>
-
+<!-- ★ Math 3 – Analyse 3 -->
+<a href="courses/math3_analyse3.html" style="text-decoration: none; color: inherit;">
+  <div class="course-card" data-course-id="math3_analyse3">
+    <img src="Thumbnail/math3/02.jpg" alt="Math 3 – Analyse 3" class="course-img" />
     <div class="course-content">
       <h3 class="course-title">
-        État de l’art
+        Math 3 – Analyse 3
+        <span style="font-size:0.9em; color:#555;"></span>
       </h3>
 
-      <p class="instructor">Ameziane Sadek</p>
+      <p class="instructor">Abdellah Derradj</p>
 
       <div class="rating">
         <span class="rating-value">...</span>
@@ -1219,10 +946,11 @@ window.addEventListener("load", () => {
         <span class="reviews">(....)</span>
       </div>
 
-      <div class="price">800 DA</div>
+      <div class="price">1200 DA</div>
     </div>
   </div>
 </a>
+
 
 
 <!-- ★ Ondes Et Vibrations -->
@@ -1548,7 +1276,7 @@ window.addEventListener("load", () => {
 
   <div class="bundle-price">
     <span class="old-price">دج 7700</span>
-    <span class="new-price">3990 دج فقط</span>
+    <span class="new-price">3999 دج فقط</span>
   </div>
 
   <div class="bundle-discount">
@@ -1592,7 +1320,7 @@ window.addEventListener("load", () => {
       </button>
       <button
         class="pay-option"
-        onclick="window.open('http://pay.chargily.com/payment-links/01kdqbvgjb222hnw76mgee5mg1', '_blank')">
+        onclick="window.open('http://pay.chargily.com/payment-links/01kdfnn2getfrkmk9qjp1v9rd1', '_blank')">
         💳 البطاقة الذهبية
       </button>
       <button class="pay-option" onclick="window.open('payment/4000.pdf', '_blank')">
