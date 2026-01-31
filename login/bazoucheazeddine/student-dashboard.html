@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Dashboard - Derradj Academy</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="student-dashboard.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="../../Logo.jpg" />
+
+  <!-- JS -->
+  <script type="module" src="student-dashboard.js" defer></script>
+
+  <style>
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .card h2 { margin-bottom: 14px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field label {
+      font-weight: 700;
+      color: #374151;
+      font-size: 0.95rem;
+    }
+    .field input, .field select {
+      padding: 12px 12px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      outline: none;
+      font-size: 0.95rem;
+      background: #fff;
+    }
+    .actions-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .primaryBtn {
+      background: #4f46e5;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(79,70,229,0.25);
+    }
+    .primaryBtn:hover { background: #4338ca; transform: scale(1.02); }
+
+    .muted {
+      color: #6b7280;
+      font-size: 0.9rem;
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    /* Badge status */
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    .badge.pending { background:#e0f2fe; color:#075985; }
+    .badge.approved { background:#dcfce7; color:#166534; }
+    .badge.rejected { background:#fee2e2; color:#991b1b; }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ✅ Header -->
+  <header class="main-header">
+    <div class="logo">Derradj <span class="purple">Academy</span></div>
+
+    <!-- 💰 أرباح الطالب (Approved فقط) -->
+    <div class="header-earnings" title="الأرباح تُحسب فقط بعد الموافقة">
+      <span class="icon">💰</span>
+      <span id="totalEarnings" class="value">0 دج</span>
+      <span class="label">أرباحي (بعد الموافقة)</span>
+    </div>
+
+    <button class="logout-btn" id="logoutBtn">تسجيل الخروج</button>
+  </header>
+
+  <main class="dashboard">
+
+    <!-- ✅ بطاقة إضافة طالب -->
+    <section class="card">
+      <h2>➕ إضافة طالب (زبون)</h2>
+
+      <form id="addClientForm">
+        <div class="grid">
+          <div class="field">
+            <label for="clientName">اسم الطالب</label>
+            <input id="clientName" name="clientName" type="text" placeholder="مثال: محمد" required />
+          </div>
+
+          <div class="field">
+            <label for="clientPhone">رقم الهاتف</label>
+            <input id="clientPhone" name="clientPhone" type="tel" placeholder="0555....." required />
+          </div>
+
+          <!-- ✅ اختيار المادة فقط -->
+          <div class="field">
+            <label for="courseKey">المادة</label>
+            <select id="courseKey" name="courseKey" required>
+              <option value="" selected disabled>اختر المادة</option>
+
+              <optgroup label="📦 الباقات">
+                <option value="bundle_second_year">(4990 DA) باقة السنة الثانية – 6 مواد</option>
+                <option value="bundle_third_year">(3500 DA) باقة السنة الثالثة – 4 مواد</option>
+              </optgroup>
+
+              <optgroup label="📚 المواد">
+                <option value="math3_analyse3">(1200 DA) Math 3 – Analyse 3</option>
+                <option value="machine_electrique">(1200 DA) Machine Électrique</option>
+                <option value="ondes_et_vibrations">(1500 DA) Ondes et Vibrations</option>
+                <option value="electrotechnique_fondamentale1">(1500 DA) Électrotechnique Fondamentale 1</option>
+                <option value="electronique_fondamentale1">(1500 DA) Électronique Fondamentale 1</option>
+                <option value="les_quadripoles">(1000 DA) Les Quadripôles</option>
+                <option value="theorie_du_champ">(800 DA) Théorie du Champ Électromagnétique</option>
+                <option value="informatique01">(1000 DA) Informatique 1</option>
+                <option value="informatique02">(1000 DA) Informatique 2 (Pascal)</option>
+                <option value="informatique03">(1000 DA) Informatique 3 (MATLAB)</option>
+                <option value="electronique_de_puissance">(1500 DA) Électronique de Puissance (avancée)</option>
+                <option value="probabilite_et_statistique">(1000 DA) Probabilité et Statistique</option>
+                <option value="logique_combinatoire_et_sequentielle">(1000 DA) Logique Combinatoire et Séquentielle</option>
+                <option value="methodes_numeriques">(1200 DA) Méthodes Numériques L2+M1</option>
+                <option value="systeme_asservis">(1200 DA) Systèmes Asservis</option>
+                <option value="reseaux_electrique">(1200 DA) Réseaux Électriques</option>
+                <option value="theorie_du_signal">(800 DA) Théorie du Signal</option>
+              </optgroup>
+            </select>
+          </div>
+<div class="field">
+  <label for="commissionPreview">ربحك من هذه العملية</label>
+  <input
+    id="commissionPreview"
+    type="text"
+    readonly
+    value="اختر المادة لعرض الربح"
+    style="background:#f9fafb;font-weight:700;color:#16a34a;"
+  />
+</div>
+
+
+        <div class="actions-row">
+          <button type="submit" class="primaryBtn">📨 إرسال للمراجعة</button>
+          <button type="button" id="resetFormBtn">🧹 مسح</button>
+        </div>
+
+
+      </form>
+
+      <div id="statusMessage"></div>
+    </section>
+
+    <!-- ✅ جدول العمليات -->
+    <h2>👥 العمليات التي أرسلتها</h2>
+    <table id="clientsTable">
+      <thead>
+        <tr>
+          <th>اسم الطالب</th>
+          <th>الهاتف</th>
+          <th>المادة</th>
+          <th>الربح (محسوب)</th>
+          <th>التاريخ</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- ✅ آخر العمليات المقبولة (لإظهار الأرباح المؤكدة) -->
+    <section class="buyers">
+      <h2>📌 آخر الأرباح المؤكدة</h2>
+      <ul id="buyersList"></ul>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "../../index.html";
+    });
+
+    document.getElementById("resetFormBtn")?.addEventListener("click", () => {
+      document.getElementById("addClientForm")?.reset();
+    });
+  </script>
+</body>
+</html>

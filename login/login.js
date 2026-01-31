@@ -86,6 +86,26 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
 
+      // ⭐ 2️⃣ حساب الطالب المسوّق (بعد نجاح Auth فقط)
+if (contact === "agent01" || contact === "0562932040") {
+  const sessionId =
+    window.crypto?.randomUUID?.() ||
+    Date.now().toString() + Math.random().toString(36).substring(2);
+
+  const deviceId = window.crypto?.randomUUID?.() || "device-" + Date.now();
+
+  localStorage.setItem("sessionId", sessionId);
+  localStorage.setItem("deviceId", deviceId);
+  localStorage.setItem("userContact", contact);
+  localStorage.setItem("userRole", "student_agent");
+  localStorage.setItem("userToken", "ok");
+
+  loginButton.textContent = "✅ Welcome agent";
+  window.location.href = "bazoucheazeddine/student-dashboard.html";
+  return;
+}
+
+
       // ⭐ 2️⃣ حساب الأستاذ Bouzida (بعد نجاح Auth فقط)
 if (contact === "pr.bouzida") {
   const sessionId =
