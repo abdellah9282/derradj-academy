@@ -154,6 +154,10 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
   </div>
 
     <nav class="right-links">
+      <a href="https://derradjshop.com" target="_blank" class="nav-link shop-glow">
+  📚 متجر الكتب
+</a>
+
       <a href="#student-feedback" class="nav-link">💬 آراء الطلاب</a>
 
       <a href="#why-us" class="nav-link">حول المنصة</a>
@@ -371,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 -->
 
-
+ <!--
 
 <div class="promo-banner" style="
   background: linear-gradient(135deg,#4f46e5,#7c3aed);
@@ -405,64 +409,76 @@ document.addEventListener("DOMContentLoaded", () => {
      عرض باقة السنة الثانية جامعي
   </h2>
 
-  <p style="font-size:1.1rem; line-height:1.8; max-width:740px; margin:auto; font-weight:500;">
-    احصل على <strong>ست مواد أساسية</strong> في باقة واحدة مميزة
-      — <span style="color:#fffae5; font-weight:600;">الاشتراك سنوي حتى نهاية السنة الدراسية</span>
-    <br>
+<p style="font-size:1.1rem; line-height:1.8; max-width:740px; margin:auto; font-weight:500;">
+  احصل على <strong>ست مواد أساسية</strong> في باقة واحدة مميزة
+    — <span style="color:#fffae5; font-weight:600;">الاشتراك سنوي حتى نهاية السنة الدراسية</span>
+
+  <br>
     <strong>Ondes et Vibrations</strong> – <strong>Électronique Fondamentale 1</strong> –
     <strong>Électrotechnique Fondamentale 1</strong> – <strong>Probabilité et Statistique</strong> –
-    <strong>Informatique 3</strong> – <strong>Math 3 (Analyse 3)</strong>
-  </p>
-  <p style="
-    margin-top: 1rem;
-    font-size: 1rem;
-    color: #ffeb99;
-    font-weight: 700;
-    background: rgba(0,0,0,0.22);
-    display: inline-block;
-    padding: 8px 16px;
-    border-radius: 10px;
-  ">
-    ⏰ عرض خاص بفترة الامتحانات — صالح إلى غاية نهاية شهر جانفي
-    <br>💰 وفّر <span style="color:#ffffff;">3700 دج</span> مقارنة بالسعر الأصلي
-  </p>
-  <p class="price-box" style="
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    line-height: 1.9;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: nowrap;
-  ">
-    <span class="price-old" style="
-      color: #d9d9d9;
-      font-weight: 600;
-      background: rgba(255,255,255,0.08);
-      padding: 5px 14px;
-      border-radius: 8px;
-      display: inline-block;
-      box-shadow: 0 2px 6px rgba(255,255,255,0.05);
-    ">
-      قبل التخفيض
-      <span style="
-        text-decoration: line-through;
-        color: #d9d9d9;
-        margin: 0 4px;
-      ">
-        7700 دج
-      </span>
-    </span>
+    <strong>Informatique 3</strong>
+      -  <strong>Math 3 (Analyse 3)</strong>
 
-    <span class="price-label" style="
-      opacity: 0.9;
-      font-weight: 500;
-    ">
-      : السعر القديم
-    </span>
   </p>
+
+<p class="price-box" style="
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  line-height: 1.9;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+">
+  <span class="price-old" style="
+    color: #d9d9d9;
+    font-weight: 600;
+    background: rgba(255,255,255,0.08);
+    padding: 5px 14px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(255,255,255,0.05);
+  ">
+    قبل التخفيض
+    <span style="
+      text-decoration: line-through;
+      color: #d9d9d9;
+      margin: 0 4px;
+    ">
+      7700 دج
+    </span>
+  </span>
+
+  <span class="price-label" style="
+    opacity: 0.9;
+    font-weight: 500;
+  ">
+    : السعر القديم
+  </span>
+</p>
+
+<style>
+  @media (max-width: 600px) {
+    .price-box {
+      flex-direction: column; /* 🔹 في الهاتف فقط تصبح عمودية */
+      gap: 4px;
+    }
+
+    .price-label {
+      order: 1; /* 🔹 السعر القديم أولاً */
+      color: #fffae5;
+      font-size: 1.05rem;
+    }
+
+    .price-old {
+      order: 2; /* 🔹 السعر قبل التخفيض تحته */
+      font-size: 1.05rem;
+    }
+  }
+</style>
+
 
   <div style="
     display: flex;
@@ -473,6 +489,7 @@ document.addEventListener("DOMContentLoaded", () => {
     margin-top: 1.2rem;
     text-align: center;
   ">
+
     <p style="
       font-size: 1.45rem;
       font-weight: 700;
@@ -483,7 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
       margin: 0;
       flex-shrink: 0;
     ">
-      الآن بـ <span style="font-size:1.6rem; color:#fffae5;">3999 دج فقط 🎉</span>
+      الآن بـ <span style="font-size:1.55rem; color:#fffae5;">4999 دج فقط 🎉</span>
     </p>
 
     <a href="#bundle-section"
@@ -507,36 +524,15 @@ document.addEventListener("DOMContentLoaded", () => {
     </a>
   </div>
 
-
-</div>
-
-
-<style>
-  @media (max-width: 600px) {
-    .price-box {
-      flex-direction: column; /* 🔹 في الهاتف فقط تصبح عمودية */
-      gap: 4px;
-    }
-
-    .price-label {
-      order: 1; /* 🔹 السعر القديم أولاً */
-      color: #fffae5;
-      font-size: 1.05rem;
-    }
-
-    .price-old {
-      order: 2; /* 🔹 السعر قبل التخفيض تحته */
-      font-size: 1.05rem;
-    }
-  }
-</style>
-
-
-
-
-
-
-
+  <p style="
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #ffeb99;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-shadow: 0 0 4px rgba(0,0,0,0.25);
+  ">
+  </p>
 
 </div>
 
@@ -1261,78 +1257,43 @@ window.addEventListener("load", () => {
 
 
 
-   <!-- 🎓 بطاقة الباقة -->
-<div class="bundle-card">
-  <h3>باقة المواد العلمية المميزة</h3>
-
-  <ul class="bundle-courses" style="text-align: left; direction: ltr; padding-left: 0;">
-    <li>🎓 Math 3 – Analyse 3</li>
-    <li>🎓 Ondes et Vibrations</li>
-    <li>🎓 Electronique Fondamentale 1</li>
-    <li>🎓 Electrotechnique Fondamentale 1</li>
-    <li>🎓 Probabilité et Statistique</li>
-    <li>🎓 Informatique 3</li>
-  </ul>
-
-  <div class="bundle-price">
-    <span class="old-price">دج 7700</span>
-    <span class="new-price">3999 دج فقط</span>
-  </div>
-
-  <div class="bundle-discount">
-    وفر <strong>3700 دج (48%)</strong>
-  </div>
-
-  <p style="
-    margin: 0.6rem 0 0.8rem;
-    font-size: 0.95rem;
-    color: #92400e;
-    background: #fff7ed;
-    border-radius: 8px;
-    padding: 6px 10px;
-    font-weight: 600;
-    text-align: center;
-  ">
-    ⏰ عرض خاص بفترة الامتحانات — صالح إلى غاية نهاية شهر جانفي
-  </p>
-
-  <ul class="bundle-benefits">
-    <li>✔️ دروس فيديو لكل مادة</li>
-    <li>✔️ دعم مباشر من الأستاذ</li>
-    <li>✔️ بث مباشر عند الطلب</li>
-    <li>✔️ دخول لجميع الدروس والاختبارات</li>
-  </ul>
-
-  <div class="payment-options">
-    <h4 style="text-align:center;">
-      طرق الدفع
-      <span
-        style="font-size: 0.9em; color: #6b7280; font-weight: 500; margin-right: 6px; cursor: pointer;"
-        onmouseover="this.style.color='#4f46e5';"
-        onmouseout="this.style.color='#6b7280';">
-        (اضغط للمعاينة 👇)
-      </span>
-    </h4>
-
-    <div class="payment-methods">
-      <button class="pay-option" onclick="window.open('payment/4000BARIDI.pdf', '_blank')">
-        📱 بريدي موب
-      </button>
-      <button
-        class="pay-option"
-        onclick="window.open('http://pay.chargily.com/payment-links/01kdfnn2getfrkmk9qjp1v9rd1', '_blank')">
-        💳 البطاقة الذهبية
-      </button>
-      <button class="pay-option" onclick="window.open('payment/4000.pdf', '_blank')">
-        📮 بريد الجزائر
-      </button>
+    <!-- 🎓 بطاقة الباقة -->
+    <div class="bundle-card">
+      <h3>باقة المواد العلمية المميزة</h3>
+      <ul class="bundle-courses" style="text-align: left; direction: ltr; padding-left: 0;">
+        <li>🎓 Math 3 – Analyse 3</li>
+        <li>🎓 Ondes et Vibrations</li>
+        <li>🎓 Electronique Fondamentale 1</li>
+        <li>🎓 Electrotechnique Fondamentale 1</li>
+        <li>🎓 Probabilité et Statistique</li>
+        <li>🎓 Informatique 3</li>
+      </ul>
+      <div class="bundle-price">
+        <span class="old-price"> دج 7700 </span>
+        <span class="new-price">4999 دج فقط</span>
+      </div>
+      <div class="bundle-discount">وفر <strong>2700 دج (35%)</strong></div>
+      <ul class="bundle-benefits">
+        <li>✔️ دروس فيديو لكل مادة</li>
+        <li>✔️ دعم مباشر من الأستاذ</li>
+        <li>✔️ بث مباشر عند الطلب</li>
+        <li>✔️ دخول لجميع الدروس والاختبارات</li>
+      </ul>
+      <div class="payment-options">
+        <h4 style="text-align:center;">طرق الدفع
+          <span style="font-size: 0.9em; color: #6b7280; font-weight: 500; margin-right: 6px; cursor: pointer;"
+            onmouseover="this.style.color='#4f46e5';" onmouseout="this.style.color='#6b7280';">(اضغط للمعاينة 👇)</span>
+        </h4>
+        <div class="payment-methods">
+          <button class="pay-option" onclick="window.open('payment/5000.pdf', '_blank')">📱 بريدي موب</button>
+          <button class="pay-option"
+            onclick="window.open('http://pay.chargily.com/payment-links/01k6jwwyjvndyr4x2yvya8qs59', '_blank')">💳
+            البطاقة الذهبية</button>
+          <button class="pay-option" onclick="window.open('payment/5000ccp.pdf', '_blank')">📮 بريد الجزائر</button>
+        </div>
+      </div>
+      <a href="sign-up/sign-up.html" class="bundle-btn">اشترك في الباقة الآن</a>
     </div>
-  </div>
-
-  <a href="sign-up/sign-up.html" class="bundle-btn">
-    اشترك في الباقة الآن
-  </a>
-</div>
 
     <!-- 🎓 بطاقة السنة الثالثة -->
     <div class="bundle-card">
@@ -2304,6 +2265,71 @@ const installBtn = document.querySelector(".install-btn");
 </script>
 
 
+<!-- ✅ Derradj Shop Popup -->
+<div id="shopPopup" class="shop-popup" aria-hidden="true">
+  <div class="shop-popup__backdrop" data-close="1"></div>
+
+  <div class="shop-popup__card" role="dialog" aria-modal="true" aria-labelledby="shopPopupTitle">
+    <button class="shop-popup__close" type="button" aria-label="إغلاق" data-close="1">×</button>
+
+    <div class="shop-popup__top">
+      <h3 id="shopPopupTitle" class="shop-popup__title">📚 Derradj Shop</h3>
+    </div>
+
+    <p class="shop-popup__text">
+      إذا تحب القراءة أو تبحث عن كتاب مفيد… ستجد في <b>Derradj Shop</b> كتبًا مختارة بعناية.
+      تصفّح سريعًا، واختر ما يناسبك بسهولة.
+    </p>
+
+    <div class="shop-popup__actions">
+      <a class="shop-popup__btn" href="https://derradjshop.com" target="_blank" rel="noopener">
+        زيارة المتجر
+      </a>
+      <button class="shop-popup__later" type="button" data-close="1">لاحقًا</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const popup = document.getElementById("shopPopup");
+    if (!popup) return;
+
+    // ✅ يظهر مرة واحدة في كل "دخول/جلسة"
+    // عند إغلاقه -> لا يظهر حتى دخول جديد (جلسة جديدة)
+    const KEY = "derradjshop_popup_dismissed_session";
+
+    function openPopup() {
+      popup.classList.add("is-open");
+      popup.setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll");
+    }
+
+    function closePopup() {
+      popup.classList.remove("is-open");
+      popup.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("no-scroll");
+      sessionStorage.setItem(KEY, "1");
+    }
+
+    // ✅ إظهار عند أول دخول فقط (إذا لم يُغلق في نفس الجلسة)
+    if (!sessionStorage.getItem(KEY)) {
+      // بدون تأخير (كما طلبت: في أول دخول)
+      openPopup();
+    }
+
+    // إغلاق عند الضغط على الخلفية أو زر X أو "لاحقًا"
+    popup.addEventListener("click", (e) => {
+      const t = e.target;
+      if (t && t.getAttribute && t.getAttribute("data-close") === "1") closePopup();
+    });
+
+    // إغلاق بزر ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && popup.classList.contains("is-open")) closePopup();
+    });
+  })();
+</script>
 
 </body>
 </html>
