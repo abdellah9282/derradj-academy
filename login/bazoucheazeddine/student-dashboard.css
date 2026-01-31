@@ -575,3 +575,56 @@ button {
     font-size: 1.1rem;
   }
 }
+/* ✅ Fix: force smaller inputs on mobile (override inline <style> in HTML) */
+@media (max-width: 768px) {
+  .card .grid .field input,
+  .card .grid .field select {
+    padding: 7px 10px !important;
+    font-size: 0.88rem !important;
+    min-height: 34px !important;
+    height: 34px !important;
+    line-height: 1.2 !important;
+  }
+
+  .card .grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .actions-row button {
+    padding: 9px 12px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .card .grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* ✅ Mobile form fix (after HTML grid closing) */
+@media (max-width: 600px) {
+  body { padding: 10px !important; }
+
+  .card { padding: 12px !important; }
+
+  /* فورم عمود واحد في الهاتف */
+  .card .grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .card .field input,
+  .card .field select {
+    width: 100% !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    padding: 8px 10px !important;
+    font-size: 0.92rem !important;
+  }
+
+  .actions-row button {
+    width: 100% !important;
+    height: 42px !important;
+    padding: 9px 12px !important;
+  }
+}
