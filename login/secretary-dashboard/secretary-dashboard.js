@@ -165,8 +165,10 @@ async function loadStats() {
 // 🟧 إضافة المبلغ اليدوي
 personEarnings += row.extra_amount || 0;
 
-      if (personEarnings > 0) {
-        totalEarnings += personEarnings;
+   totalEarnings += personEarnings;
+
+if (personEarnings !== 0) {
+
 buyersData.push({
   name: row.name || "بدون اسم",
   email: row.email || "غير متوفر",
@@ -219,7 +221,10 @@ buyersData.forEach((buyer) => {
   li.innerHTML = `
     <strong>${buyer.name}</strong>
     <span style="color:#2563eb;"> - ${buyer.email}</span>
-    <span style="float:right; color:#16a34a;">+${buyer.amount} دج</span>
+<span style="float:right;
+color:${buyer.amount < 0 ? '#dc2626' : '#16a34a'};">
+${buyer.amount > 0 ? '+' : ''}${buyer.amount} دج
+</span>
     <div style="font-size:12px; color:#555; margin-top:4px;">🕒 ${formattedDate}</div>
   `;
   buyersList.appendChild(li);
