@@ -141,7 +141,7 @@
 
 
   <label>
-<input type="checkbox" name="courses[]" value="bundle_second_year" data-price="4990">(4990 DA) باقة السنة الثانية – 6 مواد   </label>
+<input type="checkbox" name="courses[]" value="bundle_second_year" data-price="4990">(4990 DA) باقة السنة الثانية – 9 مواد   </label>
 
 <label>
   <input type="checkbox" name="courses[]" value="bundle_third_year" data-price="3500">
@@ -373,7 +373,10 @@ if (document.querySelector('input[value="bundle_second_year"]').checked) {
     'electronique_fondamentale1',
     'informatique03',
     'probabilite_et_statistique',
-    'math3_analyse3'
+    'math3_analyse3',
+    'logique_combinatoire_et_sequentielle',
+    'methodes_numeriques',
+    'theorie_du_signal'
   );
 }
 
@@ -550,7 +553,10 @@ const secondYearMaterials = [
   'electronique_fondamentale1',
   'informatique03',
   'probabilite_et_statistique',
-  'math3_analyse3'
+  'math3_analyse3',
+  'logique_combinatoire_et_sequentielle',
+  'methodes_numeriques',
+  'theorie_du_signal'
 ];
 
     const thirdYearMaterials = [
@@ -621,13 +627,17 @@ checkboxes.forEach(cb => {
         });
       }
       if (value === 'bundle_second_year' && !cb.checked) {
-        const bundleMaterials = [
-          'ondes_et_vibrations',
-          'electrotechnique_fondamentale1',
-          'electronique_fondamentale1',
-          'informatique03',
-          'probabilite_et_statistique'
-        ];
+const bundleMaterials = [
+  'ondes_et_vibrations',
+  'electrotechnique_fondamentale1',
+  'electronique_fondamentale1',
+  'informatique03',
+  'probabilite_et_statistique',
+  'math3_analyse3',
+  'logique_combinatoire_et_sequentielle',
+  'methodes_numeriques',
+  'theorie_du_signal'
+];
         bundleMaterials.forEach(mat => {
           const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
           if (matCb && matCb.checked) matCb.checked = false;
