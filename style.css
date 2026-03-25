@@ -2696,11 +2696,10 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
   box-shadow: 0 2px 6px rgba(22,163,74,0.18);
   letter-spacing: 0.3px;
 }
-/* باقة السنة الأولى */
+/* باقة السنة الثانية */
 #bundle-section .bundle-card:nth-child(1)::after {
-  content: "خصم %48";
+  content: "خصم %53";
 }
-
 /* باقة المواد العلمية المميزة */
 #bundle-section .bundle-card:nth-child(2)::after {
   content: "خصم %23";  /* ← كان خطأ 26% */
