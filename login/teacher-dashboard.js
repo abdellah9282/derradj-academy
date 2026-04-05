@@ -13,6 +13,8 @@ const supabase = window.supabase.createClient(
 // ✅ خريطة أسماء المواد
 function formatSubjectName(code) {
   const map = {
+'algebre_2': 'Algèbre 2 (Linear Maps)',
+
     'theorie_du_champ': 'Théorie du Champ Électromagnétique',
 'math3_sami_braci': 'Math 3 – Analyse 3 (Sami Braci)',
 'math3_analyse3': 'Math 3 – Analyse 3',
@@ -48,6 +50,7 @@ function formatSubjectName(code) {
 
 // ✅ الأسعار
 const subjectPrices = {
+  'algebre_2': 1500,
   'math3_analyse3': 1200,
   'math3_sami_braci': 2000,
   'ondes_et_vibrations': 1500,
@@ -172,7 +175,19 @@ async function fetchAllApprovedStudents() {
   return all;
 }
 function getTeacherUnitPrice(subject, teacherContact) {
+if (subject === 'algebre_2') {
+  const fullPrice = 1500;
 
+  if (teacherContact === '0555491316') {
+    return fullPrice * 0.45; // 45%
+  }
+
+  if (teacherContact === '0662980803') {
+    return fullPrice * 0.55; // 55%
+  }
+
+  return 0;
+}
   // 🟣 Math 3 – Sami Braci (تقسيم 1000 / 1000)
   if (subject === 'math3_sami_braci') {
     if (teacherContact === '0555491316') return 1000;

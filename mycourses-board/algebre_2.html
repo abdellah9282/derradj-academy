@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Algèbre 2</title>
+  <!-- الروابط -->
+  <link rel="stylesheet" href="course-card-content.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/js/search.js" defer></script>
+  <link rel="icon" type="image/jpeg" href="../Logo.jpg">
+
+  <script type="module" src="course.js"></script>
+
+</head>
+<body data-module="algebre_2">
+<!-- HEADER -->
+<header class="main-header">
+  <div class="left-section">
+    <a href="../login/dashboard.html" class="logo">
+      <span class="purple">D</span>erradj Academy
+    </a>
+  </div>
+
+<div class="welcome-banner">
+<div class="welcome-text" style="text-align: right !important; direction: rtl !important;">
+    👋 مرحبًا <strong id="username">المستخدم</strong> — هذا حساب شخصي ولا يجب مشاركته.
+    إذا تم اكتشاف أي مشاركة، سيتم إلغاء الوصول تلقائيًا.
+    يرجى مراجعة
+    <a href="../terms.html" target="_blank" rel="noopener noreferrer">شروط الاستخدام</a>.
+</div>
+</div>
+
+  <nav class="right-links">
+    <a href="#" class="btn signup" onclick="logout()">Sign Out</a>
+  </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="course-content">
+  <div class="course-header-box">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+      <h1 class="course-title">Algèbre 2 (Linear Maps)</h1>
+    </div>
+
+    <div class="instructor-details">
+      <p class="instructor-name"><strong>Teacher:</strong> Pr.Nasreddine</p>
+      <p class="instructor-bio">Lessons, summaries, and explanations in Arabic with simplified teaching for Linear Maps</p>
+    </div>
+
+    <div class="live-announcement">
+      <span class="live-icon">📩</span>
+      <span><strong>Contact us on
+        <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" class="instagram-link">
+          Instagram
+        </a>
+      </strong> — for questions</span>
+      <span class="live-badge">
+        <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" style="color: inherit; text-decoration: underline;">
+          INSTAGRAM
+        </a>
+      </span>
+    </div>
+
+<style>
+  .instagram-link {
+    color: #d62976;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+
+  .instagram-link:hover {
+    color: #962fbf;
+    text-decoration: underline;
+    transform: scale(1.05);
+  }
+
+  .live-badge a {
+    text-decoration: none;
+  }
+</style>
+    </div>
+
+  </div>
+
+<!-- Video 1 -->
+<div class="playlist-item" id="ytVideoContainer21">
+  <img src="../Thumbnail/algebre_2/1.png" alt="V1.1" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer21', '6EdtbkJ_wTU')">
+  <div class="playlist-info">
+    <h4>V1.1 | Study Method Strategy | Linear Maps</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer21', '6EdtbkJ_wTU')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer21" style="margin-top:10px;"></div>
+</div>
+
+<!-- Video 2 -->
+<div class="playlist-item" id="ytVideoContainer22">
+  <img src="../Thumbnail/algebre_2/2.png" alt="V1.2" class="playlist-thumbnail"
+       style="cursor:pointer;"
+       onclick="loadYoutubeVideo('ytVideoContainer22', 'yvADynW98LU')">
+  <div class="playlist-info">
+    <h4>V1.2 | Recall Essential | Key concepts for Linear Maps Part 01</h4>
+    <span class="playlist-status" style="cursor:pointer;" onclick="loadYoutubeVideo('ytVideoContainer22', 'yvADynW98LU')">▶️ Watch Now</span>
+  </div>
+  <div id="ytVideoContainer22" style="margin-top:10px;"></div>
+</div>
+
+    </div> <!-- End playlist-container -->
+  </div> <!-- End column-left -->
+
+</div> <!-- End course-columns -->
+
+<!-- ================= JavaScript مشترك ================= -->
+<script>
+  function loadYoutubeVideo(containerId, youtubeId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = `
+      <div style="position:relative; width:500px; height:280px; border-radius:12px; overflow:hidden;">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&controls=1&iv_load_policy=3"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="width:100%; height:100%; border-radius:12px;"
+        ></iframe>
+
+        <div style="
+          position:absolute; top:0; right:0;
+          width:80px; height:40px;
+          background:rgba(0,0,0,0.6);
+          border-bottom-left-radius:8px;
+          pointer-events:none;
+        "></div>
+
+        <div style="
+          position:absolute; top:0; left:0;
+          width:100%; height:20px;
+          background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+          pointer-events:none;
+        "></div>
+
+        <div style="
+          position:absolute; bottom:0; left:0;
+          width:100%; height:20px;
+          background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+          pointer-events:none;
+        "></div>
+      </div>
+    `;
+  }
+</script>
+
+</main>
+
+<!-- 🟣 بطاقة التقييم المنبثقة -->
+<div id="rating-popup" class="rating-popup">
+  <div class="popup-content">
+    <span id="close-popup" class="close-btn">&times;</span>
+    <h3>⭐ تقييمك يهمنا</h3>
+    <p>
+      لم تقم بعد بتقييم هذه الدورة. اضغط أدناه لتقييمها
+    </p>
+    <button id="go-to-rating">قيّم الآن</button>
+  </div>
+</div>
+
+<style>
+.rating-popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.rating-popup .popup-content {
+  position: relative;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+.rating-popup h3 {
+  margin-bottom: 0.5rem;
+  color: #6d28d9;
+}
+.rating-popup .close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.rating-popup .close-btn:hover {
+  color: #000;
+  transform: scale(1.1);
+}
+.rating-popup button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background: linear-gradient(90deg,#7c3aed 60%,#7f57f7 100%);
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.rating-popup button:hover {
+  transform: scale(1.05);
+}
+</style>
+
+<!-- ⭐️ قسم التقييم -->
+<div id="rating-section">
+  <h3>⭐ قيّم الدورة</h3>
+
+  <div class="contest-banner">
+    <div class="banner-content">
+      <span class="trophy">🏆</span>
+      <div class="text">
+        <p>
+          شاركنا رأيك <strong>الإيجابي</strong> والمميز حول الدورة، وساعدنا في تحسين تجربتك التعليمية ✨
+        </p>
+        <span class="limited-offer">تعليقك اللطيف يُسعدنا ويُلهمنا للاستمرار في تقديم الأفضل </span>
+      </div>
+    </div>
+  </div>
+
+  <style>
+  .contest-banner {
+    background: #faf5ff;
+    border: 1px solid #d8b4fe;
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin: 15px 0;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.1);
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  .trophy {
+    font-size: 2rem;
+    display: inline-block;
+    animation: bounce 1.8s infinite;
+  }
+  .contest-banner .text p {
+    font-size: 1rem;
+    color: #3b0764;
+    margin: 8px 0;
+    line-height: 1.6;
+  }
+  .highlight {
+    color: #7c3aed;
+    font-weight: bold;
+  }
+  .limited-offer {
+    display: inline-block;
+    color: #da4f4f;
+    font-weight: bold;
+    margin-top: 8px;
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  </style>
+
+  <!-- ⭐️ النجوم -->
+  <div class="stars">
+    <span class="star" data-value="1">&#9733;</span>
+    <span class="star" data-value="2">&#9733;</span>
+    <span class="star" data-value="3">&#9733;</span>
+    <span class="star" data-value="4">&#9733;</span>
+    <span class="star" data-value="5">&#9733;</span>
+  </div>
+
+  <p id="rating-value-display">0/5</p>
+
+  <!-- ✍️ كتابة تعليق -->
+  <textarea
+    id="userComment"
+    placeholder="💬 اكتب تعليقًا إيجابيًا يُظهر تقديرك للمجهود، فكل كلمة منك تصنع فرقًا "
+  ></textarea>
+
+  <!-- 📩 زر الإرسال -->
+  <button id="submitRating">إرسال التقييم</button>
+
+  <!-- 📊 رسائل ونتائج -->
+  <p id="ratingMessage"></p>
+  <p id="average-rating"></p>
+</div>
+
+
+<section class="contact-form" id="support">
+  <h2>هل لديك سؤال؟</h2>
+  <form id="questionForm">
+    <input type="text" name="name" id="name" placeholder="الاسم الكامل" required />
+    <input type="email" name="email" id="email" placeholder=" البريد الإلكتروني أو رقم الهاتف" required />
+    <textarea name="message" id="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+    <button type="submit">إرسال</button>
+    <p id="support-message" style="margin-top:1rem; color:green;"></p>
+  </form>
+</section>
+
+<footer class="main-footer" dir="rtl">
+  <div class="footer-content">
+    <!-- عن المنصة -->
+    <div class="footer-section about">
+      <h3>عن المنصة</h3>
+      <p>منصة جزائرية تعليمية موجهة لطلبة الجامعات، تقدم دورات مبسطة، ملفات PDF، وفيديوهات مباشرة مع أساتذة مؤهلين.</p>
+   <p style="color: rgb(255, 42, 42); font-weight: bold; margin-top: 10px;">
+  ⚠️ تنبيه هام: جميع الفيديوهات المعروضة على منصة Derradj Academy محمية بموجب حقوق الملكية الفكرية.
+  يُمنع منعًا باتًا نسخها أو تحميلها أو مشاركتها بأي وسيلة كانت.
+  أي خرق لهذه القواعد يُعد انتهاكًا قانونيًا صريحًا، ويعرّض مرتكبه للملاحقة القضائية دون سابق إنذار.
+</p>
+
+    </div>
+
+ <!-- روابط سريعة -->
+    <div class="footer-section links">
+      <h3>روابط سريعة</h3>
+      <ul>
+        <li><a href="../login/dashboard.html">الرئيسية</a></li>
+        <li><a href="../terms.html" target="_blank" rel="noopener noreferrer">الشروط والأحكام</a> </li>
+      </ul>
+    </div>
+
+    <!-- تواصل معنا -->
+    <div class="footer-section contact">
+      <h3>تواصل معنا</h3>
+<p>
+  <strong>📞</strong>
+<a href="tel:+213555491316" dir="ltr">0555 49 13 16</a>
+</p>
+      <p><strong>📧</strong> <a href="mailto:derradjacademy@gmail.com">derradjacademy@gmail.com
+</a></p>
+      <p><strong>📍</strong> الجزائر، الجزائر العاصمة</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>جميع الحقوق محفوظة &copy; 2025 - Derradj Academy</p>
+  </div>
+</footer>
+<script>
+function showReceiptUpload() {
+  const durationInput = document.getElementById('sessionDuration');
+  const section = document.getElementById('uploadSection');
+
+  if (!durationInput || !section) return;
+
+  const duration = durationInput.value;
+  section.style.display = duration ? 'flex' : 'none';
+}
+
+function submitBooking() {
+  const durationInput = document.getElementById('sessionDuration');
+  const paymentInput = document.getElementById('paymentReceipt');
+
+  if (!durationInput || !paymentInput) return;
+
+  const duration = durationInput.value;
+  const file = paymentInput.files[0];
+
+  if (!duration || !file) {
+    alert('Please choose a duration and upload the receipt.');
+    return;
+  }
+
+  alert(`Session booked for ${duration} min. Receipt uploaded.`);
+}
+</script>
+
+<script>
+function logout() {
+  localStorage.clear();
+  window.location.href = '../login/login.html';
+}
+</script>
+
+<script>
+// منع فتح أدوات المطور
+document.addEventListener('keydown', function (e) {
+  const key = e.key.toLowerCase();
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && key === 'u') ||
+    (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(key))
+  ) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+});
+
+// منع الزر الأيمن
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+  return false;
+});
+</script>
+
+<script src="../js/protect.js"></script>
+
+<script>
+(function () {
+  const TARGET_URL = "../login/dashboard.html";
+
+  function leave() {
+    window.location.replace(TARGET_URL);
+  }
+
+  function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  }
+
+  if (!isMobileDevice()) {
+    function onContextMenu(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      leave();
+    }
+
+    window.addEventListener("contextmenu", onContextMenu, { capture: true });
+
+    window.addEventListener("mousedown", function (e) {
+      if (e.button === 2) {
+        e.preventDefault();
+        e.stopPropagation();
+        leave();
+      }
+    }, { capture: true });
+  }
+})();
+</script>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+const supabase = createClient(
+  "https://sgcypxmnlyiwljuqvcup.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM"
+);
+
+// اسم المادة
+const moduleName = "algebre_2";
+
+(async () => {
+  const contact = localStorage.getItem("userContact");
+
+  if (!contact) {
+    localStorage.clear();
+    window.location.href = "../login/login.html";
+    return;
+  }
+
+  const { data, error } = await supabase
+    .from("registrations")
+    .select("modules")
+    .eq("contact", contact)
+    .single();
+
+  if (error || !data) {
+    console.warn("🚫 لم يتم العثور على المستخدم أو حدث خطأ في جلب البيانات.");
+    localStorage.clear();
+    window.location.href = "../login/login.html";
+    return;
+  }
+
+  const modules = data.modules || [];
+
+  if (!modules.includes(moduleName)) {
+    console.warn(`🚫 الطالب لا يملك صلاحية لهذه المادة: ${moduleName}`);
+    localStorage.clear();
+    window.location.href = "../login/login.html";
+    return;
+  }
+
+  console.log(`✅ الطالب يملك صلاحية الوصول إلى ${moduleName}`);
+})();
+</script>
+</body>
+</html>

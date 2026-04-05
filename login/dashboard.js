@@ -104,6 +104,13 @@ export async function loginAndClaimSession(contact, fullName) {
 
 const allCourses = {
 
+algebre_2: {
+  title: "Algèbre 2 (Linear Maps)",
+  instructor: "Pr.Nasreddine",
+  price: 1500,
+  image: "../Thumbnail/algebre_2/1.png"
+},
+
   etat_de_lart: {
   title: "État de l’art",
   instructor: "Ameziane Sadek",
@@ -198,7 +205,7 @@ math3_analyse3: {
 // روابط الصفحات الخاصة بكل مادة
 const courseLinks = {
 etat_de_lart: "../mycourses-board/etat_de_lart.html",
-
+algebre_2: "../mycourses-board/algebre_2.html",
 
   math3_analyse3: "../mycourses-board/math3_analyse3.html",
 machine_electrique: "../mycourses-board/machine_electrique.html",
