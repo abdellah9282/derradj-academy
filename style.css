@@ -3434,3 +3434,8 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
 .shop-popup__later:hover{
   background: rgba(2,6,23,0.04);
 }
+@media (max-width: 768px) {
+  a[href*="wa.me"] {
+    bottom: 110px;
+  }
+}
