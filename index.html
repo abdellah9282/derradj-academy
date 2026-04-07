@@ -109,9 +109,6 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 
       <a href="#why-us" class="nav-link">حول المنصة</a>
 
-<button onclick="openPopup()" class="install-btn">
- 📲 Derradj Academy تنزيل تطبيق
-</button>
 
 
        <a href="how-to-register.html" class="nav-link">📝 شرح طريقة التسجيل</a>
@@ -2391,6 +2388,12 @@ function closePopup() {
   document.getElementById("app-popup").style.display = "none";
 }
 </script>
-
+<script>
+window.addEventListener("load", function () {
+  setTimeout(() => {
+    document.getElementById("installPopup").style.display = "flex";
+  }, 1500); // يظهر بعد 1.5 ثانية (تقدر تغيرها)
+});
+</script>
 </body>
 </html>
