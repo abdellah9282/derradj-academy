@@ -109,7 +109,7 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 
       <a href="#why-us" class="nav-link">حول المنصة</a>
 
-      <button id="installBtn" class="install-btn">
+<button onclick="openPopup()" class="install-btn">
  📲 Derradj Academy تنزيل تطبيق
 </button>
 
@@ -2323,25 +2323,7 @@ fetchModernComments();
 </script>
 
 
-<script>
-  let deferredPrompt;
-const installBtn = document.querySelector(".install-btn");
 
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installBtn.style.display = "block"; // إظهار الزر
-  });
-
-  installBtn.addEventListener("click", async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log("📌 اختيار المستخدم:", outcome);
-      deferredPrompt = null;
-    }
-  });
-</script>
 <script>if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then(registrations => {
     for (let reg of registrations) {
@@ -2352,7 +2334,63 @@ const installBtn = document.querySelector(".install-btn");
 }
 </script>
 
+<!-- POPUP -->
+<div id="app-popup" style="
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+  padding: 20px;
+  display: none;
+  z-index: 10000;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  font-family: 'Cairo', sans-serif;
+">
 
+  <!-- زر الإغلاق -->
+  <span onclick="closePopup()" style="
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #555;
+  ">✖</span>
+
+  <h3 style="margin-bottom: 10px;">📱 تحميل تطبيق Derradj Academy</h3>
+
+  <p style="font-size: 0.95rem; color: #555;">
+    احصل على تجربة أفضل عبر التطبيق مع الدروس والتنبيهات.
+  </p>
+
+  <a href="#"
+     style="
+       display: inline-block;
+       margin-top: 12px;
+       background: #4f46e5;
+       color: #fff;
+       padding: 10px 20px;
+       border-radius: 10px;
+       text-decoration: none;
+       font-weight: bold;
+     ">
+     تحميل الآن
+  </a>
+
+</div>
+
+<script>
+function openPopup() {
+  document.getElementById("app-popup").style.display = "block";
+}
+
+function closePopup() {
+  document.getElementById("app-popup").style.display = "none";
+}
+</script>
 
 </body>
 </html>
