@@ -109,17 +109,19 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
 
       <a href="#why-us" class="nav-link">حول المنصة</a>
 
+      <button id="installBtn" class="install-btn">
+ 📲 Derradj Academy تنزيل تطبيق
+</button>
 
 
        <a href="how-to-register.html" class="nav-link">📝 شرح طريقة التسجيل</a>
       <a href="login/login.html" class="btn login">Log in</a>
       <a href="sign-up/sign-up.html" class="btn signup">Sign up</a>
-  <a href="https://wa.me/213555491316"
+    <a href="https://wa.me/213555491316"
    target="_blank"
-   class="whatsapp-float"
    style="
      position: fixed;
-     bottom: 20px;
+     bottom: 25px;
      right: 12px;
      padding: 10px 16px;
      background: #ffffff;
@@ -132,7 +134,9 @@ Algerian students, Study anywhere anytime, Platforme universitaire Algérie, Sup
      text-decoration: none;
      font-family: 'Cairo', sans-serif;
      transition: all 0.25s ease;
-   ">
+   "
+   onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 25px rgba(0,0,0,0.2)'"
+   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.15)'">
 
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
        style="width:26px; height:26px;">
@@ -2320,7 +2324,25 @@ fetchModernComments();
 </script>
 
 
+<script>
+  let deferredPrompt;
+const installBtn = document.querySelector(".install-btn");
 
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "block"; // إظهار الزر
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log("📌 اختيار المستخدم:", outcome);
+      deferredPrompt = null;
+    }
+  });
+</script>
 <script>if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then(registrations => {
     for (let reg of registrations) {
@@ -2331,69 +2353,7 @@ fetchModernComments();
 }
 </script>
 
-<!-- POPUP -->
-<div id="app-popup" style="
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #ffffff;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
-  padding: 20px;
-  display: none;
-  z-index: 10000;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  font-family: 'Cairo', sans-serif;
-">
 
-  <!-- زر الإغلاق -->
-  <span onclick="closePopup()" style="
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #555;
-  ">✖</span>
 
-  <h3 style="margin-bottom: 10px;">📱 تحميل تطبيق Derradj Academy</h3>
-
-  <p style="font-size: 0.95rem; color: #555;">
-    احصل على تجربة أفضل عبر التطبيق مع الدروس والتنبيهات.
-  </p>
-
-  <a href="#"
-     style="
-       display: inline-block;
-       margin-top: 12px;
-       background: #4f46e5;
-       color: #fff;
-       padding: 10px 20px;
-       border-radius: 10px;
-       text-decoration: none;
-       font-weight: bold;
-     ">
-     تحميل الآن
-  </a>
-
-</div>
-
-<script>
-function openPopup() {
-  document.getElementById("app-popup").style.display = "block";
-}
-
-function closePopup() {
-  document.getElementById("app-popup").style.display = "none";
-}
-</script>
-<script>
-window.addEventListener("load", function () {
-  setTimeout(() => {
-    document.getElementById("installPopup").style.display = "flex";
-  }, 1500); // يظهر بعد 1.5 ثانية (تقدر تغيرها)
-});
-</script>
 </body>
 </html>
