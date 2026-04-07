@@ -739,10 +739,7 @@
   transition: color 0.3s ease;
 }
 
-#rating-section .star:hover,
-#rating-section .star.selected {
-  color: #f59e0b;
-}
+
 
 /* حقول الإدخال */
 #rating-section input,
@@ -810,11 +807,7 @@
   transition: color 0.3s;
 }
 
-/* النجوم المضيئة */
-#rating-section .star.hovered,
-#rating-section .star.selected {
-  color: #f59e0b;
-}
+
 
 /* الرقم الظاهر بجانب النجوم */
 #rating-value-display {
@@ -949,11 +942,6 @@
   transition: color 0.3s, transform 0.2s;
 }
 
-.star:hover,
-.star.selected {
-  color: #ff9800;
-  transform: scale(1.2);
-}
 
 /* عرض قيمة التقييم */
 #rating-value-display {
@@ -1096,4 +1084,27 @@
   0% { opacity: 1; }
   50% { opacity: 0.4; }
   100% { opacity: 1; }
+}
+/* ===== STAR RATING FIX ===== */
+#rating-section .stars {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+#rating-section .star {
+  display: inline-block;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: #d1d5db;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+#rating-section .star:hover,
+#rating-section .star.active {
+  color: #f59e0b;
+  transform: scale(1.15);
 }

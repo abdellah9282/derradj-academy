@@ -215,19 +215,43 @@ async function loadAverageRating() {
 // STAR RATING UI
 // ================================
 stars.forEach(star => {
+
+  // 🟡 Hover (مؤقت)
+  star.addEventListener("mouseenter", () => {
+    const value = Number(star.dataset.value);
+
+    stars.forEach(s => {
+      s.classList.toggle(
+        "active",
+        Number(s.dataset.value) <= value
+      );
+    });
+  });
+
+  // 🔄 رجوع بعد الخروج
+  star.addEventListener("mouseleave", () => {
+    stars.forEach(s => {
+      s.classList.toggle(
+        "active",
+        Number(s.dataset.value) <= selectedRating
+      );
+    });
+  });
+
+  // ✅ Click (تثبيت)
   star.addEventListener("click", () => {
     selectedRating = Number(star.dataset.value);
     ratingValue.textContent = `${selectedRating}/5`;
 
-    stars.forEach(s =>
+    stars.forEach(s => {
       s.classList.toggle(
         "active",
         Number(s.dataset.value) <= selectedRating
-      )
-    );
+      );
+    });
   });
-});
 
+});
 // ================================
 // SUBMIT RATING
 // ================================
