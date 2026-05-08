@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\pc\\\\Desktop\\\\Derradj Academy\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(awk '{print $NF}')"
+    ]
+  }
+}

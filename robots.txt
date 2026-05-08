@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Block private/admin areas
+Disallow: /login/
+Disallow: /mycourses-board/
+Disallow: /sign-up/
+Disallow: /Essai/
+Disallow: /js/protect.js
+
+# Allow public course pages
+Allow: /courses/
+
+# Sitemap
+Sitemap: https://www.derradjacademy.com/sitemap.xml
