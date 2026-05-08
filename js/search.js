@@ -23,6 +23,8 @@ const courses = [
 const input = document.getElementById("searchInput");
 const suggestionsList = document.getElementById("suggestionsList");
 
+if (!input || !suggestionsList) return;
+
 input.addEventListener("input", () => {
   const query = input.value.toLowerCase().trim();
   suggestionsList.innerHTML = "";

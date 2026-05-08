@@ -487,9 +487,12 @@ if (purchaseForm) {
         const receiptUrl = `https://sgcypxmnlyiwljuqvcup.supabase.co/storage/v1/object/public/receipts/${fileName}`;
 
         // إدخال طلب المادة الجديدة
+        const { data: { user: authUser } } = await supabase.auth.getUser();
+
         const { error: insertError } = await supabase
           .from("new_requests")
           .insert([{
+            user_uuid: authUser?.id ?? null,
             user_contact: contact,
             full_name: userData.full_name,
             new_modules: [selectedModule],
