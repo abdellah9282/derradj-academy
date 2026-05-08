@@ -122,6 +122,10 @@ async function updateStatus(id, isApproved) {
       throw new Error("Invalid data: ID or approval status is missing or incorrect.");
     }
 
+    const { error: updateError } = await supabase
+      .from("registrations")
+      .update({ is_approved: isApproved })
+      .eq("id", id);
 
     if (updateError) {
       console.error("Update Error:", updateError);
