@@ -5,14 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Derradj Academy | دروس جامعية جزائرية – Électrotechnique, Électronique, Informatique</title>
+  <title>Derradj Academy | Learn Everywhere, Anytime</title>
 
 <meta name="description" content="Derradj Academy – منصة تعليمية جزائرية لطلبة الكهروتقني الصناعي والهندسة الكهربائية. دروس جامعية في Électrotechnique Fondamentale, Électronique de Puissance, Ondes et Vibrations, Systèmes Asservis, Réseaux Électriques, Machine Électrique, Théorie du Signal, Méthodes Numériques, Logique Combinatoire, Informatique MATLAB, Algèbre 2. +300 طالب جزائري مشترك. فيديوهات، PDF، بث مباشر.">
 
 <meta name="robots" content="index, follow">
 
 <!-- Open Graph / Facebook -->
-<meta property="og:title" content="Derradj Academy | دروس جامعية جزائرية – Électrotechnique & Génie Électrique">
+<meta property="og:title" content="Derradj Academy | Learn Everywhere, Anytime ">
 <meta property="og:description" content="منصة تعليمية جزائرية +300 طالب مشترك. دروس جامعية في Électrotechnique, Électronique, Ondes et Vibrations, Systèmes Asservis, Machine Électrique, MATLAB, Algèbre 2 والمزيد. فيديوهات واضحة، PDF، وبث مباشر.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.derradjacademy.com">
@@ -73,6 +73,118 @@ Derradj Academy platform, منصة درّاج أكاديمي
 <!-- hreflang for Algerian Arabic audience -->
 <link rel="alternate" hreflang="ar-DZ" href="https://www.derradjacademy.com/">
 <link rel="alternate" hreflang="fr-DZ" href="https://www.derradjacademy.com/">
+
+<style>
+/* ===== PWA Install Popup ===== */
+#pwa-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#pwa-overlay.show { opacity: 1; visibility: visible; }
+#pwa-popup {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(106,27,154,0.25);
+  transform: translateY(24px) scale(0.96);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+}
+#pwa-overlay.show #pwa-popup { transform: translateY(0) scale(1); }
+#pwa-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: #f0e6f6;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  color: #6a1b9a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+#pwa-close:hover { background: #d9b3f0; }
+#pwa-popup .pwa-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(106,27,154,0.2);
+  margin-bottom: 14px;
+}
+#pwa-popup h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 6px;
+}
+#pwa-popup .pwa-desc {
+  font-size: 0.88rem;
+  color: #555;
+  margin: 0 0 20px;
+  line-height: 1.55;
+}
+#pwa-install-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+  color: #fff;
+  border: none;
+  padding: 13px 28px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(106,27,154,0.35);
+  width: 100%;
+  justify-content: center;
+}
+#pwa-install-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(106,27,154,0.45); }
+#pwa-manual-hint {
+  display: none;
+  background: #f8f0ff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.82rem;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 12px;
+  text-align: right;
+  direction: rtl;
+}
+#pwa-manual-hint strong { color: #6a1b9a; }
+#pwa-ios-hint {
+  display: none;
+  background: #f8f0ff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.82rem;
+  color: #555;
+  line-height: 1.6;
+  text-align: right;
+  direction: rtl;
+}
+#pwa-ios-hint strong { color: #6a1b9a; }
+</style>
 
 <!-- ✅ JSON-LD Structured Data -->
 <script type="application/ld+json">
@@ -2517,33 +2629,87 @@ fetchModernComments();
 </script>
 
 
-<script>
-  let deferredPrompt;
-const installBtn = document.querySelector(".install-btn");
+<!-- PWA Install Popup -->
+<div id="pwa-overlay" role="dialog" aria-modal="true" aria-labelledby="pwa-title">
+  <div id="pwa-popup">
+    <button id="pwa-close" aria-label="إغلاق">&#x2715;</button>
+    <img src="Logo.jpg" alt="Derradj Academy" class="pwa-logo">
+    <h3 id="pwa-title">Derradj Academy</h3>
+    <p class="pwa-desc">ثبّت المنصة على هاتفك أو حاسوبك وافتحها مباشرة بدون متصفح — تجربة تطبيق كاملة!</p>
+    <button id="pwa-install-btn">&#128242; تثبيت التطبيق</button>
+    <div id="pwa-manual-hint"></div>
+    <div id="pwa-ios-hint">
+      لتثبيته على iPhone أو iPad:<br>
+      اضغط على <strong>Share &#11023;</strong> ثم اختر <strong>"Add to Home Screen"</strong>
+    </div>
+  </div>
+</div>
 
-  window.addEventListener("beforeinstallprompt", (e) => {
+<script>
+(function () {
+  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  var isAndroid = /Android/.test(navigator.userAgent);
+  var isStandalone = window.matchMedia('(display-mode: standalone)').matches || !!window.navigator.standalone;
+  var deferredPrompt = null;
+
+  // Register service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js').catch(function(){});
+  }
+
+  // Capture install prompt the moment the browser fires it
+  window.addEventListener('beforeinstallprompt', function (e) {
     e.preventDefault();
     deferredPrompt = e;
-    installBtn.style.display = "block"; // إظهار الزر
   });
 
-  installBtn.addEventListener("click", async () => {
+  function openPopup() {
+    if (sessionStorage.getItem('pwa-shown') || isStandalone) return;
+    setTimeout(function () {
+      // Set sessionStorage only when popup actually appears
+      sessionStorage.setItem('pwa-shown', '1');
+      document.getElementById('pwa-overlay').classList.add('show');
+    }, 2500);
+  }
+
+  function closePopup() {
+    document.getElementById('pwa-overlay').classList.remove('show');
+  }
+
+  // iOS: replace button with instructions
+  if (isIOS) {
+    document.getElementById('pwa-install-btn').style.display = 'none';
+    document.getElementById('pwa-ios-hint').style.display = 'block';
+  }
+
+  // Show popup once per session (not if already installed as app)
+  openPopup();
+
+  document.getElementById('pwa-close').addEventListener('click', closePopup);
+  document.getElementById('pwa-overlay').addEventListener('click', function (e) {
+    if (e.target === this) closePopup();
+  });
+
+  document.getElementById('pwa-install-btn').addEventListener('click', function () {
     if (deferredPrompt) {
+      // Browser supports native install — trigger the prompt
       deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log("📌 اختيار المستخدم:", outcome);
-      deferredPrompt = null;
+      deferredPrompt.userChoice.then(function (result) {
+        deferredPrompt = null;
+        if (result.outcome === 'accepted') closePopup();
+      });
+    } else {
+      // Browser hasn't provided a prompt — show manual instructions
+      var hint = document.getElementById('pwa-manual-hint');
+      if (isAndroid) {
+        hint.innerHTML = '&#128241; افتح قائمة المتصفح <strong>&#8942;</strong> ثم اختر <strong>"إضافة إلى الشاشة الرئيسية"</strong>';
+      } else {
+        hint.innerHTML = '&#128187; انقر على أيقونة <strong>&#8853;</strong> أو <strong>&#8681;</strong> في شريط عنوان المتصفح لتثبيت التطبيق';
+      }
+      hint.style.display = 'block';
     }
   });
-</script>
-<script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(registrations => {
-    for (let reg of registrations) {
-      reg.unregister();
-    }
-  });
-  caches.keys().then(names => names.forEach(name => caches.delete(name)));
-}
+})();
 </script>
 
 <!-- Mobile Nav Overlay -->
