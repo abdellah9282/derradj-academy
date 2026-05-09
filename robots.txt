@@ -7,6 +7,9 @@ Disallow: /mycourses-board/
 Disallow: /sign-up/
 Disallow: /Essai/
 Disallow: /js/protect.js
+Disallow: /All%20playlist/
+Disallow: /payment/
+Disallow: /pdf/
 
 # Allow public course pages
 Allow: /courses/

@@ -133,13 +133,6 @@
   </url>
 
   <url>
-    <loc>https://www.derradjacademy.com/courses/machines_electriques.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
     <loc>https://www.derradjacademy.com/courses/systeme_asservis.html</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -168,36 +161,8 @@
   </url>
 
   <url>
-    <loc>https://www.derradjacademy.com/courses/commandes_machines_electriques.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://www.derradjacademy.com/courses/electricite_industrielle.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://www.derradjacademy.com/courses/etat_de_l_art.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://www.derradjacademy.com/courses/mesures_electriques_et_electroniques.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://www.derradjacademy.com/courses/traitement_du_signal.html</loc>
-    <lastmod>2025-05-08</lastmod>
+    <loc>https://www.derradjacademy.com/courses/etat_de_lart.html</loc>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
