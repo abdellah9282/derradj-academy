@@ -3470,3 +3470,363 @@ grid-template-columns: 1fr; /* دورة واحدة في كل صف */
     height: 24px !important;
   }
 }
+
+/* ============================================================
+   STATS BAR – شريط الإحصائيات (social proof)
+   ============================================================ */
+.stats-bar {
+  background: #fff;
+  border-bottom: 1px solid #ede9fe;
+  border-top: 3px solid #651fff;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 28px;
+  flex: 1 1 0;
+  gap: 3px;
+  cursor: default;
+  transition: background 0.2s;
+}
+
+.stat-item:hover {
+  background: #faf5ff;
+}
+
+.stat-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.stat-number {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #651fff;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.stat-label {
+  font-size: 0.76rem;
+  color: #6b7280;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.stat-divider {
+  width: 1px;
+  background: #ede9fe;
+  flex-shrink: 0;
+  align-self: stretch;
+  margin: 10px 0;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .stats-container { flex-wrap: wrap; }
+  .stat-item {
+    flex: 1 1 44%;
+    padding: 14px 10px;
+  }
+  .stat-divider { display: none; }
+  .stat-number { font-size: 1.3rem; }
+  .stat-label { font-size: 0.72rem; }
+}
+
+@media (max-width: 360px) {
+  .stat-item { flex: 1 1 48%; padding: 12px 6px; }
+}
+
+/* ============================================================
+   HAMBURGER BUTTON
+   ============================================================ */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 7px 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.hamburger-btn:hover {
+  background: #f3f4f6;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #333;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger-btn.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   MOBILE NAV OVERLAY
+   ============================================================ */
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9988;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.mobile-nav-overlay.active {
+  display: block;
+}
+
+/* ============================================================
+   MOBILE NAVIGATION DRAWER (≤768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  /* إظهار الهامبرغر – يظهر في الـ header مباشرة */
+  .hamburger-btn {
+    display: flex;
+  }
+
+  /* القائمة كـ drawer تنزلق من اليمين
+     يعمل بـ #mainNav (index.html) أو بالـ class .nav-mobile-ready (باقي الصفحات) */
+  #mainNav.right-links,
+  .right-links.nav-mobile-ready {
+    position: fixed !important;
+    top: 0 !important;
+    right: -100% !important;
+    width: 270px !important;
+    max-width: 82vw !important;
+    height: 100vh !important;
+    background: #fff !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: 80px 16px 32px 16px !important;
+    box-shadow: -4px 0 32px rgba(0, 0, 0, 0.14) !important;
+    z-index: 9990 !important;
+    transition: right 0.32s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    gap: 8px !important;
+    overflow-y: auto !important;
+    flex-wrap: nowrap !important;
+    margin-top: 0 !important;
+    flex: none !important;
+  }
+
+  #mainNav.right-links.mobile-open,
+  .right-links.nav-mobile-ready.mobile-open {
+    right: 0 !important;
+  }
+
+  /* روابط القائمة – تمتد على العرض كاملاً */
+  #mainNav.right-links .nav-link,
+  .right-links.nav-mobile-ready .nav-link {
+    width: 100% !important;
+    text-align: right !important;
+    padding: 12px 14px !important;
+    border-radius: 10px !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: #1e293b !important;
+    background: #f9fafb !important;
+    border: 1px solid #f0f0f4 !important;
+    transition: background 0.2s !important;
+    display: block !important;
+    text-decoration: none !important;
+  }
+  #mainNav.right-links .nav-link:hover,
+  .right-links.nav-mobile-ready .nav-link:hover {
+    background: #ede9fe !important;
+    color: #4f46e5 !important;
+  }
+
+  /* أزرار Log in / Sign up */
+  #mainNav.right-links .btn,
+  .right-links.nav-mobile-ready .btn {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 12px 16px !important;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
+
+  /* زر واتساب – يبقى في مكانه الثابت */
+  #mainNav.right-links > a[href*="wa.me"],
+  .right-links.nav-mobile-ready > a[href*="wa.me"] {
+    position: fixed !important;
+    bottom: 22px !important;
+    right: 12px !important;
+    width: auto !important;
+    display: flex !important;
+    background: #ffffff !important;
+    border: none !important;
+    padding: 10px 16px !important;
+  }
+}
+
+/* ============================================================
+   HEADER MOBILE LAYOUT – الهامبرغر في نفس صف اللوغو
+   ============================================================ */
+@media (max-width: 768px) {
+  /* الـ header يصبح row مع wrap */
+  .main-header {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    gap: 8px !important;
+    position: relative !important;
+  }
+
+  /* left-section يأخذ المساحة المتبقية */
+  .left-section {
+    flex: 1 1 auto !important;
+    justify-content: flex-start !important;
+    min-width: 0 !important;
+  }
+
+  /* الهامبرغر في نفس صف اللوغو على اليمين */
+  .hamburger-btn {
+    flex-shrink: 0 !important;
+    margin-right: 0 !important;
+    order: 2 !important;
+  }
+
+  /* مربع البحث في الصف الثاني (full width) */
+  .search-box {
+    order: 3 !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    margin: 4px 0 2px !important;
+    padding: 0 !important;
+  }
+
+  /* nav في الدراور - لا تأخذ مساحة في layout */
+  #mainNav.right-links {
+    order: 4 !important;
+  }
+}
+
+/* ============================================================
+   PROMO BANNER – تحسينات الهاتف
+   ============================================================ */
+@media (max-width: 480px) {
+  .promo-banner {
+    margin: 1rem 10px !important;
+    padding: 1.4rem 1rem !important;
+    border-radius: 14px !important;
+  }
+  .promo-banner h2 {
+    font-size: 1.35rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .promo-banner p {
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+  }
+}
+
+
+/* ============================================================
+   BUNDLE SECTION – تحسين الهاتف
+   ============================================================ */
+@media (max-width: 480px) {
+  .bundles-container {
+    padding: 0 8px !important;
+    gap: 12px !important;
+  }
+  .bundle-card {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+/* ============================================================
+   SECTION TITLES – تحسين عام
+   ============================================================ */
+.section-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .section-title { font-size: 1.2rem !important; }
+}
+
+/* no-scroll helper */
+body.no-scroll { overflow: hidden; }
+
+/* ============================================================
+   WHATSAPP FLOATING BUTTON – injected by hamburger.js
+   ============================================================ */
+.wa-float-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 12px;
+  padding: 10px 16px;
+  background: #ffffff;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  text-decoration: none;
+  font-family: 'Cairo', sans-serif;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wa-float-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.wa-float-btn img {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.wa-float-btn span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+}
+
+/* إخفاء الـ support-icon القديمة */
+.support-icon {
+  display: none !important;
+}
