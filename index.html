@@ -2635,7 +2635,7 @@ fetchModernComments();
     <button id="pwa-close" aria-label="إغلاق">&#x2715;</button>
     <img src="Logo.jpg" alt="Derradj Academy" class="pwa-logo">
     <h3 id="pwa-title">Derradj Academy</h3>
-    <p class="pwa-desc">ثبّت المنصة على هاتفك أو حاسوبك وافتحها مباشرة بدون متصفح — تجربة تطبيق كاملة!</p>
+    <p class="pwa-desc">ثبّت المنصة على هاتفك أو حاسوبك وافتحها مباشرة بدون متصفح — تجربة تطبيق كاملة</p>
     <button id="pwa-install-btn">&#128242; تثبيت التطبيق</button>
     <div id="pwa-manual-hint"></div>
     <div id="pwa-ios-hint">
@@ -2651,22 +2651,49 @@ fetchModernComments();
   var isAndroid = /Android/.test(navigator.userAgent);
   var isStandalone = window.matchMedia('(display-mode: standalone)').matches || !!window.navigator.standalone;
   var deferredPrompt = null;
+  var waitingForPrompt = false;
+  var waitTimer = null;
 
-  // Register service worker
+  // Register service worker — if new SW activated, clear pwa-shown so popup can re-appear
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js').catch(function(){});
+    navigator.serviceWorker.register('/service-worker.js').then(function (reg) {
+      reg.addEventListener('updatefound', function () {
+        var newWorker = reg.installing;
+        newWorker.addEventListener('statechange', function () {
+          if (newWorker.state === 'activated') {
+            sessionStorage.removeItem('pwa-shown');
+          }
+        });
+      });
+    }).catch(function () {});
   }
 
-  // Capture install prompt the moment the browser fires it
+  // Capture install prompt — also triggers any pending install attempt
   window.addEventListener('beforeinstallprompt', function (e) {
     e.preventDefault();
     deferredPrompt = e;
+    if (waitingForPrompt) {
+      clearTimeout(waitTimer);
+      waitingForPrompt = false;
+      triggerInstall();
+    }
   });
+
+  function triggerInstall() {
+    if (!deferredPrompt) return;
+    var btn = document.getElementById('pwa-install-btn');
+    btn.disabled = false;
+    btn.innerHTML = '&#128242; تثبيت التطبيق';
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function (result) {
+      deferredPrompt = null;
+      if (result.outcome === 'accepted') closePopup();
+    });
+  }
 
   function openPopup() {
     if (sessionStorage.getItem('pwa-shown') || isStandalone) return;
     setTimeout(function () {
-      // Set sessionStorage only when popup actually appears
       sessionStorage.setItem('pwa-shown', '1');
       document.getElementById('pwa-overlay').classList.add('show');
     }, 2500);
@@ -2682,7 +2709,6 @@ fetchModernComments();
     document.getElementById('pwa-ios-hint').style.display = 'block';
   }
 
-  // Show popup once per session (not if already installed as app)
   openPopup();
 
   document.getElementById('pwa-close').addEventListener('click', closePopup);
@@ -2691,23 +2717,28 @@ fetchModernComments();
   });
 
   document.getElementById('pwa-install-btn').addEventListener('click', function () {
+    var btn = this;
     if (deferredPrompt) {
-      // Browser supports native install — trigger the prompt
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(function (result) {
-        deferredPrompt = null;
-        if (result.outcome === 'accepted') closePopup();
-      });
-    } else {
-      // Browser hasn't provided a prompt — show manual instructions
+      triggerInstall();
+      return;
+    }
+    // Prompt not yet available — wait up to 4 seconds for it
+    btn.innerHTML = '⏳ جاري التحضير...';
+    btn.disabled = true;
+    waitingForPrompt = true;
+    waitTimer = setTimeout(function () {
+      waitingForPrompt = false;
+      btn.disabled = false;
+      btn.innerHTML = '&#128242; تثبيت التطبيق';
+      // After waiting, show contextual fallback
       var hint = document.getElementById('pwa-manual-hint');
       if (isAndroid) {
-        hint.innerHTML = '&#128241; افتح قائمة المتصفح <strong>&#8942;</strong> ثم اختر <strong>"إضافة إلى الشاشة الرئيسية"</strong>';
+        hint.innerHTML = '&#128241; افتح قائمة المتصفح &#8942; ثم اختر <strong>"إضافة إلى الشاشة الرئيسية"</strong>';
       } else {
-        hint.innerHTML = '&#128187; انقر على أيقونة <strong>&#8853;</strong> أو <strong>&#8681;</strong> في شريط عنوان المتصفح لتثبيت التطبيق';
+        hint.innerHTML = '&#128187; ابحث عن أيقونة التثبيت <strong>&#8853;</strong> في شريط عنوان Chrome أو Edge — أو أعد تحميل الصفحة وحاول مجدداً';
       }
       hint.style.display = 'block';
-    }
+    }, 4000);
   });
 })();
 </script>
