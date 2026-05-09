@@ -1,0 +1,52 @@
+# ══════════════════════════════════════════════════════
+# Netlify HTTP Security Headers — Derradj Academy
+# هذه الترويسات تعمل على مستوى الـ Server، وهي الحماية الحقيقية
+# لأنها تُرسَل قبل أن يُحمَّل أي JavaScript.
+# ══════════════════════════════════════════════════════
+
+# ─── جميع الصفحات ────────────────────────────────────
+/*
+  # منع تضمين الموقع داخل iframe (حماية من Clickjacking)
+  X-Frame-Options: DENY
+
+  # منع المتصفح من تخمين نوع المحتوى (حماية من MIME sniffing)
+  X-Content-Type-Options: nosniff
+
+  # حماية XSS قديمة (IE/Edge) — لا تضر
+  X-XSS-Protection: 1; mode=block
+
+  # لا ترسل Referrer كامل لمواقع خارجية
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # تقييد الميزات الحساسة
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+# ─── صفحات الدورات (المحمية) ────────────────────────
+/mycourses-board/*
+  # نفس الترويسات العامة
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+  # منع محركات البحث من أرشفة هذه الصفحات
+  X-Robots-Tag: noindex, nofollow, nosnippet, noarchive
+
+  # منع التخزين المؤقت في المتصفح — يجبر الصفحة على التحقق دائمًا
+  # ⚠️ هذا مهم: بدونه قد يصل المستخدم للمحتوى بدون إعادة التحقق من الجلسة
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+
+# ─── صفحات تسجيل الدخول ────────────────────────────
+/login/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+
+# ─── ملفات JavaScript الحساسة ───────────────────────
+/mycourses-board/course.js
+  Cache-Control: no-store, max-age=0
+
+/js/protect.js
+  Cache-Control: no-store, max-age=0

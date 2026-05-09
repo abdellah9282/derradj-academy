@@ -1,0 +1,44 @@
+# ══════════════════════════════════════════════════════
+# netlify.toml — Derradj Academy
+# ══════════════════════════════════════════════════════
+
+[build]
+  publish = "."
+
+# ─── Security Headers (نسخة احتياطية من _headers) ───
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options         = "DENY"
+    X-Content-Type-Options  = "nosniff"
+    X-XSS-Protection        = "1; mode=block"
+    Referrer-Policy         = "strict-origin-when-cross-origin"
+    Permissions-Policy      = "camera=(), microphone=(), geolocation=(), payment=()"
+
+[[headers]]
+  for = "/mycourses-board/*"
+  [headers.values]
+    X-Frame-Options         = "DENY"
+    X-Content-Type-Options  = "nosniff"
+    X-Robots-Tag            = "noindex, nofollow, nosnippet, noarchive"
+    Cache-Control           = "no-store, no-cache, must-revalidate, max-age=0"
+    Pragma                  = "no-cache"
+
+[[headers]]
+  for = "/login/*"
+  [headers.values]
+    X-Frame-Options  = "DENY"
+    Cache-Control    = "no-store, no-cache, must-revalidate, max-age=0"
+    Pragma           = "no-cache"
+
+# ─── Redirects ───────────────────────────────────────
+# ملاحظة: localStorage لا يمكن قراءته server-side
+# لذا لا يمكننا إعادة التوجيه بناءً على الجلسة من هنا.
+# التحقق من الجلسة يبقى في JavaScript (course.js).
+
+# أي طلب لصفحة غير موجودة → صفحة الـ 404 الخاصة
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 404
