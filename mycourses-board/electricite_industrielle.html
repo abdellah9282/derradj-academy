@@ -172,63 +172,15 @@
       alt="Video Thumbnail"
       class="playlist-thumbnail"
       style="cursor: pointer;"
-      onclick="loadYoutubeVideo()"
+      onclick="loadYoutubeVideo('ytVideoContainer', 'evovy_YIIxA')"
     >
     <div class="playlist-info">
       <h4>Video 2: Lois de Kirchhoff</h4>
-      <span class="playlist-status" onclick="loadYoutubeVideo()" style="cursor:pointer;">▶️ Watch Now</span>
+      <span class="playlist-status" onclick="loadYoutubeVideo('ytVideoContainer', 'evovy_YIIxA')" style="cursor:pointer;">▶️ Watch Now</span>
     </div>
   </div>
 </div>
-
-<script>
-  const youtubeId = "evovy_YIIxA";
-
-  window.loadYoutubeVideo = function () {
-    const container = document.getElementById("ytVideoContainer");
-    container.innerHTML = `
-      <div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden;">
-<div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden;">
-  <iframe
-    src="https://www.youtube-nocookie.com/embed/evovy_YIIxA?autoplay=1&rel=0&modestbranding=1&controls=1&iv_load_policy=3"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-    style="width:100%; height:100%;"
-  ></iframe>
-
-  <!-- غطاء علوي لإخفاء زر المشاركة + شعار YouTube -->
-  <div style="
-    position:absolute;
-    top:0; right:0;
-    width:80px; height:40px;
-    background:rgba(0,0,0,0.6);
-    border-bottom-left-radius:8px;
-    pointer-events:none;
-  "></div>
-</div>
-
-
-        <!-- غطاء لإخفاء شعار يوتيوب وزر المشاركة -->
-        <div style="
-          position:absolute;
-          top:0; left:0;
-          width:100%; height:30px;
-          background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-          pointer-events:none;
-        "></div>
-
-        <div style="
-          position:absolute;
-          bottom:0; left:0;
-          width:100%; height:30px;
-          background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-          pointer-events:none;
-        "></div>
-      </div>
-    `;
-  };
-</script>
+<script src="../js/video-player.js"></script>
 
         </div>
 
