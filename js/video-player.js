@@ -394,13 +394,39 @@ function _wire(cid, player, W, B, BR, O, iframe) {
     }
   }
 
+  // Lock screen to landscape on mobile when entering fullscreen
+  function _lockLandscape() {
+    try {
+      if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('landscape').catch(() => {});
+      } else if (screen.lockOrientation) {
+        screen.lockOrientation('landscape');
+      }
+    } catch (_) {}
+  }
+  function _unlockOrientation() {
+    try {
+      if (screen.orientation && screen.orientation.unlock) {
+        screen.orientation.unlock();
+      } else if (screen.unlockOrientation) {
+        screen.unlockOrientation();
+      }
+    } catch (_) {}
+  }
+
   function enterFS() {
     if (supportsFS) {
       const fn = wrap.requestFullscreen || wrap.webkitRequestFullscreen;
-      fn.call(wrap).catch(() => fallbackFS(true));
-    } else { fallbackFS(true); }
+      fn.call(wrap)
+        .then(() => _lockLandscape())
+        .catch(() => { _lockLandscape(); fallbackFS(true); });
+    } else {
+      _lockLandscape();
+      fallbackFS(true);
+    }
   }
   function exitFS() {
+    _unlockOrientation();
     if (document.fullscreenElement || document.webkitFullscreenElement) {
       const fn = document.exitFullscreen || document.webkitExitFullscreen;
       fn.call(document);
@@ -415,6 +441,7 @@ function _wire(cid, player, W, B, BR, O, iframe) {
   function onNativeFS() {
     const full = document.fullscreenElement === wrap ||
                  document.webkitFullscreenElement === wrap;
+    if (!full) _unlockOrientation();
     applyFSLayout(full);
   }
   document.addEventListener('fullscreenchange',       onNativeFS);
@@ -427,7 +454,10 @@ function _wire(cid, player, W, B, BR, O, iframe) {
     inFS ? exitFS() : enterFS();
   });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && wrap.classList.contains('vp-fb')) fallbackFS(false);
+    if (e.key === 'Escape' && wrap.classList.contains('vp-fb')) {
+      _unlockOrientation();
+      fallbackFS(false);
+    }
   });
 
   // ── Ticker ────────────────────────────────────────────────────────────────

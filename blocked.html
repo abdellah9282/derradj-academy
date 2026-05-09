@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تم حظر الوصول — Derradj Academy</title>
+  <link rel="icon" type="image/jpeg" href="/Logo.jpg">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0f;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(120, 40, 200, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(200, 40, 80, 0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .card {
+      background: rgba(18, 18, 28, 0.92);
+      border: 1px solid rgba(200, 40, 80, 0.4);
+      border-radius: 16px;
+      padding: 56px 48px;
+      max-width: 520px;
+      width: 90%;
+      text-align: center;
+      box-shadow:
+        0 0 0 1px rgba(200, 40, 80, 0.15),
+        0 24px 64px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .icon {
+      font-size: 72px;
+      margin-bottom: 24px;
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(200, 40, 80, 0.6));
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #ff4466;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: #aaa;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #7928ca, #ff4466);
+      border-radius: 2px;
+      margin: 0 auto 32px;
+    }
+
+    .detail-box {
+      background: rgba(200, 40, 80, 0.08);
+      border: 1px solid rgba(200, 40, 80, 0.25);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 0.88rem;
+      color: #cc4466;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .detail-box strong {
+      color: #ff6688;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #7928ca, #ff4466);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 4px 20px rgba(255, 68, 102, 0.35);
+    }
+
+    .contact-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .logo-text {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: #555;
+      letter-spacing: 0.05em;
+    }
+
+    .logo-text span {
+      color: #7928ca;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <span class="icon">🚫</span>
+    <h1>تم حظر وصولك</h1>
+    <div class="divider"></div>
+    <p class="subtitle">
+      تم رصد نشاط مخالف لشروط الاستخدام من جهازك.<br>
+      تم تسجيل عنوان IP الخاص بك وحظره تلقائياً.
+    </p>
+    <div class="detail-box">
+      <strong>السبب:</strong> محاولة الوصول إلى أدوات المطور أو مصدر الكود.<br>
+      <strong>الإجراء المتخذ:</strong> تسجيل الحادثة + حظر الوصول الفوري.
+    </div>
+    <a href="https://www.instagram.com/abdellah_derradj_" target="_blank" class="contact-btn">
+      تواصل معنا لرفع الحظر
+    </a>
+    <p class="logo-text">
+      <span>D</span>erradj Academy &mdash; جميع الحقوق محفوظة
+    </p>
+  </div>
+</body>
+</html>
