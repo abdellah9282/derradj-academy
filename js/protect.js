@@ -18,6 +18,8 @@
     }
   });
 
+
+
   // 🔒 تعطيل أدوات النسخ والقص واللصق والسحب
   ["copy", "cut", "paste", "dragstart"].forEach(evt => {
     document.addEventListener(evt, (e) => e.preventDefault());
@@ -29,7 +31,6 @@
   console.warn = function () {};
   console.info = function () {};
 })();
-
 // 🔒 منع حفظ الصفحة عبر Ctrl + S
 document.addEventListener("keydown", (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
