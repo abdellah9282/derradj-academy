@@ -327,8 +327,8 @@ function _wire(cid, player, W, B, BR, O, iframe) {
   });
   document.addEventListener('click', () => qMenu.classList.add('vp-qhide'));
 
-  // ── Auto-hide cursor + bar (after 3s idle while playing) ─────────────────
-  let idleTimer = null;
+  // ── Auto-hide controls ────────────────────────────────────────────────────
+  let idleTimer   = null;
   const _isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   function isFS() {
@@ -340,34 +340,49 @@ function _wire(cid, player, W, B, BR, O, iframe) {
     try { return player.getPlayerState() === YT.PlayerState.PLAYING; } catch(_){ return false; }
   }
 
-  function showUI() {
+  // Start a guaranteed 2-second hide timer — nothing cancels it except pause/stop
+  function _startHideTimer() {
     clearTimeout(idleTimer);
-    wrap.classList.remove('vp-nocursor');
-    bar.classList.remove('vp-hidden');
-    if (isPlaying()) {
-      idleTimer = setTimeout(() => {
-        wrap.classList.add('vp-nocursor');
-        // Hide bar in fullscreen OR on mobile (touch device — no persistent cursor)
-        if (isFS() || _isMobile) bar.classList.add('vp-hidden');
-      }, 3000);
-    }
+    idleTimer = setTimeout(() => {
+      wrap.classList.add('vp-nocursor');
+      if (isFS() || _isMobile) bar.classList.add('vp-hidden');
+    }, 2000);
   }
 
+  // Show UI temporarily (on interaction), then restart hide timer
+  function showUI() {
+    wrap.classList.remove('vp-nocursor');
+    bar.classList.remove('vp-hidden');
+    if (isPlaying()) _startHideTimer();
+  }
+
+  // Video started → show bar briefly then always hide after 2s
   player.addEventListener('onStateChange', state => {
-    if (state === YT.PlayerState.PLAYING) showUI();
-    else { clearTimeout(idleTimer); wrap.classList.remove('vp-nocursor'); bar.classList.remove('vp-hidden'); }
+    if (state === YT.PlayerState.PLAYING) {
+      bar.classList.remove('vp-hidden');
+      wrap.classList.remove('vp-nocursor');
+      _startHideTimer();                   // guaranteed hide after 2s
+    } else {
+      // Paused / ended → always show bar
+      clearTimeout(idleTimer);
+      wrap.classList.remove('vp-nocursor');
+      bar.classList.remove('vp-hidden');
+    }
   });
 
-  wrap.addEventListener('mousemove',  showUI);
-  wrap.addEventListener('mousedown',  showUI);
+  // Desktop: mouse movement shows UI then re-hides
+  wrap.addEventListener('mousemove', showUI);
+  wrap.addEventListener('mousedown', showUI);
+
+  // Mobile: tap shows UI then re-hides (bar.mouseenter NOT used on mobile
+  // to avoid touchstart cancelling the timer via synthesized mouse events)
   wrap.addEventListener('touchstart', showUI, { passive: true });
-  bar.addEventListener('mouseenter', () => clearTimeout(idleTimer));
-  bar.addEventListener('mouseleave', () => {
-    if (isPlaying()) idleTimer = setTimeout(() => {
-      wrap.classList.add('vp-nocursor');
-      if (isFS()) bar.classList.add('vp-hidden');
-    }, 2000);
-  });
+
+  // Desktop only: pause the hide-timer while hovering the bar
+  if (!_isMobile) {
+    bar.addEventListener('mouseenter', () => clearTimeout(idleTimer));
+    bar.addEventListener('mouseleave', () => { if (isPlaying()) _startHideTimer(); });
+  }
 
   // ── Fullscreen ────────────────────────────────────────────────────────────
   const supportsFS = !!(document.documentElement.requestFullscreen ||
