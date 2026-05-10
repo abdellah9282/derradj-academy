@@ -329,6 +329,7 @@ function _wire(cid, player, W, B, BR, O, iframe) {
 
   // ── Auto-hide cursor + bar (after 3s idle while playing) ─────────────────
   let idleTimer = null;
+  const _isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   function isFS() {
     return document.fullscreenElement === wrap ||
@@ -346,7 +347,8 @@ function _wire(cid, player, W, B, BR, O, iframe) {
     if (isPlaying()) {
       idleTimer = setTimeout(() => {
         wrap.classList.add('vp-nocursor');
-        if (isFS()) bar.classList.add('vp-hidden');
+        // Hide bar in fullscreen OR on mobile (touch device — no persistent cursor)
+        if (isFS() || _isMobile) bar.classList.add('vp-hidden');
       }, 3000);
     }
   }
