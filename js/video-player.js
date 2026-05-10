@@ -16,18 +16,16 @@
       position: relative; width: 100%;
       overflow: hidden; background: #000;
     }
-    /* Overlay blocks YouTube's own click-targets */
     .vp-ov { position: absolute; inset: 0; z-index: 10; }
 
-    /* ── Control bar ── */
     .vp-bar {
       display: flex; align-items: center;
       gap: 6px; padding: 0 10px; height: 46px;
       background: #111; box-sizing: border-box;
       flex-shrink: 0;
-      transition: opacity 0.35s ease;
+      transition: opacity 0.4s ease;
     }
-    .vp-bar.vp-hidden { opacity: 0; pointer-events: none; }
+    .vp-bar.vp-hidden { opacity: 0 !important; pointer-events: none !important; }
 
     .vp-btn {
       background: none; border: none; color: #fff;
@@ -43,12 +41,10 @@
       cursor: pointer; accent-color: #e00; touch-action: manipulation;
     }
 
-    /* ── Quality dropdown ── */
+    /* Quality dropdown */
     .vp-qwrap { position: relative; flex-shrink: 0; }
-    .vp-qbtn  {
-      font-size: 12px !important; padding: 3px 7px !important;
-      font-weight: 700; color: #aaa !important; letter-spacing: .4px;
-    }
+    .vp-qbtn  { font-size: 12px !important; padding: 3px 7px !important;
+                 font-weight: 700; color: #aaa !important; letter-spacing: .4px; }
     .vp-qbtn:hover { color: #fff !important; }
     .vp-qmenu {
       position: absolute; bottom: calc(100% + 6px); right: 0;
@@ -67,20 +63,11 @@
     .vp-qi:hover { background: rgba(255,255,255,.08); color: #fff; }
     .vp-qi.vp-qact { color: #e33; font-weight: 700; }
 
-    /* ══════════════════════════════════════════
-       FULLSCREEN: bar overlays the video
-       so the video fills 100% of the screen
-       ══════════════════════════════════════════ */
-    .vp-wrap.vp-fs,
-    .vp-wrap.vp-fb {
-      /* box fills the entire wrap (= entire screen) */
-    }
+    /* Fullscreen: bar overlays video so video fills 100% screen */
     .vp-wrap.vp-fs .vp-box,
     .vp-wrap.vp-fb .vp-box {
-      width: 100% !important;
-      height: 100% !important;   /* fills 100vh */
+      width: 100% !important; height: 100% !important;
     }
-    /* Bar floats over the video at the bottom */
     .vp-wrap.vp-fs .vp-bar,
     .vp-wrap.vp-fb .vp-bar {
       position: absolute !important;
@@ -89,15 +76,13 @@
       background: linear-gradient(to top, rgba(0,0,0,.9) 60%, transparent) !important;
       z-index: 50 !important;
     }
-    /* CSS-only fallback fullscreen */
     .vp-wrap.vp-fb {
       position: fixed !important; inset: 0 !important;
       max-width: 100vw !important; width: 100vw !important;
-      height: 100vh !important;   border-radius: 0 !important;
+      height: 100vh !important; border-radius: 0 !important;
       z-index: 999999 !important;
     }
 
-    /* Hide cursor */
     .vp-nocursor, .vp-nocursor * { cursor: none !important; }
 
     @media (max-width: 600px) {
@@ -133,13 +118,10 @@ const Q_LABEL    = {
   hd720:'720p',   large:'480p',   medium:'360p',
   small:'240p',   tiny:'144p',
 };
-
 function _bestQuality(player) {
-  const available = player.getAvailableQualityLevels() || [];
-  return Q_PRIORITY.find(q => available.includes(q)) || 'hd1080';
+  const av = player.getAvailableQualityLevels() || [];
+  return Q_PRIORITY.find(q => av.includes(q)) || 'hd1080';
 }
-
-// Apply quality + seek trick to force YouTube to rebuffer at new quality
 function _applyQuality(player, quality) {
   try {
     player.setPlaybackQuality(quality);
@@ -148,7 +130,7 @@ function _applyQuality(player, quality) {
   } catch (_) {}
 }
 
-// ── State ─────────────────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────────────
 const _players = {}, _timers = {};
 
 function _fmt(s) {
@@ -220,30 +202,20 @@ function loadYoutubeVideo(containerId, videoId) {
         onReady: ev => {
           const iframe = ev.target.getIframe();
           _fillIframe(iframe);
-
-          // Pause → wait for quality levels → set best → seek 0 → play
           ev.target.pauseVideo();
           setTimeout(() => {
             const best = _bestQuality(ev.target);
             const qb   = document.getElementById(containerId + '_qb');
             try { ev.target.setPlaybackQuality(best); } catch (_) {}
             if (qb) qb.textContent = Q_LABEL[best] || 'HD';
-            setTimeout(() => {
-              ev.target.seekTo(0, true);
-              ev.target.playVideo();
-            }, 200);
-          }, 600); // wait 600ms for YouTube to populate quality levels
-
+            setTimeout(() => { ev.target.seekTo(0, true); ev.target.playVideo(); }, 200);
+          }, 600);
           _wire(containerId, ev.target, W, B, BR, O, iframe);
         },
-
         onStateChange: ev => {
           const b = document.getElementById(containerId + '_bt');
-          if (b) b.textContent =
-            ev.data === YT.PlayerState.PLAYING ? '⏸' : '▶';
+          if (b) b.textContent = ev.data === YT.PlayerState.PLAYING ? '⏸' : '▶';
         },
-
-        // Sync quality label when YouTube changes quality
         onPlaybackQualityChange: ev => {
           const qb = document.getElementById(containerId + '_qb');
           if (qb && Q_LABEL[ev.data]) qb.textContent = Q_LABEL[ev.data];
@@ -269,11 +241,12 @@ function _wire(cid, player, W, B, BR, O, iframe) {
   const fsBtn = document.getElementById(cid + '_fs');
   if (!wrap) return;
 
-  // Responsive 16:9 in normal mode
+  const _isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  // Responsive 16:9
   const ro = new ResizeObserver(() => {
     if (!wrap.classList.contains('vp-fs') && !wrap.classList.contains('vp-fb')) {
-      _fixBoxH(wrap, box);
-      _fillIframe(iframe);
+      _fixBoxH(wrap, box); _fillIframe(iframe);
     }
   });
   ro.observe(wrap);
@@ -298,19 +271,17 @@ function _wire(cid, player, W, B, BR, O, iframe) {
 
   // ── Quality menu ──────────────────────────────────────────────────────────
   let activeQ = 'hd1080';
-
   function buildMenu() {
-    const available = (player.getAvailableQualityLevels() || []).filter(l => Q_LABEL[l]);
-    const levels = available.length ? available : Q_PRIORITY.filter(l => Q_LABEL[l]);
+    const av  = (player.getAvailableQualityLevels() || []).filter(l => Q_LABEL[l]);
+    const lvl = av.length ? av : Q_PRIORITY.filter(l => Q_LABEL[l]);
     qMenu.innerHTML = '';
-    levels.forEach(q => {
+    lvl.forEach(q => {
       const item = document.createElement('button');
       item.className = 'vp-qi' + (q === activeQ ? ' vp-qact' : '');
       item.textContent = Q_LABEL[q];
       item.addEventListener('click', e => {
         e.stopPropagation();
-        activeQ = q;
-        qBtn.textContent = Q_LABEL[q];
+        activeQ = q; qBtn.textContent = Q_LABEL[q];
         qMenu.querySelectorAll('.vp-qi').forEach(i => i.classList.remove('vp-qact'));
         item.classList.add('vp-qact');
         qMenu.classList.add('vp-qhide');
@@ -319,72 +290,98 @@ function _wire(cid, player, W, B, BR, O, iframe) {
       qMenu.appendChild(item);
     });
   }
-
   qBtn.addEventListener('click', e => {
     e.stopPropagation();
-    qMenu.classList.contains('vp-qhide') ? (buildMenu(), qMenu.classList.remove('vp-qhide'))
-                                          : qMenu.classList.add('vp-qhide');
+    qMenu.classList.contains('vp-qhide')
+      ? (buildMenu(), qMenu.classList.remove('vp-qhide'))
+      : qMenu.classList.add('vp-qhide');
   });
   document.addEventListener('click', () => qMenu.classList.add('vp-qhide'));
 
-  // ── Auto-hide controls ────────────────────────────────────────────────────
-  let idleTimer   = null;
-  const _isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  // ══════════════════════════════════════════════════════════════════════════
+  // AUTO-HIDE BAR — works on ALL devices, ALL modes
+  // Strategy: interval checks every 300ms whether 2s have elapsed since
+  // last user activity. Hides bar (and cursor) when idle while playing.
+  // Shows bar immediately on any interaction. Stops when paused.
+  // ══════════════════════════════════════════════════════════════════════════
+  let _lastAct  = 0;      // ms timestamp of last user interaction
+  let _watcher  = null;   // interval handle
+  let _barVisible = true; // track state to avoid redundant DOM ops
 
+  function _showBar() {
+    if (_barVisible) return;
+    _barVisible = true;
+    bar.classList.remove('vp-hidden');
+    wrap.classList.remove('vp-nocursor');
+  }
+
+  function _hideBar() {
+    if (!_barVisible) return;
+    _barVisible = false;
+    bar.classList.add('vp-hidden');
+    wrap.classList.add('vp-nocursor');
+  }
+
+  function _onActivity() {
+    _lastAct = Date.now();
+    _showBar();
+  }
+
+  function _startWatcher() {
+    if (_watcher) clearInterval(_watcher); // restart fresh on every play
+    _lastAct = Date.now();                 // treat play-start as activity
+    _watcher = setInterval(() => {
+      try {
+        const state = player.getPlayerState();
+        // Only hide while actually playing (not buffering, paused, etc.)
+        if (state !== YT.PlayerState.PLAYING) {
+          _showBar();
+          return;
+        }
+        if (Date.now() - _lastAct >= 2000) {
+          _hideBar();
+        }
+      } catch (_) {}
+    }, 300);
+  }
+
+  function _stopWatcher() {
+    clearInterval(_watcher);
+    _watcher = null;
+    _showBar(); // always show when stopped
+  }
+
+  // Player state → start/stop watcher
+  player.addEventListener('onStateChange', state => {
+    if (state === YT.PlayerState.PLAYING) {
+      _startWatcher();
+    } else {
+      // Paused, buffering, ended → show bar, but keep watcher alive
+      // so it resumes hiding automatically when playback restarts
+      _showBar();
+      if (state === YT.PlayerState.PAUSED ||
+          state === YT.PlayerState.ENDED) {
+        _stopWatcher();
+      }
+      // BUFFERING: don't stop watcher — it will restart hiding once
+      // state returns to PLAYING without needing another event
+    }
+  });
+
+  // User interaction → record activity
+  wrap.addEventListener('mousemove',  _onActivity);
+  wrap.addEventListener('mousedown',  _onActivity);
+  wrap.addEventListener('touchstart', _onActivity, { passive: true });
+  // Keep bar visible while hovering it on desktop
+  if (!_isMobile) bar.addEventListener('mouseenter', _onActivity);
+
+  // ── Fullscreen ────────────────────────────────────────────────────────────
   function isFS() {
     return document.fullscreenElement === wrap ||
            document.webkitFullscreenElement === wrap ||
            wrap.classList.contains('vp-fb');
   }
-  function isPlaying() {
-    try { return player.getPlayerState() === YT.PlayerState.PLAYING; } catch(_){ return false; }
-  }
 
-  // Start a guaranteed 2-second hide timer — nothing cancels it except pause/stop
-  function _startHideTimer() {
-    clearTimeout(idleTimer);
-    idleTimer = setTimeout(() => {
-      wrap.classList.add('vp-nocursor');
-      if (isFS() || _isMobile) bar.classList.add('vp-hidden');
-    }, 2000);
-  }
-
-  // Show UI temporarily (on interaction), then restart hide timer
-  function showUI() {
-    wrap.classList.remove('vp-nocursor');
-    bar.classList.remove('vp-hidden');
-    if (isPlaying()) _startHideTimer();
-  }
-
-  // Video started → show bar briefly then always hide after 2s
-  player.addEventListener('onStateChange', state => {
-    if (state === YT.PlayerState.PLAYING) {
-      bar.classList.remove('vp-hidden');
-      wrap.classList.remove('vp-nocursor');
-      _startHideTimer();                   // guaranteed hide after 2s
-    } else {
-      // Paused / ended → always show bar
-      clearTimeout(idleTimer);
-      wrap.classList.remove('vp-nocursor');
-      bar.classList.remove('vp-hidden');
-    }
-  });
-
-  // Desktop: mouse movement shows UI then re-hides
-  wrap.addEventListener('mousemove', showUI);
-  wrap.addEventListener('mousedown', showUI);
-
-  // Mobile: tap shows UI then re-hides (bar.mouseenter NOT used on mobile
-  // to avoid touchstart cancelling the timer via synthesized mouse events)
-  wrap.addEventListener('touchstart', showUI, { passive: true });
-
-  // Desktop only: pause the hide-timer while hovering the bar
-  if (!_isMobile) {
-    bar.addEventListener('mouseenter', () => clearTimeout(idleTimer));
-    bar.addEventListener('mouseleave', () => { if (isPlaying()) _startHideTimer(); });
-  }
-
-  // ── Fullscreen ────────────────────────────────────────────────────────────
   const supportsFS = !!(document.documentElement.requestFullscreen ||
                         document.documentElement.webkitRequestFullscreen);
 
@@ -392,80 +389,55 @@ function _wire(cid, player, W, B, BR, O, iframe) {
     if (entering) {
       wrap.classList.add('vp-fs');
       wrap.style.borderRadius = '0';
-      // box fills 100% of screen, bar overlays on top of video
       requestAnimationFrame(() => {
         box.style.height = '100%';
         _fillIframe(iframe);
         fsBtn.textContent = '✕';
-        showUI();
+        _onActivity(); // show bar briefly then watcher takes over
       });
     } else {
-      clearTimeout(idleTimer);
-      wrap.classList.remove('vp-fs', 'vp-nocursor');
+      wrap.classList.remove('vp-fs');
       wrap.style.borderRadius = '';
-      bar.classList.remove('vp-hidden');
-      box.style.height = '';        // restore to JS-managed 16:9
+      box.style.height = '';
       _fixBoxH(wrap, box);
       _fillIframe(iframe);
       fsBtn.textContent = '⛶';
+      _showBar();
     }
   }
 
-  // ── Orientation lock helpers ──────────────────────────────────────────────
+  // Orientation helpers
   function _lockLandscape() {
-    // Try all known orientation lock APIs
     const tryLock = () => {
-      if (screen.orientation && screen.orientation.lock) {
-        return screen.orientation.lock('landscape').catch(() => {});
-      }
-      ['lockOrientation','mozLockOrientation','msLockOrientation'].forEach(fn => {
-        if (screen[fn]) try { screen[fn]('landscape'); } catch(_) {}
-      });
+      if (screen.orientation && screen.orientation.lock)
+        screen.orientation.lock('landscape').catch(() => {});
+      ['lockOrientation','mozLockOrientation','msLockOrientation']
+        .forEach(fn => { if (screen[fn]) try { screen[fn]('landscape'); } catch(_){} });
     };
-    // Small delay ensures fullscreen is fully established before locking
     setTimeout(tryLock, 150);
   }
-
   function _unlockOrientation() {
-    try {
-      if (screen.orientation && screen.orientation.unlock) {
-        screen.orientation.unlock();
-      }
-      ['unlockOrientation','mozUnlockOrientation','msUnlockOrientation'].forEach(fn => {
-        if (screen[fn]) try { screen[fn](); } catch(_) {}
-      });
-    } catch (_) {}
+    try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); }
+    catch (_) {}
+    ['unlockOrientation','mozUnlockOrientation','msUnlockOrientation']
+      .forEach(fn => { if (screen[fn]) try { screen[fn](); } catch(_){} });
   }
 
-  // Re-apply iframe fill after phone physically rotates
   function _onOrientationChange() {
     if (!isFS()) return;
-    // Wait for the browser to finish the rotation animation (~300ms)
     setTimeout(() => {
-      box.style.width  = '100%';
-      box.style.height = '100%';
-      _fillIframe(iframe);
+      box.style.width = '100%'; box.style.height = '100%'; _fillIframe(iframe);
     }, 350);
   }
   window.addEventListener('orientationchange', _onOrientationChange);
-  // Modern API: same thing via screen.orientation
-  if (screen.orientation) {
-    screen.orientation.addEventListener('change', _onOrientationChange);
-  }
+  if (screen.orientation) screen.orientation.addEventListener('change', _onOrientationChange);
 
-  // ── Fullscreen ────────────────────────────────────────────────────────────
   function enterFS() {
     if (supportsFS) {
       const fn = wrap.requestFullscreen || wrap.webkitRequestFullscreen;
-      fn.call(wrap)
-        .then(_lockLandscape)
-        .catch(() => { fallbackFS(true); _lockLandscape(); });
-    } else {
-      fallbackFS(true);
-      _lockLandscape();
-    }
+      fn.call(wrap).then(_lockLandscape).catch(() => { fallbackFS(true); _lockLandscape(); });
+    } else { fallbackFS(true); _lockLandscape(); }
   }
-
   function exitFS() {
     _unlockOrientation();
     if (document.fullscreenElement || document.webkitFullscreenElement) {
@@ -473,7 +445,6 @@ function _wire(cid, player, W, B, BR, O, iframe) {
       fn.call(document);
     } else { fallbackFS(false); }
   }
-
   function fallbackFS(enter) {
     if (enter) { document.body.style.overflow = 'hidden'; wrap.classList.add('vp-fb'); }
     else        { document.body.style.overflow = '';       wrap.classList.remove('vp-fb'); }
@@ -481,8 +452,7 @@ function _wire(cid, player, W, B, BR, O, iframe) {
   }
 
   function onNativeFS() {
-    const full = document.fullscreenElement === wrap ||
-                 document.webkitFullscreenElement === wrap;
+    const full = document.fullscreenElement === wrap || document.webkitFullscreenElement === wrap;
     if (!full) _unlockOrientation();
     applyFSLayout(full);
   }
@@ -497,8 +467,7 @@ function _wire(cid, player, W, B, BR, O, iframe) {
   });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && wrap.classList.contains('vp-fb')) {
-      _unlockOrientation();
-      fallbackFS(false);
+      _unlockOrientation(); fallbackFS(false);
     }
   });
 
