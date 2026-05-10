@@ -394,37 +394,61 @@ function _wire(cid, player, W, B, BR, O, iframe) {
     }
   }
 
-  // Lock screen to landscape on mobile when entering fullscreen
+  // ── Orientation lock helpers ──────────────────────────────────────────────
   function _lockLandscape() {
-    try {
+    // Try all known orientation lock APIs
+    const tryLock = () => {
       if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('landscape').catch(() => {});
-      } else if (screen.lockOrientation) {
-        screen.lockOrientation('landscape');
+        return screen.orientation.lock('landscape').catch(() => {});
       }
-    } catch (_) {}
+      ['lockOrientation','mozLockOrientation','msLockOrientation'].forEach(fn => {
+        if (screen[fn]) try { screen[fn]('landscape'); } catch(_) {}
+      });
+    };
+    // Small delay ensures fullscreen is fully established before locking
+    setTimeout(tryLock, 150);
   }
+
   function _unlockOrientation() {
     try {
       if (screen.orientation && screen.orientation.unlock) {
         screen.orientation.unlock();
-      } else if (screen.unlockOrientation) {
-        screen.unlockOrientation();
       }
+      ['unlockOrientation','mozUnlockOrientation','msUnlockOrientation'].forEach(fn => {
+        if (screen[fn]) try { screen[fn](); } catch(_) {}
+      });
     } catch (_) {}
   }
 
+  // Re-apply iframe fill after phone physically rotates
+  function _onOrientationChange() {
+    if (!isFS()) return;
+    // Wait for the browser to finish the rotation animation (~300ms)
+    setTimeout(() => {
+      box.style.width  = '100%';
+      box.style.height = '100%';
+      _fillIframe(iframe);
+    }, 350);
+  }
+  window.addEventListener('orientationchange', _onOrientationChange);
+  // Modern API: same thing via screen.orientation
+  if (screen.orientation) {
+    screen.orientation.addEventListener('change', _onOrientationChange);
+  }
+
+  // ── Fullscreen ────────────────────────────────────────────────────────────
   function enterFS() {
     if (supportsFS) {
       const fn = wrap.requestFullscreen || wrap.webkitRequestFullscreen;
       fn.call(wrap)
-        .then(() => _lockLandscape())
-        .catch(() => { _lockLandscape(); fallbackFS(true); });
+        .then(_lockLandscape)
+        .catch(() => { fallbackFS(true); _lockLandscape(); });
     } else {
-      _lockLandscape();
       fallbackFS(true);
+      _lockLandscape();
     }
   }
+
   function exitFS() {
     _unlockOrientation();
     if (document.fullscreenElement || document.webkitFullscreenElement) {
@@ -432,6 +456,7 @@ function _wire(cid, player, W, B, BR, O, iframe) {
       fn.call(document);
     } else { fallbackFS(false); }
   }
+
   function fallbackFS(enter) {
     if (enter) { document.body.style.overflow = 'hidden'; wrap.classList.add('vp-fb'); }
     else        { document.body.style.overflow = '';       wrap.classList.remove('vp-fb'); }
