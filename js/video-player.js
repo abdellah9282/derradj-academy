@@ -155,6 +155,7 @@ function loadYoutubeVideo(containerId, videoId) {
     delete _players[containerId];
   }
   clearInterval(_timers[containerId]);
+  clearInterval(_timers[containerId + '_w']);
 
   const W  = containerId + '_w';
   const B  = containerId + '_b';
@@ -242,6 +243,52 @@ function _wire(cid, player, W, B, BR, O, iframe) {
   if (!wrap) return;
 
   const _isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  let _lastAct = Date.now(); // timestamp of last user interaction
+  let _barVis  = true;       // current bar visibility state
+  let _prevSt  = -1;         // previous player state (for edge detection)
+
+  function _showBar() {
+    if (_barVis) return;
+    _barVis = true;
+    bar.classList.remove('vp-hidden');
+    wrap.classList.remove('vp-nocursor');
+  }
+  function _hideBar() {
+    if (!_barVis) return;
+    _barVis = false;
+    bar.classList.add('vp-hidden');
+    wrap.classList.add('vp-nocursor');
+  }
+  function _onActivity() {
+    _lastAct = Date.now();
+    _showBar();
+  }
+
+  // ── Auto-hide watcher (pure polling — no event dependency) ────────────────
+  // Checks player state every 300ms directly via getPlayerState().
+  // This is the only reliable way since player.addEventListener() in YT API
+  // expects a global function NAME string, not a function reference.
+  _timers[cid + '_w'] = setInterval(() => {
+    try {
+      const st = player.getPlayerState();
+      // Detect transition INTO playing → reset idle timer
+      if (st === YT.PlayerState.PLAYING && _prevSt !== YT.PlayerState.PLAYING) {
+        _lastAct = Date.now();
+      }
+      _prevSt = st;
+      if (st === YT.PlayerState.PLAYING) {
+        if (Date.now() - _lastAct >= 2000) _hideBar();
+      } else {
+        _showBar(); // paused / buffering / ended → always show
+      }
+    } catch (_) {}
+  }, 300);
+
+  // User interaction → show bar + reset 2s countdown
+  wrap.addEventListener('mousemove',  _onActivity);
+  wrap.addEventListener('mousedown',  _onActivity);
+  wrap.addEventListener('touchstart', _onActivity, { passive: true });
+  if (!_isMobile) bar.addEventListener('mouseenter', _onActivity);
 
   // Responsive 16:9
   const ro = new ResizeObserver(() => {
@@ -298,82 +345,6 @@ function _wire(cid, player, W, B, BR, O, iframe) {
   });
   document.addEventListener('click', () => qMenu.classList.add('vp-qhide'));
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // AUTO-HIDE BAR — works on ALL devices, ALL modes
-  // Strategy: interval checks every 300ms whether 2s have elapsed since
-  // last user activity. Hides bar (and cursor) when idle while playing.
-  // Shows bar immediately on any interaction. Stops when paused.
-  // ══════════════════════════════════════════════════════════════════════════
-  let _lastAct  = 0;      // ms timestamp of last user interaction
-  let _watcher  = null;   // interval handle
-  let _barVisible = true; // track state to avoid redundant DOM ops
-
-  function _showBar() {
-    if (_barVisible) return;
-    _barVisible = true;
-    bar.classList.remove('vp-hidden');
-    wrap.classList.remove('vp-nocursor');
-  }
-
-  function _hideBar() {
-    if (!_barVisible) return;
-    _barVisible = false;
-    bar.classList.add('vp-hidden');
-    wrap.classList.add('vp-nocursor');
-  }
-
-  function _onActivity() {
-    _lastAct = Date.now();
-    _showBar();
-  }
-
-  function _startWatcher() {
-    if (_watcher) clearInterval(_watcher); // restart fresh on every play
-    _lastAct = Date.now();                 // treat play-start as activity
-    _watcher = setInterval(() => {
-      try {
-        const state = player.getPlayerState();
-        // Only hide while actually playing (not buffering, paused, etc.)
-        if (state !== YT.PlayerState.PLAYING) {
-          _showBar();
-          return;
-        }
-        if (Date.now() - _lastAct >= 2000) {
-          _hideBar();
-        }
-      } catch (_) {}
-    }, 300);
-  }
-
-  function _stopWatcher() {
-    clearInterval(_watcher);
-    _watcher = null;
-    _showBar(); // always show when stopped
-  }
-
-  // Player state → start/stop watcher
-  player.addEventListener('onStateChange', state => {
-    if (state === YT.PlayerState.PLAYING) {
-      _startWatcher();
-    } else {
-      // Paused, buffering, ended → show bar, but keep watcher alive
-      // so it resumes hiding automatically when playback restarts
-      _showBar();
-      if (state === YT.PlayerState.PAUSED ||
-          state === YT.PlayerState.ENDED) {
-        _stopWatcher();
-      }
-      // BUFFERING: don't stop watcher — it will restart hiding once
-      // state returns to PLAYING without needing another event
-    }
-  });
-
-  // User interaction → record activity
-  wrap.addEventListener('mousemove',  _onActivity);
-  wrap.addEventListener('mousedown',  _onActivity);
-  wrap.addEventListener('touchstart', _onActivity, { passive: true });
-  // Keep bar visible while hovering it on desktop
-  if (!_isMobile) bar.addEventListener('mouseenter', _onActivity);
 
   // ── Fullscreen ────────────────────────────────────────────────────────────
   function isFS() {
