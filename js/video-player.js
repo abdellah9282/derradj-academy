@@ -63,6 +63,28 @@
     .vp-qi:hover { background: rgba(255,255,255,.08); color: #fff; }
     .vp-qi.vp-qact { color: #e33; font-weight: 700; }
 
+    /* Speed dropdown */
+    .vp-swrap { position: relative; flex-shrink: 0; }
+    .vp-sbtn  { font-size: 12px !important; padding: 3px 7px !important;
+                 font-weight: 700; color: #aaa !important; letter-spacing: .4px; }
+    .vp-sbtn:hover { color: #fff !important; }
+    .vp-smenu {
+      position: absolute; bottom: calc(100% + 6px); right: 0;
+      background: rgba(10,10,10,.97);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px; padding: 4px 0; min-width: 80px;
+      z-index: 300; box-shadow: 0 6px 20px rgba(0,0,0,.7);
+    }
+    .vp-smenu.vp-shide { display: none; }
+    .vp-si {
+      display: block; width: 100%; background: none; border: none;
+      color: #bbb; padding: 9px 14px; text-align: center;
+      cursor: pointer; font-size: 13px; white-space: nowrap;
+      transition: background .15s;
+    }
+    .vp-si:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .vp-si.vp-sact { color: #7c3aed; font-weight: 700; }
+
     /* Fullscreen: bar overlays video so video fills 100% screen */
     .vp-wrap.vp-fs .vp-box,
     .vp-wrap.vp-fb .vp-box {
@@ -174,6 +196,10 @@ function loadYoutubeVideo(containerId, videoId) {
     <span   id="${containerId}_cu" class="vp-time">0:00</span>
     <input  id="${containerId}_sk" class="vp-seek" type="range" min="0" max="100" value="0" step="0.1">
     <span   id="${containerId}_du" class="vp-time vp-dur">0:00</span>
+    <div class="vp-swrap">
+      <button id="${containerId}_sb" class="vp-btn vp-sbtn">1x</button>
+      <div    id="${containerId}_sm" class="vp-smenu vp-shide"></div>
+    </div>
     <div class="vp-qwrap">
       <button id="${containerId}_qb" class="vp-btn vp-qbtn">HD</button>
       <div    id="${containerId}_qm" class="vp-qmenu vp-qhide"></div>
@@ -239,6 +265,8 @@ function _wire(cid, player, W, B, BR, O, iframe) {
   const du    = document.getElementById(cid + '_du');
   const qBtn  = document.getElementById(cid + '_qb');
   const qMenu = document.getElementById(cid + '_qm');
+  const sBtn  = document.getElementById(cid + '_sb');
+  const sMenu = document.getElementById(cid + '_sm');
   const fsBtn = document.getElementById(cid + '_fs');
   if (!wrap) return;
 
@@ -345,6 +373,36 @@ function _wire(cid, player, W, B, BR, O, iframe) {
   });
   document.addEventListener('click', () => qMenu.classList.add('vp-qhide'));
 
+  // ── Speed menu ────────────────────────────────────────────────────────────
+  const SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
+  let activeSpeed = 1;
+
+  function buildSpeedMenu() {
+    sMenu.innerHTML = '';
+    SPEEDS.forEach(spd => {
+      const item = document.createElement('button');
+      item.className = 'vp-si' + (spd === activeSpeed ? ' vp-sact' : '');
+      item.textContent = spd === 1 ? '1x (Normal)' : spd + 'x';
+      item.addEventListener('click', e => {
+        e.stopPropagation();
+        activeSpeed = spd;
+        sBtn.textContent = spd + 'x';
+        sMenu.querySelectorAll('.vp-si').forEach(i => i.classList.remove('vp-sact'));
+        item.classList.add('vp-sact');
+        sMenu.classList.add('vp-shide');
+        try { player.setPlaybackRate(spd); } catch (_) {}
+      });
+      sMenu.appendChild(item);
+    });
+  }
+  sBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    qMenu.classList.add('vp-qhide');
+    sMenu.classList.contains('vp-shide')
+      ? (buildSpeedMenu(), sMenu.classList.remove('vp-shide'))
+      : sMenu.classList.add('vp-shide');
+  });
+  document.addEventListener('click', () => sMenu.classList.add('vp-shide'));
 
   // ── Fullscreen ────────────────────────────────────────────────────────────
   function isFS() {
