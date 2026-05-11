@@ -9,7 +9,9 @@
       "Bash(Format-Table -AutoSize)",
       "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\pc\\\\Desktop\\\\Derradj Academy\\\\login\" -Recurse -Force | Where-Object { $_.PSIsContainer -eq $false } | Select-Object Name)",
       "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\pc\\\\Desktop\\\\Derradj Academy\\\\mycourses-board\" -Recurse -Force | Where-Object { $_.PSIsContainer -eq $false } | Select-Object Name)",
-      "Bash(grep -E \"\\\\.\\(json|xml\\)$\")"
+      "Bash(grep -E \"\\\\.\\(json|xml\\)$\")",
+      "Bash(Get-ChildItem -Recurse -Directory)",
+      "Bash(Select-Object -First 20)"
     ]
   }
 }

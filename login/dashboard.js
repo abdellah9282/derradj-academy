@@ -373,42 +373,28 @@ async function checkPendingRequest() {
 
   const submitBtn = purchaseForm.querySelector('button[type="submit"]');
   const messageDiv = document.getElementById("purchase-message");
-  console.log("messageDiv:", messageDiv);
-if (messageDiv) {
+  if (messageDiv) {
     messageDiv.textContent = "";
-}
-
-  // التحقق من حالة الطلب المخزنة في localStorage
-  const pendingRequest = localStorage.getItem("pendingRequest");
-  if (pendingRequest === "true") {
-    submitBtn.disabled = true;
-    submitBtn.textContent = "✅تم إرسال الطلب بنجاح، بانتظار الموافقة";
-    submitBtn.style.backgroundColor = "#ccc";
-    submitBtn.style.cursor = "not-allowed";
-    messageDiv.textContent = "⚠️لديك طلب جارٍ قيد المراجعة، لا يمكن إرسال طلب جديد حالياً";
-    messageDiv.style.color = "orange";
-    return;
   }
 
-  // التحقق من الطلبات في قاعدة البيانات
+  // دائماً تحقق من قاعدة البيانات عند تحميل الصفحة
+  // (localStorage قد يكون قديماً إذا وافق الأدمن على الطلب)
   const { data: existingRequest } = await supabase
     .from("new_requests")
-    .select("*")
+    .select("id")
     .eq("user_contact", contact)
     .is("is_approved", null)
     .maybeSingle();
 
   if (existingRequest) {
-    // إذا كان هناك طلب جاري
     localStorage.setItem("pendingRequest", "true");
     submitBtn.disabled = true;
-    submitBtn.textContent = "✅.تم إرسال الطلب بنجاح، بانتظار الموافقة";
+    submitBtn.textContent = "✅ تم إرسال الطلب، بانتظار الموافقة";
     submitBtn.style.backgroundColor = "#ccc";
     submitBtn.style.cursor = "not-allowed";
-    messageDiv.textContent = "⚠️.لديك طلب جارٍ قيد المراجعة، لا يمكن إرسال طلب جديد حالياً";
+    messageDiv.textContent = "⚠️ لديك طلب جارٍ قيد المراجعة، لا يمكن إرسال طلب جديد حالياً";
     messageDiv.style.color = "orange";
   } else {
-    // إذا لم يكن هناك طلب جاري
     localStorage.setItem("pendingRequest", "false");
     submitBtn.disabled = false;
     submitBtn.textContent = "Submit Request";
@@ -532,27 +518,23 @@ if (purchaseForm) {
 // في بداية الملف مع سلوك مخفف يتيح عرض الدورات حتى عند اختلاف الجهاز.
 
 async function handlePendingRequest(contact, submitBtn, messageDiv) {
-  const pendingRequest = localStorage.getItem("pendingRequest");
-  if (pendingRequest === "true") {
-    submitBtn.disabled = true;
-    submitBtn.textContent = "✅.تم إرسال الطلب بنجاح، بانتظار الموافقة";
-    submitBtn.style.backgroundColor = "#ccc";
-    submitBtn.style.cursor = "not-allowed";
-    messageDiv.textContent = "⚠️.لديك طلب جارٍ قيد المراجعة، لا يمكن إرسال طلب جديد حالياً";
-    messageDiv.style.color = "orange";
-    return true;
-  }
-
+  // دائماً تحقق من قاعدة البيانات - لا تعتمد على localStorage وحده
   const { data: existingRequest } = await supabase
     .from("new_requests")
-    .select("*")
+    .select("id")
     .eq("user_contact", contact)
     .is("is_approved", null)
     .maybeSingle();
 
   if (existingRequest) {
     localStorage.setItem("pendingRequest", "true");
-    return handlePendingRequest(contact, submitBtn, messageDiv);
+    submitBtn.disabled = true;
+    submitBtn.textContent = "✅ تم إرسال الطلب، بانتظار الموافقة";
+    submitBtn.style.backgroundColor = "#ccc";
+    submitBtn.style.cursor = "not-allowed";
+    messageDiv.textContent = "⚠️ لديك طلب جارٍ قيد المراجعة، لا يمكن إرسال طلب جديد حالياً";
+    messageDiv.style.color = "orange";
+    return true;
   }
 
   localStorage.setItem("pendingRequest", "false");
