@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مؤقت Pomodoro – Derradj Academy</title>
+  <meta name="description" content="مؤقت Pomodoro لطلبة Derradj Academy – تقنية الدراسة المركّزة لتحسين الإنتاجية وتنظيم وقت المراجعة.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Derradj Academy">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.derradjacademy.com/pomodoro.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="مؤقت Pomodoro – Derradj Academy">
+  <meta property="og:description" content="تقنية الدراسة المركّزة – ادرس أكثر، تعب أقل. مؤقت Pomodoro مجاني لطلبة Derradj Academy.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.derradjacademy.com/pomodoro.html">
+  <meta property="og:image" content="https://www.derradjacademy.com/Logo.jpg">
+  <meta property="og:site_name" content="Derradj Academy">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="Logo.jpg">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="pomodoro.css" />
+
+  <!-- JS -->
+  <script src="js/search.js" defer></script>
+  <script src="js/hamburger.js" defer></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XDHSVTPG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F5XDHSVTPG');
+  </script>
+
+</head>
+<body>
+ <!-- HEADER -->
+<header class="main-header">
+  <div class="left-section">
+    <a href="index.html" class="logo">
+      <span class="purple">D</span>erradj Academy
+    </a>
+
+    <div class="explore-dropdown">
+      <a href="#" class="explore-link">Explore</a>
+<ul class="dropdown-menu">
+        <li><a href="courses/ondes_et_vibrations.html">Ondes et Vibrations</a></li>
+        <li><a href="courses/electrotechnique_fondamentale1.html">Électrotechnique Fondamentale 1</a></li>
+        <li><a href="courses/electronique_fondamentale1.html">Électronique Fondamentale 1</a></li>
+        <li><a href="courses/les_quadripoles.html">Les Quadripôles</a></li>
+        <li><a href="courses/machine_electrique.html">Machine Électrique</a></li>
+        <li><a href="courses/theorie_du_champ.html">Théorie du Champ Électromagnétique</a></li>
+        <li><a href="courses/electronique_de_puissance.html">Électronique de Puissance</a></li>
+        <li><a href="courses/informatique01.html">Informatique 1</a></li>
+        <li><a href="courses/informatique02.html">Informatique 2</a></li>
+        <li><a href="courses/informatique03.html">Informatique 3</a></li>
+        <li><a href="courses/logique.html">Logique Combinatoire et Séquentielle</a></li>
+        <li><a href="courses/methode.html">Méthodes Numériques (L2 + M1)</a></li>
+        <li><a href="courses/probabilite_et_statistique.html">Probabilité et Statistique</a></li>
+        <li><a href="courses/réseaux_electrique.html">Réseaux Électrique</a></li>
+        <li><a href="courses/systeme_asservis.html">Systèmes Asservis</a></li>
+        <li><a href="courses/theorie_du_signal.html">Théorie du Signal</a></li>
+</ul>
+
+    </div>
+  </div>
+
+  <div class="search-box">
+    <input type="text" placeholder="Search for anything" id="searchInput" />
+    <ul class="suggestions" id="suggestionsList"></ul>
+  </div>
+
+    <!-- زر الهامبرغر – يظهر فقط على الهاتف، خارج الـ nav -->
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="فتح القائمة" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="right-links" id="mainNav">
+      <a href="index.html#student-feedback" class="nav-link">💬 آراء الطلاب</a>
+
+      <a href="index.html#why-us" class="nav-link">حول المنصة</a>
+
+<a href="pomodoro.html" class="nav-link">⏱️ نظّم وقتك</a>
+   <!--   <button id="installBtn" class="install-btn">
+ 📲 Derradj Academy تنزيل تطبيق
+</button>-->
+
+
+       <a href="how-to-register.html" class="nav-link">📝 شرح طريقة التسجيل</a>
+      <a href="login/login.html" class="btn login">Log in</a>
+      <a href="sign-up/sign-up.html" class="btn signup">Sign up</a>
+    <a href="https://wa.me/213555491316"
+   target="_blank"
+   style="
+     position: fixed;
+     bottom: 25px;
+     right: 12px;
+     padding: 10px 16px;
+     background: #ffffff;
+     border-radius: 50px;
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+     z-index: 9999;
+     text-decoration: none;
+     font-family: 'Cairo', sans-serif;
+     transition: all 0.25s ease;
+   "
+   onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 25px rgba(0,0,0,0.2)'"
+   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.15)'">
+
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+       style="width:26px; height:26px;">
+
+  <span style="
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #111827;
+  ">
+   
+  </span>
+</a>
+</nav>
+
+
+
+</header>
+
+<!-- ===== Pomodoro Content ===== -->
+<div class="pomodoro-page">
+
+  <div class="pom-title">
+    <h1>⏱ مؤقت Pomodoro</h1>
+    <p>تقنية الدراسة المركّزة – ادرس أكثر، تعب أقل</p>
+  </div>
+
+  <!-- Session badge -->
+  <div id="pomBadge" class="pom-badge ready">
+    <span id="badgeIcon">🟡</span>
+    <span id="badgeText">جاهز للبدء</span>
+  </div>
+
+  <!-- Duration buttons -->
+  <div class="pom-durations" id="durationSelector">
+    <button class="dur-btn active" data-min="25">25 دقيقة</button>
+    <button class="dur-btn" data-min="30">30 دقيقة</button>
+    <button class="dur-btn" data-min="45">45 دقيقة</button>
+  </div>
+
+  <!-- Timer card -->
+  <div class="pom-card">
+
+    <!-- Circle timer -->
+    <div class="timer-wrap">
+      <svg class="timer-svg" viewBox="0 0 240 240">
+        <circle class="timer-track" cx="120" cy="120" r="105"/>
+        <circle class="timer-arc"   cx="120" cy="120" r="105" id="timerArc"/>
+      </svg>
+      <div class="timer-center">
+        <div class="timer-time"     id="timerDisplay">25:00</div>
+        <div class="timer-sublabel" id="timerSublabel">اضغط ابدأ</div>
+      </div>
+    </div>
+
+    <!-- Controls: إعادة الضبط يسار، ابدأ يمين -->
+    <div class="pom-controls">
+      <button class="pom-btn pom-btn-reset" onclick="resetTimer()">↺ إعادة ضبط</button>
+      <button class="pom-btn pom-btn-pause" id="pauseBtn" onclick="pauseTimer()" style="display:none">⏸ إيقاف مؤقت</button>
+      <button class="pom-btn pom-btn-start" id="startBtn" onclick="handleStart()">▶ ابدأ</button>
+    </div>
+
+    <!-- Session dots -->
+    <div class="pom-dots-row">
+      <span>الدورات المكتملة:</span>
+      <div class="pom-dots">
+        <div class="pom-dot" id="dot0"></div>
+        <div class="pom-dot" id="dot1"></div>
+        <div class="pom-dot" id="dot2"></div>
+        <div class="pom-dot" id="dot3"></div>
+      </div>
+      <span id="countLabel">0 / 4</span>
+    </div>
+
+  </div><!-- /pom-card -->
+
+  <!-- Tip -->
+  <div class="pom-tip">
+    <h3>كيف تعمل تقنية Pomodoro؟</h3>
+    <p>
+      اختر مدة الدراسة ← اضغط <strong>ابدأ</strong> ← ركّز بدون انقطاع<br>
+      عند انتهاء الوقت يصدر تنبيه صوتي، ثم تبدأ راحة <strong>5 دقائق</strong> تلقائيًا<br>
+      بعد <strong>4 دورات</strong> كاملة، استحق راحة طويلة تستحقها 🎉
+    </p>
+  </div>
+
+</div><!-- /pomodoro-page -->
+
+
+<!-- Alert overlay -->
+<div class="pom-overlay" id="pomOverlay">
+  <div class="pom-alert">
+    <div class="pom-alert-icon"  id="alertIcon">🎯</div>
+    <div class="pom-alert-title" id="alertTitle">انتهت فترة الدراسة!</div>
+    <div class="pom-alert-msg"   id="alertMsg">أحسنت! حان وقت الراحة لمدة 5 دقائق.</div>
+    <button class="pom-alert-btn" id="alertBtn">حسنًا</button>
+  </div>
+</div>
+
+
+<!-- ===== FOOTER (نفس فوتر الموقع) ===== -->
+<footer class="main-footer" dir="rtl">
+  <div class="footer-content">
+    <div class="footer-section about">
+      <h3>عن المنصة</h3>
+      <p>منصة جزائرية تعليمية موجهة لطلبة الجامعات، تقدم دورات مبسطة، ملفات PDF، وفيديوهات مباشرة مع أساتذة مؤهلين.</p>
+    </div>
+    <div class="footer-section links">
+      <h3>روابط سريعة</h3>
+      <ul style="list-style:none; padding:0;">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="how-to-register.html">شرح طريقة التسجيل</a></li>
+        <li><a href="index.html#pay-methods-section">طرق الدفع</a></li>
+        <li><a href="sign-up/sign-up.html">إنشاء حساب</a></li>
+        <li><a href="sign-up/teacher-signup.html">تسجيل كأستاذ / أستاذة</a></li>
+        <li><a href="terms.html" target="_blank" rel="noopener noreferrer">الشروط والأحكام</a></li>
+        <li><a href="pomodoro.html">⏱ مؤقت Pomodoro</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h3>تواصل معنا</h3>
+      <p><strong>📞</strong> <a href="tel:+213555491316" dir="ltr">0555 49 13 16</a></p>
+      <p><strong>📧</strong> <a href="mailto:derradjacademy@gmail.com">derradjacademy@gmail.com</a></p>
+      <p><strong>📍</strong> الجزائر، الجزائر العاصمة</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>جميع الحقوق محفوظة &copy; 2025 - Derradj Academy</p>
+  </div>
+</footer>
+
+
+<script>
+// ===== Service Worker registration =====
+let _swReg = null;
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.ready.then(reg => { _swReg = reg; });
+}
+
+function _swMsg(data) {
+  try {
+    if (_swReg && _swReg.active) _swReg.active.postMessage(data);
+  } catch(_) {}
+}
+
+function _requestNotifPermission() {
+  if ('Notification' in window && Notification.permission === 'default') {
+    Notification.requestPermission();
+  }
+}
+
+// ===== Constants =====
+const RADIUS        = 105;
+const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+const BREAK_SECS    = 5 * 60;
+const LS_KEY        = 'derradj_pomodoro';
+
+// ===== State =====
+let studySecs  = 25 * 60;
+let timeLeft   = studySecs;
+let endTime    = 0;       // الطابع الزمني الذي ينتهي فيه العداد
+let isRunning  = false;
+let isBreak    = false;
+let intervalId = null;
+let completed  = 0;
+let audioCtx   = null;
+
+// ===== DOM =====
+const arc       = document.getElementById('timerArc');
+const display   = document.getElementById('timerDisplay');
+const sublabel  = document.getElementById('timerSublabel');
+const badge     = document.getElementById('pomBadge');
+const badgeIcon = document.getElementById('badgeIcon');
+const badgeText = document.getElementById('badgeText');
+const startBtn  = document.getElementById('startBtn');
+const pauseBtn  = document.getElementById('pauseBtn');
+const durSel    = document.getElementById('durationSelector');
+const overlay   = document.getElementById('pomOverlay');
+
+// ===== Init SVG =====
+arc.style.strokeDasharray  = CIRCUMFERENCE;
+arc.style.strokeDashoffset = 0;
+
+// ===== Helpers =====
+function fmt(s) {
+  return String(Math.floor(s / 60)).padStart(2,'0') + ':' + String(s % 60).padStart(2,'0');
+}
+function totalSecs() { return isBreak ? BREAK_SECS : studySecs; }
+
+function refreshDisplay() {
+  display.textContent = fmt(timeLeft);
+  arc.style.strokeDashoffset = CIRCUMFERENCE * (1 - timeLeft / totalSecs());
+  arc.classList.toggle('is-break', isBreak);
+}
+
+function refreshBadge() {
+  if (isRunning) {
+    badge.className = 'pom-badge ' + (isBreak ? 'break' : 'study');
+    badgeIcon.textContent = isBreak ? '☕' : '📚';
+    badgeText.textContent = isBreak ? 'وقت الراحة' : 'وقت الدراسة';
+    sublabel.textContent  = isBreak ? 'استرح قليلاً...' : 'ركّز الآن!';
+  } else if (timeLeft < totalSecs()) {
+    badge.className = 'pom-badge ' + (isBreak ? 'break' : 'study');
+    badgeIcon.textContent = '⏸';
+    badgeText.textContent = isBreak ? 'راحة – متوقف' : 'دراسة – متوقف';
+    sublabel.textContent  = 'متوقف';
+  } else {
+    badge.className = 'pom-badge ready';
+    badgeIcon.textContent = '🟡';
+    badgeText.textContent = 'جاهز للبدء';
+    sublabel.textContent  = 'اضغط ابدأ';
+  }
+}
+
+function refreshDots() {
+  const mod = completed % 4;
+  for (let i = 0; i < 4; i++) {
+    document.getElementById('dot' + i).classList.toggle('done', i < mod);
+  }
+  document.getElementById('countLabel').textContent = completed + ' / 4';
+}
+
+// ===== Audio – Bell / Chime design =====
+function ensureAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+// جرس واحد مع توافقياته الطبيعية (أصوات جرس حقيقي)
+function _bell(freq, vol, startTime) {
+  const ctx = audioCtx;
+  // التوافقيات: [نسبة التردد، حجم نسبي، زمن التلاشي بالثواني]
+  const partials = [
+    [1,      1.00, 2.8],
+    [2.756,  0.30, 1.5],
+    [5.404,  0.12, 0.9],
+  ];
+  partials.forEach(([ratio, amp, decay]) => {
+    const osc = ctx.createOscillator();
+    const g   = ctx.createGain();
+    osc.connect(g);
+    g.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.value = freq * ratio;
+    const t = startTime;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(vol * amp, t + 0.006); // هجوم فوري (6ms)
+    g.gain.exponentialRampToValueAtTime(0.0001, t + decay);
+    osc.start(t);
+    osc.stop(t + decay + 0.05);
+  });
+}
+
+// صوت البدء – نغمة واحدة خفيفة جداً (ping رقيق)
+function playStartSound() {
+  try {
+    ensureAudio();
+    const now = audioCtx.currentTime;
+
+    // نغمة بداية لطيفة ومشجعة
+    _bell(659.25, 0.10, now);        // E5
+    _bell(783.99, 0.09, now + 0.35); // G5
+
+  } catch(_) {}
+}
+
+// صوت انتهاء الدراسة – نغمة هادئة وواضحة
+// صوت انتهاء الراحة  – نغمة قصيرة ولطيفة
+function playEndAlarm(type) {
+  try {
+    ensureAudio();
+    const now = audioCtx.currentTime;
+
+    if (type === 'study') {
+      // انتهاء الدراسة: نغمة صاعدة لطيفة
+      _bell(523.25, 0.16, now);         // C5
+      _bell(659.25, 0.15, now + 0.45);  // E5
+      _bell(783.99, 0.14, now + 0.90);  // G5
+    } else {
+      // انتهاء الراحة: نغمة قصيرة للرجوع للدراسة
+      _bell(659.25, 0.14, now);         // E5
+      _bell(523.25, 0.13, now + 0.45);  // C5
+    }
+
+  } catch(_) {}
+}
+// ===== LocalStorage – استمرار العداد بين الصفحات =====
+function saveState() {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify({
+      endTime, isBreak, studySecs, completed, isRunning,
+      timeLeft: isRunning ? null : timeLeft   // حفظ timeLeft فقط عند الإيقاف المؤقت
+    }));
+  } catch(_) {}
+}
+
+function clearState() {
+  try { localStorage.removeItem(LS_KEY); } catch(_) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    const st = JSON.parse(raw);
+
+    studySecs = st.studySecs || 25 * 60;
+    isBreak   = st.isBreak   || false;
+    completed = st.completed || 0;
+
+    // تحديث أزرار المدة لتعكس الحالة المحفوظة
+    const savedMin = studySecs / 60;
+    durSel.querySelectorAll('.dur-btn').forEach(b => {
+      b.classList.toggle('active', parseInt(b.dataset.min) === savedMin);
+    });
+    refreshDots();
+
+    if (st.isRunning && st.endTime) {
+      const remaining = Math.round((st.endTime - Date.now()) / 1000);
+      if (remaining > 0) {
+        // العداد كان يعمل – استئناف تلقائي
+        timeLeft = remaining;
+        endTime  = st.endTime;
+        refreshDisplay();
+        _startInterval();
+      } else {
+        // انتهى العداد أثناء الغياب عن الصفحة
+        timeLeft = 0;
+        refreshDisplay();
+        if (!isBreak) { completed++; refreshDots(); showAlert('study'); }
+        else          {               showAlert('break'); }
+        clearState();
+      }
+    } else if (!st.isRunning && st.timeLeft != null) {
+      // إيقاف مؤقت محفوظ
+      timeLeft = st.timeLeft;
+      startBtn.innerHTML = timeLeft < totalSecs() ? '▶ استمر' : '▶ ابدأ';
+      refreshDisplay();
+      refreshBadge();
+    }
+  } catch(_) { clearState(); }
+}
+
+function _startInterval() {
+  isRunning = true;
+
+  // مهم جداً: نحفظ الحالة بعد تشغيل العداد
+  saveState();
+
+  startBtn.style.display = 'none';
+  pauseBtn.style.display = 'flex';
+  durSel.querySelectorAll('.dur-btn').forEach(b => b.disabled = true);
+
+  clearInterval(intervalId);
+  intervalId = setInterval(tick, 500);
+
+  refreshBadge();
+}
+
+function tick() {
+  // احسب الوقت المتبقي من الطابع الزمني مباشرة – لا يتأثر بتأخير المتصفح
+  const remaining = Math.round((endTime - Date.now()) / 1000);
+  timeLeft = Math.max(0, remaining);
+  refreshDisplay();
+
+  if (timeLeft <= 0) {
+    clearInterval(intervalId);
+    isRunning = false;
+    clearState();
+    _swMsg({ type: 'POMODORO_CANCEL' });
+    pauseBtn.style.display = 'none';
+    startBtn.style.display = 'flex';
+    if (!isBreak) {
+      completed++;
+      refreshDots();
+      playEndAlarm('study');
+      showAlert('study');
+    } else {
+      playEndAlarm('break');
+      showAlert('break');
+    }
+  }
+}
+
+function handleStart() {
+  ensureAudio();
+  _requestNotifPermission();
+
+  if (isRunning) return;
+
+  endTime = Date.now() + timeLeft * 1000;
+
+  playStartSound();
+
+  _swMsg({
+    type: 'POMODORO_START',
+    endTime,
+    notifType: isBreak ? 'break' : 'study'
+  });
+
+  _startInterval();
+}
+
+function pauseTimer() {
+  if (!isRunning) return;
+  clearInterval(intervalId);
+  isRunning = false;
+  saveState();
+  _swMsg({ type: 'POMODORO_CANCEL' });
+  pauseBtn.style.display = 'none';
+  startBtn.style.display = 'flex';
+  startBtn.innerHTML = '▶ استمر';
+  refreshBadge();
+}
+
+function resetTimer() {
+  clearInterval(intervalId);
+  isRunning = false; isBreak = false;
+  timeLeft = studySecs;
+  clearState();
+  _swMsg({ type: 'POMODORO_CANCEL' });
+  pauseBtn.style.display = 'none';
+  startBtn.style.display = 'flex';
+  startBtn.innerHTML = '▶ ابدأ';
+  durSel.querySelectorAll('.dur-btn').forEach(b => b.disabled = false);
+  overlay.classList.remove('show');
+  refreshDisplay(); refreshBadge();
+}
+
+// ===== Duration buttons =====
+durSel.querySelectorAll('.dur-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.disabled) return;
+    durSel.querySelectorAll('.dur-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    studySecs = parseInt(btn.dataset.min) * 60;
+    if (!isRunning && !isBreak) { timeLeft = studySecs; refreshDisplay(); refreshBadge(); }
+  });
+});
+
+// ===== مزامنة العرض عند العودة للتبويب =====
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && isRunning) {
+    const remaining = Math.round((endTime - Date.now()) / 1000);
+    timeLeft = Math.max(0, remaining);
+    refreshDisplay();
+  }
+});
+// حفظ الحالة عند الخروج من الصفحة أو الانتقال لصفحة أخرى
+window.addEventListener('pagehide', () => {
+  if (isRunning) {
+    saveState();
+  }
+});
+
+window.addEventListener('beforeunload', () => {
+  if (isRunning) {
+    saveState();
+  }
+});
+// ===== Alert =====
+function showAlert(type) {
+  const icon  = document.getElementById('alertIcon');
+  const title = document.getElementById('alertTitle');
+  const msg   = document.getElementById('alertMsg');
+  const btn   = document.getElementById('alertBtn');
+  if (type === 'study') {
+    icon.textContent  = '🎯';
+    title.textContent = 'انتهت فترة الدراسة!';
+    msg.textContent   = 'أحسنت! حان وقت الراحة لمدة 5 دقائق. ابتعد عن الشاشة واسترح قليلاً.';
+    btn.textContent   = '☕ ابدأ وقت الراحة';
+    btn.className     = 'pom-alert-btn';
+    btn.onclick       = () => { overlay.classList.remove('show'); beginBreak(); };
+  } else {
+    icon.textContent  = '⚡';
+    title.textContent = 'انتهت فترة الراحة!';
+    msg.textContent   = 'رائع! أنت الآن جاهز لجولة جديدة من التركيز والدراسة المثمرة.';
+    btn.textContent   = '📚 ابدأ جولة دراسة جديدة';
+    btn.className     = 'pom-alert-btn green';
+    btn.onclick       = () => { overlay.classList.remove('show'); readyForStudy(); };
+  }
+  overlay.classList.add('show');
+}
+
+function beginBreak() {
+  isBreak = true;
+  timeLeft = BREAK_SECS;
+  endTime = Date.now() + BREAK_SECS * 1000;
+
+  startBtn.style.display = 'flex';
+  durSel.querySelectorAll('.dur-btn').forEach(b => b.disabled = true);
+
+  refreshDisplay();
+  playStartSound();
+
+  _swMsg({
+    type: 'POMODORO_START',
+    endTime,
+    notifType: 'break'
+  });
+
+  _startInterval();
+}
+
+function readyForStudy() {
+  isBreak = false; timeLeft = studySecs;
+  startBtn.innerHTML = '▶ ابدأ';
+  startBtn.style.display = 'flex';
+  durSel.querySelectorAll('.dur-btn').forEach(b => b.disabled = false);
+  refreshDisplay(); refreshBadge();
+}
+
+// ===== Init =====
+refreshDisplay(); refreshBadge(); refreshDots();
+loadState();
+</script>
+
+</body>
+</html>
