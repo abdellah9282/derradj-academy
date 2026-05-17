@@ -2686,7 +2686,7 @@ fetchModernComments();
         var newWorker = reg.installing;
         newWorker.addEventListener('statechange', function () {
           if (newWorker.state === 'activated') {
-            sessionStorage.removeItem('pwa-shown');
+            localStorage.removeItem('pwa-shown');
           }
         });
       });
@@ -2717,9 +2717,9 @@ fetchModernComments();
   }
 
   function openPopup() {
-    if (sessionStorage.getItem('pwa-shown') || isStandalone) return;
+    if (localStorage.getItem('pwa-shown') || isStandalone) return;
     setTimeout(function () {
-      sessionStorage.setItem('pwa-shown', '1');
+      localStorage.setItem('pwa-shown', '1');
       document.getElementById('pwa-overlay').classList.add('show');
     }, 2500);
   }
@@ -2817,5 +2817,182 @@ fetchModernComments();
 
 
 <script src="js/protect.js"></script>
+
+<!-- ===== AD POPUP – Derradj Shop ===== -->
+<div id="ad-overlay">
+  <div id="ad-popup" role="dialog" aria-modal="true" aria-labelledby="ad-title">
+    <button id="ad-close" aria-label="إغلاق الإعلان">&#x2715;</button>
+    <img src="main-4.jpg" alt="Electronics Components Starter Kit" class="ad-img">
+    <div class="ad-badge">🛒 عرض حصري</div>
+    <h3 id="ad-title">Electronics Components<br>Starter Kit</h3>
+    <p class="ad-desc">
+      كل ما تحتاجه لبدء مشاريعك الإلكترونية في مكان واحد!<br>
+      متوفر الآن على منصة <strong>Derradj Shop</strong>.
+    </p>
+    <a id="ad-btn"
+       href="https://derradjshop.com/products/electronics-components-starter-kit/index.html"
+       target="_blank" rel="noopener noreferrer">
+      🛍 مشاهدة المنتج
+    </a>
+  </div>
+</div>
+
+<style>
+/* ===== AD Popup ===== */
+#ad-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#ad-overlay.show { opacity: 1; visibility: visible; }
+#ad-popup {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(106, 27, 154, 0.28);
+  transform: translateY(28px) scale(0.95);
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+  direction: rtl;
+}
+#ad-overlay.show #ad-popup { transform: translateY(0) scale(1); }
+#ad-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: #f0e6f6;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  color: #6a1b9a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  line-height: 1;
+}
+#ad-close:hover { background: #d9b3f0; }
+.ad-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  display: block;
+}
+.ad-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+  letter-spacing: 0.4px;
+}
+#ad-popup h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 10px;
+  line-height: 1.45;
+  direction: ltr;
+}
+.ad-desc {
+  font-size: 0.87rem;
+  color: #555;
+  margin: 0 0 22px;
+  line-height: 1.65;
+}
+.ad-desc strong { color: #6a1b9a; }
+#ad-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+  color: #fff;
+  text-decoration: none;
+  padding: 13px 28px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  width: 100%;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 16px rgba(106, 27, 154, 0.38);
+}
+#ad-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(106, 27, 154, 0.5); }
+@media (max-width: 420px) {
+  #ad-popup { padding: 22px 14px 20px; }
+  .ad-img { max-height: 160px; border-radius: 10px; }
+  #ad-popup h3 { font-size: 1rem; }
+  #ad-btn { font-size: 0.9rem; padding: 12px 20px; }
+}
+</style>
+
+<script>
+(function () {
+  var AD_POPUP_KEY = 'da_ad_popup_v1';
+  var AD_TAB_KEY   = 'da_ad_tab_v1';
+  var AD_URL = 'https://derradjshop.com/products/electronics-components-starter-kit/index.html';
+
+  var overlay  = document.getElementById('ad-overlay');
+  var closeBtn = document.getElementById('ad-close');
+
+  function showAd() { overlay.classList.add('show'); }
+  function hideAd() { overlay.classList.remove('show'); }
+
+  /* --- Popup: once per session --- */
+  if (!sessionStorage.getItem(AD_POPUP_KEY)) {
+    sessionStorage.setItem(AD_POPUP_KEY, '1');
+    setTimeout(showAd, 1800);
+  }
+
+  closeBtn.addEventListener('click', hideAd);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) hideAd();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') hideAd();
+  });
+
+  /* --- New-tab: open ad when user navigates internally, once per session --- */
+  document.addEventListener('click', function (e) {
+    if (sessionStorage.getItem(AD_TAB_KEY)) return;
+
+    var anchor = e.target.closest('a');
+    if (!anchor) return;
+
+    var href = anchor.getAttribute('href') || '';
+
+    /* Skip: empty, same-page anchors, external links, ad button */
+    if (!href || href === '#' || href.startsWith('#')) return;
+    if (anchor.closest('#ad-popup')) return;
+    var isExternal = href.startsWith('http') || href.startsWith('//') ||
+                     href.startsWith('mailto') || href.startsWith('tel') ||
+                     href.indexOf('wa.me') !== -1;
+    if (isExternal) return;
+
+    /* Internal page link — open ad once in new tab */
+    sessionStorage.setItem(AD_TAB_KEY, '1');
+    window.open(AD_URL, '_blank', 'noopener,noreferrer');
+  }, true);
+})();
+</script>
 </body>
 </html>
