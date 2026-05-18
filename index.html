@@ -2818,21 +2818,30 @@ fetchModernComments();
 
 <script src="js/protect.js"></script>
 
-<!-- ===== AD POPUP – Derradj Shop ===== -->
+<!-- ===== BOOK AD POPUP – Derradj Shop ===== -->
 <div id="ad-overlay">
   <div id="ad-popup" role="dialog" aria-modal="true" aria-labelledby="ad-title">
     <button id="ad-close" aria-label="إغلاق الإعلان">&#x2715;</button>
-    <img src="main-4.jpg" alt="Electronics Components Starter Kit" class="ad-img">
-    <div class="ad-badge">🛒 عرض حصري</div>
-    <h3 id="ad-title">Electronics Components<br>Starter Kit</h3>
+
+    <!-- Book Image -->
+    <img src="main.png" alt="Featured Book" class="ad-img">
+
+    <div class="ad-badge">📚 عرض خاص للكتب</div>
+
+<h3 id="ad-title">
+  اكتشف أكثر الكتب طلباً<br>
+  متوفرة الآن في متجرنا
+</h3>
     <p class="ad-desc">
-      كل ما تحتاجه لبدء مشاريعك الإلكترونية في مكان واحد!<br>
-      متوفر الآن على منصة <strong>Derradj Shop</strong>.
+      اكتشف مجموعة مختارة من أفضل الكتب في مختلف المجالات:<br>
+      تطوير الذات، الروايات، والكتب التعليمية.<br>
+      متوفرة الآن على منصة <strong>Derradj Shop</strong>.
     </p>
+
     <a id="ad-btn"
-       href="https://derradjshop.com/products/electronics-components-starter-kit/index.html"
+       href="https://derradjshop.com/books"
        target="_blank" rel="noopener noreferrer">
-      🛍 مشاهدة المنتج
+      📖 تصفح الكتب الآن
     </a>
   </div>
 </div>
@@ -2888,8 +2897,9 @@ fetchModernComments();
 #ad-close:hover { background: #d9b3f0; }
 .ad-img {
   width: 100%;
-  max-height: 200px;
-  object-fit: cover;
+  max-height: 220px;
+  object-fit: contain; /* مهم جداً */
+  background: #f7f7f7; /* يعطي خلفية جميلة بدل الفراغ */
   border-radius: 12px;
   margin-bottom: 16px;
   display: block;
