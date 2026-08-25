@@ -39,6 +39,7 @@
 
   <!-- JS -->
   <script src="../js/search.js" defer></script>
+  <script src="../js/year2-bundle-pricing.js"></script>
 
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5XDHSVTPG"></script>
@@ -143,7 +144,7 @@
 
 
   <label>
-<input type="checkbox" name="courses[]" value="bundle_second_year" data-price="4990">(4990 DA) باقة السنة الثانية – 9 مواد   </label>
+<input type="checkbox" name="courses[]" value="bundle_second_year" data-price="4990"><span id="year2-signup-old-price" style="text-decoration: line-through; color: #999; margin-left: 4px;"></span> (4990 DA) باقة السنة الثانية – 9 مواد   </label>
 
 <label>
   <input type="checkbox" name="courses[]" value="bundle_third_year" data-price="3500">
@@ -733,6 +734,30 @@ const bundleMaterials = [
       }
     }, { capture: true });
   }
+})();
+</script>
+
+<script>
+/* باقة السنة الثانية جامعي: يحسب السعر القديم من data-price لكل مادة من المواد التسع الفعلية */
+(function () {
+  var pricing = window.Year2BundlePricing;
+  if (!pricing) return;
+
+  function getCoursePrice(courseId) {
+    var input = document.querySelector('input[name="courses[]"][value="' + courseId + '"]');
+    if (!input) return null;
+    var price = parseInt(input.getAttribute('data-price'), 10);
+    return isNaN(price) ? null : price;
+  }
+
+  var result = pricing.calculateOldPrice(getCoursePrice);
+  if (result.missing.length > 0) {
+    console.error('باقة السنة الثانية جامعي: تعذر إيجاد سعر المواد التالية، لن يتم تحديث السعر القديم:', result.missing.join(', '));
+    return;
+  }
+
+  var oldPriceLabel = document.getElementById('year2-signup-old-price');
+  if (oldPriceLabel) oldPriceLabel.textContent = result.total + ' دج';
 })();
 </script>
 

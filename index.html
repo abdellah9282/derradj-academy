@@ -736,13 +736,14 @@ document.addEventListener("DOMContentLoaded", () => {
   </h2>
 
 <p style="font-size:1.1rem; line-height:1.8; max-width:740px; margin:auto; font-weight:500;">
-  احصل على <strong>ست مواد أساسية</strong> في باقة واحدة مميزة
+  احصل على <strong>تسع مواد أساسية</strong> في باقة واحدة مميزة
     — <span style="color:#fffae5; font-weight:600;">الاشتراك سنوي حتى نهاية السنة الدراسية</span>
 
   <br>
 <strong>Ondes et Vibrations</strong> – <strong>Électronique Fondamentale 1</strong> –
 <strong>Électrotechnique Fondamentale 1</strong> – <strong>Probabilité et Statistique</strong> –
-<strong>Informatique 3</strong> – <strong>Math 3 (Analyse 3)</strong>
+<strong>Informatique 3</strong> – <strong>Math 3 (Analyse 3)</strong> –
+<strong>Logique Combinatoire et Séquentielle</strong> – <strong>Méthodes Numériques</strong> – <strong>Théorie du Signal</strong>
 
   </p>
 
@@ -825,7 +826,7 @@ document.addEventListener("DOMContentLoaded", () => {
       margin: 0;
       flex-shrink: 0;
     ">
-      الآن بـ <span style="font-size:1.55rem; color:#fffae5;">4999 دج فقط 🎉</span>
+      الآن بـ <span id="year2-banner-promo-price" style="font-size:1.55rem; color:#fffae5;">4990 دج فقط 🎉</span>
     </p>
 
     <a href="#bundle-section"
@@ -1681,10 +1682,13 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
   <li>🎓 Electrotechnique Fondamentale 1</li>
   <li>🎓 Probabilité et Statistique</li>
   <li>🎓 Informatique 3</li>
+  <li>🎓 Logique Combinatoire et Séquentielle</li>
+  <li>🎓 Méthodes Numériques</li>
+  <li>🎓 Théorie du Signal</li>
 </ul>
 <div class="bundle-price">
   <span id="year2-bundle-old-price" class="old-price"> دج -- </span>
-  <span class="new-price">4999 دج فقط</span>
+  <span id="year2-bundle-promo-price" class="new-price">4990 دج فقط</span>
 </div>
 <div id="year2-bundle-discount" class="bundle-discount">وفر <strong>-- دج (--%)</strong></div>
       <ul class="bundle-benefits">
@@ -3001,18 +3005,12 @@ fetchModernComments();
 })();
 </script>
 
+<script src="js/year2-bundle-pricing.js"></script>
 <script>
-/* باقة السنة الثانية جامعي: يحسب السعر القديم من أسعار المواد الست الفعلية بدل ترقيمه يدويًا */
+/* باقة السنة الثانية جامعي: يحسب السعر القديم من أسعار المواد التسع الفعلية بدل ترقيمه يدويًا */
 (function () {
-  var YEAR2_BUNDLE_COURSE_IDS = [
-    'ondes_et_vibrations',
-    'electronique_fondamentale1',
-    'electrotechnique_fondamentale1',
-    'probabilite_et_statistique',
-    'informatique03',
-    'math3_analyse3'
-  ];
-  var YEAR2_PROMO_PRICE = 4999;
+  var pricing = window.Year2BundlePricing;
+  if (!pricing) return;
 
   function getCoursePrice(courseId) {
     var card = document.querySelector('.course-card[data-course-id="' + courseId + '"]');
@@ -3024,30 +3022,29 @@ fetchModernComments();
     return parseInt(match[0], 10);
   }
 
-  var missing = [];
-  var oldPrice = 0;
-  YEAR2_BUNDLE_COURSE_IDS.forEach(function (courseId) {
-    var price = getCoursePrice(courseId);
-    if (price === null) {
-      missing.push(courseId);
-    } else {
-      oldPrice += price;
-    }
-  });
-
-  if (missing.length > 0) {
-    console.error('باقة السنة الثانية جامعي: تعذر إيجاد سعر المواد التالية، لن يتم تحديث السعر القديم:', missing.join(', '));
+  var result = pricing.calculateOldPrice(getCoursePrice);
+  if (result.missing.length > 0) {
+    console.error('باقة السنة الثانية جامعي: تعذر إيجاد سعر المواد التالية، لن يتم تحديث السعر القديم:', result.missing.join(', '));
     return;
   }
 
-  var oldPriceText = oldPrice + ' دج';
+  var oldPrice = result.total;
+  var promoPrice = pricing.PROMO_PRICE;
+  var promoPriceText = promoPrice + ' دج فقط';
+
   var bannerOldPrice = document.getElementById('year2-banner-old-price');
-  if (bannerOldPrice) bannerOldPrice.textContent = oldPriceText;
+  if (bannerOldPrice) bannerOldPrice.textContent = oldPrice + ' دج';
+
+  var bannerPromoPrice = document.getElementById('year2-banner-promo-price');
+  if (bannerPromoPrice) bannerPromoPrice.textContent = promoPriceText + ' 🎉';
 
   var bundleOldPrice = document.getElementById('year2-bundle-old-price');
   if (bundleOldPrice) bundleOldPrice.textContent = ' دج ' + oldPrice + ' ';
 
-  var discount = oldPrice - YEAR2_PROMO_PRICE;
+  var bundlePromoPrice = document.getElementById('year2-bundle-promo-price');
+  if (bundlePromoPrice) bundlePromoPrice.textContent = promoPriceText;
+
+  var discount = oldPrice - promoPrice;
   var discountPercent = Math.round((discount / oldPrice) * 100);
   var bundleDiscount = document.getElementById('year2-bundle-discount');
   if (bundleDiscount) {
