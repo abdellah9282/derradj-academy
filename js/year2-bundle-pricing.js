@@ -1,5 +1,5 @@
 /* Single source of truth for the "باقة السنة الثانية جامعي" bundle:
-   the 9 course IDs it contains and its fixed promo price.
+   the 6 course IDs it contains and its fixed promo price.
    Individual course prices are NOT duplicated here — each page reads them
    from its own existing price data (course cards on index.html,
    data-price attributes on sign-up.html) via the getCoursePrice callback. */
@@ -10,13 +10,10 @@
     'electronique_fondamentale1',
     'informatique03',
     'probabilite_et_statistique',
-    'math3_analyse3',
-    'logique_combinatoire_et_sequentielle',
-    'methodes_numeriques',
-    'theorie_du_signal'
+    'math3_analyse3'
   ];
 
-  var YEAR2_BUNDLE_PROMO_PRICE = 4990;
+  var YEAR2_BUNDLE_PROMO_PRICE = 4999;
 
   function calculateYear2BundleOldPrice(getCoursePrice) {
     var missing = [];

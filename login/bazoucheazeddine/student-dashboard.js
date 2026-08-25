@@ -21,7 +21,7 @@ const BUNDLE_PERCENTAGE = 0.10; // للباقات (اخترتها أنا)
 /* -------------------------------------------------------------------------- */
 const COURSES = {
   // 📦 Bundles
-  bundle_second_year: { name: "باقة السنة الثانية – 6 مواد", price: 4990, type: "bundle" },
+  bundle_second_year: { name: "باقة السنة الثانية – 6 مواد", price: 4999, type: "bundle" },
   bundle_third_year: { name: "باقة السنة الثالثة – 4 مواد", price: 3500, type: "bundle" },
 
   // 📚 Courses

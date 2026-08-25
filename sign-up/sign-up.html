@@ -144,7 +144,7 @@
 
 
   <label>
-<input type="checkbox" name="courses[]" value="bundle_second_year" data-price="4990"><span id="year2-signup-old-price" style="text-decoration: line-through; color: #999; margin-left: 4px;"></span> (4990 DA) باقة السنة الثانية – 9 مواد   </label>
+<input type="checkbox" name="courses[]" value="bundle_second_year" data-price="4999"><span id="year2-signup-old-price" style="text-decoration: line-through; color: #999; margin-left: 4px;"></span> (4999 DA) باقة السنة الثانية – 6 مواد   </label>
 
 <label>
   <input type="checkbox" name="courses[]" value="bundle_third_year" data-price="3500">
@@ -372,7 +372,6 @@ document.addEventListener("DOMContentLoaded", () => {
   v !== "bundle_second_year" &&
   v !== "bundle_third_year"
 );
-// ✅ عند اختيار باقة السنة الثانية: أرسل فقط المواد الخمس
 // عند اختيار باقة السنة الثانية: أرسل المواد الست
 if (document.querySelector('input[value="bundle_second_year"]').checked) {
   modules.splice(0, modules.length,
@@ -381,10 +380,7 @@ if (document.querySelector('input[value="bundle_second_year"]').checked) {
     'electronique_fondamentale1',
     'informatique03',
     'probabilite_et_statistique',
-    'math3_analyse3',
-    'logique_combinatoire_et_sequentielle',
-    'methodes_numeriques',
-    'theorie_du_signal'
+    'math3_analyse3'
   );
 }
 
@@ -561,10 +557,7 @@ const secondYearMaterials = [
   'electronique_fondamentale1',
   'informatique03',
   'probabilite_et_statistique',
-  'math3_analyse3',
-  'logique_combinatoire_et_sequentielle',
-  'methodes_numeriques',
-  'theorie_du_signal'
+  'math3_analyse3'
 ];
 
     const thirdYearMaterials = [
@@ -641,10 +634,7 @@ const bundleMaterials = [
   'electronique_fondamentale1',
   'informatique03',
   'probabilite_et_statistique',
-  'math3_analyse3',
-  'logique_combinatoire_et_sequentielle',
-  'methodes_numeriques',
-  'theorie_du_signal'
+  'math3_analyse3'
 ];
         bundleMaterials.forEach(mat => {
           const matCb = coursesList.querySelector(`input[type="checkbox"][value="${mat}"]`);
@@ -738,7 +728,7 @@ const bundleMaterials = [
 </script>
 
 <script>
-/* باقة السنة الثانية جامعي: يحسب السعر القديم من data-price لكل مادة من المواد التسع الفعلية */
+/* باقة السنة الثانية جامعي: يحسب السعر القديم من data-price لكل مادة من المواد الست الفعلية */
 (function () {
   var pricing = window.Year2BundlePricing;
   if (!pricing) return;

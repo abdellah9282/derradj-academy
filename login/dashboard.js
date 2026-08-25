@@ -199,7 +199,7 @@ math3_analyse3: {
   theorie_du_signal: { title: "Théorie du Signal", instructor: "Abdellah Derradj", price: 800, image: "../Thumbnail/theorie_de_signal/02.jpg" },
     theorie_du_champ: { title: "Théorie du Champ Électromagnétique L3", instructor: "Abdellah Derradj", price: 800, image: "../Thumbnail/theorie_champ/03.jpg" },
 
-  bundle_second_year: { title: "باقة السنة الثانية – 5 مواد", instructor: "Abdellah Derradj", price: 4999 }
+  bundle_second_year: { title: "باقة السنة الثانية – 6 مواد", instructor: "Abdellah Derradj", price: 4999 }
 };
 
 // روابط الصفحات الخاصة بكل مادة

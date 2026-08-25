@@ -40,7 +40,7 @@ function formatSubjectName(code) {
     'machines_electriques': 'Machines Électriques',
     'commandes_machines_electriques': 'Commandes des Machines Électriques',
     'mesures_electriques_et_electroniques': 'Mesures Électriques et Électroniques',
-    'bundle_second_year': 'باقة السنة الثانية (5 مواد)',
+    'bundle_second_year': 'باقة السنة الثانية (6 مواد)',
     'bundle_third_year': 'باقة السنة الثالثة (4 مواد)',
     'bundle_first_year': 'باقة السنة الأولى (3 مواد)',
 
