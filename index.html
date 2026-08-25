@@ -736,14 +736,13 @@ document.addEventListener("DOMContentLoaded", () => {
   </h2>
 
 <p style="font-size:1.1rem; line-height:1.8; max-width:740px; margin:auto; font-weight:500;">
-  احصل على <strong>تسع مواد أساسية</strong> في باقة واحدة مميزة
+  احصل على <strong>ست مواد أساسية</strong> في باقة واحدة مميزة
     — <span style="color:#fffae5; font-weight:600;">الاشتراك سنوي حتى نهاية السنة الدراسية</span>
 
   <br>
 <strong>Ondes et Vibrations</strong> – <strong>Électronique Fondamentale 1</strong> –
 <strong>Électrotechnique Fondamentale 1</strong> – <strong>Probabilité et Statistique</strong> –
-<strong>Informatique 3</strong> – <strong>Math 3 (Analyse 3)</strong> –
-<strong>Logique Combinatoire et Séquentielle</strong> – <strong>Méthodes Numériques</strong> – <strong>Théorie du Signal</strong>
+<strong>Informatique 3</strong> – <strong>Math 3 (Analyse 3)</strong>
 
   </p>
 
@@ -768,12 +767,12 @@ document.addEventListener("DOMContentLoaded", () => {
     box-shadow: 0 2px 6px rgba(255,255,255,0.05);
   ">
     قبل التخفيض
-    <span style="
+    <span id="year2-banner-old-price" style="
       text-decoration: line-through;
       color: #d9d9d9;
       margin: 0 4px;
     ">
-      10700 دج
+      -- دج
     </span>
   </span>
 
@@ -1682,15 +1681,12 @@ Math 3 - Analyse 3 بث مباشر خاص بمادة
   <li>🎓 Electrotechnique Fondamentale 1</li>
   <li>🎓 Probabilité et Statistique</li>
   <li>🎓 Informatique 3</li>
-  <li>🎓 Logique Combinatoire et Séquentielle</li>
-  <li>🎓 Méthodes Numériques</li>
-  <li>🎓 Théorie du Signal</li>
 </ul>
 <div class="bundle-price">
-  <span class="old-price"> دج 10700 </span>
+  <span id="year2-bundle-old-price" class="old-price"> دج -- </span>
   <span class="new-price">4999 دج فقط</span>
 </div>
-<div class="bundle-discount">وفر <strong>5700 دج (53%)</strong></div>
+<div id="year2-bundle-discount" class="bundle-discount">وفر <strong>-- دج (--%)</strong></div>
       <ul class="bundle-benefits">
         <li>✔️ دروس فيديو لكل مادة</li>
         <li>✔️ دعم مباشر من الأستاذ</li>
@@ -3002,6 +2998,61 @@ fetchModernComments();
     sessionStorage.setItem(AD_TAB_KEY, '1');
     window.open(AD_URL, '_blank', 'noopener,noreferrer');
   }, true);
+})();
+</script>
+
+<script>
+/* باقة السنة الثانية جامعي: يحسب السعر القديم من أسعار المواد الست الفعلية بدل ترقيمه يدويًا */
+(function () {
+  var YEAR2_BUNDLE_COURSE_IDS = [
+    'ondes_et_vibrations',
+    'electronique_fondamentale1',
+    'electrotechnique_fondamentale1',
+    'probabilite_et_statistique',
+    'informatique03',
+    'math3_analyse3'
+  ];
+  var YEAR2_PROMO_PRICE = 4999;
+
+  function getCoursePrice(courseId) {
+    var card = document.querySelector('.course-card[data-course-id="' + courseId + '"]');
+    if (!card) return null;
+    var priceEl = card.querySelector('.price');
+    if (!priceEl) return null;
+    var match = priceEl.textContent.match(/\d+/);
+    if (!match) return null;
+    return parseInt(match[0], 10);
+  }
+
+  var missing = [];
+  var oldPrice = 0;
+  YEAR2_BUNDLE_COURSE_IDS.forEach(function (courseId) {
+    var price = getCoursePrice(courseId);
+    if (price === null) {
+      missing.push(courseId);
+    } else {
+      oldPrice += price;
+    }
+  });
+
+  if (missing.length > 0) {
+    console.error('باقة السنة الثانية جامعي: تعذر إيجاد سعر المواد التالية، لن يتم تحديث السعر القديم:', missing.join(', '));
+    return;
+  }
+
+  var oldPriceText = oldPrice + ' دج';
+  var bannerOldPrice = document.getElementById('year2-banner-old-price');
+  if (bannerOldPrice) bannerOldPrice.textContent = oldPriceText;
+
+  var bundleOldPrice = document.getElementById('year2-bundle-old-price');
+  if (bundleOldPrice) bundleOldPrice.textContent = ' دج ' + oldPrice + ' ';
+
+  var discount = oldPrice - YEAR2_PROMO_PRICE;
+  var discountPercent = Math.round((discount / oldPrice) * 100);
+  var bundleDiscount = document.getElementById('year2-bundle-discount');
+  if (bundleDiscount) {
+    bundleDiscount.innerHTML = 'وفر <strong>' + discount + ' دج (' + discountPercent + '%)</strong>';
+  }
 })();
 </script>
 </body>
