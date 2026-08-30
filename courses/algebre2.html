@@ -32,14 +32,27 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Algèbre 2",
-    "description": "Cours complet, exercices corrigés et vidéos pédagogiques sur les applications linéaires, matrices, noyau, image et espaces vectoriels.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Derradj Academy",
-      "sameAs": "https://www.derradjacademy.com"
-    }
+    "@graph": [
+      {
+        "@type": "Course",
+        "@id": "https://www.derradjacademy.com/courses/algebre2.html#course",
+        "name": "Algèbre 2 (Vector Spaces, Linear Maps, Matrices)",
+        "description": "Cours, exercices corrigés et vidéos explicatives en Algèbre 2 : applications linéaires, noyau, image, matrices, déterminants et espaces vectoriels.",
+        "url": "https://www.derradjacademy.com/courses/algebre2.html",
+        "inLanguage": "fr",
+        "provider": { "@type": "Organization", "name": "Derradj Academy", "sameAs": "https://www.derradjacademy.com/" },
+        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": "online", "instructor": { "@type": "Person", "name": "Nasreddine" } },
+        "offers": { "@type": "Offer", "price": "1500", "priceCurrency": "DZD", "availability": "https://schema.org/InStock", "url": "https://www.derradjacademy.com/courses/algebre2.html" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Derradj Academy", "item": "https://www.derradjacademy.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://www.derradjacademy.com/#courses" },
+          { "@type": "ListItem", "position": 3, "name": "Algèbre 2", "item": "https://www.derradjacademy.com/courses/algebre2.html" }
+        ]
+      }
+    ]
   }
   </script>
 
@@ -115,6 +128,14 @@
     </nav>
 </header>
 
+<nav class="site-breadcrumb" aria-label="breadcrumb" style="max-width:1200px;margin:0.8rem auto 0;padding:0 1.2rem;font-size:0.92rem;color:#64748b;">
+  <a href="../index.html" style="color:#64748b;text-decoration:none;">Derradj Academy</a>
+  <span aria-hidden="true"> › </span>
+  <a href="../index.html#courses" style="color:#64748b;text-decoration:none;">Courses</a>
+  <span aria-hidden="true"> › </span>
+  <span style="color:#1e293b;font-weight:600;">Algèbre 2</span>
+</nav>
+
 
   <!-- MAIN CONTENT -->
 <main class="course-content">
@@ -123,7 +144,7 @@
 
   <div style="flex: 1; min-width: 320px;">
 
- <h1 class="course-title">Algèbre 2 —</h1>
+ <h1 class="course-title">Algèbre 2</h1>
     <p style="margin:0; color:#475569; font-size:1.05rem; line-height:1.6;">
       Vector Spaces, Linear Maps, Matrices, Change of Bases, and Linear Systems
     </p>
@@ -204,6 +225,9 @@
       </span>
     </div>
 
+    <p class="course-intro-text" style="margin:0.6rem 0 1rem; color:#334155; font-size:1.02rem; line-height:1.75; max-width:900px;">
+      Algèbre 2 (Vector Spaces, Linear Maps, Matrices) est une dorsale de première année (L1) en Génie Électrique, présentée par Pr. Nasreddine. Le programme couvre les applications linéaires, le noyau, l'image, les matrices, les déterminants et les espaces vectoriels, avec vidéos explicatives, fiches PDF et TD corrigés destinés aux étudiants des universités algériennes.
+    </p>
     <div class="instructor-details">
       <p class="instructor-name"><strong>Teacher :</strong> Pr.Nasreddine</p>
       <p class="instructor-bio" dir="rtl" style="text-align: right;">
