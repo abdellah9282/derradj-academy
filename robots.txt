@@ -11,6 +11,12 @@ Disallow: /All%20playlist/
 Disallow: /payment/
 Disallow: /pdf/
 
+# Public login/signup pages: crawlable so Googlebot can read their
+# on-page noindex directive; everything else in these two folders
+# (dashboards, admin, booking, etc.) stays blocked above.
+Allow: /login/login.html
+Allow: /sign-up/sign-up.html
+
 # Allow public course pages
 Allow: /courses/
 
