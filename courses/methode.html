@@ -62,6 +62,60 @@
           { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://www.derradjacademy.com/#courses" },
           { "@type": "ListItem", "position": 3, "name": "Méthodes Numériques L2+M1", "item": "https://www.derradjacademy.com/courses/methode.html" }
         ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.derradjacademy.com/courses/methode.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Qu'est-ce que le module Méthodes Numériques ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "C'est un module qui présente les algorithmes numériques utilisés pour résoudre des équations non linéaires, des systèmes linéaires, des intégrales et des équations différentielles, lorsque le calcul exact est difficile ou impossible."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "À quel niveau universitaire s'adresse ce cours ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ce cours s'adresse aux étudiants de deuxième année Licence (L2) et de première année Master (M1), notamment en Génie Électrique et filières associées."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quels sont les principaux chapitres étudiés ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le cours couvre la résolution d'équations non linéaires (dichotomie, Newton), l'intégration numérique (méthodes du trapèze et de Simpson), l'interpolation par le polynôme de Lagrange, la résolution de systèmes linéaires (Jacobi, Gauss-Seidel), le calcul du déterminant et de l'inverse d'une matrice, la résolution d'équations différentielles (Euler, Runge-Kutta) et l'algorithme de descente de gradient."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le cours contient-il des exercices corrigés ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, plusieurs méthodes sont accompagnées d'exercices résolus en vidéo, notamment pour la méthode de dichotomie et la méthode de Newton."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le cours contient-il des vidéos explicatives ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, chaque méthode est expliquée en vidéo, en langue arabe, avec un style simple et progressif."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment accéder au contenu du cours ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'accès complet aux vidéos se fait après inscription sur la plateforme, via les moyens de paiement indiqués sur cette page."
+            }
+          }
+        ]
       }
     ]
   }
@@ -615,6 +669,294 @@
   </div>
 </section>
 
+
+<!-- ==================== SEO: Contenu pédagogique Méthodes Numériques ==================== -->
+<style>
+  .seo-info-section { max-width: 900px; margin: 3rem auto; padding: 0 1.2rem; font-family: var(--font-main, 'Cairo', 'Segoe UI', sans-serif); color: #374151; }
+  .seo-info-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); padding: 2rem 2.2rem; }
+  .seo-info-card + .seo-info-card { margin-top: 2rem; }
+  .seo-info-title { font-size: 1.6rem; font-weight: 800; color: #4c1d95; margin-bottom: 1rem; line-height: 1.4; }
+  .seo-info-card h3 { font-size: 1.15rem; font-weight: 700; color: #1e40af; margin: 1.6rem 0 0.7rem; }
+  .seo-info-card p { font-size: 1rem; line-height: 1.85; color: #374151; margin-bottom: 0.6rem; }
+  .seo-topic-list { margin: 0.8rem 0 0.4rem; padding-inline-start: 1.3rem; line-height: 1.9; }
+  .seo-topic-list li { margin-bottom: 0.35rem; }
+  .seo-faq-list { margin-top: 0.6rem; }
+  .seo-faq-item { border: 1px solid #e5e7eb; border-radius: 10px; padding: 0.2rem 1rem; margin-bottom: 0.8rem; background: #f9fafb; }
+  .seo-faq-item summary { cursor: pointer; font-weight: 700; color: #1f2937; padding: 0.85rem 0; list-style: none; }
+  .seo-faq-item summary::-webkit-details-marker { display: none; }
+  .seo-faq-item summary::after { content: "+"; float: inline-end; color: #7e3af2; font-weight: 800; font-size: 1.2rem; }
+  .seo-faq-item[open] summary::after { content: "−"; }
+  .seo-faq-item p { padding-bottom: 0.9rem; margin: 0; color: #4b5563; }
+  .seo-related-links { margin-top: 1.6rem; }
+  .seo-related-links ul { padding-inline-start: 1.3rem; line-height: 2; }
+  .seo-related-links a { color: #4c1d95; font-weight: 700; text-decoration: none; }
+  .seo-related-links a:hover { text-decoration: underline; }
+  @media (max-width: 600px) {
+    .seo-info-section { margin: 2rem auto; padding: 0 0.8rem; }
+    .seo-info-card { padding: 1.4rem 1.2rem; border-radius: 12px; }
+    .seo-info-title { font-size: 1.3rem; }
+    .seo-info-card h3 { font-size: 1.05rem; }
+    .seo-info-card p, .seo-topic-list { font-size: 0.95rem; }
+  }
+  .seo-lang-switcher { display: flex; gap: 0.6rem; justify-content: center; margin-bottom: 1.4rem; }
+  .seo-lang-btn { font-family: inherit; font-size: 0.95rem; font-weight: 700; padding: 0.55rem 1.4rem; border-radius: 999px; border: 1px solid #d8d2f0; background: #f5f3ff; color: #4c1d95; cursor: pointer; transition: all 0.2s ease; }
+  .seo-lang-btn:hover { background: #ece7fc; }
+  .seo-lang-btn.active { background: linear-gradient(135deg, #7e3af2, #651fff); color: #fff; border-color: transparent; box-shadow: 0 3px 10px rgba(101, 31, 255, 0.3); }
+  .seo-lang-btn:focus-visible { outline: 2px solid #4c1d95; outline-offset: 2px; }
+  @media (max-width: 600px) {
+    .seo-lang-switcher { gap: 0.5rem; margin-bottom: 1rem; }
+    .seo-lang-btn { flex: 1 1 auto; padding: 0.55rem 0.8rem; font-size: 0.9rem; }
+  }
+</style>
+
+<section class="seo-info-section" id="a-propos-methodes-numeriques">
+  <div class="seo-lang-switcher" role="tablist" aria-label="Langue du contenu / Content language">
+    <button type="button" class="seo-lang-btn active" id="seo-lang-btn-fr" role="tab" aria-selected="true" aria-controls="seo-lang-fr" data-lang="fr">Français</button>
+    <button type="button" class="seo-lang-btn" id="seo-lang-btn-en" role="tab" aria-selected="false" aria-controls="seo-lang-en" data-lang="en" tabindex="-1">English</button>
+  </div>
+
+  <div id="seo-lang-fr" role="tabpanel" aria-labelledby="seo-lang-btn-fr" lang="fr">
+  <div class="seo-info-card">
+    <h2 class="seo-info-title">Méthodes Numériques — Cours L2 et M1</h2>
+    <p>
+      Méthodes Numériques est une matière transversale enseignée en deuxième année Licence (L2) et en
+      première année Master (M1), notamment en Génie Électrique et filières associées. Elle présente les
+      algorithmes utilisés pour approcher numériquement des solutions lorsque le calcul exact est difficile
+      ou impossible.
+    </p>
+
+    <h3>Programme des Méthodes Numériques</h3>
+    <p>
+      Le programme couvre plusieurs familles de méthodes, de la résolution d'équations à la résolution
+      d'équations différentielles. Les principaux chapitres traités dans les leçons vidéo de cette page sont :
+    </p>
+    <ul class="seo-topic-list">
+      <li>Résolution d'équations non linéaires : méthode de dichotomie, méthode de Newton</li>
+      <li>Intégration numérique : méthodes du trapèze et de Simpson (simples et composites)</li>
+      <li>Interpolation : polynôme de Lagrange</li>
+      <li>Résolution de systèmes linéaires : méthode de Jacobi, méthode de Gauss-Seidel</li>
+      <li>Calcul du déterminant et de l'inverse d'une matrice</li>
+      <li>Résolution d'équations différentielles : méthode d'Euler, Runge-Kutta d'ordre 2 et 4</li>
+      <li>Algorithme de descente de gradient (pas fixe et pas variable)</li>
+    </ul>
+    <p>
+      Chaque méthode est présentée avec sa logique de calcul et des exercices résolus pour aider l'étudiant à
+      l'appliquer directement.
+    </p>
+
+    <h3>Ressources disponibles</h3>
+    <p>
+      Cette page regroupe les vidéos du cours Méthodes Numériques, expliquées en arabe, méthode par méthode.
+      L'accès complet aux vidéos est réservé aux étudiants inscrits sur la plateforme.
+    </p>
+
+    <h3>Pourquoi suivre ce cours ?</h3>
+    <p>
+      Les méthodes numériques sont utilisées dans de nombreux domaines scientifiques et d'ingénierie dès que
+      le calcul analytique devient trop complexe. Ce cours permet à l'étudiant de comprendre la logique de
+      chaque algorithme et de s'entraîner à les appliquer avant les examens, que ce soit en L2 ou en M1.
+    </p>
+
+    <h3>Pour les étudiants de L2 et M1</h3>
+    <p>
+      Ce cours s'adresse aux étudiants de deuxième année Licence (L2) et de première année Master (M1),
+      notamment en Génie Électrique et dans les filières universitaires proches, où les Méthodes Numériques
+      font partie du programme.
+    </p>
+  </div>
+
+  <div class="seo-info-card">
+    <h2 class="seo-info-title" style="font-size:1.4rem;">Questions fréquentes — Méthodes Numériques</h2>
+    <div class="seo-faq-list">
+      <details class="seo-faq-item">
+        <summary>Qu'est-ce que le module Méthodes Numériques ?</summary>
+        <p>
+          C'est un module qui présente les algorithmes numériques utilisés pour résoudre des équations non
+          linéaires, des systèmes linéaires, des intégrales et des équations différentielles, lorsque le
+          calcul exact est difficile ou impossible.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>À quel niveau universitaire s'adresse ce cours ?</summary>
+        <p>
+          Ce cours s'adresse aux étudiants de deuxième année Licence (L2) et de première année Master (M1),
+          notamment en Génie Électrique et filières associées.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Quels sont les principaux chapitres étudiés ?</summary>
+        <p>
+          Le cours couvre la résolution d'équations non linéaires (dichotomie, Newton), l'intégration
+          numérique (méthodes du trapèze et de Simpson), l'interpolation par le polynôme de Lagrange, la
+          résolution de systèmes linéaires (Jacobi, Gauss-Seidel), le calcul du déterminant et de l'inverse
+          d'une matrice, la résolution d'équations différentielles (Euler, Runge-Kutta) et l'algorithme de
+          descente de gradient.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Le cours contient-il des exercices corrigés ?</summary>
+        <p>
+          Oui, plusieurs méthodes sont accompagnées d'exercices résolus en vidéo, notamment pour la méthode
+          de dichotomie et la méthode de Newton.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Le cours contient-il des vidéos explicatives ?</summary>
+        <p>
+          Oui, chaque méthode est expliquée en vidéo, en langue arabe, avec un style simple et progressif.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Comment accéder au contenu du cours ?</summary>
+        <p>
+          L'accès complet aux vidéos se fait après inscription sur la plateforme, via les moyens de paiement
+          indiqués plus haut sur cette page.
+        </p>
+      </details>
+    </div>
+
+    <div class="seo-related-links">
+      <h3>Ressources associées</h3>
+      <ul>
+        <li><a href="informatique03.html">Informatique 3 – MATLAB</a> — pour implémenter ces méthodes numériques en pratique.</li>
+        <li><a href="algebre2.html">Algèbre 2</a> — pour les bases sur les matrices utilisées dans plusieurs méthodes.</li>
+        <li><a href="math3_analyse3.html">Math 3 – Analyse 3</a> — pour approfondir les intégrales et équations différentielles.</li>
+        <li><a href="../how-to-register.html">Comment s'inscrire sur Derradj Academy</a> — pour accéder à l'ensemble du contenu du cours.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+
+  <div id="seo-lang-en" role="tabpanel" aria-labelledby="seo-lang-btn-en" lang="en" hidden>
+  <div class="seo-info-card">
+    <h2 class="seo-info-title">Numerical Methods — L2 and M1 Course</h2>
+    <p>
+      Numerical Methods is a cross-cutting subject taught in the second-year Bachelor's (L2) and first-year
+      Master's (M1) curriculum, particularly in Electrical Engineering and related fields. It presents the
+      algorithms used to numerically approximate solutions when exact computation is difficult or
+      impossible.
+    </p>
+
+    <h3>Numerical Methods Program</h3>
+    <p>
+      The program covers several families of methods, from solving equations to solving differential
+      equations. The main topics covered in the video lessons on this page include:
+    </p>
+    <ul class="seo-topic-list">
+      <li>Solving non-linear equations: bisection method, Newton's method</li>
+      <li>Numerical integration: trapezoidal and Simpson's methods (simple and composite)</li>
+      <li>Interpolation: Lagrange polynomial</li>
+      <li>Solving linear systems: Jacobi method, Gauss-Seidel method</li>
+      <li>Computing the determinant and inverse of a matrix</li>
+      <li>Solving differential equations: Euler's method, 2nd- and 4th-order Runge-Kutta</li>
+      <li>Gradient descent algorithm (fixed and variable step size)</li>
+    </ul>
+    <p>
+      Each method is presented with its computational logic and solved exercises to help students apply it
+      directly.
+    </p>
+
+    <h3>Available Learning Resources</h3>
+    <p>
+      This page brings together the Numerical Methods video lessons, explained in Arabic, method by method.
+      Full access to the videos is reserved for students enrolled on the platform.
+    </p>
+
+    <h3>Why Take This Course?</h3>
+    <p>
+      Numerical methods are used across many scientific and engineering fields whenever analytical
+      computation becomes too complex. This course helps students understand the logic behind each algorithm
+      and practice applying it before exams, whether at the L2 or M1 level.
+    </p>
+
+    <h3>For L2 and M1 Students</h3>
+    <p>
+      This course is relevant for second-year Bachelor's (L2) and first-year Master's (M1) students,
+      particularly in Electrical Engineering and related university programs, where Numerical Methods is
+      part of the curriculum.
+    </p>
+  </div>
+
+  <div class="seo-info-card">
+    <h2 class="seo-info-title" style="font-size:1.4rem;">Frequently Asked Questions — Numerical Methods</h2>
+    <div class="seo-faq-list">
+      <details class="seo-faq-item">
+        <summary>What is the Numerical Methods module?</summary>
+        <p>
+          It is a module presenting the numerical algorithms used to solve non-linear equations, linear
+          systems, integrals and differential equations, when exact computation is difficult or impossible.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Which university level is this course intended for?</summary>
+        <p>
+          This course is intended for second-year Bachelor's (L2) and first-year Master's (M1) students,
+          particularly in Electrical Engineering and related fields.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>What are the main topics covered?</summary>
+        <p>
+          The course covers solving non-linear equations (bisection, Newton), numerical integration
+          (trapezoidal and Simpson's methods), interpolation with the Lagrange polynomial, solving linear
+          systems (Jacobi, Gauss-Seidel), computing the determinant and inverse of a matrix, solving
+          differential equations (Euler, Runge-Kutta) and the gradient descent algorithm.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Does the course include solved exercises?</summary>
+        <p>
+          Yes, several methods come with exercises solved on video, particularly for the bisection method and
+          Newton's method.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Does the course include explanatory videos?</summary>
+        <p>
+          Yes, each method is explained in a video, in Arabic, with a simple, progressive teaching style.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>How can I access the course content?</summary>
+        <p>
+          Full access to the videos is granted after enrolling on the platform, using the payment methods
+          listed on this page.
+        </p>
+      </details>
+    </div>
+
+    <div class="seo-related-links">
+      <h3>Related Resources</h3>
+      <ul>
+        <li><a href="informatique03.html">Computer Science 3 – MATLAB</a> — to implement these numerical methods in practice.</li>
+        <li><a href="algebre2.html">Algebra 2</a> — for the matrix fundamentals used in several methods.</li>
+        <li><a href="math3_analyse3.html">Math 3 – Analysis 3</a> — to go further into integrals and differential equations.</li>
+        <li><a href="../how-to-register.html">How to register on Derradj Academy</a> — to access the full course content.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var btns = document.querySelectorAll('.seo-lang-btn');
+  var panels = { fr: document.getElementById('seo-lang-fr'), en: document.getElementById('seo-lang-en') };
+  if (!btns.length || !panels.fr || !panels.en) return;
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var lang = btn.getAttribute('data-lang');
+      btns.forEach(function (b) {
+        var active = b === btn;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
+        b.tabIndex = active ? 0 : -1;
+      });
+      Object.keys(panels).forEach(function (key) { panels[key].hidden = key !== lang; });
+    });
+  });
+})();
+</script>
 
 <section class="contact-form" id="support">
   <h2>هل لديك سؤال؟</h2>

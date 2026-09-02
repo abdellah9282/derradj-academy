@@ -62,6 +62,60 @@
           { "@type": "ListItem", "position": 2, "name": "Courses", "item": "https://www.derradjacademy.com/#courses" },
           { "@type": "ListItem", "position": 3, "name": "Informatique 1", "item": "https://www.derradjacademy.com/courses/informatique01.html" }
         ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.derradjacademy.com/courses/informatique01.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Qu'est-ce que le module Informatique 1 ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "C'est un module d'introduction à l'informatique du Tronc Commun de première année (L1), qui couvre les systèmes de numération, la conversion entre bases, le codage binaire et les premiers pas en programmation Pascal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "À quel niveau universitaire s'adresse ce cours ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ce cours s'adresse aux étudiants de première année Licence (L1), notamment en Tronc Commun Sciences et Techniques (ST) et Mathématiques-Informatique (MI)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quels sont les principaux chapitres étudiés ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le cours couvre les unités de stockage, les systèmes de numération décimal, binaire, octal et hexadécimal, les conversions entre ces bases, l'addition et la soustraction binaires, le codage en signe-grandeur et en complément à 1 et à 2, ainsi qu'une première approche du langage Pascal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le cours contient-il des exercices corrigés ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Les vidéos incluent des exemples résolus pas à pas pour chaque type de conversion et chaque opération binaire, afin d'aider l'étudiant à s'entraîner directement."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le cours contient-il des vidéos explicatives ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, chaque notion est expliquée en vidéo, en langue arabe, avec un style simple et progressif adapté aux étudiants de première année."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment accéder au contenu du cours ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'accès complet aux vidéos se fait après inscription sur la plateforme, via les moyens de paiement indiqués sur cette page."
+            }
+          }
+        ]
       }
     ]
   }
@@ -546,6 +600,391 @@
   </div>
 </section>
 
+
+<!-- ==================== SEO: Contenu pédagogique Informatique 1 ==================== -->
+<style>
+  .seo-info-section {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 1.2rem;
+    font-family: var(--font-main, 'Cairo', 'Segoe UI', sans-serif);
+    color: #374151;
+  }
+  .seo-info-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    padding: 2rem 2.2rem;
+  }
+  .seo-info-card + .seo-info-card { margin-top: 2rem; }
+  .seo-info-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #4c1d95;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  .seo-info-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1e40af;
+    margin: 1.6rem 0 0.7rem;
+  }
+  .seo-info-card p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #374151;
+    margin-bottom: 0.6rem;
+  }
+  .seo-topic-list {
+    margin: 0.8rem 0 0.4rem;
+    padding-inline-start: 1.3rem;
+    line-height: 1.9;
+  }
+  .seo-topic-list li { margin-bottom: 0.35rem; }
+  .seo-faq-list { margin-top: 0.6rem; }
+  .seo-faq-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 0.2rem 1rem;
+    margin-bottom: 0.8rem;
+    background: #f9fafb;
+  }
+  .seo-faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: #1f2937;
+    padding: 0.85rem 0;
+    list-style: none;
+  }
+  .seo-faq-item summary::-webkit-details-marker { display: none; }
+  .seo-faq-item summary::after {
+    content: "+";
+    float: inline-end;
+    color: #7e3af2;
+    font-weight: 800;
+    font-size: 1.2rem;
+  }
+  .seo-faq-item[open] summary::after { content: "−"; }
+  .seo-faq-item p {
+    padding-bottom: 0.9rem;
+    margin: 0;
+    color: #4b5563;
+  }
+  .seo-related-links { margin-top: 1.6rem; }
+  .seo-related-links ul {
+    padding-inline-start: 1.3rem;
+    line-height: 2;
+  }
+  .seo-related-links a {
+    color: #4c1d95;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .seo-related-links a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .seo-info-section { margin: 2rem auto; padding: 0 0.8rem; }
+    .seo-info-card { padding: 1.4rem 1.2rem; border-radius: 12px; }
+    .seo-info-title { font-size: 1.3rem; }
+    .seo-info-card h3 { font-size: 1.05rem; }
+    .seo-info-card p, .seo-topic-list { font-size: 0.95rem; }
+  }
+
+  /* Language switcher */
+  .seo-lang-switcher {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 1.4rem;
+  }
+  .seo-lang-btn {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.55rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid #d8d2f0;
+    background: #f5f3ff;
+    color: #4c1d95;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .seo-lang-btn:hover { background: #ece7fc; }
+  .seo-lang-btn.active {
+    background: linear-gradient(135deg, #7e3af2, #651fff);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 3px 10px rgba(101, 31, 255, 0.3);
+  }
+  .seo-lang-btn:focus-visible {
+    outline: 2px solid #4c1d95;
+    outline-offset: 2px;
+  }
+  @media (max-width: 600px) {
+    .seo-lang-switcher { gap: 0.5rem; margin-bottom: 1rem; }
+    .seo-lang-btn { flex: 1 1 auto; padding: 0.55rem 0.8rem; font-size: 0.9rem; }
+  }
+</style>
+
+<section class="seo-info-section" id="a-propos-informatique-1">
+  <div class="seo-lang-switcher" role="tablist" aria-label="Langue du contenu / Content language">
+    <button type="button" class="seo-lang-btn active" id="seo-lang-btn-fr" role="tab"
+      aria-selected="true" aria-controls="seo-lang-fr" data-lang="fr">Français</button>
+    <button type="button" class="seo-lang-btn" id="seo-lang-btn-en" role="tab"
+      aria-selected="false" aria-controls="seo-lang-en" data-lang="en" tabindex="-1">English</button>
+  </div>
+
+  <div id="seo-lang-fr" role="tabpanel" aria-labelledby="seo-lang-btn-fr" lang="fr">
+  <div class="seo-info-card">
+    <h2 class="seo-info-title">Informatique 1 — Cours L1 Tronc Commun</h2>
+    <p>
+      Informatique 1 est un module d'introduction à l'informatique enseigné en première année Licence (L1),
+      notamment en Tronc Commun Sciences et Techniques (ST) et Mathématiques-Informatique (MI). Il pose les
+      bases indispensables pour comprendre comment un ordinateur représente et manipule l'information, avant
+      d'aborder la programmation.
+    </p>
+
+    <h3>Programme d'Informatique 1</h3>
+    <p>
+      Le programme suit une progression logique, des unités de stockage jusqu'aux premiers pas en
+      programmation. Les principaux chapitres traités dans les leçons vidéo de cette page sont :
+    </p>
+    <ul class="seo-topic-list">
+      <li>Unités de stockage (bit, octet, et multiples)</li>
+      <li>Systèmes de numération : décimal, binaire, octal et hexadécimal</li>
+      <li>Conversion entre les différentes bases de numération</li>
+      <li>Addition et soustraction en binaire</li>
+      <li>Codage binaire : signe-grandeur, complément à 1 et complément à 2</li>
+      <li>Introduction à la programmation en Pascal</li>
+    </ul>
+    <p>
+      Chaque notion est présentée avec des exemples résolus pas à pas, pour aider l'étudiant à s'entraîner
+      directement sur les conversions et les opérations binaires.
+    </p>
+
+    <h3>Ressources disponibles</h3>
+    <p>
+      Cette page regroupe les vidéos du cours Informatique 1, expliquées en arabe, chapitre par chapitre.
+      L'accès complet aux vidéos est réservé aux étudiants inscrits sur la plateforme.
+    </p>
+
+    <h3>Pourquoi suivre ce cours ?</h3>
+    <p>
+      Ce module constitue la base de tout parcours en informatique et en sciences de l'ingénieur : bien
+      comprendre la numération et le codage binaire facilite l'apprentissage des modules suivants, comme
+      Informatique 2 (Pascal) et Informatique 3 (MATLAB). Les explications en arabe, simples et progressives,
+      aident les nouveaux étudiants à prendre confiance dès le premier semestre.
+    </p>
+
+    <h3>Pour les étudiants de L1 Tronc Commun</h3>
+    <p>
+      Ce cours s'adresse particulièrement aux étudiants de première année Licence (L1) inscrits en Tronc
+      Commun Sciences et Techniques (ST) ou Mathématiques-Informatique (MI), où Informatique 1 fait partie du
+      programme du premier semestre.
+    </p>
+  </div>
+
+  <div class="seo-info-card">
+    <h2 class="seo-info-title" style="font-size:1.4rem;">Questions fréquentes — Informatique 1</h2>
+    <div class="seo-faq-list">
+      <details class="seo-faq-item">
+        <summary>Qu'est-ce que le module Informatique 1 ?</summary>
+        <p>
+          C'est un module d'introduction à l'informatique du Tronc Commun de première année (L1), qui couvre
+          les systèmes de numération, la conversion entre bases, le codage binaire et les premiers pas en
+          programmation Pascal.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>À quel niveau universitaire s'adresse ce cours ?</summary>
+        <p>
+          Ce cours s'adresse aux étudiants de première année Licence (L1), notamment en Tronc Commun Sciences
+          et Techniques (ST) et Mathématiques-Informatique (MI).
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Quels sont les principaux chapitres étudiés ?</summary>
+        <p>
+          Le cours couvre les unités de stockage, les systèmes de numération décimal, binaire, octal et
+          hexadécimal, les conversions entre ces bases, l'addition et la soustraction binaires, le codage en
+          signe-grandeur et en complément à 1 et à 2, ainsi qu'une première approche du langage Pascal.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Le cours contient-il des exercices corrigés ?</summary>
+        <p>
+          Les vidéos incluent des exemples résolus pas à pas pour chaque type de conversion et chaque
+          opération binaire, afin d'aider l'étudiant à s'entraîner directement.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Le cours contient-il des vidéos explicatives ?</summary>
+        <p>
+          Oui, chaque notion est expliquée en vidéo, en langue arabe, avec un style simple et progressif
+          adapté aux étudiants de première année.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Comment accéder au contenu du cours ?</summary>
+        <p>
+          L'accès complet aux vidéos se fait après inscription sur la plateforme, via les moyens de paiement
+          indiqués plus haut sur cette page.
+        </p>
+      </details>
+    </div>
+
+    <div class="seo-related-links">
+      <h3>Ressources associées</h3>
+      <ul>
+        <li><a href="informatique02.html">Informatique 2 – Pascal</a> — pour approfondir la programmation abordée en fin d'Informatique 1.</li>
+        <li><a href="informatique03.html">Informatique 3 – MATLAB</a> — un prolongement pour la programmation scientifique.</li>
+        <li><a href="algebre2.html">Algèbre 2</a> — une autre matière clé du programme de L1 Tronc Commun.</li>
+        <li><a href="../how-to-register.html">Comment s'inscrire sur Derradj Academy</a> — pour accéder à l'ensemble du contenu du cours.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+
+  <div id="seo-lang-en" role="tabpanel" aria-labelledby="seo-lang-btn-en" lang="en" hidden>
+  <div class="seo-info-card">
+    <h2 class="seo-info-title">Computer Science 1 — L1 Core Curriculum Course</h2>
+    <p>
+      Computer Science 1 is an introductory computing module taught in the first year of the Bachelor's
+      degree (L1), particularly in the Common Core Sciences and Techniques (ST) and Mathematics-Computer
+      Science (MI) tracks. It lays the essential groundwork for understanding how a computer represents and
+      manipulates information, before moving on to programming.
+    </p>
+
+    <h3>Computer Science 1 Program</h3>
+    <p>
+      The program follows a logical progression, from storage units to the first steps in programming. The
+      main topics covered in the video lessons on this page include:
+    </p>
+    <ul class="seo-topic-list">
+      <li>Storage units (bit, byte, and multiples)</li>
+      <li>Number systems: decimal, binary, octal and hexadecimal</li>
+      <li>Conversion between number bases</li>
+      <li>Binary addition and subtraction</li>
+      <li>Binary coding: sign-magnitude, 1's complement and 2's complement</li>
+      <li>Introduction to Pascal programming</li>
+    </ul>
+    <p>
+      Each concept is presented with step-by-step solved examples, helping students practice conversions and
+      binary operations directly.
+    </p>
+
+    <h3>Available Learning Resources</h3>
+    <p>
+      This page brings together the Computer Science 1 video lessons, explained in Arabic, chapter by
+      chapter. Full access to the videos is reserved for students enrolled on the platform.
+    </p>
+
+    <h3>Why Take This Course?</h3>
+    <p>
+      This module is the foundation of any path in computer science and engineering: a solid understanding
+      of number systems and binary coding makes it much easier to follow later modules, such as Computer
+      Science 2 (Pascal) and Computer Science 3 (MATLAB). The simple, progressive Arabic explanations help
+      new students build confidence from the very first semester.
+    </p>
+
+    <h3>For L1 Core Curriculum Students</h3>
+    <p>
+      This course is particularly relevant for first-year Bachelor's (L1) students in the Common Core
+      Sciences and Techniques (ST) or Mathematics-Computer Science (MI) tracks, where Computer Science 1 is
+      part of the first-semester curriculum.
+    </p>
+  </div>
+
+  <div class="seo-info-card">
+    <h2 class="seo-info-title" style="font-size:1.4rem;">Frequently Asked Questions — Computer Science 1</h2>
+    <div class="seo-faq-list">
+      <details class="seo-faq-item">
+        <summary>What is the Computer Science 1 module?</summary>
+        <p>
+          It is an introductory computing module in the first-year (L1) Common Core, covering number
+          systems, base conversion, binary coding and the first steps in Pascal programming.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Which university level is this course intended for?</summary>
+        <p>
+          This course is intended for first-year Bachelor's (L1) students, particularly in the Common Core
+          Sciences and Techniques (ST) and Mathematics-Computer Science (MI) tracks.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>What are the main topics covered?</summary>
+        <p>
+          The course covers storage units, decimal, binary, octal and hexadecimal number systems, conversion
+          between these bases, binary addition and subtraction, sign-magnitude and complement coding (1's
+          and 2's complement), and a first introduction to Pascal.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Does the course include solved exercises?</summary>
+        <p>
+          The videos include step-by-step solved examples for each type of conversion and binary operation,
+          helping students practice directly.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>Does the course include explanatory videos?</summary>
+        <p>
+          Yes, each concept is explained in a video, in Arabic, with a simple, progressive teaching style
+          suited to first-year students.
+        </p>
+      </details>
+      <details class="seo-faq-item">
+        <summary>How can I access the course content?</summary>
+        <p>
+          Full access to the videos is granted after enrolling on the platform, using the payment methods
+          listed on this page.
+        </p>
+      </details>
+    </div>
+
+    <div class="seo-related-links">
+      <h3>Related Resources</h3>
+      <ul>
+        <li><a href="informatique02.html">Computer Science 2 – Pascal</a> — to go further with the programming introduced at the end of Computer Science 1.</li>
+        <li><a href="informatique03.html">Computer Science 3 – MATLAB</a> — a continuation into scientific programming.</li>
+        <li><a href="algebre2.html">Algebra 2</a> — another key subject in the L1 Common Core curriculum.</li>
+        <li><a href="../how-to-register.html">How to register on Derradj Academy</a> — to access the full course content.</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var btns = document.querySelectorAll('.seo-lang-btn');
+  var panels = {
+    fr: document.getElementById('seo-lang-fr'),
+    en: document.getElementById('seo-lang-en')
+  };
+  if (!btns.length || !panels.fr || !panels.en) return;
+
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var lang = btn.getAttribute('data-lang');
+
+      btns.forEach(function (b) {
+        var active = b === btn;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
+        b.tabIndex = active ? 0 : -1;
+      });
+
+      Object.keys(panels).forEach(function (key) {
+        panels[key].hidden = key !== lang;
+      });
+    });
+  });
+})();
+</script>
 
 <section class="contact-form" id="support">
   <h2>هل لديك سؤال؟</h2>
