@@ -50,3 +50,12 @@
 /courses/systeme_asservis               /courses/systeme_asservis.html               301
 /courses/theorie_du_champ               /courses/theorie_du_champ.html               301
 /courses/theorie_du_signal              /courses/theorie_du_signal.html              301
+
+# ─── Old course URLs (404s) → current course pages ───
+/courses/systemes_asservis.html               /courses/systeme_asservis.html               301
+/courses/informatique1.html                   /courses/informatique01.html                 301
+/courses/electronique-puissance.html          /courses/electronique_de_puissance.html      301
+/courses/reseaux_electriques.html             /courses/réseaux_electrique.html              301
+/courses/logique_combinatoire_sequentielle.html /courses/logique.html                       301
+/courses/methodes_numeriques_l2_m1.html       /courses/methode.html                         301
+/courses/probabilite_statistique.html         /courses/probabilite_et_statistique.html      301
