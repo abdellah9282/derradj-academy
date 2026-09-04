@@ -1,3 +1,48 @@
-/:page             /:page.html             200
-/:folder/:page     /:folder/:page.html     200
-/:folder/:sub/:page /:folder/:sub/:page.html 200
+# ══════════════════════════════════════════════════════════════════
+# URL canonicalization: extension-less page requests → their .html
+# file, via a real 301 redirect.
+#
+# These are explicit, literal "from" paths (no :placeholders / *splats).
+# That is deliberate: the previous rules used
+#   /:page              /:page.html              200
+#   /:folder/:page      /:folder/:page.html      200
+#   /:folder/:sub/:page /:folder/:sub/:page.html 200
+# which silently rewrote (status 200) ANY unmatched path to "<path>.html",
+# creating a second live, indexable URL for every page with no canonical
+# HTTP signal. Simply flipping those same placeholder rules to 301 is
+# NOT safe: a placeholder like :page matches a full path segment
+# including dots, so a mistyped/nonexistent URL that already ends in
+# ".html" (e.g. /foo.html) would ALSO match, get redirected to
+# "/foo.html.html", which again matches the same rule, and so on —
+# an infinite redirect loop. Existing real .html files never hit these
+# rules (Netlify serves an existing static file before evaluating
+# _redirects), so this file only needs to list the extension-less
+# alias for each real public page. Anything not listed here simply
+# falls through to the site's normal 404 handling (see netlify.toml),
+# exactly as it would for any other nonexistent path.
+# ══════════════════════════════════════════════════════════════════
+
+# ─── Top-level public pages (sitemap.xml) ───
+/how-to-register     /how-to-register.html     301
+/services            /services.html            301
+/terms                /terms.html               301
+
+# ─── Course pages (/courses/) ───
+/courses/algebre2                       /courses/algebre2.html                       301
+/courses/electronique_de_puissance      /courses/electronique_de_puissance.html      301
+/courses/electronique_fondamentale1     /courses/electronique_fondamentale1.html     301
+/courses/electrotechnique_fondamentale1 /courses/electrotechnique_fondamentale1.html 301
+/courses/informatique01                 /courses/informatique01.html                 301
+/courses/informatique02                 /courses/informatique02.html                 301
+/courses/informatique03                 /courses/informatique03.html                 301
+/courses/les_quadripoles                /courses/les_quadripoles.html                301
+/courses/logique                        /courses/logique.html                        301
+/courses/machine_electrique             /courses/machine_electrique.html             301
+/courses/math3_analyse3                 /courses/math3_analyse3.html                 301
+/courses/methode                        /courses/methode.html                        301
+/courses/ondes_et_vibrations            /courses/ondes_et_vibrations.html            301
+/courses/probabilite_et_statistique     /courses/probabilite_et_statistique.html     301
+/courses/r%C3%A9seaux_electrique        /courses/r%C3%A9seaux_electrique.html        301
+/courses/systeme_asservis               /courses/systeme_asservis.html               301
+/courses/theorie_du_champ               /courses/theorie_du_champ.html               301
+/courses/theorie_du_signal              /courses/theorie_du_signal.html              301

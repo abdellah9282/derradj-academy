@@ -5,6 +5,22 @@
 [build]
   publish = "."
 
+# ─── Canonical URL enforcement ────────────────────────
+# Disable Netlify's legacy "Pretty URLs" post-processing, which
+# auto-aliases every foo.html file to also be served at /foo.
+# That aliasing is what let /courses/algebre2 resolve as a silent
+# 200 duplicate of /courses/algebre2.html, and made Netlify's own
+# trailing-slash normalization 301 to the extension-less form
+# instead of the .html canonical declared in sitemap.xml, robots.txt
+# and every <link rel="canonical">. With this off, only the literal
+# .html files are served directly; extension-less access goes
+# through the explicit 301 rules in _redirects.
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = false
+
 # ─── Security Headers (نسخة احتياطية من _headers) ───
 
 [[headers]]
