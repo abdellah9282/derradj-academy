@@ -5,7 +5,6 @@ Allow: /
 Disallow: /login/
 Disallow: /mycourses-board/
 Disallow: /sign-up/
-Disallow: /Essai/
 Disallow: /js/protect.js
 Disallow: /All%20playlist/
 Disallow: /payment/

@@ -27,6 +27,10 @@
 /services            /services.html            301
 /terms                /terms.html               301
 
+# ─── Retired duplicate/experimental pages (old public URLs) ───
+/essai.html          /                          301
+/apreslive.html      /                          301
+
 # ─── Course pages (/courses/) ───
 /courses/algebre2                       /courses/algebre2.html                       301
 /courses/electronique_de_puissance      /courses/electronique_de_puissance.html      301

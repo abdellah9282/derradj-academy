@@ -4,160 +4,121 @@
   <!-- الصفحة الرئيسية -->
   <url>
     <loc>https://www.derradjacademy.com/</loc>
-    <lastmod>2026-05-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.00</priority>
+    <lastmod>2026-08-31</lastmod>
   </url>
 
   <!-- صفحات عامة -->
   <url>
     <loc>https://www.derradjacademy.com/how-to-register.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-08-31</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/services.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <lastmod>2026-09-04</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/terms.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.40</priority>
+    <lastmod>2026-09-04</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.derradjacademy.com/pomodoro.html</loc>
+    <lastmod>2026-08-31</lastmod>
   </url>
 
   <!-- دورات السنة الأولى -->
   <url>
     <loc>https://www.derradjacademy.com/courses/informatique01.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/algebre2.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <!-- دورات السنة الثانية -->
   <url>
     <loc>https://www.derradjacademy.com/courses/ondes_et_vibrations.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/electronique_fondamentale1.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/electrotechnique_fondamentale1.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/probabilite_et_statistique.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/informatique02.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/informatique03.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/logique.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/methode.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/theorie_du_signal.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/math3_analyse3.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <!-- دورات السنة الثالثة -->
   <url>
     <loc>https://www.derradjacademy.com/courses/electronique_de_puissance.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/machine_electrique.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/systeme_asservis.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/r%C3%A9seaux_electrique.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/les_quadripoles.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
   <url>
     <loc>https://www.derradjacademy.com/courses/theorie_du_champ.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <lastmod>2026-09-02</lastmod>
   </url>
 
 </urlset>

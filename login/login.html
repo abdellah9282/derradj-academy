@@ -159,29 +159,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="login.js"></script>
-  <script>
-  // تحديد المسار الصحيح حسب موقع الصفحة
-  const headerPath = window.location.pathname.includes("sign-up") ||
-                     window.location.pathname.includes("login") ||
-                     window.location.pathname.includes("courses") ||
-                     window.location.pathname.includes("admin") ||
-                     window.location.pathname.split("/").length > 2
-    ? "../includes/header.html"
-    : "includes/header.html";
-
-  fetch(headerPath)
-    .then(response => {
-      if (!response.ok) throw new Error("❌ Failed to load header");
-      return response.text();
-    })
-    .then(data => {
-      document.getElementById("dynamic-header").innerHTML = data;
-    })
-    .catch(error => {
-      console.error("❌ Error loading header:", error);
-    });
-</script>
-
 
 <script src="../js/protect.js"></script>
 <script>

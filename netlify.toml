@@ -53,8 +53,17 @@
 # لذا لا يمكننا إعادة التوجيه بناءً على الجلسة من هنا.
 # التحقق من الجلسة يبقى في JavaScript (course.js).
 
-# أي طلب لصفحة غير موجودة → صفحة الـ 404 الخاصة
+# Canonical host: apex → www (was previously in the unused _netlify.toml,
+# which Netlify never actually reads — only netlify.toml at repo root is
+# parsed — so this redirect was not live in production before).
+[[redirects]]
+  from   = "https://derradjacademy.com/*"
+  to     = "https://www.derradjacademy.com/:splat"
+  status = 301
+  force  = true
+
+# أي طلب لصفحة غير موجودة → صفحة 404 حقيقية (وليست الصفحة الرئيسية)
 [[redirects]]
   from   = "/*"
-  to     = "/index.html"
+  to     = "/404.html"
   status = 404
