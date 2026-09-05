@@ -53,6 +53,13 @@
         "image": "https://www.derradjacademy.com/Logo.jpg",
         "brand": { "@type": "Brand", "name": "Derradj Academy" },
         "category": "Educational Course",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": 3
+        },
         "offers": { "@type": "Offer", "price": "1200", "priceCurrency": "DZD", "availability": "https://schema.org/InStock", "url": "https://www.derradjacademy.com/courses/r%C3%A9seaux_electrique.html" }
       },
       {
@@ -189,7 +196,7 @@
   <main class="course-content">
     <div class="course-header-box">
       <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-  <h1 class="course-title">Réseaux Électriques</h1>
+  <h1 class="course-title" style="margin:0;">Réseaux Électriques</h1>
 
  <a href="http://pay.chargily.com/payment-links/01k63hmjzxndnb7cg37vw5hrk8" target="_blank" class="btn-green-shiny">
   💳 الدفع بالبطاقة الذهبية
@@ -269,8 +276,12 @@
      سعر الدورة: <span style="font-size:1.2em;">1200 دج</span>
   </span>
 </div>
+      <div class="course-stars" style="display:flex; align-items:center; gap:8px; margin:0; padding:0; line-height:1; position:relative; top:-9.6px;">
+        <span id="course-stars-icons" aria-label="5 out of 5 stars" style="font-size:1.2rem; letter-spacing:3px; line-height:1;"><span style="color:#f59e0b;">★</span><span style="color:#f59e0b;">★</span><span style="color:#f59e0b;">★</span><span style="color:#f59e0b;">★</span><span style="color:#f59e0b;">★</span></span>
+        <span id="course-stars-value" style="font-size:0.95rem; color:#475569;">(5.0)</span>
+      </div>
       <div class="instructor-details">
-      <p class="instructor-name"><strong>Teacher :</strong> Abdellah Derradj</p>
+      <p class="instructor-name" style="margin:0;"><strong>Teacher :</strong> Abdellah Derradj</p>
 <p class="instructor-bio" dir="rtl" style="text-align: right;">
  جميع <strong>الفيديوهات مشروحة باللغة العربية</strong> بأسلوب مبسّط وواضح، لتفهم بسهولة مهما كانت لغة دراستك — فرنسية أو إنجليزية.</p>
       </div>
@@ -1071,6 +1082,54 @@
     'https://sgcypxmnlyiwljuqvcup.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnY3lweG1ubHlpd2xqdXF2Y3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg3OTI0MTEsImV4cCI6MjA2NDM2ODQxMX0.iwIikgvioT06uPoXES5IN98TwhtePknCuEQ5UFohfCM'
   );
+
+  // ✅ تقييم الدورة (نجوم متجزئة + مزامنة الـ Schema)
+  function renderCourseStars(avg) {
+    const starsEl = document.getElementById('course-stars-icons');
+    const valueEl = document.getElementById('course-stars-value');
+    if (!starsEl || !valueEl) return;
+    let html = '';
+    for (let i = 0; i < 5; i++) {
+      const pct = Math.max(0, Math.min(100, (avg - i) * 100));
+      html += `<span style="display:inline-block; position:relative; width:1em; color:#d1d5db;">★<span style="position:absolute; top:0; left:0; width:${pct}%; overflow:hidden; color:#f59e0b;">★</span></span>`;
+    }
+    starsEl.setAttribute('aria-label', `${avg.toFixed(1)} out of 5 stars`);
+    starsEl.innerHTML = html;
+    valueEl.textContent = `(${avg.toFixed(1)})`;
+  }
+
+  function updateProductSchemaRating(avg, count) {
+    const ldScript = document.querySelector('script[type="application/ld+json"]');
+    if (!ldScript) return;
+    try {
+      const data = JSON.parse(ldScript.textContent);
+      const product = data['@graph'] && data['@graph'].find(n => n['@type'] === 'Product');
+      if (product && product.aggregateRating) {
+        product.aggregateRating.ratingValue = avg.toFixed(1);
+        if (count > 0) product.aggregateRating.ratingCount = count;
+        else delete product.aggregateRating.ratingCount;
+        ldScript.textContent = JSON.stringify(data);
+      }
+    } catch (e) {
+      console.error('JSON-LD update failed', e);
+    }
+  }
+
+  async function loadCourseRating(moduleId) {
+    const { data, error } = await supabase.from('course_ratings').select('rating').eq('module', moduleId);
+    if (error) { console.error('rating fetch failed', moduleId, error.message); return; }
+    if (!data || data.length === 0) {
+      renderCourseStars(5);
+      updateProductSchemaRating(5, 0);
+      return;
+    }
+    const ratings = data.map(r => Number(r.rating));
+    const avg = Math.round((ratings.reduce((s, r) => s + r, 0) / ratings.length) * 10) / 10;
+    renderCourseStars(avg);
+    updateProductSchemaRating(avg, ratings.length);
+  }
+
+  loadCourseRating('reseaux_electrique');
 
   // ✅ إرسال نموذج السؤال
 const form = document.getElementById('questionForm');
